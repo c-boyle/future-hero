@@ -7,9 +7,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Transform _bodyTransform, _cameraTransform; 
     private float _movementSpeed;
-    private float _rotationSpeed; 
-
-    private float xAxisClamp = 0f;
+    private float _rotationSpeed;
 
 
     // Start is called before the first frame update
