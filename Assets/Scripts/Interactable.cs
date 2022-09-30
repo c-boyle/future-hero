@@ -12,6 +12,9 @@ public class Interactable : MonoBehaviour {
   }
 
   private void OnInteract(object sender, InteractionEventArgs e) {
+    if (!gameObject.activeSelf) {
+      return;
+    }
     if (Vector3.Distance(e.InteractorPosition, transform.position) <= 50f) {
       interactionAction?.Invoke();
       Debug.Log("interacted");
