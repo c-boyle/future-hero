@@ -31,7 +31,7 @@ public class CharacterMovement : MonoBehaviour
         // Temporary Velocity variable that we'll set player velocity to later (for now until comfortable with impl.)
         Vector3 tmpVelocity = new Vector3(0,0,0);
 
-        Debug.Log(movement);
+        // Debug.Log(movement);
 
         // Check y direction in movement vector to know if we will...
         if (movement.x > 0) // ...move forward

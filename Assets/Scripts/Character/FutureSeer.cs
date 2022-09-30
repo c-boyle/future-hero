@@ -12,7 +12,7 @@ public class FutureSeer : MonoBehaviour {
 
   [SerializeField] private bool timeVisionEnabled = false;
 
-  public void ToggleTimeVision() {
+  public void ToggleFutureVision() {
     if (timeVisionEnabled) {
       futureObjectsRoots[currentFutureIndex].SetActive(false);
       presentObjectsRoot.SetActive(true);

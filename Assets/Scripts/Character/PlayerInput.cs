@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PlayerInput : BaseInput {
 
+  [SerializeField] private FutureSeer futureSeer;
+
   private PlayerControls controls;
   private bool activeMovementInput = false;
 
@@ -21,6 +23,10 @@ public class PlayerInput : BaseInput {
     controls.Player.Interact.performed += ctx => OnInteract();
   }
 
+  private void OnToggleFutureVision() {
+    futureSeer.ToggleFutureVision();
+  }
+
   private void OnInteract() {
     PlayerInteraction?.Invoke(this, new Interactable.InteractionEventArgs() { InteractorPosition = transform.position });
   }
@@ -31,6 +37,10 @@ public class PlayerInput : BaseInput {
     }
 
     Cursor.visible = false;
+
+    if (Input.GetKeyDown(KeyCode.T)) {
+      OnToggleFutureVision();
+    }
 
     float mouseX = Input.GetAxis("Mouse X");
     float mouseY = Input.GetAxis("Mouse Y");
