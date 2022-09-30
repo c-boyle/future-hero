@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    private Rigidbody _rigidbody;
-    private Transform _transform; 
+    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private Transform _bodyTransform, _cameraTransform; 
     private float _movementSpeed;
-    // private float _rotationSpeed; 
+    private float _rotationSpeed; 
+
+    private float xAxisClamp = 0f;
 
 
     // Start is called before the first frame update
     void Start()
     {   
-        _rigidbody = GetComponent<Rigidbody>();
-        _transform = GetComponent<Transform>();
-        // _rotationSpeed = 1f;
+        // _rigidbody = GetComponent<Rigidbody>();
+        // _bodyTransform = GetComponent<Transform>();
+        _rotationSpeed = 3f;
         _movementSpeed = 10f;
     }
 
@@ -36,11 +38,11 @@ public class CharacterMovement : MonoBehaviour
         // Check y direction in movement vector to know if we will...
         if (movement.x > 0) // ...move forward
         {
-            tmpVelocity = Vector3.forward;
+            tmpVelocity = _bodyTransform.forward;
         }
         else if (movement.x < 0) // ...move backward
         {
-            tmpVelocity = Vector3.back;
+            tmpVelocity = _bodyTransform.forward * (-1);
         }
         else // ...stop moving
         {
@@ -51,11 +53,11 @@ public class CharacterMovement : MonoBehaviour
         // Check x direction in movement vector to know if we will...
         if (movement.y < 0) // ...move forward
         {
-            tmpVelocity += Vector3.right;
+            tmpVelocity += _bodyTransform.right;
         }
         else if (movement.y > 0) // ...move backward
         {
-            tmpVelocity += Vector3.left;
+            tmpVelocity += _bodyTransform.right * (-1);
         }
         else // ...stop moving
         {
@@ -64,6 +66,23 @@ public class CharacterMovement : MonoBehaviour
 
         _rigidbody.velocity = tmpVelocity * _movementSpeed;
         //  _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
-        // _rigidbody.rotation += _transform.rotation;
+        // _rigidbody.rotation += _bodyTransform.rotation;
+    }
+
+
+    // Function that changes where the character is looking
+    public void Look(Vector2 rotation)
+    {
+        Debug.Log(rotation);
+    
+        Vector3 cameraRotation = _cameraTransform.rotation.eulerAngles;
+        Vector3 playerRotation = _bodyTransform.rotation.eulerAngles;
+    
+        cameraRotation.x -= rotation.y * _rotationSpeed;
+        playerRotation.y += rotation.x * _rotationSpeed;
+        // playerRotation.x = 0;
+
+        _cameraTransform.rotation = Quaternion.Euler(cameraRotation);
+        _bodyTransform.rotation = Quaternion.Euler(playerRotation);
     }
 }

@@ -3564,6 +3564,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfcbb672004b7d458655f24912b47d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 62561318}
+  _bodyTransform: {fileID: 62561321}
+  _cameraTransform: {fileID: 963194228}
 --- !u!65 &62561320
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3577,6 +3580,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.06493304, y: 0.078525074, z: 0.035718855}
   m_Center: {x: 0.0018309046, y: 0.034712747, z: 0.018816914}
+--- !u!4 &62561321 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
+  m_PrefabInstance: {fileID: 320081211}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &75548305
 GameObject:
   m_ObjectHideFlags: 0
@@ -4352,8 +4360,16 @@ PrefabInstance:
       value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -5049883344809587360, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5049883344809587360, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4373938136453559124, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4373938136453559124, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_IsActive
@@ -4362,6 +4378,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Name
       value: character
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_IsActive
@@ -4949,7 +4969,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28114
+  m_Name: pb_Mesh38104
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5215,6 +5235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DyingHuman (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3591103983083945920, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
+      propertyPath: m_TagString
+      value: Human
+      objectReference: {fileID: 0}
     - target: {fileID: 4223807622144664954, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -5259,7 +5283,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -91.922
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4402061766194900209, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4402061766194900209, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
 --- !u!1 &617429696
 GameObject:
@@ -5684,7 +5713,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The train is already going to the left,
+  m_text: The train is already going to the left.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5807,8 +5836,8 @@ RectTransform:
   m_GameObject: {fileID: 814308300}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: -16.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
@@ -5828,6 +5857,10 @@ PrefabInstance:
     - target: {fileID: 3591103983083945920, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
       propertyPath: m_Name
       value: DyingHuman (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591103983083945920, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
+      propertyPath: m_TagString
+      value: Human
       objectReference: {fileID: 0}
     - target: {fileID: 4223807622144664954, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
       propertyPath: m_RootOrder
@@ -6025,7 +6058,7 @@ MonoBehaviour:
   - {fileID: 193469953}
   - {fileID: 907178834}
   rb: {fileID: 843929245}
-  velocity: 5
+  velocity: 15
   pointOfNoReturn: 1
 --- !u!82 &843929248
 AudioSource:
@@ -6123,6 +6156,115 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &843929250
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843929242}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f3112f13995c6ef499d5aff0f5e3f69e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &843929251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843929242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d119ffc668179438e17ca8ea64dbe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathSound: {fileID: 843929250}
 --- !u!1 &849819848
 GameObject:
   m_ObjectHideFlags: 0
@@ -6462,7 +6604,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You time travel back to the exact day of the incident
+  m_text: You time travel back to the exact day of the incident, and have two choices.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6583,17 +6725,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935088045}
-  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: 7.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0.5012313, y: -0.49876568, z: 0.49876568, w: 0.5012313}
+  m_LocalPosition: {x: 0, y: 0, z: 7.219189}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 89.717}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 199.5, y: 95.22}
+  m_AnchoredPosition: {x: 199.49364, y: 95.22}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!43 &950363435
@@ -6602,7 +6744,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28798
+  m_Name: pb_Mesh38736
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6868,7 +7010,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -6894,12 +7036,12 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 35.864223
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -6908,13 +7050,13 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 37
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6933,14 +7075,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.24557802, y: -0, z: -0, w: 0.9693768}
-  m_LocalPosition: {x: -0.0023, y: 0.0691, z: -0.0919}
+  m_LocalRotation: {x: 0.24454345, y: -0, z: 0.000000044703484, w: 0.9696384}
+  m_LocalPosition: {x: -0.002299999, y: 0.043700024, z: -0.0028000001}
   m_LocalScale: {x: 0.030893112, y: 0.030893102, z: 0.030893106}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2138626787}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 28.432, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 28.31, y: 0, z: 0}
 --- !u!1 &964181564
 GameObject:
   m_ObjectHideFlags: 0
@@ -7145,6 +7287,10 @@ PrefabInstance:
     - target: {fileID: 3591103983083945920, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
       propertyPath: m_Name
       value: DyingHuman (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591103983083945920, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
+      propertyPath: m_TagString
+      value: Human
       objectReference: {fileID: 0}
     - target: {fileID: 4223807622144664954, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
       propertyPath: m_RootOrder
@@ -8134,6 +8280,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DyingHuman (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3591103983083945920, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
+      propertyPath: m_TagString
+      value: Human
+      objectReference: {fileID: 0}
     - target: {fileID: 4223807622144664954, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -8412,8 +8562,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You, who is from the future, know that there was a railroad incident that
-    killed 5 people a few years ago.
+  m_text: A top-secret company from the future sends you, the only agent capable
+    of time travel, to the past, to stop a train from killing 5 people.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8476,7 +8626,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -10.272732, w: 0}
+  m_margin: {x: 0, y: 0, z: -17.878515, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -8535,16 +8685,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314248518}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: 5.3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 3.5}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220.1, y: 95.2}
+  m_AnchoredPosition: {x: 217.84, y: 95.2}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1335726517
@@ -8751,6 +8901,10 @@ PrefabInstance:
     - target: {fileID: 3591103983083945920, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
       propertyPath: m_Name
       value: DyingHuman (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591103983083945920, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
+      propertyPath: m_TagString
+      value: Human
       objectReference: {fileID: 0}
     - target: {fileID: 4223807622144664954, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
       propertyPath: m_RootOrder
@@ -9552,8 +9706,8 @@ RectTransform:
   m_GameObject: {fileID: 1575263783}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 19.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15
@@ -10749,7 +10903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ec69d83ee6520d449fb5fed7f55bbc0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 159.27907
+      value: 152.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ec69d83ee6520d449fb5fed7f55bbc0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10757,23 +10911,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ec69d83ee6520d449fb5fed7f55bbc0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.7
+      value: 9.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ec69d83ee6520d449fb5fed7f55bbc0, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: -0.70593446
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ec69d83ee6520d449fb5fed7f55bbc0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ec69d83ee6520d449fb5fed7f55bbc0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: -0.7082772
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ec69d83ee6520d449fb5fed7f55bbc0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ec69d83ee6520d449fb5fed7f55bbc0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10781,7 +10935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ec69d83ee6520d449fb5fed7f55bbc0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: -269.81
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ec69d83ee6520d449fb5fed7f55bbc0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -14165,6 +14319,10 @@ PrefabInstance:
     - target: {fileID: 3591103983083945920, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
       propertyPath: m_Name
       value: DyingHuman
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591103983083945920, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
+      propertyPath: m_TagString
+      value: Human
       objectReference: {fileID: 0}
     - target: {fileID: 4223807622144664954, guid: 28aaa041a49b99749a6d28a890e90c87, type: 3}
       propertyPath: m_RootOrder

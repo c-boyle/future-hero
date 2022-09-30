@@ -24,7 +24,7 @@ public class PlayerInput : BaseInput {
     private void OnInteract()
     {
 
-        if (Vector3.Distance(transform.position, lever.transform.position) <= 10f)
+        if (Vector3.Distance(transform.position, lever.transform.position) <= 35f)
         {
             lever.Interact();
         }
@@ -37,6 +37,14 @@ public class PlayerInput : BaseInput {
         {
             movement.Move(controls.Player.Move.ReadValue<Vector2>());
         }
+
+        Cursor.visible = false;
+
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        Vector2 rotation = new Vector2(mouseX, mouseY);
+        movement.Look(rotation);
     }
 
     private void OnEnable()

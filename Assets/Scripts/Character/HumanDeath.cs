@@ -8,10 +8,10 @@ public class HumanDeath : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="Train")
+        if(collision.gameObject.tag=="Human")
         {
             deathSound.Play(0);
-            Destroy(this.gameObject);
+            Destroy(collision.gameObject);
         }
     }
 }
