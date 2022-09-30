@@ -336,7 +336,7 @@ MonoBehaviour:
       m_Calls: []
   requireItem: {fileID: 0}
   giveItem: {fileID: 1109577203}
-  disableAfterFirstUse: 1
+  disableAfterFirstUse: 0
 --- !u!114 &1109577203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d2ad8f3b2c86a44bd6196dd57e0fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: FutureStick
 --- !u!1 &1117404506
 GameObject:
   m_ObjectHideFlags: 0
