@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Interactable : MonoBehaviour
-{
-    [SerializeField] private PathMovement trainMovement;
-    [SerializeField] private Animator animator;
-    private bool leverUp = true;
+public class Interactable : MonoBehaviour {
+  [SerializeField] private UnityEvent interactionAction;
 
-    public void Interact()
-    {
-        trainMovement.SwitchPath();
-        leverUp = !leverUp;
-        animator.SetBool("lever_up", leverUp);
-        Debug.Log("interacted");
+  private void Start() {
+    PlayerInput.PlayerInteraction += OnInteract;
+  }
+
+  private void OnInteract(object sender, InteractionEventArgs e) {
+    if (Vector3.Distance(e.InteractorPosition, transform.position) <= 5f) {
+      interactionAction?.Invoke();
+      Debug.Log("interacted");
     }
+  }
+
+  public class InteractionEventArgs : EventArgs {
+    public Vector3 InteractorPosition { get; set; }
+  }
 }
