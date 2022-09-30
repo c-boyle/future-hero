@@ -71,7 +71,7 @@ public class CharacterMovement : MonoBehaviour
     // Function that changes where the character is looking
     public void Look(Vector2 rotation)
     {
-        Debug.Log(rotation);
+        //Debug.Log(rotation);
     
         Vector3 cameraRotation = _cameraTransform.rotation.eulerAngles;
         Vector3 playerRotation = _bodyTransform.rotation.eulerAngles;

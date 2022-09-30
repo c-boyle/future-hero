@@ -232,6 +232,8 @@ GameObject:
   - component: {fileID: 1109577200}
   - component: {fileID: 1109577199}
   - component: {fileID: 1109577198}
+  - component: {fileID: 1109577202}
+  - component: {fileID: 1109577203}
   m_Layer: 0
   m_Name: Future_0
   m_TagString: Untagged
@@ -272,7 +274,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 7211448773848044386, guid: 68ba2832aa49bf648a718125142aaf01, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -317,6 +319,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1109577202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109577197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e343b2ba319572a418e2cfc9f1263bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionAction:
+    m_PersistentCalls:
+      m_Calls: []
+  requireItem: {fileID: 0}
+  giveItem: {fileID: 1109577203}
+  disableAfterFirstUse: 1
+--- !u!114 &1109577203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109577197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d2ad8f3b2c86a44bd6196dd57e0fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1117404506
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,7 +987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1961030348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,6 +1015,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  requireItem: {fileID: 0}
+  giveItem: {fileID: 0}
+  disableAfterFirstUse: 1
 --- !u!65 &1961030349
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1155,29 +1190,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &919132149210060456 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8581246045155444791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+--- !u!114 &919132149210060457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4961458107837619791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
   m_PrefabInstance: {fileID: 8923843087486803615}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &919132149210060457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149210060456}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28508f72ebcbe0f4baa90fd18f783f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  presentObjectsRoot: {fileID: 1414631452}
-  futureObjectsRoots:
-  - {fileID: 1109577197}
-  - {fileID: 1117404506}
-  currentFutureIndex: 0
-  timeVisionEnabled: 0
 --- !u!1001 &8923843087486803615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1185,14 +1208,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2220665138822461257, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_Name
+      value: PR_arm
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961458107837619791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: presentObjectsRoot
+      value: 
+      objectReference: {fileID: 1414631452}
+    - target: {fileID: 4961458107837619791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: futureObjectsRoots.Array.data[0]
+      value: 
+      objectReference: {fileID: 1109577197}
+    - target: {fileID: 4961458107837619791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: futureObjectsRoots.Array.data[1]
+      value: 
+      objectReference: {fileID: 1117404506}
     - target: {fileID: 8581246045155444791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_Name
       value: FutureHero
       objectReference: {fileID: 0}
-    - target: {fileID: 8923843087483422746, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
-      propertyPath: futureSeer
-      value: 
-      objectReference: {fileID: 919132149210060457}
     - target: {fileID: 8961430419220664973, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_RootOrder
       value: 2

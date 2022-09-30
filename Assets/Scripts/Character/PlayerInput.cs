@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerInput : BaseInput {
 
   [SerializeField] private FutureSeer futureSeer;
+  [SerializeField] private ItemHolder itemHolder;
 
   private PlayerControls controls;
   private bool activeMovementInput = false;
@@ -28,7 +29,11 @@ public class PlayerInput : BaseInput {
   }
 
   private void OnInteract() {
-    PlayerInteraction?.Invoke(this, new Interactable.InteractionEventArgs() { InteractorPosition = transform.position });
+    PlayerInteraction?.Invoke(this, new Interactable.InteractionEventArgs() { InteractorPosition = transform.position, ItemHolder = itemHolder });
+  }
+
+  private void OnDropItem() {
+    itemHolder.DropItem();
   }
 
   private void Update() {
@@ -38,8 +43,14 @@ public class PlayerInput : BaseInput {
 
     Cursor.visible = false;
 
+
+    // TEMP
     if (Input.GetKeyDown(KeyCode.T)) {
       OnToggleFutureVision();
+    }
+    // TEMP
+    if (Input.GetKeyDown(KeyCode.Q)) {
+      OnDropItem();
     }
 
     float mouseX = Input.GetAxis("Mouse X");
