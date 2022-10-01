@@ -15,10 +15,20 @@ public class Item : MonoBehaviour {
   }
 
   public static bool operator ==(Item a, Item b) {
-    return a.itemName == b.itemName;
+    if (a is Item itemA && b is Item itemB) {
+      return a.itemName == b.itemName;
+    } else if (a is null && b is null) {
+      return true;
+    }
+    return false;
   }
   public static bool operator !=(Item a, Item b) {
-    return a.itemName != b.itemName;
+    if (a is Item itemA && b is Item itemB) {
+      return a.itemName != b.itemName;
+    } else if (a is null && b is null) {
+      return false;
+    }
+    return true;
   }
 
 
