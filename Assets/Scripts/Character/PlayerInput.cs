@@ -7,12 +7,9 @@ using UnityEngine;
 public class PlayerInput : BaseInput {
 
   [SerializeField] private FutureSeer futureSeer;
-  [SerializeField] private ItemHolder itemHolder;
 
   private PlayerControls controls;
   private bool activeMovementInput = false;
-
-  public static event EventHandler<Interactable.InteractionEventArgs> PlayerInteraction;
 
   private void Awake() {
     if (controls == null) {
@@ -26,14 +23,6 @@ public class PlayerInput : BaseInput {
 
   private void OnToggleFutureVision() {
     futureSeer.ToggleFutureVision();
-  }
-
-  private void OnInteract() {
-    PlayerInteraction?.Invoke(this, new Interactable.InteractionEventArgs() { InteractorPosition = transform.position, ItemHolder = itemHolder });
-  }
-
-  private void OnDropItem() {
-    itemHolder.DropItem();
   }
 
   private void Update() {

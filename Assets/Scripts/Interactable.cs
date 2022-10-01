@@ -13,11 +13,11 @@ public class Interactable : MonoBehaviour {
   private bool firstUse = true;
 
   private void OnEnable() {
-    PlayerInput.PlayerInteraction += OnInteract;
+    BaseInput.Interaction += OnInteract;
   }
 
   private void OnDisable() {
-    PlayerInput.PlayerInteraction -= OnInteract;
+    BaseInput.Interaction -= OnInteract;
   }
 
   private void OnInteract(object sender, InteractionEventArgs e) {
@@ -25,13 +25,13 @@ public class Interactable : MonoBehaviour {
       return;
     }
     bool meetsItemRequirement = requireItem == null || (e.ItemHolder != null && requireItem == e.ItemHolder.HeldItem);
-    if (Vector3.Distance(e.InteractorPosition, transform.position) <= 50f && meetsItemRequirement) {
+    if (Vector3.Distance(e.InteractorPosition, transform.position) <= 15f && meetsItemRequirement) {
       if (giveItem != null && e.ItemHolder != null) {
         e.ItemHolder.GrabItem(giveItem);
       }
       interactionAction?.Invoke();
       firstUse = !firstUse;
-      Debug.Log("interacted");
+      Debug.Log(name + " interacted");
     }
   }
 
