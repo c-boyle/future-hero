@@ -25,12 +25,19 @@ public class ItemHolder : MonoBehaviour {
     // Adjust the item's scale by the localscale of the new parent
     itemToGrab.transform.localScale = new(itemScale.x / parentScale.x, itemScale.y / parentScale.y, itemScale.z / parentScale.z);
 
+    if (itemToGrab.Rigidbody != null) {
+      itemToGrab.Rigidbody.isKinematic = true;
+    }
+
     _heldItem = itemToGrab;
   }
 
   public void DropItem() {
     if (_heldItem != null) {
       _heldItem.transform.SetParent(oldParent, true);
+      if (_heldItem.Rigidbody != null) {
+        _heldItem.Rigidbody.isKinematic = false;
+      }
     }
-  } 
+  }
 }

@@ -26,9 +26,9 @@ public class Interactable : MonoBehaviour {
         e.ItemHolder.GrabItem(giveItem);
       }
       interactionAction?.Invoke();
+      firstUse = !firstUse;
       Debug.Log("interacted");
     }
-    firstUse = !firstUse;
   }
 
   public class InteractionEventArgs : EventArgs {

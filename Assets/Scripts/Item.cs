@@ -5,6 +5,8 @@ using UnityEngine;
 public class Item : MonoBehaviour {
   // Name acts as a key
   [SerializeField] private string itemName;
+  
+  [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
 
   public override bool Equals(object other) {
     return base.Equals(other);

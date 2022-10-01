@@ -6,30 +6,24 @@ public class FutureSeer : MonoBehaviour {
 
   [SerializeField] private GameObject presentObjectsRoot;
 
-  [SerializeField] private List<GameObject> futureObjectsRoots = new List<GameObject>();
-
-  [SerializeField] private int currentFutureIndex = 0;
+  [SerializeField] private GameObject futureObjectsRoot;
 
   [SerializeField] private bool timeVisionEnabled = false;
 
   public void ToggleFutureVision() {
     if (timeVisionEnabled) {
-      futureObjectsRoots[currentFutureIndex].SetActive(false);
+      futureObjectsRoot.SetActive(false);
       presentObjectsRoot.SetActive(true);
     } else {
-      futureObjectsRoots[currentFutureIndex].SetActive(true);
+      futureObjectsRoot.SetActive(true);
       presentObjectsRoot.SetActive(false);
     }
     timeVisionEnabled = !timeVisionEnabled;
   }
 
-  public void SetFutureScene(int index) {
-    if (index < 0 || index >= futureObjectsRoots.Count) {
-      Debug.LogError("Index out of bounds");
-      return;
-    }
-    futureObjectsRoots[currentFutureIndex].SetActive(false);
-    futureObjectsRoots[index].SetActive(true);
-    currentFutureIndex = index;
+  public void SetFutureScene(GameObject futureObjectsRoot) {
+    this.futureObjectsRoot.SetActive(false);
+    futureObjectsRoot.SetActive(true);
+    this.futureObjectsRoot = futureObjectsRoot;
   }
 }
