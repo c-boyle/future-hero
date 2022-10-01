@@ -12,8 +12,12 @@ public class Interactable : MonoBehaviour {
 
   private bool firstUse = true;
 
-  private void Start() {
+  private void OnEnable() {
     PlayerInput.PlayerInteraction += OnInteract;
+  }
+
+  private void OnDisable() {
+    PlayerInput.PlayerInteraction -= OnInteract;
   }
 
   private void OnInteract(object sender, InteractionEventArgs e) {
