@@ -379,8 +379,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 8923843087483422747}
-  futureSeer: {fileID: 4961458107837619791}
   itemHolder: {fileID: 5805039765101866290}
+  futureSeer: {fileID: 4961458107837619791}
+  futureShader: {fileID: 6833996545267069720}
 --- !u!114 &4961458107837619791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,11 +395,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presentObjectsRoot: {fileID: 0}
-  futureObjectsRoots:
-  - {fileID: 0}
-  - {fileID: 0}
-  currentFutureIndex: 0
-  timeVisionEnabled: 0
+  futureObjectsRoot: {fileID: 0}
+  _timeVisionEnabled: 0
 --- !u!114 &5805039765101866290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,6 +422,7 @@ GameObject:
   - component: {fileID: 8923843087717536976}
   - component: {fileID: 8923843087717536974}
   - component: {fileID: 8923843087717536975}
+  - component: {fileID: 6833996545267069720}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -497,3 +496,17 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8923843087717536977}
   m_Enabled: 1
+--- !u!114 &6833996545267069720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8923843087717536977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384fceff341c70a419e4c832bd0dd447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: b0de9639927b2064b89c4331284997bd, type: 3}
+  cam: {fileID: 8923843087717536974}

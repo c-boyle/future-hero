@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerInput : BaseInput {
 
   [SerializeField] private FutureSeer futureSeer;
+  [SerializeField] private CameraShader futureShader;
 
   private PlayerControls controls;
   private bool activeMovementInput = false;
@@ -69,5 +70,6 @@ public class PlayerInput : BaseInput {
 
   private void OnToggleFutureVision() {
     futureSeer.ToggleFutureVision();
+    futureShader.ToggleShader();
   }
 }
