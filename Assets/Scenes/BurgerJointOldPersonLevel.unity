@@ -1707,6 +1707,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 81610785}
+        m_TargetAssemblyTypeName: LevelTimer, Assembly-CSharp
+        m_MethodName: SetSecondsLeft
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 60
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   requireItem: {fileID: 1307271347}
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 0}
@@ -1953,7 +1965,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 366c76e535b01ec43b7dc84ba7f471f1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.71
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -2050,8 +2062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 927954117}
   timer: {fileID: 81610785}
-  secondsLeftForPitchChange: 40
-  startPitch: 1
+  secondsLeftForPitchChange: 55
   endPitch: 1.5
 --- !u!1 &937464744
 GameObject:
