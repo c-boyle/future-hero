@@ -21,7 +21,7 @@ public class TimedAudio : MonoBehaviour {
     } else {
       if (audioSource.pitch != startPitch) {
         var diffBefore = Mathf.Abs(startPitch - audioSource.pitch);
-        audioSource.pitch += 0.0003f * Mathf.Sign(startPitch - audioSource.pitch);
+        audioSource.pitch += 0.0005f * Mathf.Sign(startPitch - audioSource.pitch);
         var diffAfter = Mathf.Abs(startPitch - audioSource.pitch);
         if (diffBefore <= diffAfter) {
           audioSource.pitch = startPitch;
