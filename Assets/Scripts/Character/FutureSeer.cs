@@ -8,22 +8,26 @@ public class FutureSeer : MonoBehaviour {
 
   [SerializeField] private GameObject futureObjectsRoot;
 
-  [SerializeField] private bool timeVisionEnabled = false;
+  [SerializeField] private bool _timeVisionEnabled = false;
+
+  public bool TimeVisionEnabled { get => _timeVisionEnabled; }
 
   public void ToggleFutureVision() {
-    if (timeVisionEnabled) {
+    if (_timeVisionEnabled) {
       futureObjectsRoot.SetActive(false);
       presentObjectsRoot.SetActive(true);
     } else {
       futureObjectsRoot.SetActive(true);
       presentObjectsRoot.SetActive(false);
     }
-    timeVisionEnabled = !timeVisionEnabled;
+    _timeVisionEnabled = !_timeVisionEnabled;
   }
 
   public void SetFutureScene(GameObject futureObjectsRoot) {
-    this.futureObjectsRoot.SetActive(false);
-    futureObjectsRoot.SetActive(true);
+    if (_timeVisionEnabled) {
+      this.futureObjectsRoot.SetActive(false);
+      futureObjectsRoot.SetActive(true);
+    }
     this.futureObjectsRoot = futureObjectsRoot;
   }
 }

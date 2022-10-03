@@ -9,11 +9,11 @@ public abstract class BaseInput : MonoBehaviour {
 
   public static event EventHandler<Interactable.InteractionEventArgs> Interaction;
 
-  protected void OnInteract() {
+  protected virtual void OnInteract() {
     Interaction?.Invoke(this, new Interactable.InteractionEventArgs() { InteractorPosition = transform.position, ItemHolder = itemHolder });
   }
 
-  protected void OnDropItem() {
+  protected virtual void OnDropItem() {
     itemHolder.DropItem();
   }
 }

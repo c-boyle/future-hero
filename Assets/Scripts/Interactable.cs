@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour {
   [SerializeField] private UnityEvent interactionAction;
   [Tooltip("Set to none if no item is required to interact.")] [SerializeField] private Item requireItem = null;
+  [SerializeField] private bool destroyRequiredItemOnInteraction = false;
   [SerializeField] private Item giveItem = null;
   [SerializeField] private bool disableAfterFirstUse = false;
 
@@ -28,6 +29,11 @@ public class Interactable : MonoBehaviour {
     if (Vector3.Distance(e.InteractorPosition, transform.position) <= 15f && meetsItemRequirement) {
       if (giveItem != null && e.ItemHolder != null) {
         e.ItemHolder.GrabItem(giveItem);
+      }
+      if (destroyRequiredItemOnInteraction && meetsItemRequirement) {
+        var itemToDestroy = e.ItemHolder.HeldItem;
+        e.ItemHolder.DropItem();
+        Destroy(itemToDestroy.gameObject);
       }
       interactionAction?.Invoke();
       firstUse = !firstUse;

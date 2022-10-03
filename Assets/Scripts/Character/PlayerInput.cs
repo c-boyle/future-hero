@@ -21,10 +21,6 @@ public class PlayerInput : BaseInput {
     controls.Player.Interact.performed += ctx => OnInteract();
   }
 
-  private void OnToggleFutureVision() {
-    futureSeer.ToggleFutureVision();
-  }
-
   private void Update() {
     if (activeMovementInput) {
       movement.Move(controls.Player.Move.ReadValue<Vector2>());
@@ -55,5 +51,23 @@ public class PlayerInput : BaseInput {
 
   private void OnDisable() {
     controls.Disable();
+  }
+
+  protected override void OnInteract() {
+    // Interaction should be prohibited when looking into the future
+    if (!futureSeer.TimeVisionEnabled) {
+      base.OnInteract();
+    }
+  }
+
+  protected override void OnDropItem() {
+    // Disable item dropping in the future?
+    if (!futureSeer.TimeVisionEnabled) {
+      base.OnDropItem();
+    }
+  }
+
+  private void OnToggleFutureVision() {
+    futureSeer.ToggleFutureVision();
   }
 }
