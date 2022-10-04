@@ -13,6 +13,6 @@ public class Interactable : MonoBehaviour
         trainMovement.SwitchPath();
         leverUp = !leverUp;
         animator.SetBool("lever_up", leverUp);
-        Debug.Log("interacted");
+        Debug.Log("interacted + " + leverUp);
     }
 }

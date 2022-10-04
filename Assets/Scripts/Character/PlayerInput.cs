@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class PlayerInput : BaseInput {
 
-    private PlayerControls controls;
+    private ControllerActions controls;
     private bool activeMovementInput = false;
+    private bool activeLookInput = false;
 
     [SerializeField] private Interactable lever;
 
@@ -18,6 +19,10 @@ public class PlayerInput : BaseInput {
         
         controls.Player.Move.performed += ctx => activeMovementInput = true;
         controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); };
+
+        controls.Player.Look.performed += ctx => activeLookInput = true;
+        controls.Player.Look.canceled += ctx => { activeLookInput = false; movement.Look(Vector2.zero); };
+
         controls.Player.Interact.performed += ctx => OnInteract();
     }
 
@@ -33,18 +38,24 @@ public class PlayerInput : BaseInput {
 
     private void Update()
     {
+        Cursor.visible = false;
+
         if (activeMovementInput)
         {
             movement.Move(controls.Player.Move.ReadValue<Vector2>());
         }
 
-        Cursor.visible = false;
+        if (activeLookInput)
+        {
+            movement.Look(controls.Player.Look.ReadValue<Vector2>());
+        }
 
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
 
-        Vector2 rotation = new Vector2(mouseX, mouseY);
-        movement.Look(rotation);
+        // float mouseX = Input.GetAxis("Mouse X");
+        // float mouseY = Input.GetAxis("Mouse Y");
+
+        // Vector2 rotation = new Vector2(mouseX, mouseY);
+        // movement.Look(rotation);
     }
 
     private void OnEnable()

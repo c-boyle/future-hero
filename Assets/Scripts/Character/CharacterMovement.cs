@@ -35,34 +35,37 @@ public class CharacterMovement : MonoBehaviour
 
         Debug.Log(movement);
 
-        // Check y direction in movement vector to know if we will...
-        if (movement.x > 0) // ...move forward
-        {
-            tmpVelocity = _bodyTransform.forward;
-        }
-        else if (movement.x < 0) // ...move backward
-        {
-            tmpVelocity = _bodyTransform.forward * (-1);
-        }
-        else // ...stop moving
-        {
-            tmpVelocity.x = 0;
-        } 
+        // // Check y direction in movement vector to know if we will...
+        // if (movement.x > 0) // ...move forward
+        // {
+        //     tmpVelocity = _bodyTransform.forward;
+        // }
+        // else if (movement.x < 0) // ...move backward
+        // {
+        //     tmpVelocity = _bodyTransform.forward * (-1);
+        // }
+        // else // ...stop moving
+        // {
+        //     tmpVelocity.x = 0;
+        // } 
 
 
-        // Check x direction in movement vector to know if we will...
-        if (movement.y < 0) // ...move forward
-        {
-            tmpVelocity += _bodyTransform.right;
-        }
-        else if (movement.y > 0) // ...move backward
-        {
-            tmpVelocity += _bodyTransform.right * (-1);
-        }
-        else // ...stop moving
-        {
-            tmpVelocity.y = 0;
-        } 
+        // // Check x direction in movement vector to know if we will...
+        // if (movement.y < 0) // ...move forward
+        // {
+        //     tmpVelocity += _bodyTransform.right;
+        // }
+        // else if (movement.y > 0) // ...move backward
+        // {
+        //     tmpVelocity += _bodyTransform.right * (-1);
+        // }
+        // else // ...stop moving
+        // {
+        //     tmpVelocity.y = 0;
+        // } 
+
+        tmpVelocity += (movement.x * _bodyTransform.forward);
+        tmpVelocity += ((-1) * movement.y * _bodyTransform.right);
 
         _rigidbody.velocity = tmpVelocity * _movementSpeed;
         //  _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
