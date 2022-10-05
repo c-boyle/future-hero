@@ -16,4 +16,8 @@ public class LevelTimer : MonoBehaviour {
   public void SetSecondsLeft(float secondsLeft) {
     SecondsLeft = secondsLeft;
   }
+
+  public void AddSecondsLeft(float seconds) {
+    SecondsLeft += seconds;
+  }
 }

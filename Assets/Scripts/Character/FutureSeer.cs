@@ -13,20 +13,23 @@ public class FutureSeer : MonoBehaviour {
   public bool TimeVisionEnabled { get => _timeVisionEnabled; }
 
   public void ToggleFutureVision() {
-    if (_timeVisionEnabled) {
-      futureObjectsRoot.SetActive(false);
-      presentObjectsRoot.SetActive(true);
-    } else {
-      futureObjectsRoot.SetActive(true);
-      presentObjectsRoot.SetActive(false);
-    }
     _timeVisionEnabled = !_timeVisionEnabled;
+    foreach (var renderer in futureObjectsRoot.GetComponentsInChildren<Renderer>()) {
+      renderer.enabled = _timeVisionEnabled;
+    }
+    foreach (var renderer in presentObjectsRoot.GetComponentsInChildren<Renderer>()) {
+      renderer.enabled = !_timeVisionEnabled;
+    }
   }
 
   public void SetFutureScene(GameObject futureObjectsRoot) {
     if (_timeVisionEnabled) {
-      this.futureObjectsRoot.SetActive(false);
-      futureObjectsRoot.SetActive(true);
+      foreach (var renderer in this.futureObjectsRoot.GetComponentsInChildren<Renderer>()) {
+        renderer.enabled = false;
+      }
+      foreach (var renderer in futureObjectsRoot.GetComponentsInChildren<Renderer>()) {
+        renderer.enabled = true;
+      }
     }
     this.futureObjectsRoot = futureObjectsRoot;
   }

@@ -19,7 +19,7 @@ public class TimerTextView : MonoBehaviour {
   void Update() {
     if (tickTimer <= 0f) {
       var timeLeft = new TimeSpan(0, 0, (int)timer.SecondsLeft);
-      timerText.text = "Time Left: " + timeLeft.ToString("g").Substring(3);
+      timerText.text = "Time Until Future Event: " + timeLeft.ToString("g").Substring(3);
       tickTimer = tickTime;
       if (timer.SecondsLeft <= timeRemainingForFlashingText) {
         HandleFlashingText();
