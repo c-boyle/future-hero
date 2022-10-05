@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FutureSeer : MonoBehaviour {
 
-  [SerializeField] private GameObject presentObjectsRoot;
+  [SerializeField] private TimeLine presentTimeLine;
 
-  [SerializeField] private GameObject futureObjectsRoot;
+  [SerializeField] private TimeLine futureTimeLine;
 
   [SerializeField] private bool _timeVisionEnabled = false;
 
@@ -14,23 +14,15 @@ public class FutureSeer : MonoBehaviour {
 
   public void ToggleFutureVision() {
     _timeVisionEnabled = !_timeVisionEnabled;
-    foreach (var renderer in futureObjectsRoot.GetComponentsInChildren<Renderer>()) {
-      renderer.enabled = _timeVisionEnabled;
-    }
-    foreach (var renderer in presentObjectsRoot.GetComponentsInChildren<Renderer>()) {
-      renderer.enabled = !_timeVisionEnabled;
-    }
+    presentTimeLine.SetEnabled(!_timeVisionEnabled);
+    futureTimeLine.SetEnabled(_timeVisionEnabled);
   }
 
-  public void SetFutureScene(GameObject futureObjectsRoot) {
+  public void SetFuture(TimeLine futureTimeLine) {
     if (_timeVisionEnabled) {
-      foreach (var renderer in this.futureObjectsRoot.GetComponentsInChildren<Renderer>()) {
-        renderer.enabled = false;
-      }
-      foreach (var renderer in futureObjectsRoot.GetComponentsInChildren<Renderer>()) {
-        renderer.enabled = true;
-      }
+      this.futureTimeLine.SetEnabled(false);
+      futureTimeLine.SetEnabled(true);
     }
-    this.futureObjectsRoot = futureObjectsRoot;
+    this.futureTimeLine = futureTimeLine;
   }
 }
