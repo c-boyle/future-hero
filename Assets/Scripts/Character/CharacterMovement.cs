@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour {
   private float _lookClamp = 0f;
 
   // Constants
-  private float _rotationSpeed = 3f;
+  private float _rotationSpeed = 1f;
   private float _jumpIntensity = 5f;
   private int _lookHeightMax = 90;
 
