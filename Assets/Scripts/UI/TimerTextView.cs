@@ -11,9 +11,16 @@ public class TimerTextView : MonoBehaviour {
 
   private const float timeRemainingForFlashingText = 20f;
   private const float tickTime = 0.25f;
-  private float tickTimer = 0
-  ;
+  private float tickTimer = 0;
   private bool tickBool = false;
+
+  private void Start() {
+    LevelTimer.LevelWon += OnLevelWon;
+  }
+
+  private void OnLevelWon(object sender, EventArgs e) {
+    gameObject.SetActive(false);
+  }
 
   // Update is called once per frame
   void Update() {

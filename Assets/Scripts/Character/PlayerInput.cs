@@ -72,4 +72,9 @@ public class PlayerInput : BaseInput {
     futureSeer.ToggleFutureVision();
     futureShader.ToggleShader();
   }
+  public void SetFutureVision(bool enabled) {
+    if (futureSeer.TimeVisionEnabled != enabled) {
+      OnToggleFutureVision();
+    }
+  }
 }
