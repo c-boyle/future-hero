@@ -12,6 +12,9 @@ public class TimeLine : MonoBehaviour {
     foreach (var renderer in GetComponentsInChildren<Renderer>()) {
       renderer.enabled = enabled;
     }
+    foreach (var audioSource in GetComponentsInChildren<AudioSource>()) {
+      audioSource.enabled = enabled;
+    }
     if (enabled) {
       timeLineEnabled?.Invoke();
     } else {
