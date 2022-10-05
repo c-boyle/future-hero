@@ -9,41 +9,40 @@ public class PlayerInput : BaseInput {
   [SerializeField] private FutureSeer futureSeer;
   [SerializeField] private CameraShader futureShader;
 
-  private PlayerControls controls;
+  private ControlActions controls;
   private bool activeMovementInput = false;
+  private bool activeLookInput = false;
 
   private void Awake() {
     if (controls == null) {
       controls = new();
     }
 
+    // Controls that alter movement
     controls.Player.Move.performed += ctx => activeMovementInput = true;
     controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); };
+    controls.Player.Jump.performed += ctx => OnJump();
+
+    // Controls that alter vision
+    controls.Player.Look.performed += ctx => activeLookInput = true;
+    controls.Player.Look.canceled += ctx => { activeLookInput = false; movement.Look(Vector2.zero); };
+    controls.Player.ToggleVision.performed += ctx => OnToggleFutureVision();
+
+    // Controls that affect environment
     controls.Player.Interact.performed += ctx => OnInteract();
+    controls.Player.DropItem.performed += ctx => OnDropItem();
   }
 
   private void Update() {
+    Cursor.visible = false;
     if (activeMovementInput) {
       movement.Move(controls.Player.Move.ReadValue<Vector2>());
     }
 
-    Cursor.visible = false;
-
-
-    // TEMP
-    if (Input.GetKeyDown(KeyCode.T)) {
-      OnToggleFutureVision();
-    }
-    // TEMP
-    if (Input.GetKeyDown(KeyCode.Q)) {
-      OnDropItem();
+    if (activeLookInput){
+        movement.Look(controls.Player.Look.ReadValue<Vector2>());
     }
 
-    float mouseX = Input.GetAxis("Mouse X");
-    float mouseY = Input.GetAxis("Mouse Y");
-
-    Vector2 rotation = new Vector2(mouseX, mouseY);
-    movement.Look(rotation);
   }
 
   private void OnEnable() {
@@ -66,6 +65,10 @@ public class PlayerInput : BaseInput {
     if (!futureSeer.TimeVisionEnabled) {
       base.OnDropItem();
     }
+  }
+
+  private void OnJump() {
+    movement.Jump();
   }
 
   private void OnToggleFutureVision() {

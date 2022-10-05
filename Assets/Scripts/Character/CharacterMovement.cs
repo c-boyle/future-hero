@@ -6,7 +6,13 @@ public class CharacterMovement : MonoBehaviour {
   [SerializeField] private Rigidbody _rigidbody;
   [SerializeField] private Transform _bodyTransform, _cameraTransform;
   [SerializeField] private float _movementSpeed = 10f;
+
+  private float _lookClamp = 0f;
+
+  // Constants
   private float _rotationSpeed = 3f;
+  private float _jumpIntensity = 5f;
+  private int _lookHeightMax = 90;
 
   // Function that moves character
   public void Move(Vector2 movement) {
@@ -18,29 +24,42 @@ public class CharacterMovement : MonoBehaviour {
     tmpVelocity = _bodyTransform.right * movement.x;
     tmpVelocity += _bodyTransform.forward * movement.y;
 
-    _rigidbody.velocity = tmpVelocity * _movementSpeed;
+    tmpVelocity *= _movementSpeed;
+
+    _rigidbody.velocity = new Vector3(tmpVelocity.x, _rigidbody.velocity.y, tmpVelocity.z);
   }
 
 
   // Function that changes where the character is looking
   public void Look(Vector2 rotation) {
-    //Debug.Log(rotation);
 
+    Vector3 cameraRotation = _cameraTransform.rotation.eulerAngles;
     Vector3 playerRotation = _bodyTransform.rotation.eulerAngles;
 
+    _lookClamp -= (rotation.y * _rotationSpeed);
+    cameraRotation.x -= rotation.y * _rotationSpeed;
     playerRotation.y += rotation.x * _rotationSpeed;
 
-    _bodyTransform.rotation = Quaternion.Euler(playerRotation);
-    if (_cameraTransform != null) {
-      Vector3 cameraRotation = _cameraTransform.rotation.eulerAngles;
-      cameraRotation.x -= rotation.y * _rotationSpeed;
-      _cameraTransform.rotation = Quaternion.Euler(cameraRotation);
+    if (_lookClamp > _lookHeightMax) {
+      _lookClamp = _lookHeightMax;
+      cameraRotation.x = _lookClamp;
+    } else if (_lookClamp < -_lookHeightMax) {
+      _lookClamp = -_lookHeightMax;
+      cameraRotation.x = 180 + _lookHeightMax;
     }
+
+    _cameraTransform.rotation = Quaternion.Euler(cameraRotation);
+    _bodyTransform.rotation = Quaternion.Euler(playerRotation);
+
+
+
   }
 
-  public void LookInDirection(Vector3 direction) {
-    var lookRotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
-    var temp = Quaternion.Slerp(_bodyTransform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
-    _bodyTransform.rotation = Quaternion.Euler(0f, temp.eulerAngles.y, 0f);
+
+  // Function that lets the Future Hero Jump
+  public void Jump() {
+    if (_rigidbody.velocity.y == 0) {
+      _rigidbody.velocity += _bodyTransform.up * _jumpIntensity;
+    }
   }
 }
