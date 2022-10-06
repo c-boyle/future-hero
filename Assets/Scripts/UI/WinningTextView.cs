@@ -6,10 +6,14 @@ using UnityEngine;
 
 public class WinningTextView : MonoBehaviour {
 
-  [SerializeField] private TextMeshProUGUI winningText;
+  [SerializeField] private TMP_Text winningText;
   
   void Start() {
     LevelTimer.LevelWon += OnLevelWon;
+  }
+
+  private void OnDestroy() {
+    LevelTimer.LevelWon -= OnLevelWon;
   }
 
   private void OnLevelWon(object sender, EventArgs e) {

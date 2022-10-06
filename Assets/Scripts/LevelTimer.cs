@@ -8,12 +8,16 @@ public class LevelTimer : MonoBehaviour {
 
   public static event EventHandler LevelWon;
 
+  public static event EventHandler<TimerUpdateEventArgs> TimerUpdated;
+
   // Update is called once per frame
   void Update() {
-    SecondsLeft -= Time.deltaTime;
+    float deltaTime = Time.deltaTime;
+    SecondsLeft -= deltaTime;
     if (SecondsLeft <= 0) {
       Helpers.ResetScene();
     }
+    TimerUpdated?.Invoke(this, new() { DeltaTime = deltaTime, SecondsLeft = SecondsLeft });
   }
 
   public void SetSecondsLeft(float secondsLeft) {
@@ -29,5 +33,10 @@ public class LevelTimer : MonoBehaviour {
       LevelWon?.Invoke(this, new());
       SecondsLeft = Mathf.Infinity;
     }
+  }
+
+  public class TimerUpdateEventArgs : EventArgs {
+    [field: SerializeField] public float DeltaTime { get; set; }
+    [field: SerializeField] public float SecondsLeft { get; set; }
   }
 }

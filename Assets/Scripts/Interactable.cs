@@ -19,46 +19,40 @@ public class Interactable : MonoBehaviour {
 
   private void OnEnable() {
     enabledInteractables.Add(this);
-    if (enabledInteractables.Count == 1) {
-      BaseInput.Interaction += UseClosestInteractable;
-    }
   }
 
   private void OnDisable() {
     enabledInteractables.Remove(this);
-    if (enabledInteractables.Count == 0) {
-      BaseInput.Interaction -= UseClosestInteractable;
-    }
   }
 
-  private void OnInteract(object sender, InteractionEventArgs e) {
+  private void OnInteract(ItemHolder itemHolder) {
 
     if (!gameObject.activeSelf || (disableAfterFirstUse && !firstUse)) {
       return;
     }
-    bool meetsItemRequirement = requireItem == null || (e.ItemHolder != null && requireItem == e.ItemHolder.HeldItem);
+    bool meetsItemRequirement = requireItem == null || (itemHolder != null && requireItem == itemHolder.HeldItem);
     if (meetsItemRequirement) {
-      if (giveItem != null && e.ItemHolder != null) {
-        e.ItemHolder.GrabItem(giveItem);
+      if (giveItem != null && itemHolder != null) {
+        itemHolder.GrabItem(giveItem);
       }
       if (destroyRequiredItemOnInteraction && meetsItemRequirement) {
-        var itemToDestroy = e.ItemHolder.HeldItem;
-        e.ItemHolder.DropItem();
+        var itemToDestroy = itemHolder.HeldItem;
+        itemHolder.DropItem();
         Destroy(itemToDestroy.gameObject);
       }
       interactionAction?.Invoke();
       firstUse = !firstUse;
-      Debug.Log(name + " interacted");
+      // Debug.Log(name + " interacted");
     }
   }
 
-  private static void UseClosestInteractable(object sender, InteractionEventArgs e) {
+  public static void UseClosestInteractable(Vector3 interactorPosition, ItemHolder itemHolder) {
     float closestInteractableDist = Mathf.Infinity;
     Interactable closestInteractable = null;
     foreach (var interactable in enabledInteractables) {
-      bool interactorIsHoldingThisInteractable = e.ItemHolder != null && e.ItemHolder.HeldItem != null && e.ItemHolder.HeldItem.Interactable == interactable;
+      bool interactorIsHoldingThisInteractable = itemHolder != null && itemHolder.HeldItem != null && itemHolder.HeldItem.Interactable == interactable;
       if (!interactorIsHoldingThisInteractable) { // Skip an interactable if it's being held by the interactor
-        float dist = Vector3.Distance(e.InteractorPosition, interactable.transform.position);
+        float dist = Vector3.Distance(interactorPosition, interactable.transform.position);
         if (dist < closestInteractableDist) {
           closestInteractableDist = dist;
           closestInteractable = interactable;
@@ -66,12 +60,7 @@ public class Interactable : MonoBehaviour {
       }
     }
     if (closestInteractableDist <= maxInteractionRange && closestInteractable != null) {
-      closestInteractable.OnInteract(sender, e);
+      closestInteractable.OnInteract(itemHolder);
     }
-  }
-
-  public class InteractionEventArgs : EventArgs {
-    public Vector3 InteractorPosition { get; set; }
-    public ItemHolder ItemHolder { get; set; } = null;
   }
 }

@@ -18,7 +18,7 @@ public class ItemHolder : MonoBehaviour {
 
     itemToGrab.transform.SetParent(handParent, false);
     itemToGrab.transform.localPosition = handTransform.localPosition;
-    itemToGrab.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+    itemToGrab.transform.localRotation = Quaternion.identity;
 
     var parentScale = handParent.localScale;
     var itemScale = itemToGrab.transform.localScale;

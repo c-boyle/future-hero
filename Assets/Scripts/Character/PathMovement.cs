@@ -12,7 +12,7 @@ public class PathMovement : MonoBehaviour {
   private int currentPathPoint = 0;
   private float stepSpeed = -1f;
   private Vector3 normalizedDirection = Vector3.zero;
-  private float currentPointOriginalTime = -1f;
+  private float currentPointOriginalTime = -1f; // The number of seconds to reach a point upon first reaching that point
 
   // Update is called once per frame
   void Update() {
@@ -21,7 +21,7 @@ public class PathMovement : MonoBehaviour {
         paths[currentPathIndex].PathPoints[currentPathPoint - 1].SecondsToReachPoint = currentPointOriginalTime;
         currentPathPoint = 0;
       } else {
-        rb.velocity = Vector3.zero;
+        normalizedDirection = Vector3.zero;
         return;
       }
     }
@@ -45,6 +45,7 @@ public class PathMovement : MonoBehaviour {
 
       normalizedDirection = direction.normalized;
       if (stepSpeed < 0f) {
+        // Calculate the step speed required to reach the point after the required amount of time.
         stepSpeed = distToTarget / paths[currentPathIndex].PathPoints[currentPathPoint].SecondsToReachPoint;
       }
       transform.LookAt(rbPosition + normalizedDirection, Vector3.up);

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class TimeLine : MonoBehaviour {
-  [Header("By default, the rendering of a timeline is disabled and enabled on timeline enable/disable.")]
+  [Header("By default, the rendering and audio of a timeline is disabled and enabled on timeline enable/disable.")]
   [SerializeField] private UnityEvent timeLineEnabled;
   [SerializeField] private UnityEvent timeLineDisabled;
 
