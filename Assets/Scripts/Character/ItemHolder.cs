@@ -16,14 +16,19 @@ public class ItemHolder : MonoBehaviour {
     oldParent = itemToGrab.transform.parent;
     var handParent = handTransform.parent;
 
+    var oldGlobalScale = itemToGrab.transform.lossyScale;
+  
     itemToGrab.transform.SetParent(handParent, false);
     itemToGrab.transform.localPosition = handTransform.localPosition;
-    itemToGrab.transform.localRotation = Quaternion.identity;
+    itemToGrab.transform.Rotate(Vector3.right, 180);
 
-    var parentScale = handParent.localScale;
     var itemScale = itemToGrab.transform.localScale;
-    // Adjust the item's scale by the localscale of the new parent
-    itemToGrab.transform.localScale = new(itemScale.x / parentScale.x, itemScale.y / parentScale.y, itemScale.z / parentScale.z);
+    var newGlobalScale = itemToGrab.transform.lossyScale;
+
+    // Revert the size of the item picked to what it was before being picked up
+    itemToGrab.transform.localScale = new(itemScale.x * oldGlobalScale.x / newGlobalScale.x, 
+                                          itemScale.y * oldGlobalScale.y / newGlobalScale.y, 
+                                          itemScale.z * oldGlobalScale.z / newGlobalScale.z);
 
     if (itemToGrab.Rigidbody != null) {
       itemToGrab.Rigidbody.isKinematic = true;
