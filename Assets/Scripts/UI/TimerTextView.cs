@@ -7,32 +7,43 @@ using System;
 public class TimerTextView : MonoBehaviour {
 
   [SerializeField] private TMP_Text timerText;
-  [SerializeField] private LevelTimer timer;
 
   private const float timeRemainingForFlashingText = 20f;
   private const float tickTime = 0.25f;
-  private float tickTimer = 0
-  ;
+  private float tickTimer = 0;
   private bool tickBool = false;
 
-  // Update is called once per frame
-  void Update() {
+  private void Start() {
+    LevelTimer.LevelWon += OnLevelWon;
+    LevelTimer.TimerUpdated += OnLevelTimerUpdate;
+  }
+
+  private void OnDestroy() {
+    LevelTimer.LevelWon -= OnLevelWon;
+    LevelTimer.TimerUpdated -= OnLevelTimerUpdate;
+  }
+
+  private void OnLevelWon(object sender, EventArgs e) {
+    gameObject.SetActive(false);
+  }
+
+  private void OnLevelTimerUpdate(object sender, LevelTimer.TimerUpdateEventArgs e) {
     if (tickTimer <= 0f) {
-      var timeLeft = new TimeSpan(0, 0, (int)timer.SecondsLeft);
-      timerText.text = "Time Left: " + timeLeft.ToString("g").Substring(3);
+      var timeLeft = new TimeSpan(0, 0, (int)e.SecondsLeft);
+      timerText.text = "Time Until Future Event: " + timeLeft.ToString("g").Substring(3);
       tickTimer = tickTime;
-      if (timer.SecondsLeft <= timeRemainingForFlashingText) {
-        HandleFlashingText();
+      if (e.SecondsLeft <= timeRemainingForFlashingText) {
+        HandleFlashingText(e);
       } else {
         timerText.color = Color.red;
       }
       tickBool = !tickBool;
     }
-    tickTimer -= Time.deltaTime;
+    tickTimer -= e.DeltaTime;
   }
 
-  private void HandleFlashingText() {
-    if (tickBool || timer.SecondsLeft <= timeRemainingForFlashingText / 2) {
+  private void HandleFlashingText(LevelTimer.TimerUpdateEventArgs e) {
+    if (tickBool || e.SecondsLeft <= timeRemainingForFlashingText / 2) {
       if (timerText.color == Color.red) {
         timerText.color = Color.yellow;
       } else {

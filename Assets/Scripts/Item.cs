@@ -8,6 +8,20 @@ public class Item : MonoBehaviour {
   
   [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
 
+  // The getter code below here is overcomplicated so that the result of calling GetComponent can be cached
+  // because I have trust issues with GetComponent's performance...
+  private Interactable attachedInteractable = null;
+  private bool checkedBefore = false;
+  public Interactable Interactable {
+    get {
+      if (!checkedBefore) {
+        TryGetComponent<Interactable>(out attachedInteractable);
+        checkedBefore = true;
+      }
+      return attachedInteractable;
+    }
+  }
+
   public override bool Equals(object other) {
     return base.Equals(other);
   }

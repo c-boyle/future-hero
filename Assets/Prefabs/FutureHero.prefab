@@ -366,6 +366,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 8923843087483422744}
   _bodyTransform: {fileID: 8961430419220664973}
   _cameraTransform: {fileID: 8923843087717536976}
+  _movementSpeed: 10
 --- !u!114 &8923843087483422746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,8 +395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28508f72ebcbe0f4baa90fd18f783f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  presentObjectsRoot: {fileID: 0}
-  futureObjectsRoot: {fileID: 0}
+  presentTimeLine: {fileID: 0}
+  futureTimeLine: {fileID: 0}
   _timeVisionEnabled: 0
 --- !u!114 &5805039765101866290
 MonoBehaviour:
