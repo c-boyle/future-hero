@@ -1,32 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class CameraShader : MonoBehaviour {
 
-  [SerializeField] private Shader shader;
-  [SerializeField] private Camera cam;
-  private bool shaderSet = false;
+    public PostProcessVolume volume;
+    [SerializeField] private Camera cam;
+    private bool isEffectEnabled = false;
+    private float currentVolumeWeight = 0;
+    private float volumeTransitionSpeed = 0.01f;
 
-  public void ActivateShader(Shader shader = null) {
-    if (shader != null) {
-      cam.SetReplacementShader(shader, string.Empty);
-    } else {
-      cam.SetReplacementShader(this.shader, string.Empty);
+    void Update() {
+        if (isEffectEnabled) {
+            currentVolumeWeight = Mathf.Lerp(currentVolumeWeight, 1, volumeTransitionSpeed);
+        } else if (!isEffectEnabled) {
+            currentVolumeWeight = Mathf.Lerp(currentVolumeWeight, 0, volumeTransitionSpeed);
+        }
+
+        volume.weight = currentVolumeWeight;
     }
-    shaderSet = true;
-  }
 
-  public void DeactivateShader() {
-    cam.ResetReplacementShader();
-    shaderSet = false;
-  }
-
-  public void ToggleShader() {
-    if (shaderSet) {
-      DeactivateShader();
-    } else {
-      ActivateShader();
+    public void onEffectActivate() {
+        Debug.Log("activated");
     }
-  }
+
+    public void onEffectDeactivate() {
+        Debug.Log("deactivated");
+    }
+
+    public void ToggleShader() {
+        if (!isEffectEnabled) {
+            isEffectEnabled = true;
+            onEffectActivate();
+        }
+        else {
+            isEffectEnabled = false;
+            onEffectDeactivate();
+        }
+    }
 }
