@@ -17,9 +17,11 @@ public class ItemHolder : MonoBehaviour {
     var handParent = handTransform.parent;
 
     var oldGlobalScale = itemToGrab.transform.lossyScale;
+    itemToGrab.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
   
     itemToGrab.transform.SetParent(handParent, false);
     itemToGrab.transform.localPosition = handTransform.localPosition;
+    // itemToGrab.transform.rotation = oldRotation;
     itemToGrab.transform.Rotate(Vector3.right, 180);
 
     var itemScale = itemToGrab.transform.localScale;
@@ -43,6 +45,8 @@ public class ItemHolder : MonoBehaviour {
       if (_heldItem.Rigidbody != null) {
         _heldItem.Rigidbody.isKinematic = false;
       }
+
+      _heldItem = null;
     }
   }
 }

@@ -13,6 +13,8 @@ public class PlayerInput : BaseInput {
   private bool activeMovementInput = false;
   private bool activeLookInput = false;
 
+  private float distanceToOutline = 15f;
+
   private void Awake() {
     if (controls == null) {
       controls = new();
@@ -43,6 +45,7 @@ public class PlayerInput : BaseInput {
         movement.Look(controls.Player.Look.ReadValue<Vector2>());
     }
 
+    Interactable.GiveClosestItemOutline(transform.position, itemHolder);
   }
 
   private void OnEnable() {
