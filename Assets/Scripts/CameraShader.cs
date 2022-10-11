@@ -12,9 +12,9 @@ public class CameraShader : MonoBehaviour {
     private float volumeTransitionSpeed = 0.01f;
 
     void Update() {
-        if (isEffectEnabled) {
+        if (isEffectEnabled && currentVolumeWeight < 0.99) {
             currentVolumeWeight = Mathf.Lerp(currentVolumeWeight, 1, volumeTransitionSpeed);
-        } else if (!isEffectEnabled) {
+        } else if (!isEffectEnabled && currentVolumeWeight > 0.01) {
             currentVolumeWeight = Mathf.Lerp(currentVolumeWeight, 0, volumeTransitionSpeed);
         }
 
