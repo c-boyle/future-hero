@@ -5,7 +5,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class CameraShader : MonoBehaviour {
 
-    public PostProcessVolume volume;
+    [SerializeField] private PostProcessVolume volume;
     [SerializeField] private Camera cam;
     private bool isEffectEnabled = false;
     private float currentVolumeWeight = 0;
