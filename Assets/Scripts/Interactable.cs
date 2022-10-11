@@ -24,6 +24,16 @@ public class Interactable : MonoBehaviour {
   private bool firstUse = true;
   public bool shaderChanged = false;
 
+  // Prompt related variables
+  [SerializeField] private TextMesh Prompt;
+  public String promptText = "interact";
+  private Transform prompt_transform;
+  private Vector3 promptScale = new Vector3(1,1,1);
+  
+  // public float character_size = 1f;
+  // public int font_size = 0;
+  
+
   private readonly static HashSet<Interactable> enabledInteractables = new();
   private readonly static HashSet<Interactable> withinRangeInteractables = new();
 
@@ -34,11 +44,19 @@ public class Interactable : MonoBehaviour {
     _rend = GetComponent<Renderer>();
     _regularShader = _rend.material.shader;
 
+    // Children (if any)
     _childRends = GetComponentsInChildren<Renderer>();
     _childRegularShaders = new List<Shader>();
     foreach(Renderer color in _childRends){
       _childRegularShaders.Add(color.material.shader);
     }
+
+    // prompt
+    // TextMesh Prompt = GetComponentInChildren<TextMesh>();
+    Prompt.text = promptText;
+    prompt_transform = Prompt.gameObject.GetComponent<Transform>();
+    promptScale = prompt_transform.localScale;
+    prompt_transform.localScale = new Vector3(0,0,0);
   }
 
   private void OnEnable() {
@@ -117,21 +135,50 @@ public class Interactable : MonoBehaviour {
 
   public static void GiveClosestItemOutline(Vector3 interactorPosition, ItemHolder itemHolder) {
     Interactable closestInteractable = Interactable.FindClosestInteractable(interactorPosition, itemHolder);
-    if (closestInteractable != null && !closestInteractable.shaderChanged) {
-      closestInteractable.toggleOutlineShader();
-    }
+    if (closestInteractable != null) {
+      if (!closestInteractable.shaderChanged) {
+        closestInteractable.toggleOutlineShader();
+      }
+      closestInteractable.showPrompt();
+    } 
+  }
+
+  public void showPrompt() {
+    // GameObject UItextGO = new GameObject("Text2");
+    // UItextGO.transform.SetParent(canvas_transform);
+
+    // RectTransform trans = UItextGO.AddComponent<RectTransform>();
+    // trans.anchoredPosition = new Vector2(x, y);
+
+    // Text text = UItextGO.AddComponent<Text>();
+    // text.text = text_to_print;
+    // text.fontSize = font_size;
+    // text.color = text_color;
+    prompt_transform.localScale = promptScale;
+    Quaternion rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+    Quaternion current = prompt_transform.rotation; 
+    prompt_transform.rotation = Quaternion.Euler(new Vector3(current.eulerAngles.x, rotation.eulerAngles.y, current.eulerAngles.z));
+    // prompt_transform.rotation = rotation;
+    
+
+  }
+
+  public void removePrompt() {
+    prompt_transform.localScale = new Vector3(0,0,0);
   }
 
   public void toggleOutlineShader(){
     if (shaderChanged) {
       _rend.material.shader = _regularShader;
+      removePrompt();
     } else {
       _rend.material.shader = _outlineShader;
+      showPrompt();
     }
 
     int index = 0;
     foreach(Renderer colour in _childRends){
-      if (shaderChanged) {
+      if (shaderChanged || colour.gameObject == Prompt.gameObject) {
         colour.material.shader = _childRegularShaders[index];
       } else {
         colour.material.shader = _outlineShader;
