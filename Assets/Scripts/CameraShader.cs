@@ -22,11 +22,9 @@ public class CameraShader : MonoBehaviour {
     }
 
     public void onEffectActivate() {
-        Debug.Log("activated");
     }
 
     public void onEffectDeactivate() {
-        Debug.Log("deactivated");
     }
 
     public void ToggleShader() {
