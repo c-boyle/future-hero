@@ -71,6 +71,10 @@ public class Interactable : MonoBehaviour {
     }
   }
 
+  private void OnDestroy(){
+    this.OnDisable();
+  }
+
   private void OnTriggerEnter(Collider collider) {
     if (collider.tag == "InteractReach"){ 
       withinRangeInteractables.Add(this);

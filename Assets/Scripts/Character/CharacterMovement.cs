@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour {
   [SerializeField] private Rigidbody _rigidbody;
   [SerializeField] private Transform _bodyTransform, _cameraTransform;
+  [SerializeField] private Animation _watchArmAnimation;
   [SerializeField] private float _movementSpeed = 10f;
 
   private float _lookClamp = 0f;
@@ -51,8 +52,6 @@ public class CharacterMovement : MonoBehaviour {
     _cameraTransform.rotation = Quaternion.Euler(cameraRotation);
     _bodyTransform.rotation = Quaternion.Euler(playerRotation);
 
-
-
   }
 
 
@@ -61,5 +60,20 @@ public class CharacterMovement : MonoBehaviour {
     if (_rigidbody.velocity.y == 0) {
       _rigidbody.velocity += _bodyTransform.up * _jumpIntensity;
     }
+  }
+
+
+  // Function that triggers the animation to look at the watch
+  public void LookAtWatch() {
+    _watchArmAnimation.Stop("reverseToggleWatchArm_Left");
+    // _watchArmAnimation["reverseToggleWatchArm_Left"].speed = 1f;
+    _watchArmAnimation.Play("reverseToggleWatchArm_Left");
+  }
+
+
+  public void PutWatchAway() {
+    _watchArmAnimation.Stop("toggleWatchArm_Left");
+    // _watchArmAnimation["toggleWatchArm_Left"].speed = -1f;
+    _watchArmAnimation.Play("toggleWatchArm_Left");
   }
 }

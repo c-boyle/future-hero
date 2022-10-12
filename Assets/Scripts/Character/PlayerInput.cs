@@ -24,6 +24,8 @@ public class PlayerInput : BaseInput {
     controls.Player.Move.performed += ctx => activeMovementInput = true;
     controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); };
     controls.Player.Jump.performed += ctx => OnJump();
+    controls.Player.LookAtWatch.performed += ctx => movement.LookAtWatch();
+    controls.Player.LookAtWatch.canceled += ctx => movement.PutWatchAway();  
 
     // Controls that alter vision
     controls.Player.Look.performed += ctx => activeLookInput = true;
@@ -83,4 +85,5 @@ public class PlayerInput : BaseInput {
       OnToggleFutureVision();
     }
   }
+
 }

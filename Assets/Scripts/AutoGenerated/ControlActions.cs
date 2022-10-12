@@ -80,6 +80,15 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LookAtWatch"",
+                    ""type"": ""Button"",
+                    ""id"": ""688f3b1b-0c8a-4396-aec0-a1f129b35fdf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -333,6 +342,28 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ToggleVision"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a627ab3-a0e6-4d29-b87a-728f8ab500b2"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookAtWatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5364691-8926-4e83-b564-6ed71a0088b9"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookAtWatch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -926,6 +957,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_DropItem = m_Player.FindAction("DropItem", throwIfNotFound: true);
         m_Player_ToggleVision = m_Player.FindAction("ToggleVision", throwIfNotFound: true);
+        m_Player_LookAtWatch = m_Player.FindAction("LookAtWatch", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1003,6 +1035,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_DropItem;
     private readonly InputAction m_Player_ToggleVision;
+    private readonly InputAction m_Player_LookAtWatch;
     public struct PlayerActions
     {
         private @ControlActions m_Wrapper;
@@ -1013,6 +1046,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
         public InputAction @ToggleVision => m_Wrapper.m_Player_ToggleVision;
+        public InputAction @LookAtWatch => m_Wrapper.m_Player_LookAtWatch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1040,6 +1074,9 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                 @ToggleVision.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleVision;
                 @ToggleVision.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleVision;
                 @ToggleVision.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleVision;
+                @LookAtWatch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookAtWatch;
+                @LookAtWatch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookAtWatch;
+                @LookAtWatch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookAtWatch;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1062,6 +1099,9 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                 @ToggleVision.started += instance.OnToggleVision;
                 @ToggleVision.performed += instance.OnToggleVision;
                 @ToggleVision.canceled += instance.OnToggleVision;
+                @LookAtWatch.started += instance.OnLookAtWatch;
+                @LookAtWatch.performed += instance.OnLookAtWatch;
+                @LookAtWatch.canceled += instance.OnLookAtWatch;
             }
         }
     }
@@ -1224,6 +1264,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDropItem(InputAction.CallbackContext context);
         void OnToggleVision(InputAction.CallbackContext context);
+        void OnLookAtWatch(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
