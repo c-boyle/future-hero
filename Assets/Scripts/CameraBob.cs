@@ -4,7 +4,8 @@ using UnityEngine;
 
 // TODO: Add randomness
 // TODO: Add horizontal bob tilting
-// TODO: Make fps arms drift behinid offset
+// TODO: Increase bob intensity when sprinting
+// TODO: Make fps arms drift behind offset
 // TODO: Animate bob to a stop when player stops moving
 public class CameraBob : MonoBehaviour {
     [SerializeField] private Camera cam;
@@ -16,7 +17,8 @@ public class CameraBob : MonoBehaviour {
     private float camInitialLocalY;
     private int breathFrameCounter = 0;
     private int bobFrameCounter = 0;
-    public bool isBobing = true;
+    public bool isBobing = false;
+    private bool isBreathing = true;
     public float currentOffset = 0;
 
 
@@ -47,7 +49,7 @@ public class CameraBob : MonoBehaviour {
         currentOffset = calculateBreathOffset() + calculateBobOffset();
         cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, camInitialLocalY + currentOffset, cam.transform.localPosition.z);
 
+        if (isBreathing) breathFrameCounter += 1;
         if (isBobing) bobFrameCounter += 1;
-        breathFrameCounter += 1;
     }
 }
