@@ -7,6 +7,7 @@ using MyBox;
 // TODO: Add horizontal bob tilting
 // TODO: Increase bob intensity when sprinting
 // TODO: Make fps arms drift behind offset
+// TODO: Stop bobbing when walking into a wall
 public class CameraBob : MonoBehaviour {
     [SerializeField] [MustBeAssigned] private Camera cam;
     [SerializeField] [PositiveValueOnly] private float breatheIntensity = 1;
@@ -24,7 +25,7 @@ public class CameraBob : MonoBehaviour {
     private float breatheOffset = 0;
     private float bobOffset = 0;
     [ReadOnly] public float offset = 0;
-    
+
     public bool isEnabled = true;
     public bool isBreathing = true;
     public bool isBobbing = false;
@@ -53,9 +54,10 @@ public class CameraBob : MonoBehaviour {
         if (distToPeriodBeginning < distToPeriodEnd) {
             // x is closer to beginning of period than end, return negative distance
             if (distToPeriodBeginning >= 0.001) return -distToPeriodBeginning;
-        } else if (distToPeriodBeginning >= distToPeriodEnd) {
+        }
+        else if (distToPeriodBeginning >= distToPeriodEnd) {
             // x is closer to end of period than beginning, return positive distance
-            if(distToPeriodEnd >= 0.001) return distToPeriodEnd;
+            if (distToPeriodEnd >= 0.001) return distToPeriodEnd;
         }
 
         return 0;
@@ -70,12 +72,14 @@ public class CameraBob : MonoBehaviour {
 
             if (isBreathing) {
                 breatheFrameCounter += 1 * _breatheSpeed;
-            } else if (!isBreathing) {
+            }
+            else if (!isBreathing) {
                 breatheFrameCounter += Mathf.Clamp(getDistanceToPeriodEnds(breatheFrameCounter), -0.5f, 0.5f) * _breatheSpeed;
             }
             if (isBobbing) {
                 bobFrameCounter += 1 * _bobSpeed;
-            } else if (!isBobbing) {
+            }
+            else if (!isBobbing) {
                 bobFrameCounter += Mathf.Clamp(getDistanceToPeriodEnds(bobFrameCounter), -0.5f, 0.5f) * _bobSpeed;
             }
         }
