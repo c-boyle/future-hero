@@ -12,7 +12,7 @@ public class CharacterMovement : MonoBehaviour {
 
   // Constants
   private float _rotationSpeed = 1f;
-  private float _jumpIntensity = 5f;
+  private float _jumpIntensity = 300f;
   private int _lookHeightMax = 90;
 
   // Function that moves character
@@ -58,7 +58,7 @@ public class CharacterMovement : MonoBehaviour {
   // Function that lets the Future Hero Jump
   public void Jump() {
     if (_rigidbody.velocity.y == 0) {
-      _rigidbody.velocity += _bodyTransform.up * _jumpIntensity;
+      _rigidbody.AddForce(_bodyTransform.up * _jumpIntensity);
     }
   }
 
