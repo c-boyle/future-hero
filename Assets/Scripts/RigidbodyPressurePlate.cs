@@ -8,13 +8,13 @@ public class RigidbodyPressurePlate : MonoBehaviour {
   [SerializeField] private UnityEvent enteredEvent;
   [SerializeField] private UnityEvent exitedEvent;
 
-  void OnTriggerEnter(Collider collider) {
-    if (collider.attachedRigidbody == rb) {
+  void OnCollisionEnter(Collision collision) {
+    if (collision.rigidbody == rb) {
       enteredEvent?.Invoke();
     }
   }
-  void OnTriggerExit(Collider collider) {
-    if (collider.attachedRigidbody == rb) {
+  void OnCollisionExit(Collision collision) {
+    if (collision.rigidbody == rb) {
       exitedEvent?.Invoke();
     }
   }
