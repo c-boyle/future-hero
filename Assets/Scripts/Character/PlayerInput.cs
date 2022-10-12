@@ -46,7 +46,7 @@ public class PlayerInput : BaseInput {
     if (activeLookInput){
         movement.Look(controls.Player.Look.ReadValue<Vector2>());
     }
-    var cameraTransform = futureShader.Camera.transform;
+    var cameraTransform = Camera.main.transform;
     Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
   }
 
@@ -61,7 +61,7 @@ public class PlayerInput : BaseInput {
   protected override void OnInteract() {
     // Interaction should be prohibited when looking into the future
     if (!futureSeer.TimeVisionEnabled) {
-      var cameraTransform = futureShader.Camera.transform;
+      var cameraTransform = Camera.main.transform;
       Interactable.UseClosestInteractableInView(cameraTransform.position, cameraTransform.forward, itemHolder);
     }
   }
