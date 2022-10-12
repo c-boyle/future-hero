@@ -38,9 +38,9 @@ public class PlayerInput : BaseInput {
     Cursor.visible = false;
     if (activeMovementInput) {
       movement.Move(controls.Player.Move.ReadValue<Vector2>());
-      cameraBob.isBobing = true;
+      cameraBob.isBobbing = true;
     } else {
-      cameraBob.isBobing = false;
+      cameraBob.isBobbing = false;
     }
 
     if (activeLookInput){

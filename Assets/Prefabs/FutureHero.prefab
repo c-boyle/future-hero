@@ -382,6 +382,7 @@ MonoBehaviour:
   movement: {fileID: 8923843087483422747}
   itemHolder: {fileID: 5805039765101866290}
   futureSeer: {fileID: 4961458107837619791}
+  cameraBob: {fileID: 0}
   futureShader: {fileID: 6833996545267069720}
 --- !u!114 &4961458107837619791
 MonoBehaviour:
@@ -424,7 +425,7 @@ GameObject:
   - component: {fileID: 8923843087717536974}
   - component: {fileID: 8923843087717536975}
   - component: {fileID: 6833996545267069720}
-  - component: {fileID: 2797447491813199398}
+  - component: {fileID: 5001831470480072933}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -512,7 +513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: {fileID: 0}
   cam: {fileID: 8923843087717536974}
---- !u!114 &2797447491813199398
+--- !u!114 &5001831470480072933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -525,6 +526,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  bobStrength: 1
+  breatheIntensity: 1
+  breatheSpeed: 1
+  bobIntensity: 1
   bobSpeed: 1
-  bobRandom: 0.2
+  offset: 0
+  isEnabled: 1
+  isBreathing: 1
+  isBobing: 0
