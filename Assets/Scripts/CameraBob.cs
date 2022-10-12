@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MyBox;
 
 // TODO: Add randomness
 // TODO: Add horizontal bob tilting
@@ -8,26 +9,19 @@ using UnityEngine;
 // TODO: Make fps arms drift behind offset
 // TODO: Animate bob to a stop when player stops moving
 public class CameraBob : MonoBehaviour {
-    [SerializeField] private Camera cam;
-    [SerializeField] private float breathIntensity = 1;
-    [SerializeField] private float breathSpeed = 1;
-    [SerializeField] private float bobIntensity = 1;
-    [SerializeField] private float bobSpeed = 1;
+    [SerializeField] [MustBeAssigned] private Camera cam;
+    [SerializeField] [PositiveValueOnly] private float breathIntensity = 1;
+    [SerializeField] [PositiveValueOnly] private float breathSpeed = 1;
+    [SerializeField] [PositiveValueOnly] private float bobIntensity = 1;
+    [SerializeField] [PositiveValueOnly] private float bobSpeed = 1;
 
     private float camInitialLocalY;
     private int breathFrameCounter = 0;
     private int bobFrameCounter = 0;
-    public bool isBobing = false;
+    public bool isEnabled = true;
     private bool isBreathing = true;
-    public float currentOffset = 0;
-
-
-    void OnValidate() {
-        breathIntensity = Mathf.Max(0, breathIntensity);
-        breathSpeed = Mathf.Max(0, breathSpeed);
-        bobIntensity = Mathf.Max(0, bobIntensity);
-        bobSpeed = Mathf.Max(0, bobSpeed);
-    }
+    public bool isBobing = false;
+    [ReadOnly] public float currentOffset = 0;
 
     void Start() {
         camInitialLocalY = cam.transform.localPosition.y;
@@ -46,10 +40,12 @@ public class CameraBob : MonoBehaviour {
     }
 
     void Update() {
-        currentOffset = calculateBreathOffset() + calculateBobOffset();
-        cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, camInitialLocalY + currentOffset, cam.transform.localPosition.z);
+        if (isEnabled) {
+            currentOffset = calculateBreathOffset() + calculateBobOffset();
+            cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, camInitialLocalY + currentOffset, cam.transform.localPosition.z);
 
-        if (isBreathing) breathFrameCounter += 1;
-        if (isBobing) bobFrameCounter += 1;
+            if (isBreathing) breathFrameCounter += 1;
+            if (isBobing) bobFrameCounter += 1;
+        }
     }
 }
