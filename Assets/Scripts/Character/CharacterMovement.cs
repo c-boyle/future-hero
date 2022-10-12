@@ -16,7 +16,7 @@ public class CharacterMovement : MonoBehaviour {
   private int _lookHeightMax = 90;
 
   // Function that moves character
-  public void Move(Vector2 movement) {
+  public void Move(Vector2 movement, bool sprint = false) {
     // Temporary Velocity variable that we'll set player velocity to later (for now until comfortable with impl.)
     Vector3 tmpVelocity;
 
