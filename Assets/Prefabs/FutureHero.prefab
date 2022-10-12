@@ -424,6 +424,7 @@ GameObject:
   - component: {fileID: 8923843087717536974}
   - component: {fileID: 8923843087717536975}
   - component: {fileID: 6833996545267069720}
+  - component: {fileID: 2797447491813199398}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -509,5 +510,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384fceff341c70a419e4c832bd0dd447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shader: {fileID: 4800000, guid: b0de9639927b2064b89c4331284997bd, type: 3}
+  volume: {fileID: 0}
   cam: {fileID: 8923843087717536974}
+--- !u!114 &2797447491813199398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8923843087717536977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ee09d08db3d974d90bc2d5991b8e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  bobStrength: 1
+  bobSpeed: 1
+  bobRandom: 0.2

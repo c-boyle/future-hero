@@ -10223,6 +10223,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PR_arm
       objectReference: {fileID: 0}
+    - target: {fileID: 2797447491813199398, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 8923843087486803616}
+    - target: {fileID: 2797447491813199398, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: isBobing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3857325031722860229, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -10327,6 +10335,10 @@ PrefabInstance:
       propertyPath: shader
       value: 
       objectReference: {fileID: 10512, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 6833996545267069720, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: volume
+      value: 
+      objectReference: {fileID: 1738053416}
     - target: {fileID: 8030072446614446617, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -10347,6 +10359,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8923843087483422746, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: cameraBob
+      value: 
+      objectReference: {fileID: 8923843087486803617}
     - target: {fileID: 8923843087483422746, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: futureShader
       value: 
@@ -10405,3 +10421,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+--- !u!20 &8923843087486803616 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8923843087717536974, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+  m_PrefabInstance: {fileID: 8923843087486803615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8923843087486803617 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2797447491813199398, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+  m_PrefabInstance: {fileID: 8923843087486803615}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440143904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ee09d08db3d974d90bc2d5991b8e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
