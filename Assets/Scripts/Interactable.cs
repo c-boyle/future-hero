@@ -65,6 +65,7 @@ public class Interactable : MonoBehaviour {
 
   private void OnDisable() {
     enabledInteractables.Remove(this);
+    withinRangeInteractables.Remove(this);
     
     if (shaderChanged){
       toggleOutlineShader();
