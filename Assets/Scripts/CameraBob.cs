@@ -76,6 +76,7 @@ public class CameraBob : MonoBehaviour {
             else if (!isBreathing) {
                 breatheFrameCounter += Mathf.Clamp(getDistanceToPeriodEnds(breatheFrameCounter), -0.5f, 0.5f) * _breatheSpeed;
             }
+
             if (isBobbing) {
                 bobFrameCounter += 1 * _bobSpeed;
             }
