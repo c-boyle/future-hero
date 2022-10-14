@@ -10223,6 +10223,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PR_arm
       objectReference: {fileID: 0}
+    - target: {fileID: 2797447491813199398, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797447491813199398, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: isBobing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3857325031722860229, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -10258,6 +10266,22 @@ PrefabInstance:
     - target: {fileID: 4961458107837619791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: futureObjectsRoots.Array.data[1]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5001831470480072933, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 8923843087486803616}
+    - target: {fileID: 5001831470480072933, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: bobSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5001831470480072933, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: isBreathing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5001831470480072933, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: bobIntensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5853391570232394577, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10352,6 +10376,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8923843087483422746, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: cameraBob
+      value: 
+      objectReference: {fileID: 8923843087486803619}
+    - target: {fileID: 8923843087483422746, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: futureShader
       value: 
       objectReference: {fileID: 2041829282}
@@ -10407,5 +10435,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2797447491813199398, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+--- !u!20 &8923843087486803616 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8923843087717536974, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+  m_PrefabInstance: {fileID: 8923843087486803615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8923843087486803619 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5001831470480072933, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+  m_PrefabInstance: {fileID: 8923843087486803615}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440143904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ee09d08db3d974d90bc2d5991b8e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
