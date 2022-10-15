@@ -5,10 +5,17 @@ using UnityEngine;
 public class ItemHolder : MonoBehaviour {
   [SerializeField] private Transform handTransform;
   [SerializeField] private Item _heldItem;
+  [SerializeField] private Collider holderCollider; 
 
   public Item HeldItem { get => _heldItem; }
 
   private Transform oldParent = null;
+
+  private void ignoreCollisions(Item item, bool ignore) {
+    foreach (Collider collider in item.GetComponentsInChildren<Collider>()) {
+      Physics.IgnoreCollision(holderCollider, collider, ignore);
+    }
+  }
 
   public void GrabItem(Item itemToGrab) {
     DropItem();
@@ -37,6 +44,7 @@ public class ItemHolder : MonoBehaviour {
     }
 
     _heldItem = itemToGrab;
+    ignoreCollisions(_heldItem, true);
   }
 
   public void DropItem() {
@@ -46,6 +54,7 @@ public class ItemHolder : MonoBehaviour {
         _heldItem.Rigidbody.isKinematic = false;
       }
 
+      ignoreCollisions(_heldItem, false);
       _heldItem = null;
     }
   }

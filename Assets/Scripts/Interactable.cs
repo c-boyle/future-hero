@@ -59,6 +59,7 @@ public class Interactable : MonoBehaviour {
     prompt_transform = Prompt.gameObject.GetComponent<Transform>();
     promptScale = prompt_transform.localScale;
     prompt_transform.localScale = new Vector3(0, 0, 0);
+
   }
 
   private void OnEnable() {
