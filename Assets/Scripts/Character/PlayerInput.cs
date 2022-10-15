@@ -10,51 +10,53 @@ public class PlayerInput : BaseInput {
   [SerializeField] private CameraBob cameraBob;
   [SerializeField] private CameraShader futureShader;
 
-  private ControlActions controls;
+  public static ControlActions Controls;
   private bool activeMovementInput = false;
   private bool activeLookInput = false;
 
   private void Awake() {
-    if (controls == null) {
-      controls = new();
+    if (Controls == null) {
+      Controls = new();
     }
 
     // Controls that alter movement
-    controls.Player.Move.performed += ctx => activeMovementInput = true;
-    controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); };
-    controls.Player.Jump.performed += ctx => OnJump();
+    Controls.Player.Move.performed += ctx => activeMovementInput = true;
+    Controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); };
+    Controls.Player.Jump.performed += ctx => OnJump();
 
     // Controls that alter vision
-    controls.Player.Look.performed += ctx => activeLookInput = true;
-    controls.Player.Look.canceled += ctx => { activeLookInput = false; movement.Look(Vector2.zero); };
-    controls.Player.ToggleVision.performed += ctx => OnToggleFutureVision();
+    Controls.Player.Look.performed += ctx => activeLookInput = true;
+    Controls.Player.Look.canceled += ctx => { activeLookInput = false; movement.Look(Vector2.zero); };
+    Controls.Player.ToggleVision.performed += ctx => OnToggleFutureVision();
 
     // Controls that affect environment
-    controls.Player.Interact.performed += ctx => OnInteract();
-    controls.Player.DropItem.performed += ctx => OnDropItem();
+    Controls.Player.Interact.performed += ctx => OnInteract();
+    Controls.Player.DropItem.performed += ctx => OnDropItem();
+
+    Controls.Player.Pause.performed += ctx => UIEventListener.Instance.PauseGame();
   }
 
   private void Update() {
     Cursor.visible = false;
     if (activeMovementInput) {
-      movement.Move(controls.Player.Move.ReadValue<Vector2>());
+      movement.Move(Controls.Player.Move.ReadValue<Vector2>());
       cameraBob.isBobbing = true;
     } else {
       cameraBob.isBobbing = false;
     }
 
     if (activeLookInput){
-        movement.Look(controls.Player.Look.ReadValue<Vector2>());
+        movement.Look(Controls.Player.Look.ReadValue<Vector2>());
     }
 
   }
 
   private void OnEnable() {
-    controls.Enable();
+    Controls.Enable();
   }
 
   private void OnDisable() {
-    controls.Disable();
+    Controls.Disable();
   }
 
   protected override void OnInteract() {
