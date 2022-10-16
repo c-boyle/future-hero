@@ -48,6 +48,8 @@ public class OldLady : MonoBehaviour
         AudioClip soundToPlay = sounds[index]; 
         if (soundToPlay) {
             ladyVoice.clip = soundToPlay;
+            ladyVoice.volume = 1f;
+            ladyVoice.Play(0);
         }
         
     }
