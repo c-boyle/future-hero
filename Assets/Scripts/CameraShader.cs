@@ -2,22 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using MyBox;
 
 public class CameraShader : MonoBehaviour {
 
-    [SerializeField] private PostProcessVolume volume;
-    [SerializeField] private Camera cam;
+    [SerializeField] [MustBeAssigned] private PostProcessVolume volume;
+    [SerializeField] [MustBeAssigned] private Camera cam;
     private bool isEffectEnabled = false;
     private float currentVolumeWeight = 0;
-    private float volumeTransitionSpeed = 0.01f;
+    private float currentCameraFOV;
+    private float initialCameraFOV;
+    private float finalCameraFOV;
+    private const float DeltaFOV = 3;
+    private const float volumeTransitionSpeed = 0.01f;
+    private const float cameraFOVTransitionSpeed = 0.02f;
+
+    void Start() {
+        initialCameraFOV = cam.fieldOfView;
+        finalCameraFOV = initialCameraFOV + DeltaFOV;
+    }
 
     void Update() {
-        if (isEffectEnabled && currentVolumeWeight < 0.99) {
+        if (isEffectEnabled) {
             currentVolumeWeight = Mathf.Lerp(currentVolumeWeight, 1, volumeTransitionSpeed);
-        } else if (!isEffectEnabled && currentVolumeWeight > 0.01) {
+            currentCameraFOV = Mathf.Lerp(currentCameraFOV, finalCameraFOV, cameraFOVTransitionSpeed);
+        } else if (!isEffectEnabled) {
             currentVolumeWeight = Mathf.Lerp(currentVolumeWeight, 0, volumeTransitionSpeed);
+            currentCameraFOV = Mathf.Lerp(currentCameraFOV, initialCameraFOV, cameraFOVTransitionSpeed);
         }
 
+        cam.fieldOfView = currentCameraFOV;
         volume.weight = currentVolumeWeight;
     }
 
