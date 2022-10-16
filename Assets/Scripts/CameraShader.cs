@@ -20,7 +20,7 @@ public class CameraShader : MonoBehaviour {
     [SerializeField] [ReadOnly] private float currentCameraFOV;
     private float initialCameraFOV;
     private float finalCameraFOV;
-    private const float deltaCameraFOV = 3;
+    private const float deltaCameraFOV = 4;
     private const float cameraFOVTransitionSpeed = 0.02f;
 
     void Start() {
