@@ -27,7 +27,6 @@ public class Interactable : MonoBehaviour {
   // Prompt related variables
   [SerializeField] private TextMesh Prompt;
   public String promptText = "interact";
-  private Transform prompt_transform;
   private Vector3 promptScale = new Vector3(1, 1, 1);
 
   // public float character_size = 1f;
@@ -56,9 +55,8 @@ public class Interactable : MonoBehaviour {
     // prompt
     // TextMesh Prompt = GetComponentInChildren<TextMesh>();
     Prompt.text = promptText;
-    prompt_transform = Prompt.gameObject.GetComponent<Transform>();
-    promptScale = prompt_transform.localScale;
-    prompt_transform.localScale = new Vector3(0, 0, 0);
+    promptScale = Prompt.transform.localScale;
+    Prompt.transform.localScale = new Vector3(0, 0, 0);
 
   }
 
@@ -77,22 +75,6 @@ public class Interactable : MonoBehaviour {
 
   private void OnDestroy(){
     this.OnDisable();
-  }
-
-  private void OnTriggerEnter(Collider collider) {
-    if (collider.tag == "InteractReach") {
-      withinRangeInteractables.Add(this);
-    }
-  }
-
-  private void OnTriggerExit(Collider collider) {
-    if (collider.tag == "InteractReach") {
-      withinRangeInteractables.Remove(this);
-
-      if (shaderChanged) {
-        toggleOutlineShader();
-      }
-    }
   }
 
   private void OnInteract(ItemHolder itemHolder = null) {
@@ -198,7 +180,7 @@ public class Interactable : MonoBehaviour {
       if (!closestInteractable.shaderChanged) {
         closestInteractable.toggleOutlineShader();
       }
-      closestInteractable.showPrompt();
+      closestInteractable.ShowPrompt();
     }
   }
 
@@ -208,11 +190,11 @@ public class Interactable : MonoBehaviour {
       if (!closestInteractable.shaderChanged) {
         closestInteractable.toggleOutlineShader();
       }
-      closestInteractable.showPrompt();
+      closestInteractable.ShowPrompt();
     }
   }
 
-  public void showPrompt() {
+  public void ShowPrompt() {
     // GameObject UItextGO = new GameObject("Text2");
     // UItextGO.transform.SetParent(canvas_transform);
 
@@ -223,26 +205,25 @@ public class Interactable : MonoBehaviour {
     // text.text = text_to_print;
     // text.fontSize = font_size;
     // text.color = text_color;
-    prompt_transform.localScale = promptScale;
+    Prompt.transform.localScale = promptScale;
     Quaternion rotation = Quaternion.LookRotation(Camera.main.transform.forward);
-    Quaternion current = prompt_transform.rotation;
-    prompt_transform.rotation = Quaternion.Euler(new Vector3(current.eulerAngles.x, rotation.eulerAngles.y, current.eulerAngles.z));
-    // prompt_transform.rotation = rotation;
-
+    Quaternion current = Prompt.transform.rotation;
+    Prompt.transform.rotation = Quaternion.Euler(new Vector3(current.eulerAngles.x, rotation.eulerAngles.y, current.eulerAngles.z));
+    // Prompt.transform.rotation = rotation;
 
   }
 
-  public void removePrompt() {
-    prompt_transform.localScale = new Vector3(0, 0, 0);
+  public void RemovePrompt() {
+    Prompt.transform.localScale = new Vector3(0, 0, 0);
   }
 
   public void toggleOutlineShader() {
     if (shaderChanged) {
       _rend.material.shader = _regularShader;
-      removePrompt();
+      RemovePrompt();
     } else {
       _rend.material.shader = _outlineShader;
-      showPrompt();
+      ShowPrompt();
     }
 
     int index = 0;

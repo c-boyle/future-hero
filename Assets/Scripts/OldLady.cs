@@ -8,15 +8,22 @@ public class OldLady : MonoBehaviour
     private float force_backwards = 500f;
     private float force_upwards = 200f;
 
-    [SerializeField] AudioSource ladyTalking1; 
-    [SerializeField] AudioSource ladyTalking2;
-    [SerializeField] AudioSource ladyTalking3;
+    private AudioSource ladyVoice;
 
-    [SerializeField] AudioSource ladyMumbling1; 
-    [SerializeField] AudioSource ladyMumbling2; 
-    [SerializeField] AudioSource ladyMumbling3; 
+    [SerializeField] private AudioClip talking1;
+    [SerializeField] private AudioClip talking2;
+    [SerializeField] private AudioClip talking3;
+
+    [SerializeField] private AudioClip mumbling1;
+    [SerializeField] private AudioClip mumbling2;
+    [SerializeField] private AudioClip mumbling3;
+
 
     public bool mumble = true;  
+
+    void Start() {
+        ladyVoice = gameObject.AddComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider collider) {
         if (collider.tag == "Player"){ 
@@ -29,18 +36,18 @@ public class OldLady : MonoBehaviour
     }
 
     private void playAngrySound() {
-        AudioSource[] sounds;
+        AudioClip[] sounds;
         if (mumble) {
-            sounds = new AudioSource[] {ladyMumbling1, ladyMumbling2, ladyMumbling3};
+            sounds = new AudioClip[] {mumbling1, mumbling2, mumbling3};
         } else {
-            sounds = new AudioSource[] {ladyTalking1, ladyTalking2, ladyTalking3};
+            sounds = new AudioClip[] {talking1, talking2, talking3};
         }
 
         System.Random rnd = new System.Random();
         int index = rnd.Next(sounds.Length);
-        AudioSource soundToPlay = sounds[index]; 
+        AudioClip soundToPlay = sounds[index]; 
         if (soundToPlay) {
-            sounds[index].Play();
+            ladyVoice.clip = soundToPlay;
         }
         
     }

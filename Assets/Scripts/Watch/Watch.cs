@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Watch : MonoBehaviour
+public abstract class Watch : MonoBehaviour
 {
     protected int futureSeconds = 0;
     protected int futureMinutes = 0;

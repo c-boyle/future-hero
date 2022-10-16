@@ -14,8 +14,6 @@ public class PlayerInput : BaseInput {
   private bool activeMovementInput = false;
   private bool activeLookInput = false;
 
-  private float distanceToOutline = 15f;
-
   private void Awake() {
     if (controls == null) {
       controls = new();

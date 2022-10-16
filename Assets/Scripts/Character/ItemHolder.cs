@@ -11,7 +11,7 @@ public class ItemHolder : MonoBehaviour {
 
   private Transform oldParent = null;
 
-  private void ignoreCollisions(Item item, bool ignore) {
+  private void IgnoreCollisions(Item item, bool ignore) {
     foreach (Collider collider in item.GetComponentsInChildren<Collider>()) {
       Physics.IgnoreCollision(holderCollider, collider, ignore);
     }
@@ -21,15 +21,13 @@ public class ItemHolder : MonoBehaviour {
     DropItem();
 
     oldParent = itemToGrab.transform.parent;
-    var handParent = handTransform.parent;
 
     var oldGlobalScale = itemToGrab.transform.lossyScale;
     itemToGrab.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
   
-    itemToGrab.transform.SetParent(handParent, false);
-    itemToGrab.transform.localPosition = handTransform.localPosition;
-    // itemToGrab.transform.rotation = oldRotation;
-    itemToGrab.transform.Rotate(Vector3.right, 180);
+    itemToGrab.transform.SetParent(handTransform, false);
+    itemToGrab.transform.localPosition = new Vector3(0,0,0);
+    itemToGrab.transform.Rotate(Vector3.forward, 270);
 
     var itemScale = itemToGrab.transform.localScale;
     var newGlobalScale = itemToGrab.transform.lossyScale;
@@ -39,12 +37,13 @@ public class ItemHolder : MonoBehaviour {
                                           itemScale.y * oldGlobalScale.y / newGlobalScale.y, 
                                           itemScale.z * oldGlobalScale.z / newGlobalScale.z);
 
-    if (itemToGrab.Rigidbody != null) {
-      itemToGrab.Rigidbody.isKinematic = true;
-    }
-
     _heldItem = itemToGrab;
-    ignoreCollisions(_heldItem, true);
+
+    if (_heldItem.Rigidbody != null) {
+      _heldItem.Rigidbody.isKinematic = true;
+    }
+    
+    IgnoreCollisions(_heldItem, true);
   }
 
   public void DropItem() {
@@ -54,7 +53,8 @@ public class ItemHolder : MonoBehaviour {
         _heldItem.Rigidbody.isKinematic = false;
       }
 
-      ignoreCollisions(_heldItem, false);
+      IgnoreCollisions(_heldItem, false);
+
       _heldItem = null;
     }
   }
