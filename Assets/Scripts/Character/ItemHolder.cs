@@ -5,31 +5,45 @@ using UnityEngine;
 public class ItemHolder : MonoBehaviour {
   [SerializeField] private Transform handTransform;
   [SerializeField] private Item _heldItem;
+  [SerializeField] private Collider holderCollider; 
 
   public Item HeldItem { get => _heldItem; }
 
   private Transform oldParent = null;
 
+  private void IgnoreCollisions(Item item, bool ignore) {
+    foreach (Collider collider in item.GetComponentsInChildren<Collider>()) {
+      Physics.IgnoreCollision(holderCollider, collider, ignore);
+    }
+  }
+
   public void GrabItem(Item itemToGrab) {
     DropItem();
 
     oldParent = itemToGrab.transform.parent;
-    var handParent = handTransform.parent;
 
-    itemToGrab.transform.SetParent(handParent, false);
-    itemToGrab.transform.localPosition = handTransform.localPosition;
-    itemToGrab.transform.localRotation = Quaternion.identity;
+    var oldGlobalScale = itemToGrab.transform.lossyScale;
+    itemToGrab.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
+  
+    itemToGrab.transform.SetParent(handTransform, false);
+    itemToGrab.transform.localPosition = new Vector3(0,0,0);
+    itemToGrab.transform.Rotate(Vector3.forward, 270);
 
-    var parentScale = handParent.localScale;
     var itemScale = itemToGrab.transform.localScale;
-    // Adjust the item's scale by the localscale of the new parent
-    itemToGrab.transform.localScale = new(itemScale.x / parentScale.x, itemScale.y / parentScale.y, itemScale.z / parentScale.z);
+    var newGlobalScale = itemToGrab.transform.lossyScale;
 
-    if (itemToGrab.Rigidbody != null) {
-      itemToGrab.Rigidbody.isKinematic = true;
-    }
+    // Revert the size of the item picked to what it was before being picked up
+    itemToGrab.transform.localScale = new(itemScale.x * oldGlobalScale.x / newGlobalScale.x, 
+                                          itemScale.y * oldGlobalScale.y / newGlobalScale.y, 
+                                          itemScale.z * oldGlobalScale.z / newGlobalScale.z);
 
     _heldItem = itemToGrab;
+
+    if (_heldItem.Rigidbody != null) {
+      _heldItem.Rigidbody.isKinematic = true;
+    }
+    
+    IgnoreCollisions(_heldItem, true);
   }
 
   public void DropItem() {
@@ -38,6 +52,10 @@ public class ItemHolder : MonoBehaviour {
       if (_heldItem.Rigidbody != null) {
         _heldItem.Rigidbody.isKinematic = false;
       }
+
+      IgnoreCollisions(_heldItem, false);
+
+      _heldItem = null;
     }
   }
 }

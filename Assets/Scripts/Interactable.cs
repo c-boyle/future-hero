@@ -11,11 +11,54 @@ public class Interactable : MonoBehaviour {
   [SerializeField] private Item giveItem = null;
   [SerializeField] private bool disableAfterFirstUse = false;
 
+  // Shaders for items
+  private Shader _regularShader;
+  private List<Shader> _childRegularShaders;
+  [SerializeField] private Shader _outlineShader;
+
+  // Renderers
+  private Renderer _rend;
+  private Renderer[] _childRends;
+
+  // Booleans
   private bool firstUse = true;
+  public bool shaderChanged = false;
+
+  // Prompt related variables
+  [SerializeField] private TextMesh Prompt;
+  public String promptText = "interact";
+  private Vector3 promptScale = new Vector3(1, 1, 1);
+
+  // public float character_size = 1f;
+  // public int font_size = 0;
+
 
   private readonly static HashSet<Interactable> enabledInteractables = new();
+  private readonly static HashSet<Interactable> withinRangeInteractables = new();
+  private static float lastRefreshTime = -1f;
+  private const float withinRangeRefreshSeconds = 1f;
 
-  private const float maxInteractionRange = 15f;
+  private const float maxInteractionRange = 20f;
+
+  private void Start() {
+    // Parent
+    _rend = GetComponent<Renderer>();
+    _regularShader = _rend.material.shader;
+
+    // Children (if any)
+    _childRends = GetComponentsInChildren<Renderer>();
+    _childRegularShaders = new List<Shader>();
+    foreach (Renderer color in _childRends) {
+      _childRegularShaders.Add(color.material.shader);
+    }
+
+    // prompt
+    // TextMesh Prompt = GetComponentInChildren<TextMesh>();
+    Prompt.text = promptText;
+    promptScale = Prompt.transform.localScale;
+    Prompt.transform.localScale = new Vector3(0, 0, 0);
+
+  }
 
   private void OnEnable() {
     enabledInteractables.Add(this);
@@ -23,9 +66,18 @@ public class Interactable : MonoBehaviour {
 
   private void OnDisable() {
     enabledInteractables.Remove(this);
+    withinRangeInteractables.Remove(this);
+
+    if (shaderChanged) {
+      toggleOutlineShader();
+    }
   }
 
-  private void OnInteract(ItemHolder itemHolder) {
+  private void OnDestroy(){
+    this.OnDisable();
+  }
+
+  private void OnInteract(ItemHolder itemHolder = null) {
 
     if (!gameObject.activeSelf || (disableAfterFirstUse && !firstUse)) {
       return;
@@ -46,21 +98,145 @@ public class Interactable : MonoBehaviour {
     }
   }
 
-  public static void UseClosestInteractable(Vector3 interactorPosition, ItemHolder itemHolder) {
+  public static Interactable FindClosestInteractable(Vector3 interactorPosition, ItemHolder itemHolder) {
     float closestInteractableDist = Mathf.Infinity;
     Interactable closestInteractable = null;
-    foreach (var interactable in enabledInteractables) {
+    foreach (var interactable in withinRangeInteractables) {
       bool interactorIsHoldingThisInteractable = itemHolder != null && itemHolder.HeldItem != null && itemHolder.HeldItem.Interactable == interactable;
-      if (!interactorIsHoldingThisInteractable) { // Skip an interactable if it's being held by the interactor
+      if ((!interactorIsHoldingThisInteractable)) { // Skip an interactable if it's being held by the interactor or out of range
         float dist = Vector3.Distance(interactorPosition, interactable.transform.position);
         if (dist < closestInteractableDist) {
           closestInteractableDist = dist;
           closestInteractable = interactable;
         }
+      } else if (interactable.shaderChanged) {
+        interactable.toggleOutlineShader();
       }
     }
-    if (closestInteractableDist <= maxInteractionRange && closestInteractable != null) {
+    return closestInteractable;
+  }
+
+  public static Interactable FindClosestInteractableInView(Vector3 cameraPosition, Vector3 cameraDirection, ItemHolder itemHolder) {
+    float closestInteractableDist = Mathf.Infinity;
+    Interactable closestInteractable = null;
+
+    bool hit = Physics.Raycast(cameraPosition, cameraDirection, out RaycastHit lookingHit, Mathf.Infinity);
+    Vector3 lookingPoint = hit ? lookingHit.point : cameraPosition + (cameraDirection * (maxInteractionRange / 2));
+    Debug.DrawLine(lookingPoint, cameraPosition, Color.red);
+
+    float currentTime = Time.time;
+    bool refreshWithinRange = lastRefreshTime < 0 || currentTime - lastRefreshTime <= withinRangeRefreshSeconds;
+    HashSet<Interactable> interactablesToCheck = refreshWithinRange ? enabledInteractables : withinRangeInteractables;
+    if (refreshWithinRange) {
+      lastRefreshTime = currentTime;
+    }
+
+    foreach (var interactable in interactablesToCheck) {
+      if (interactable.shaderChanged) {
+        interactable.toggleOutlineShader();
+      }
+      bool interactorIsHoldingThisInteractable = itemHolder != null && itemHolder.HeldItem != null && itemHolder.HeldItem.Interactable == interactable;
+      if (!interactorIsHoldingThisInteractable) { // Skip an interactable if it's being held by the interactor or out of range
+        Vector3 interactablePosition = interactable.transform.position;
+        float distToLookingPoint = Vector3.Distance(lookingPoint, interactablePosition);
+        float distToCamera = Vector3.Distance(cameraPosition, interactablePosition);
+        bool inInteractionRange = distToCamera <= maxInteractionRange;
+        if (distToLookingPoint < closestInteractableDist && inInteractionRange) {
+          closestInteractableDist = distToLookingPoint;
+          closestInteractable = interactable;
+        }
+        if (inInteractionRange) {
+          withinRangeInteractables.Add(interactable);
+        } else {
+          withinRangeInteractables.Remove(interactable);
+        }
+      }
+    }
+
+    if (closestInteractable != null) {
+      Debug.DrawLine(lookingPoint, closestInteractable.transform.position, Color.cyan);
+    }
+
+    return closestInteractable;
+  }
+
+  public static void UseClosestInteractable(Vector3 interactorPosition, ItemHolder itemHolder) {
+    Interactable closestInteractable = Interactable.FindClosestInteractable(interactorPosition, itemHolder);
+    if (closestInteractable != null) {
       closestInteractable.OnInteract(itemHolder);
     }
+  }
+
+  public static void UseClosestInteractableInView(Vector3 cameraPosition, Vector3 cameraDirection, ItemHolder itemHolder) {
+    Interactable closestInteractable = Interactable.FindClosestInteractableInView(cameraPosition, cameraDirection, itemHolder);
+    if (closestInteractable != null) {
+      closestInteractable.OnInteract(itemHolder);
+    }
+  }
+
+  public static void GiveClosestInteractableOutline(Vector3 interactorPosition, ItemHolder itemHolder) {
+    Interactable closestInteractable = Interactable.FindClosestInteractable(interactorPosition, itemHolder);
+    if (closestInteractable != null) {
+      if (!closestInteractable.shaderChanged) {
+        closestInteractable.toggleOutlineShader();
+      }
+      closestInteractable.ShowPrompt();
+    }
+  }
+
+  public static void GiveClosestInteractableInViewOutline(Vector3 cameraPosition, Vector3 cameraDirection, ItemHolder itemHolder) {
+    Interactable closestInteractable = Interactable.FindClosestInteractableInView(cameraPosition, cameraDirection, itemHolder);
+    if (closestInteractable != null) {
+      if (!closestInteractable.shaderChanged) {
+        closestInteractable.toggleOutlineShader();
+      }
+      closestInteractable.ShowPrompt();
+    }
+  }
+
+  public void ShowPrompt() {
+    // GameObject UItextGO = new GameObject("Text2");
+    // UItextGO.transform.SetParent(canvas_transform);
+
+    // RectTransform trans = UItextGO.AddComponent<RectTransform>();
+    // trans.anchoredPosition = new Vector2(x, y);
+
+    // Text text = UItextGO.AddComponent<Text>();
+    // text.text = text_to_print;
+    // text.fontSize = font_size;
+    // text.color = text_color;
+    Prompt.transform.localScale = promptScale;
+    Quaternion rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+    Quaternion current = Prompt.transform.rotation;
+    Prompt.transform.rotation = Quaternion.Euler(new Vector3(current.eulerAngles.x, rotation.eulerAngles.y, current.eulerAngles.z));
+    // Prompt.transform.rotation = rotation;
+
+  }
+
+  public void RemovePrompt() {
+    Prompt.transform.localScale = new Vector3(0, 0, 0);
+  }
+
+  public void toggleOutlineShader() {
+    if (shaderChanged) {
+      _rend.material.shader = _regularShader;
+      RemovePrompt();
+    } else {
+      _rend.material.shader = _outlineShader;
+      ShowPrompt();
+    }
+
+    int index = 0;
+    foreach (Renderer colour in _childRends) {
+      if (shaderChanged || colour.gameObject == Prompt.gameObject) {
+        colour.material.shader = _childRegularShaders[index];
+      } else {
+        colour.material.shader = _outlineShader;
+      }
+      index++;
+    }
+
+    shaderChanged = !shaderChanged;
+
   }
 }
