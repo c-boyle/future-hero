@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerInput : BaseInput {
 
   [SerializeField] private FutureSeer futureSeer;
+  [SerializeField] private CameraBob cameraBob;
   [SerializeField] private CameraShader futureShader;
 
   private ControlActions controls;
@@ -41,6 +42,9 @@ public class PlayerInput : BaseInput {
     Cursor.visible = false;
     if (activeMovementInput) {
       movement.Move(controls.Player.Move.ReadValue<Vector2>());
+      cameraBob.isBobbing = true;
+    } else {
+      cameraBob.isBobbing = false;
     }
 
     if (activeLookInput){
