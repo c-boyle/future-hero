@@ -8,16 +8,16 @@ public class CameraShader : MonoBehaviour {
 
     [SerializeField] [MustBeAssigned] private PostProcessVolume volume;
     [SerializeField] [MustBeAssigned] private Camera cam;
-    
-    private bool isEffectEnabled = false;
 
-    private float currentVolumeWeight = 0;
+    [SerializeField] [ReadOnly] private bool isEffectEnabled = false;
+
+    [SerializeField] [ReadOnly] private float currentVolumeWeight = 0;
     private const float volumeTransitionSpeed = 0.01f;
 
-    private float currentShaderProgress = 0;
+    [SerializeField] [ReadOnly] private float currentShaderProgress = 0;
     private const float shaderTransitionSpeed = 0.005f;
 
-    private float currentCameraFOV;
+    [SerializeField] [ReadOnly] private float currentCameraFOV;
     private float initialCameraFOV;
     private float finalCameraFOV;
     private const float deltaCameraFOV = 3;
