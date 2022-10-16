@@ -15,7 +15,6 @@ public class CameraShader : MonoBehaviour {
     private const float volumeTransitionSpeed = 0.01f;
 
     private float currentShaderProgress = 0;
-    private int shaderProgressID = Shader.PropertyToID("_Progress");
     private const float shaderTransitionSpeed = 0.005f;
 
     private float currentCameraFOV;
@@ -27,9 +26,6 @@ public class CameraShader : MonoBehaviour {
     void Start() {
         initialCameraFOV = cam.fieldOfView;
         finalCameraFOV = initialCameraFOV + deltaCameraFOV;
-        
-        // This has to be here because of a Unity bug or else the propery value will not go back to default
-        Shader.SetGlobalFloat(shaderProgressID, 0);
     }
 
     void Update() {
@@ -44,8 +40,13 @@ public class CameraShader : MonoBehaviour {
         }
 
         volume.weight = currentVolumeWeight;
-        Shader.SetGlobalFloat(shaderProgressID, currentShaderProgress);
+        Shader.SetGlobalFloat("_Progress", currentShaderProgress);
         cam.fieldOfView = currentCameraFOV;
+    }
+
+    void OnApplicationQuit() {
+        // This has to be here because of a Unity bug or else the propery value will not go back to default
+        Shader.SetGlobalFloat("_Progress", 0);
     }
 
     public void onEffectActivate() {
