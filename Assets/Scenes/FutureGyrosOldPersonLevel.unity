@@ -11863,7 +11863,7 @@ PrefabInstance:
     - target: {fileID: 877694516707328529, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: holderCollider
       value: 
-      objectReference: {fileID: 7754216125400931634}
+      objectReference: {fileID: 0}
     - target: {fileID: 877694517659702093, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_Size.z
       value: 0.053442128
@@ -12054,15 +12054,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7788477506832437539, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7788477506832437539, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7788477506832437539, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7788477506832437539, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12094,11 +12094,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
---- !u!65 &7754216125400931634 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 7754216125400828855, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
-  m_PrefabInstance: {fileID: 7754216125400931633}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7754216125400931635 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6134269116918047563, guid: 7a457622a51101047a2c7de260e5feca, type: 3}

@@ -177,7 +177,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
+  - {fileID: 2100000, guid: d853ee242e970fe4a91ef61a2c17abe7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -260,7 +260,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
+  - {fileID: 2100000, guid: d853ee242e970fe4a91ef61a2c17abe7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -323,7 +323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8961430419220664973}
   - component: {fileID: 8923843087483422744}
-  - component: {fileID: 8923843087483422745}
+  - component: {fileID: 2827159014478899484}
   - component: {fileID: 8923843087483422747}
   - component: {fileID: 8923843087483422746}
   - component: {fileID: 4961458107837619791}
@@ -369,8 +369,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &8923843087483422745
-BoxCollider:
+--- !u!136 &2827159014478899484
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -379,9 +379,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.06493304, y: 0.078525074, z: 0.035718855}
-  m_Center: {x: 0.0018309046, y: 0.034712747, z: 0.018816914}
+  m_Radius: 0.015
+  m_Height: 0.07
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.035, z: 0}
 --- !u!114 &8923843087483422747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +549,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: {fileID: 0}
   cam: {fileID: 8923843087717536974}
+  isEffectEnabled: 0
+  currentVolumeWeight: 0
+  currentShaderProgress: 0
+  currentCameraFOV: 0
 --- !u!114 &5001831470480072933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,4 +573,4 @@ MonoBehaviour:
   offset: 0
   isEnabled: 1
   isBreathing: 1
-  isBobing: 0
+  isBobbing: 0
