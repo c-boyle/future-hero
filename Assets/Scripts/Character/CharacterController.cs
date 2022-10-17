@@ -14,27 +14,22 @@ public class CharacterController : MonoBehaviour {
 
     [SerializeField] [ReadOnly] private float pitchDegree = 0f;
     [SerializeField] [ReadOnly] private float yawDegree = 0f;
+    [SerializeField] [ReadOnly] private Vector3 velocity = Vector3.zero;
+    [SerializeField] [ReadOnly] private Vector3 moveDirection = Vector3.zero;
 
     [PositiveValueOnly] public float SENSITIVITY = 1f;  // Mouse sensitivity
     private const float MAX_PITCH_DEGREE = 60; // How high or low the player can raise their head
-    private const float GROUND_MAX_VELOCITY = 15f; // Maximum speed the player can go on ground
-    private const float AIR_MAX_VELOCITY = 12f; // Maximum speed the player can go while in the air
-    private const float GROUND_ACCELERATION = 1f; // How fast the player gains speed on ground
-    private const float AIR_ACCELERATION = 0.02f; // How fast the player gains speed while in the air
-    private const float GROUND_FRICTION = 5f; // How quickly the player slows down while on the ground
-    private const float AIR_FRICTION = 1f; // How quickly the player slows down while in the air
+    private const float GROUND_MAX_VELOCITY = 15f; // Maximum speed the player can reach while moving on ground
+    private const float AIR_MAX_VELOCITY = 11f; // Maximum speed the player can reach while moving in midair
+    private const float GROUND_ACCELERATION = 3f; // How fast the player gains speed on ground
+    private const float AIR_ACCELERATION = 0.05f; // How fast the player gains speed while moving in midair
+    private const float GROUND_FRICTION = 0.11f; // How quickly the player slows to a stop on ground
+    private const float AIR_FRICTION = 0f; // How quickly the player slows to a stop while in midair
     private const float JUMP_INTENSITY = 10f; // How high the player jumps
 
     // Function that gets called each time move inputs are used
     public void Move(Vector2 movement) {
-        Vector3 moveVector = _bodyTransform.right * movement.x + _bodyTransform.forward * movement.y;
-        Vector3 deltaVelocity = moveVector * (IsGrounded() ? GROUND_ACCELERATION : AIR_ACCELERATION);
-
-        Vector3 newVelocityXZ = deltaVelocity + _rigidbody.velocity;
-        newVelocityXZ.y = 0;
-        newVelocityXZ = Vector3.ClampMagnitude(newVelocityXZ, (IsGrounded() ? GROUND_MAX_VELOCITY : AIR_MAX_VELOCITY));
-
-        _rigidbody.velocity = newVelocityXZ + new Vector3(0, _rigidbody.velocity.y, 0);
+        moveDirection = _bodyTransform.right * movement.x + _bodyTransform.forward * movement.y;
     }
 
     // Function that gets called each time the mouse is moved
@@ -73,7 +68,7 @@ public class CharacterController : MonoBehaviour {
 
         // We need to slow down the speed if it is above zero
         if (speed != 0) {
-            float drop = friction * Time.deltaTime * speed;
+            float drop = friction * speed;
             float scale = Mathf.Max(0, speed - drop) / speed;
 
             newVel = Vector3.Scale(currentVel, new Vector3(scale, isYAffected ? scale : 1, scale));
@@ -82,9 +77,21 @@ public class CharacterController : MonoBehaviour {
         return newVel;
     }
 
-    // Because I'm too lazy to set friction on every material manually
     void FixedUpdate() {
-        _rigidbody.velocity = AddFriction(_rigidbody.velocity, IsGrounded() ? GROUND_FRICTION : AIR_FRICTION);
+        bool isGrounded = IsGrounded();
+        float FRICTION = isGrounded ? GROUND_FRICTION : AIR_FRICTION;
+        float ACCELERATION = isGrounded ? GROUND_ACCELERATION : AIR_ACCELERATION;
+        float MAX_VELOCITY = isGrounded ? GROUND_MAX_VELOCITY : AIR_MAX_VELOCITY;
+        Vector3 currentVelocity = _rigidbody.velocity;
+
+        Vector3 deltaVelocity = moveDirection * ACCELERATION;
+        Vector3 newVelocity = new Vector3(currentVelocity.x + deltaVelocity.x, 0, currentVelocity.z + deltaVelocity.z);
+        Vector3 newVelocityClamped = Vector3.ClampMagnitude(newVelocity, MAX_VELOCITY);
+
+        Vector3 finalVelocity = newVelocityClamped + new Vector3(0, currentVelocity.y, 0);
+        Vector3 finalVelocityWithFriction = AddFriction(finalVelocity, FRICTION);
+        _rigidbody.velocity = finalVelocityWithFriction;
+        velocity = _rigidbody.velocity;
     }
 
     // Helper function to convert a wrapped angle to a non wrapped angle (etc. 270 -> -90)
