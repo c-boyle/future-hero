@@ -50,9 +50,6 @@ public class CharacterMovement : MonoBehaviour {
 
     _cameraTransform.rotation = Quaternion.Euler(cameraRotation);
     _bodyTransform.rotation = Quaternion.Euler(playerRotation);
-
-
-
   }
 
 

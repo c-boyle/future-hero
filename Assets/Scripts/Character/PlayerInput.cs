@@ -53,10 +53,17 @@ public class PlayerInput : BaseInput {
 
   private void OnEnable() {
     Controls.Enable();
+    Controls.Player.Enable();
+    Controls.UI.Disable();
   }
 
   private void OnDisable() {
     Controls.Disable();
+  }
+
+  private void OnDestroy() {
+    OnDisable();
+    Controls = null;
   }
 
   protected override void OnInteract() {
