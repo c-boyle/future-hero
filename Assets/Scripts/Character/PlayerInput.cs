@@ -23,6 +23,8 @@ public class PlayerInput : BaseInput {
     Controls.Player.Move.performed += ctx => activeMovementInput = true;
     Controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); };
     Controls.Player.Jump.performed += ctx => OnJump();
+    Controls.Player.LookAtWatch.performed += ctx => movement.LookAtWatch();
+    Controls.Player.LookAtWatch.canceled += ctx => movement.PutWatchAway();  
 
     // Controls that alter vision
     Controls.Player.Look.performed += ctx => activeLookInput = true;
@@ -48,7 +50,8 @@ public class PlayerInput : BaseInput {
     if (activeLookInput){
         movement.Look(Controls.Player.Look.ReadValue<Vector2>());
     }
-
+    var cameraTransform = Camera.main.transform;
+    Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
   }
 
   private void OnEnable() {
@@ -69,7 +72,8 @@ public class PlayerInput : BaseInput {
   protected override void OnInteract() {
     // Interaction should be prohibited when looking into the future
     if (!futureSeer.TimeVisionEnabled) {
-      base.OnInteract();
+      var cameraTransform = Camera.main.transform;
+      Interactable.UseClosestInteractableInView(cameraTransform.position, cameraTransform.forward, itemHolder);
     }
   }
 
@@ -93,4 +97,5 @@ public class PlayerInput : BaseInput {
       OnToggleFutureVision();
     }
   }
+
 }
