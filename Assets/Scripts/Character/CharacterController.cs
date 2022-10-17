@@ -14,7 +14,7 @@ public class CharacterController : MonoBehaviour {
 
     [SerializeField] [ReadOnly] private float pitchDegree = 0f;
     [SerializeField] [ReadOnly] private float yawDegree = 0f;
-    [SerializeField] [ReadOnly] private Vector3 velocity = Vector3.zero;
+    [SerializeField] [ReadOnly] private Vector3 velocity = Vector3.zero; // For debugging purposes
     [SerializeField] [ReadOnly] private Vector3 moveDirection = Vector3.zero;
 
     [PositiveValueOnly] public float SENSITIVITY = 1f;  // Mouse sensitivity
@@ -60,7 +60,7 @@ public class CharacterController : MonoBehaviour {
     /*
      * Usually the physics engine handles friction/drag automatically. 
      * But I'm too lazy to assign friction to every material and drag shouldn't be used,
-     * so here is this function that gets called each timestep and does things automatically.
+     * so here is this function that gets called each timestep and applies friction automatically.
      */
     private Vector3 AddFriction(Vector3 currentVel, float friction, bool isYAffected = false) {
         float speed = currentVel.magnitude;
