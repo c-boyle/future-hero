@@ -22,9 +22,8 @@ public class PlayerInput : BaseInput {
 
     // Controls that alter movement
     controls.Player.Move.performed += ctx => activeMovementInput = true;
-    controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); };
+    controls.Player.Move.canceled += ctx => { activeMovementInput = false; activeSprint = false; movement.Move(Vector2.zero); };
     controls.Player.Sprint.performed += ctx => activeSprint = true;
-    controls.Player.Sprint.canceled += ctx => activeSprint = false;
     controls.Player.Jump.performed += ctx => OnJump();
     controls.Player.LookAtWatch.performed += ctx => movement.LookAtWatch();
     controls.Player.LookAtWatch.canceled += ctx => movement.PutWatchAway();  
