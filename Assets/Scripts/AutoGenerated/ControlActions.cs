@@ -89,6 +89,15 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce4b1245-24eb-4f90-9fb7-7ad08dfc1cce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -364,6 +373,28 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LookAtWatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8d21fbd-a959-47c4-87cc-3a624c6ff9ff"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e211fc99-2b3a-4812-9ca5-beffc7f9a0c0"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -958,6 +989,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
         m_Player_DropItem = m_Player.FindAction("DropItem", throwIfNotFound: true);
         m_Player_ToggleVision = m_Player.FindAction("ToggleVision", throwIfNotFound: true);
         m_Player_LookAtWatch = m_Player.FindAction("LookAtWatch", throwIfNotFound: true);
+        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1036,6 +1068,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DropItem;
     private readonly InputAction m_Player_ToggleVision;
     private readonly InputAction m_Player_LookAtWatch;
+    private readonly InputAction m_Player_Sprint;
     public struct PlayerActions
     {
         private @ControlActions m_Wrapper;
@@ -1047,6 +1080,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
         public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
         public InputAction @ToggleVision => m_Wrapper.m_Player_ToggleVision;
         public InputAction @LookAtWatch => m_Wrapper.m_Player_LookAtWatch;
+        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1077,6 +1111,9 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                 @LookAtWatch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookAtWatch;
                 @LookAtWatch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookAtWatch;
                 @LookAtWatch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookAtWatch;
+                @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1102,6 +1139,9 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                 @LookAtWatch.started += instance.OnLookAtWatch;
                 @LookAtWatch.performed += instance.OnLookAtWatch;
                 @LookAtWatch.canceled += instance.OnLookAtWatch;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
         }
     }
@@ -1265,6 +1305,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
         void OnDropItem(InputAction.CallbackContext context);
         void OnToggleVision(InputAction.CallbackContext context);
         void OnLookAtWatch(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

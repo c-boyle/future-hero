@@ -8,12 +8,13 @@ public class CharacterMovement : MonoBehaviour {
   [SerializeField] private Animation _watchArmAnimation;
   [SerializeField] private float _movementSpeed = 10f;
 
-  private float _lookClamp = 0f;
-
+  
   // Constants
+  private float _sprintMultiplier = 2f;
   private float _rotationSpeed = 1f;
   private float _jumpIntensity = 300f;
   private int _lookHeightMax = 90;
+  private float _lookClamp = 0f;
 
   // Function that moves character
   public void Move(Vector2 movement, bool sprint = false) {
@@ -26,6 +27,7 @@ public class CharacterMovement : MonoBehaviour {
     tmpVelocity += _bodyTransform.forward * movement.y;
 
     tmpVelocity *= _movementSpeed;
+    if (sprint) tmpVelocity *= _sprintMultiplier;
 
     _rigidbody.velocity = new Vector3(tmpVelocity.x, _rigidbody.velocity.y, tmpVelocity.z);
   }

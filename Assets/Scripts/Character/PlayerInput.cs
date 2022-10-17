@@ -12,6 +12,7 @@ public class PlayerInput : BaseInput {
 
   private ControlActions controls;
   private bool activeMovementInput = false;
+  private bool activeSprint = false;
   private bool activeLookInput = false;
 
   private void Awake() {
@@ -22,6 +23,8 @@ public class PlayerInput : BaseInput {
     // Controls that alter movement
     controls.Player.Move.performed += ctx => activeMovementInput = true;
     controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); };
+    controls.Player.Sprint.performed += ctx => activeSprint = true;
+    controls.Player.Sprint.canceled += ctx => activeSprint = false;
     controls.Player.Jump.performed += ctx => OnJump();
     controls.Player.LookAtWatch.performed += ctx => movement.LookAtWatch();
     controls.Player.LookAtWatch.canceled += ctx => movement.PutWatchAway();  
@@ -39,7 +42,7 @@ public class PlayerInput : BaseInput {
   private void Update() {
     Cursor.visible = false;
     if (activeMovementInput) {
-      movement.Move(controls.Player.Move.ReadValue<Vector2>());
+      movement.Move(controls.Player.Move.ReadValue<Vector2>(), activeSprint);
       cameraBob.isBobbing = true;
     } else {
       cameraBob.isBobbing = false;
