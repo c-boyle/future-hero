@@ -2855,7 +2855,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1753862777}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FutureSeer, Assembly-CSharp
         m_MethodName: SetFuture
         m_Mode: 2
@@ -3019,7 +3019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafb8ff055e7964438d68cbf3b999d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1753862783}
+  rb: {fileID: 0}
   enteredEvent:
     m_PersistentCalls:
       m_Calls:
@@ -6950,11 +6950,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafb8ff055e7964438d68cbf3b999d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1753862783}
+  rb: {fileID: 0}
   enteredEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1753862777}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FutureSeer, Assembly-CSharp
         m_MethodName: SetFuture
         m_Mode: 2
@@ -8748,7 +8748,7 @@ MonoBehaviour:
   interactionAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1753862777}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FutureSeer, Assembly-CSharp
         m_MethodName: SetFuture
         m_Mode: 2
@@ -8924,22 +8924,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1753862777 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6093930663897832929, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
-  m_PrefabInstance: {fileID: 7754216125400931633}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28508f72ebcbe0f4baa90fd18f783f4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!54 &1753862783 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 7754216125400828854, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
-  m_PrefabInstance: {fileID: 7754216125400931633}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1764192168
 GameObject:
   m_ObjectHideFlags: 0
@@ -9856,11 +9840,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafb8ff055e7964438d68cbf3b999d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1753862783}
+  rb: {fileID: 0}
   enteredEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1753862777}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FutureSeer, Assembly-CSharp
         m_MethodName: SetFuture
         m_Mode: 2
@@ -10301,11 +10285,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafb8ff055e7964438d68cbf3b999d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1753862783}
+  rb: {fileID: 0}
   enteredEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1753862777}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FutureSeer, Assembly-CSharp
         m_MethodName: SetFuture
         m_Mode: 2
@@ -10353,7 +10337,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2028817626}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
         m_MethodName: SetFutureVision
         m_Mode: 6
@@ -11313,17 +11297,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2028817626 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7754216125400828852, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
-  m_PrefabInstance: {fileID: 7754216125400931633}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6305927d71a5f4245b9e859b5c408fb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2057252516
 GameObject:
   m_ObjectHideFlags: 0
@@ -11928,6 +11901,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5983114896866605004, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983114896866605004, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 6093930663897832929, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: watch
       value: 
@@ -12004,6 +11985,22 @@ PrefabInstance:
       propertyPath: _cameraTransform
       value: 
       objectReference: {fileID: 233575072}
+    - target: {fileID: 7754216125400828854, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+      propertyPath: m_Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216125400828854, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216125400828854, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216125400828854, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7754216125707294560, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: field of view
       value: 40
