@@ -2379,11 +2379,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676489825}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &698971095 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2213398047751893116, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
-  m_PrefabInstance: {fileID: 7754216125400931633}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &744250848
 GameObject:
   m_ObjectHideFlags: 0
@@ -8225,7 +8220,7 @@ Transform:
   m_LocalScale: {x: 0.0072797546, y: 0.0072797555, z: 0.0072797546}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 698971095}
+  m_Father: {fileID: 7754216125400931636}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1619304453
@@ -11945,6 +11940,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2723735319245045099, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2940890190132394596, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -12070,9 +12069,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7754216125400931638}
     - target: {fileID: 7754216125400828853, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+      propertyPath: _bodyCollider
+      value: 
+      objectReference: {fileID: 7754216125400931634}
+    - target: {fileID: 7754216125400828853, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: _cameraTransform
       value: 
       objectReference: {fileID: 233575072}
+    - target: {fileID: 7754216125400828853, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+      propertyPath: _movementCollider
+      value: 
+      objectReference: {fileID: 7754216125400931634}
     - target: {fileID: 7754216125400828854, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_Drag
       value: 10
@@ -12100,6 +12107,10 @@ PrefabInstance:
     - target: {fileID: 7754216125707294560, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 447
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216125707294590, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7754216125707294590, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12181,8 +12192,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9168152510916075959, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+--- !u!136 &7754216125400931634 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 3996742768840403634, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+  m_PrefabInstance: {fileID: 7754216125400931633}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7754216125400931635 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6134269116918047563, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
@@ -12194,6 +12214,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ee09d08db3d974d90bc2d5991b8e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &7754216125400931636 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7788477506832437539, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
+  m_PrefabInstance: {fileID: 7754216125400931633}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7754216125400931638 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7754216125400828853, guid: 7a457622a51101047a2c7de260e5feca, type: 3}

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyBox;
 
-public class CharacterController : MonoBehaviour {
+public class CharacterMovement : MonoBehaviour {
     [SerializeField] [MustBeAssigned] private Rigidbody _rigidbody;
     [SerializeField] [MustBeAssigned] private Transform _bodyTransform;
     [SerializeField] [MustBeAssigned] private Transform _cameraTransform;
-    [SerializeField] [MustBeAssigned] private Transform _groundCheckTransform;
+    [SerializeField] [MustBeAssigned] private Collider _bodyCollider;
     [SerializeField] [MustBeAssigned] private LayerMask _groundLayer;
     [SerializeField] [MustBeAssigned] private Animation _watchArmAnimation;
 
@@ -17,7 +17,7 @@ public class CharacterController : MonoBehaviour {
     [SerializeField] [ReadOnly] private Vector3 velocity = Vector3.zero; // For debugging purposes
     [SerializeField] [ReadOnly] private Vector3 moveDirection = Vector3.zero;
 
-    [PositiveValueOnly] public float SENSITIVITY = 1f;  // Mouse sensitivity
+    [PositiveValueOnly] public float sensitivity = 1f;  // Mouse sensitivity
     [PositiveValueOnly] public float sprintMultiplier = 1f;  // Increase this to a higher value when sprinting
     private const float MAX_PITCH_DEGREE = 60; // How high or low the player can raise their head
     private const float GROUND_MAX_VELOCITY = 15f; // Maximum speed the player can reach while moving on ground
@@ -26,7 +26,7 @@ public class CharacterController : MonoBehaviour {
     private const float AIR_ACCELERATION = 0.05f; // How fast the player gains speed while moving in midair
     private const float GROUND_FRICTION = 0.11f; // How quickly the player slows to a stop on ground
     private const float AIR_FRICTION = 0f; // How quickly the player slows to a stop while in midair
-    private const float JUMP_INTENSITY = 10f; // How high the player jumps
+    private const float JUMP_INTENSITY = 12f; // How high the player jumps
 
     // Function that gets called each time move inputs are used
     public void Move(Vector2 movement) {
@@ -37,7 +37,7 @@ public class CharacterController : MonoBehaviour {
     public void Look(Vector2 viewDirection) {
         Vector3 cameraRotation = ConvertAngle(_cameraTransform.localRotation.eulerAngles);
         Vector3 playerRotation = ConvertAngle(_bodyTransform.rotation.eulerAngles);
-        SetView(cameraRotation.x - viewDirection.y * SENSITIVITY, playerRotation.y + viewDirection.x * SENSITIVITY);
+        SetView(cameraRotation.x - viewDirection.y * sensitivity, playerRotation.y + viewDirection.x * sensitivity);
     }
 
     // Function that lets the Future Hero Jump
@@ -61,7 +61,7 @@ public class CharacterController : MonoBehaviour {
     /*
      * Usually the physics engine handles friction/drag automatically. 
      * But I'm too lazy to assign friction to every material and drag shouldn't be used,
-     * so here is this function that gets called each timestep and applies friction automatically.
+     * so here is this function that gets called each tick and applies friction automatically.
      */
     private Vector3 AddFriction(Vector3 currentVel, float friction, bool isYAffected = false) {
         float speed = currentVel.magnitude;
@@ -92,6 +92,8 @@ public class CharacterController : MonoBehaviour {
         Vector3 finalVelocity = newVelocityClamped + new Vector3(0, currentVelocity.y, 0);
         Vector3 finalVelocityWithFriction = AddFriction(finalVelocity, FRICTION);
         _rigidbody.velocity = finalVelocityWithFriction;
+
+        // For debugging purposes
         velocity = _rigidbody.velocity;
     }
 
@@ -116,6 +118,7 @@ public class CharacterController : MonoBehaviour {
     }
 
     public bool IsGrounded() {
-        return Physics.CheckSphere(_groundCheckTransform.position, 1f, _groundLayer);
+        Vector3 groundPosition = new Vector3(_bodyCollider.bounds.center.x, _bodyCollider.bounds.min.y, _bodyCollider.bounds.center.z);
+        return Physics.CheckSphere(groundPosition, 1f, _groundLayer);
     }
 }
