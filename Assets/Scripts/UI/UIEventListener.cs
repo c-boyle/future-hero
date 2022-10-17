@@ -7,8 +7,22 @@ using MyBox;
 public class UIEventListener : Singleton<UIEventListener> {
 
   [SerializeField] private PauseMenuModal pausedGameModal;
+  [SerializeField] private WinModal winModal;
 
   private static float timeScaleBeforePause;
+
+  void Start() {
+    LevelTimer.LevelWon += OnLevelWon;
+  }
+
+  private void OnDestroy() {
+    LevelTimer.LevelWon -= OnLevelWon;
+  }
+
+  private void OnLevelWon(object sender, EventArgs e) {
+    EnableUIControls();
+    winModal.Open();
+  }
 
   public void OnPausePressed() {
     PauseGame();

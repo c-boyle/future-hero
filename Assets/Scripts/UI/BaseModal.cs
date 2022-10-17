@@ -2,20 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseModal : MonoBehaviour {
+
+  [Tooltip("This is the button that will be selected first upon opening this modal.")][SerializeField] private Button firstSelectButton;
 
   private Action onClose;
 
   private readonly HashSet<BaseModal> openSubModals = new();
 
-  private void OnCancel(UnityEngine.InputSystem.InputAction.CallbackContext ctx) {
+  protected virtual void OnCancel(UnityEngine.InputSystem.InputAction.CallbackContext ctx) {
     Close();
   }
 
   public virtual void Open() {
-    gameObject.SetActive(true);
-    PlayerInput.Controls.UI.Cancel.performed += OnCancel;
+    if (firstSelectButton != null) {
+      firstSelectButton.Select();
+    }
+    Show();
   }
 
   public void Open(Action onClose) {
@@ -41,8 +46,13 @@ public class BaseModal : MonoBehaviour {
 
   protected void OpenSubModal(BaseModal subModal) {
     Hide();
-    subModal.Open(() => { Open(); openSubModals.Remove(subModal); });
+    subModal.Open(() => { Show(); openSubModals.Remove(subModal); });
     openSubModals.Add(subModal);
+  }
+
+  private void Show() {
+    gameObject.SetActive(true);
+    PlayerInput.Controls.UI.Cancel.performed += OnCancel;
   }
 
   private void Hide() {
