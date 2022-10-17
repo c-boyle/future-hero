@@ -17,7 +17,6 @@ public class CharacterController : MonoBehaviour {
     public float sensitivity = 1f;
     private const int maxPitchDegrees = 60;
     private const float _jumpIntensity = 300f;
-    
 
     // Function that moves character
     public void Move(Vector2 movement, bool sprint = false) {
@@ -34,14 +33,31 @@ public class CharacterController : MonoBehaviour {
         _rigidbody.velocity = new Vector3(tmpVelocity.x, _rigidbody.velocity.y, tmpVelocity.z);
     }
 
-    // Function that changes where the character is looking
+    // Converts a wrapped angle to a non wrapped angle (etc. 270 -> -90)
+    private Vector3 ConvertAngle(Vector3 transformAngle) {
+        float x = (transformAngle.x > 180) ? transformAngle.x - 360 : transformAngle.x;
+        float y = (transformAngle.y > 180) ? transformAngle.y - 360 : transformAngle.y;
+        float z = (transformAngle.z > 180) ? transformAngle.z - 360 : transformAngle.z;
+
+        return new Vector3(x, y, z);
+    }
+
+    // Function to set the camera perspective directly
+    public void setView(float pitch, float yaw) {
+        Vector3 cameraRotation = ConvertAngle(_cameraTransform.localRotation.eulerAngles);
+        pitchDegrees = Mathf.Clamp(pitch, -maxPitchDegrees, maxPitchDegrees);
+        _cameraTransform.localRotation = Quaternion.Euler(pitchDegrees, cameraRotation.y, cameraRotation.z);
+
+        Vector3 playerRotation = ConvertAngle(_bodyTransform.rotation.eulerAngles);
+        yawDegrees = yaw;
+        _bodyTransform.rotation = Quaternion.Euler(playerRotation.x, yawDegrees, playerRotation.z);
+    }
+
+    // Function that gets called each time the mouse is moved
     public void Look(Vector2 viewDirection) {
-        pitchDegrees = Mathf.Clamp(pitchDegrees - viewDirection.y * sensitivity, -maxPitchDegrees, maxPitchDegrees);
-        yawDegrees = yawDegrees + viewDirection.x * sensitivity;
-
-        _cameraTransform.localRotation = Quaternion.Euler(pitchDegrees, 0f, 0f);
-        _bodyTransform.rotation = Quaternion.Euler(0f, yawDegrees, 0f);
-
+        Vector3 cameraRotation = ConvertAngle(_cameraTransform.localRotation.eulerAngles);
+        Vector3 playerRotation = ConvertAngle(_bodyTransform.rotation.eulerAngles);
+        setView(cameraRotation.x - viewDirection.y * sensitivity, playerRotation.y + viewDirection.x * sensitivity);
     }
 
     // Function that lets the Future Hero Jump
