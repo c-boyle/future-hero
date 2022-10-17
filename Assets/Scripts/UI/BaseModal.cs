@@ -17,10 +17,10 @@ public class BaseModal : MonoBehaviour {
   }
 
   public virtual void Open() {
+    Show();
     if (firstSelectButton != null) {
       firstSelectButton.Select();
     }
-    Show();
   }
 
   public void Open(Action onClose) {

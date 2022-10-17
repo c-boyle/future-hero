@@ -14,16 +14,16 @@ public class TimerTextView : MonoBehaviour {
   private bool tickBool = false;
 
   private void Start() {
-    LevelTimer.LevelWon += OnLevelWon;
+    LevelTimer.LevelEnd += OnLevelEnd;
     LevelTimer.TimerUpdated += OnLevelTimerUpdate;
   }
 
   private void OnDestroy() {
-    LevelTimer.LevelWon -= OnLevelWon;
+    LevelTimer.LevelEnd -= OnLevelEnd;
     LevelTimer.TimerUpdated -= OnLevelTimerUpdate;
   }
 
-  private void OnLevelWon(object sender, EventArgs e) {
+  private void OnLevelEnd(object sender, EventArgs e) {
     gameObject.SetActive(false);
   }
 

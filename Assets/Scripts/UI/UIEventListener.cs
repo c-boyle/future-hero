@@ -7,21 +7,27 @@ using MyBox;
 public class UIEventListener : Singleton<UIEventListener> {
 
   [SerializeField] private PauseMenuModal pausedGameModal;
-  [SerializeField] private WinModal winModal;
+  [SerializeField] private WinLossModal winModal;
+  [SerializeField] private WinLossModal lossModal;
 
   private static float timeScaleBeforePause;
 
   void Start() {
-    LevelTimer.LevelWon += OnLevelWon;
+    LevelTimer.LevelEnd += OnLevelEnd;
   }
 
   private void OnDestroy() {
-    LevelTimer.LevelWon -= OnLevelWon;
+    LevelTimer.LevelEnd -= OnLevelEnd;
   }
 
-  private void OnLevelWon(object sender, EventArgs e) {
+  private void OnLevelEnd(object sender, LevelTimer.LevelEndEventArgs e) {
     EnableUIControls();
-    winModal.Open();
+    if (e.Won) {
+      winModal.Open(() => DisableUIControls());
+    } else {
+      PauseGame();
+      lossModal.Open(() => { UnpauseGame(); DisableUIControls(); });
+    }
   }
 
   public void OnPausePressed() {

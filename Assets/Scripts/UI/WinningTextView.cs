@@ -9,14 +9,14 @@ public class WinningTextView : MonoBehaviour {
   [SerializeField] private TMP_Text winningText;
   
   void Start() {
-    LevelTimer.LevelWon += OnLevelWon;
+    LevelTimer.LevelEnd += OnLevelEnd;
   }
 
   private void OnDestroy() {
-    LevelTimer.LevelWon -= OnLevelWon;
+    LevelTimer.LevelEnd -= OnLevelEnd;
   }
 
-  private void OnLevelWon(object sender, EventArgs e) {
+  private void OnLevelEnd(object sender, EventArgs e) {
     winningText.enabled = true;
   }
 }

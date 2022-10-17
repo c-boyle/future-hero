@@ -5,18 +5,18 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class WinModal : BaseModal {
-  [SerializeField] private Button playAgainButton;
+public class WinLossModal : BaseModal {
+  [SerializeField] private Button restartButton;
   [SerializeField] private Button mainMenuButton;
 
   private void Start() {
-    playAgainButton.onClick.AddListener(OnPlayAgainPressed);
+    restartButton.onClick.AddListener(OnRestartPressed);
     mainMenuButton.onClick.AddListener(OnMainMenuPressed);
   }
 
   protected override void OnCancel(InputAction.CallbackContext ctx) { }
 
-  private void OnPlayAgainPressed() {
+  private void OnRestartPressed() {
     CloseAll();
     Helpers.ResetScene();
   }
