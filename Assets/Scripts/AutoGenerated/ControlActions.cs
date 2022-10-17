@@ -89,6 +89,15 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""006ddb8b-1c8e-4618-9a17-8b1c5f71cb53"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -364,6 +373,28 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LookAtWatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62d3a72c-c97c-4ac7-852c-5a5fc8414338"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""384aa950-900c-46c2-96d9-965420f6e500"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -732,10 +763,21 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9e92bb26-7e3b-4ec4-b06b-3c8f8e498ddc"",
-                    ""path"": ""*/{Submit}"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a712cc88-898f-4099-8992-166114df66db"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -743,10 +785,32 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""82627dcc-3b13-4ba9-841d-e4b746d6553e"",
-                    ""path"": ""*/{Cancel}"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""687dcab2-e3c4-4d3c-b999-48dc6d7aad59"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2198cace-1a37-4cb5-829f-05c1c99f8333"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -958,6 +1022,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
         m_Player_DropItem = m_Player.FindAction("DropItem", throwIfNotFound: true);
         m_Player_ToggleVision = m_Player.FindAction("ToggleVision", throwIfNotFound: true);
         m_Player_LookAtWatch = m_Player.FindAction("LookAtWatch", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1036,6 +1101,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DropItem;
     private readonly InputAction m_Player_ToggleVision;
     private readonly InputAction m_Player_LookAtWatch;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @ControlActions m_Wrapper;
@@ -1047,6 +1113,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
         public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
         public InputAction @ToggleVision => m_Wrapper.m_Player_ToggleVision;
         public InputAction @LookAtWatch => m_Wrapper.m_Player_LookAtWatch;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1077,6 +1144,9 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                 @LookAtWatch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookAtWatch;
                 @LookAtWatch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookAtWatch;
                 @LookAtWatch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookAtWatch;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1102,6 +1172,9 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                 @LookAtWatch.started += instance.OnLookAtWatch;
                 @LookAtWatch.performed += instance.OnLookAtWatch;
                 @LookAtWatch.canceled += instance.OnLookAtWatch;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -1265,6 +1338,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
         void OnDropItem(InputAction.CallbackContext context);
         void OnToggleVision(InputAction.CallbackContext context);
         void OnLookAtWatch(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

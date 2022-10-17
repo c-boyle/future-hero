@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelTimer : MonoBehaviour {
   [field: SerializeField] public float SecondsLeft { get; private set; } = 60f;
 
-  public static event EventHandler LevelWon;
+  public static event EventHandler<LevelEndEventArgs> LevelEnd;
 
   public static event EventHandler<TimerUpdateEventArgs> TimerUpdated;
 
@@ -15,7 +15,7 @@ public class LevelTimer : MonoBehaviour {
     float deltaTime = Time.deltaTime;
     SecondsLeft -= deltaTime;
     if (SecondsLeft <= 0) {
-      Helpers.ResetScene();
+      EndLevel(false);
     }
     TimerUpdated?.Invoke(this, new() { DeltaTime = deltaTime, SecondsLeft = SecondsLeft });
   }
@@ -28,11 +28,13 @@ public class LevelTimer : MonoBehaviour {
     SecondsLeft += seconds;
   }
 
-  public void SetLevelWon(bool won) {
-    if (won) {
-      LevelWon?.Invoke(this, new());
-      SecondsLeft = Mathf.Infinity;
-    }
+  public void EndLevel(bool won) {
+    LevelEnd?.Invoke(this, new() { Won = won });
+    SecondsLeft = Mathf.Infinity;
+  }
+
+  public class LevelEndEventArgs : EventArgs {
+    [field: SerializeField] public bool Won { get; set; }
   }
 
   public class TimerUpdateEventArgs : EventArgs {
