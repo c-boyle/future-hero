@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseInput : MonoBehaviour {
-  [SerializeField] protected CharacterMovement movement;
+  [SerializeField] protected CharacterController controller;
   [SerializeField] protected ItemHolder itemHolder;
 
   protected virtual void OnInteract() {

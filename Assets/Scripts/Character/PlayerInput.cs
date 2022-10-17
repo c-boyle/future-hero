@@ -11,7 +11,7 @@ public class PlayerInput : BaseInput {
   [SerializeField] private CameraShader futureShader;
 
   private ControlActions controls;
-  private bool activeMovementInput = false;
+  private bool activecontrollerInput = false;
   private bool activeLookInput = false;
 
   private void Awake() {
@@ -19,16 +19,16 @@ public class PlayerInput : BaseInput {
       controls = new();
     }
 
-    // Controls that alter movement
-    controls.Player.Move.performed += ctx => activeMovementInput = true;
-    controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); };
+    // Controls that alter controller
+    controls.Player.Move.performed += ctx => activecontrollerInput = true;
+    controls.Player.Move.canceled += ctx => { activecontrollerInput = false; controller.Move(Vector2.zero); };
     controls.Player.Jump.performed += ctx => OnJump();
-    controls.Player.LookAtWatch.performed += ctx => movement.LookAtWatch();
-    controls.Player.LookAtWatch.canceled += ctx => movement.PutWatchAway();  
+    controls.Player.LookAtWatch.performed += ctx => controller.LookAtWatch();
+    controls.Player.LookAtWatch.canceled += ctx => controller.PutWatchAway();  
 
     // Controls that alter vision
     controls.Player.Look.performed += ctx => activeLookInput = true;
-    controls.Player.Look.canceled += ctx => { activeLookInput = false; movement.Look(Vector2.zero); };
+    controls.Player.Look.canceled += ctx => { activeLookInput = false; controller.Look(Vector2.zero); };
     controls.Player.ToggleVision.performed += ctx => OnToggleFutureVision();
 
     // Controls that affect environment
@@ -38,15 +38,15 @@ public class PlayerInput : BaseInput {
 
   private void Update() {
     Cursor.visible = false;
-    if (activeMovementInput) {
-      movement.Move(controls.Player.Move.ReadValue<Vector2>());
+    if (activecontrollerInput) {
+      controller.Move(controls.Player.Move.ReadValue<Vector2>());
       cameraBob.isBobbing = true;
     } else {
       cameraBob.isBobbing = false;
     }
 
     if (activeLookInput){
-        movement.Look(controls.Player.Look.ReadValue<Vector2>());
+        controller.Look(controls.Player.Look.ReadValue<Vector2>());
     }
     var cameraTransform = Camera.main.transform;
     Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
@@ -76,7 +76,7 @@ public class PlayerInput : BaseInput {
   }
 
   private void OnJump() {
-    movement.Jump();
+    controller.Jump();
   }
 
   private void OnToggleFutureVision() {
