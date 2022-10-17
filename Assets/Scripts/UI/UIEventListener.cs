@@ -10,17 +10,27 @@ public class UIEventListener : Singleton<UIEventListener> {
 
   private static float timeScaleBeforePause;
 
+  public void OnPausePressed() {
+    PauseGame();
+    EnableUIControls();
+    pausedGameModal.Open(() => { UnpauseGame(); DisableUIControls(); });
+  }
+
   public void PauseGame() {
-    PlayerInput.Controls.Player.Disable();
-    PlayerInput.Controls.UI.Enable();
     timeScaleBeforePause = Time.timeScale;
     Time.timeScale = 0;
-    pausedGameModal.Open();
   }
 
   public void UnpauseGame() {
     Time.timeScale = timeScaleBeforePause;
-    pausedGameModal.Close();
+  }
+
+  private void EnableUIControls() {
+    PlayerInput.Controls.Player.Disable();
+    PlayerInput.Controls.UI.Enable();
+  }
+
+  private void DisableUIControls() {
     PlayerInput.Controls.UI.Disable();
     PlayerInput.Controls.Player.Enable();
   }

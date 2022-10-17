@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using MyBox;
 
-public class PauseMenuModal : MonoBehaviour, IModal {
+public class PauseMenuModal : BaseModal {
   [SerializeField] private Button continueButton;
   [SerializeField] private Button controlsButton;
   [SerializeField] private Button exitButton;
-  [SerializeField] private ControlsModal controlsModal;
+  [SerializeField] private BaseModal controlsModal;
 
   private void Start() {
     continueButton.onClick.AddListener(OnContinuePressed);
@@ -18,33 +18,14 @@ public class PauseMenuModal : MonoBehaviour, IModal {
   }
 
   private void OnContinuePressed() {
-    UIEventListener.Instance.UnpauseGame();
+    CloseAll();
   }
 
   private void OnControlsPressed() {
-    gameObject.SetActive(false);
-    controlsModal.Open(() => gameObject.SetActive(true));
+    OpenSubModal(controlsModal);
   }
 
   private void OnExitPressed() {
     Application.Quit();
-  }
-
-  public void Open() {
-    gameObject.SetActive(true);
-    PlayerInput.Controls.UI.Cancel.performed += ctx => Close();
-  }
-
-  public void Open(Action action) {
-   
-  }
-
-  public void Close() {
-    if (gameObject.activeSelf) {
-      gameObject.SetActive(false);
-      PlayerInput.Controls.UI.Cancel.performed -= ctx => Close();
-      controlsModal.Close();
-      UIEventListener.Instance.UnpauseGame();
-    }
   }
 }
