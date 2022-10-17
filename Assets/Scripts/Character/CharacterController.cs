@@ -18,6 +18,7 @@ public class CharacterController : MonoBehaviour {
     [SerializeField] [ReadOnly] private Vector3 moveDirection = Vector3.zero;
 
     [PositiveValueOnly] public float SENSITIVITY = 1f;  // Mouse sensitivity
+    [PositiveValueOnly] public float sprintMultiplier = 1f;  // Increase this to a higher value when sprinting
     private const float MAX_PITCH_DEGREE = 60; // How high or low the player can raise their head
     private const float GROUND_MAX_VELOCITY = 15f; // Maximum speed the player can reach while moving on ground
     private const float AIR_MAX_VELOCITY = 11f; // Maximum speed the player can reach while moving in midair
@@ -80,8 +81,8 @@ public class CharacterController : MonoBehaviour {
     void FixedUpdate() {
         bool isGrounded = IsGrounded();
         float FRICTION = isGrounded ? GROUND_FRICTION : AIR_FRICTION;
-        float ACCELERATION = isGrounded ? GROUND_ACCELERATION : AIR_ACCELERATION;
-        float MAX_VELOCITY = isGrounded ? GROUND_MAX_VELOCITY : AIR_MAX_VELOCITY;
+        float ACCELERATION = (isGrounded ? GROUND_ACCELERATION : AIR_ACCELERATION) * sprintMultiplier;
+        float MAX_VELOCITY = (isGrounded ? GROUND_MAX_VELOCITY : AIR_MAX_VELOCITY) * sprintMultiplier;
         Vector3 currentVelocity = _rigidbody.velocity;
 
         Vector3 deltaVelocity = moveDirection * ACCELERATION;
