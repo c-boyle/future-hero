@@ -748,7 +748,7 @@ PrefabInstance:
     - target: {fileID: -3904686463778198535, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: fae3bcccb9566ea4093c8334e76d2971, type: 2}
     - target: {fileID: 919132149155446097, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Name
       value: LineNPC (2)
@@ -918,7 +918,7 @@ PrefabInstance:
     - target: {fileID: -3904686463778198535, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 7211448773848044386, guid: 68ba2832aa49bf648a718125142aaf01, type: 3}
+      objectReference: {fileID: 2100000, guid: 37f7d82cf7cb7d74b8a71f64bf5194d1, type: 2}
     - target: {fileID: 919132149155446097, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Name
       value: LineNPC
@@ -2141,6 +2141,8 @@ MonoBehaviour:
   timeLineDisabled:
     m_PersistentCalls:
       m_Calls: []
+  isHidden: 1
+  alpha: 1
 --- !u!1 &560969717
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,6 +2194,8 @@ MonoBehaviour:
   timeLineDisabled:
     m_PersistentCalls:
       m_Calls: []
+  isHidden: 1
+  alpha: 1
 --- !u!1001 &602494326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2266,7 +2270,7 @@ PrefabInstance:
     - target: {fileID: -3904686463778198535, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: fae3bcccb9566ea4093c8334e76d2971, type: 2}
     - target: {fileID: 919132149155446097, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Name
       value: LineNPC (1)
@@ -2547,7 +2551,7 @@ PrefabInstance:
     - target: {fileID: -3904686463778198535, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 258903395538499498c08d43e9d4e0a1, type: 2}
+      objectReference: {fileID: 2100000, guid: 670a64ed7a70aeb4abfc3184dd14e174, type: 2}
     - target: {fileID: 919132149155446097, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Name
       value: FallenLady
@@ -2706,7 +2710,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4439198368952500026, guid: 68ba2832aa49bf648a718125142aaf01, type: 3}
+  - {fileID: 2100000, guid: 246077be3df04064e892a49c8a95e645, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4592,6 +4596,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isHidden: 1
+  alpha: 1
 --- !u!1 &1173486955
 GameObject:
   m_ObjectHideFlags: 0
@@ -5447,7 +5453,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 848af5403883ac74799f5f4edc591ba3, type: 2}
+  - {fileID: 2100000, guid: 7ae93d0cb55c640479410d21ded1010c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5663,6 +5669,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  isHidden: 1
+  alpha: 1
 --- !u!4 &1272314602
 Transform:
   m_ObjectHideFlags: 0
@@ -5873,6 +5881,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isHidden: 1
+  alpha: 1
 --- !u!4 &1312905379
 Transform:
   m_ObjectHideFlags: 0
@@ -5996,6 +6006,8 @@ MonoBehaviour:
   timeLineDisabled:
     m_PersistentCalls:
       m_Calls: []
+  isHidden: 1
+  alpha: 1
 --- !u!1 &1360832935
 GameObject:
   m_ObjectHideFlags: 0
@@ -6500,7 +6512,7 @@ PrefabInstance:
     - target: {fileID: -3904686463778198535, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 258903395538499498c08d43e9d4e0a1, type: 2}
+      objectReference: {fileID: 2100000, guid: 670a64ed7a70aeb4abfc3184dd14e174, type: 2}
     - target: {fileID: 919132149155446097, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Name
       value: RobbingLady
@@ -7660,6 +7672,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isHidden: 1
+  alpha: 1
 --- !u!1 &1556433797
 GameObject:
   m_ObjectHideFlags: 0
@@ -8022,7 +8036,7 @@ PrefabInstance:
     - target: {fileID: -3904686463778198535, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 7211448773848044386, guid: 68ba2832aa49bf648a718125142aaf01, type: 3}
+      objectReference: {fileID: 2100000, guid: 37f7d82cf7cb7d74b8a71f64bf5194d1, type: 2}
     - target: {fileID: 919132149155446097, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Name
       value: LineNPC
@@ -9994,7 +10008,7 @@ PrefabInstance:
     - target: {fileID: -3904686463778198535, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: fae3bcccb9566ea4093c8334e76d2971, type: 2}
     - target: {fileID: 919132149155446097, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Name
       value: LineNPC
@@ -11108,7 +11122,7 @@ PrefabInstance:
     - target: {fileID: -3904686463778198535, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: fae3bcccb9566ea4093c8334e76d2971, type: 2}
     - target: {fileID: 919132149155446097, guid: 3c91d0a85eba9e145897ccacbb1ea5ab, type: 3}
       propertyPath: m_Name
       value: LineNPC (1)
@@ -11940,11 +11954,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7523974524595931261, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.81
+      value: 1.151
       objectReference: {fileID: 0}
     - target: {fileID: 7523974524595931261, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.57
+      value: -0.455
       objectReference: {fileID: 0}
     - target: {fileID: 7523974524595931261, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11988,11 +12002,11 @@ PrefabInstance:
       objectReference: {fileID: 233575072}
     - target: {fileID: 7754216125707294560, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: field of view
-      value: 60.000004
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7754216125707294560, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_FocalLength
-      value: 20.78461
+      value: 32.96973
       objectReference: {fileID: 0}
     - target: {fileID: 7754216125707294560, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_CullingMask.m_Bits
