@@ -466,7 +466,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7786642083763346325}
-  - component: {fileID: 673138223657979290}
+  - component: {fileID: 4106004764379451535}
+  - component: {fileID: 2607331143730166263}
   m_Layer: 0
   m_Name: FPSCamera
   m_TagString: Untagged
@@ -489,7 +490,7 @@ Transform:
   m_Father: {fileID: 8923843087717536976}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &673138223657979290
+--- !u!20 &4106004764379451535
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -498,14 +499,14 @@ Camera:
   m_GameObject: {fileID: 8752490624442139290}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 2
+  m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 35.864223
+  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -514,13 +515,13 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 37
+  field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -532,6 +533,24 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &2607331143730166263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8752490624442139290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3839ee4d257b17429a5b5a0bebe06ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thisCamera: {fileID: 4106004764379451535}
+  _copiedCamera: {fileID: 8923843087717536974}
+  _renderLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  _depth: 0
 --- !u!1 &8923843087717536977
 GameObject:
   m_ObjectHideFlags: 0

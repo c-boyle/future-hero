@@ -11,7 +11,10 @@ public class ObjectVisuals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        /*
         foreach (var gameObject in GetComponentsInChildren<GameObject>()) {
+         
             GameObject highlightObject = GameObject.Instantiate(gameObject);
 
             // set highLightObject shader to highlight shader
@@ -25,7 +28,9 @@ public class ObjectVisuals : MonoBehaviour
 
             // remove visibility for original game object
             gameObject.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-        }
+
+    }
+         */
     }
 
     // Update is called once per frame
