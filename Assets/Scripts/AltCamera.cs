@@ -8,7 +8,7 @@ public class AltCamera : MonoBehaviour
     [SerializeField] [MustBeAssigned] private Camera _thisCamera;
     [SerializeField] [MustBeAssigned] private Camera _copiedCamera;
     [SerializeField] [MustBeAssigned] private LayerMask _renderLayers;
-    [SerializeField] [MustBeAssigned] private int _depth = -1;
+    [SerializeField] [MustBeAssigned] private int _depth;
 
     void Start()
     {
@@ -16,5 +16,6 @@ public class AltCamera : MonoBehaviour
         _thisCamera.clearFlags = CameraClearFlags.Depth;
         _thisCamera.depth = _depth;
         _thisCamera.cullingMask = _renderLayers;
+        _thisCamera.enabled = true;
     }
 }

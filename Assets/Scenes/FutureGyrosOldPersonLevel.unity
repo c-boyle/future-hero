@@ -890,11 +890,11 @@ MonoBehaviour:
     m_Bits: 128
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 0
+  antialiasingMode: 1
   temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
+    jitterSpread: 0.427
+    sharpness: 3
+    stationaryBlending: 0.398
     motionBlending: 0.85
   subpixelMorphologicalAntialiasing:
     quality: 2
@@ -1598,7 +1598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7071942748693895485, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7071942748693895485, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2257,7 +2257,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &676489825
 GameObject:
@@ -10497,7 +10497,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1924669672
 GameObject:
@@ -10575,7 +10575,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1974310880
 GameObject:
@@ -11607,7 +11607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2931891659899605793, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2940890190132394596, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_Layer
@@ -11683,7 +11683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7448368475819363225, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7523974524595931261, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11819,7 +11819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7754216125707294591, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7788477506832437539, guid: 7a457622a51101047a2c7de260e5feca, type: 3}
       propertyPath: m_RootOrder
