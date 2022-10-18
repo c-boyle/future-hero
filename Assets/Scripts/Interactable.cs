@@ -43,7 +43,9 @@ public class Interactable : MonoBehaviour {
   private void Start() {
     // Parent
     _rend = GetComponent<Renderer>();
-    _regularShader = _rend.material.shader;
+    if (_rend != null) {
+      _regularShader = _rend.material.shader;
+    }
 
     // Children (if any)
     _childRends = GetComponentsInChildren<Renderer>();
@@ -219,10 +221,14 @@ public class Interactable : MonoBehaviour {
 
   public void toggleOutlineShader() {
     if (shaderChanged) {
-      _rend.material.shader = _regularShader;
+      if (_rend != null) {
+        _rend.material.shader = _regularShader;
+      }
       RemovePrompt();
     } else {
-      _rend.material.shader = _outlineShader;
+      if (_rend != null) {
+        _rend.material.shader = _outlineShader;
+      }
       ShowPrompt();
     }
 
