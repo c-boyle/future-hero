@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MyBox;
 
-public class LevelTimer : MonoBehaviour {
+public class LevelTimer : Singleton<LevelTimer> {
   [field: SerializeField] public float SecondsLeft { get; private set; } = 60f;
 
   public static event EventHandler<LevelEndEventArgs> LevelEnd;
