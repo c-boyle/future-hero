@@ -41,7 +41,6 @@ public class CameraShader : MonoBehaviour {
 
         volume.weight = currentVolumeWeight;
         Shader.SetGlobalFloat("_Progress", currentShaderProgress);
-        Shader.SetGlobalFloat("_Alpha", currentShaderProgress);
         cam.fieldOfView = currentCameraFOV;
     }
 

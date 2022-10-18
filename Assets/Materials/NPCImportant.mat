@@ -10,8 +10,8 @@ Material:
   m_Name: NPCImportant
   m_Shader: {fileID: -6465566751694194690, guid: 9e0a270c7d7ebb04da3f63c3fa490e66, type: 3}
   m_ValidKeywords:
-  - _BLENDFROM_COLOR
-  - _BLENDTO__COLOR_ALT
+  - _BLENDFROM_TRANSPARENT
+  - _BLENDTO__COLOR
   m_InvalidKeywords:
   - _BLENDTO_COLOR_ALT
   - _BLENDTO_COLOR_ALT_2
@@ -64,8 +64,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BLENDFROM: 0
-    - _BLENDTO: 1
+    - _BLENDFROM: 3
+    - _BLENDTO: 0
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _Brightness: 0
