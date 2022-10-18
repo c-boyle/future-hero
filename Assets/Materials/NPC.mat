@@ -22,8 +22,14 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: NPC
   m_Shader: {fileID: -6465566751694194690, guid: 9e0a270c7d7ebb04da3f63c3fa490e66, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_ValidKeywords:
+  - _BLENDFROM_COLOR
+  - _BLENDTO__COLOR_ALT
+  m_InvalidKeywords:
+  - _BLENDTO_COLOR_ALT
+  - _BLENDTO_COLOR_ALT_2
+  - _ENUM_A
+  - _ENUM_COLOR
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -71,29 +77,37 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BLENDFROM: 0
+    - _BLENDTO: 1
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
+    - _Brightness: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DebugProgress_KeepAtZero: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _ENUM: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseScale: 11
+    - _NoiseScale: 19
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _ProgressOverride: 0
-    - _Progress_KEEP_ZERO: 0
+    - _Progress_KEEP_ZERO: 0.194
+    - _RimIntensity: 0
+    - _RimThickness: 0
+    - _Seed: 0
+    - _ShimmerSpeed: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _XScale: 1.58
-    - _YScale: 1
+    - _XScale: 1.79
+    - _YScale: 1.9
     - _ZWrite: 1
     - _isVisible: 1
     m_Colors:
