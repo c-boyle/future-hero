@@ -34,8 +34,8 @@ public class CameraBob : MonoBehaviour {
         camInitialLocalY = cam.transform.localPosition.y;
         _breatheIntensity = breatheIntensity * 0.001f;
         _breatheSpeed = breatheSpeed * 0.004f;
-        _bobIntensity = bobIntensity * 0.002f;
-        _bobSpeed = bobSpeed * 0.009f;
+        _bobIntensity = bobIntensity * 0.003f;
+        _bobSpeed = bobSpeed * 0.014f;
     }
 
     private float calculateBreatheOffset(float x) {
