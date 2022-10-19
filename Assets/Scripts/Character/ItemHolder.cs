@@ -30,13 +30,7 @@ public class ItemHolder : MonoBehaviour {
     itemToGrab.transform.localPosition = new Vector3(0,0,0);
     itemToGrab.transform.Rotate(Vector3.forward, 270);
 
-    var itemScale = itemToGrab.transform.localScale;
-    var newGlobalScale = itemToGrab.transform.lossyScale;
-
-    // Revert the size of the item picked to what it was before being picked up
-    itemToGrab.transform.localScale = new(itemScale.x * oldGlobalScale.x / newGlobalScale.x, 
-                                          itemScale.y * oldGlobalScale.y / newGlobalScale.y, 
-                                          itemScale.z * oldGlobalScale.z / newGlobalScale.z);
+    itemToGrab.FixScale();
 
     _heldItem = itemToGrab;
 
@@ -51,6 +45,7 @@ public class ItemHolder : MonoBehaviour {
   public void DropItem() {
     if (_heldItem != null) {
       _heldItem.transform.SetParent(oldParent, true);
+      _heldItem.FixScale();
       if (_heldItem.Rigidbody != null) {
         _heldItem.Rigidbody.isKinematic = false;
       }

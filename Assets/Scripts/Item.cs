@@ -5,6 +5,8 @@ using UnityEngine;
 public class Item : MonoBehaviour {
   // Name acts as a key
   [SerializeField] private string itemName;
+
+  private Vector3 originalScale;
   
   [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
 
@@ -20,6 +22,10 @@ public class Item : MonoBehaviour {
       }
       return attachedInteractable;
     }
+  }
+
+  void Start() {
+    originalScale = transform.lossyScale;
   }
 
   public override bool Equals(object other) {
@@ -45,6 +51,16 @@ public class Item : MonoBehaviour {
       return false;
     }
     return true;
+  }
+
+  public void FixScale() {
+    var itemScale = transform.localScale;
+    var newGlobalScale = transform.lossyScale;
+
+    // Revert the size of the item picked to what it was before being picked up
+    transform.localScale = new(itemScale.x * originalScale.x / newGlobalScale.x, 
+                               itemScale.y * originalScale.y / newGlobalScale.y, 
+                               itemScale.z * originalScale.z / newGlobalScale.z);
   }
 
 
