@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3127991600641514840}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7211448773848044386, guid: 68ba2832aa49bf648a718125142aaf01, type: 3}
+  - {fileID: 2100000, guid: ce72ae69078125e47b010997f48e7c21, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -160,7 +160,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7211448773848044386, guid: 68ba2832aa49bf648a718125142aaf01, type: 3}
+  - {fileID: 2100000, guid: ce72ae69078125e47b010997f48e7c21, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -333,6 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3127991600951736923}
+  - component: {fileID: 514293193}
   m_Layer: 0
   m_Name: FireFuture
   m_TagString: Untagged
@@ -360,6 +361,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &514293193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127991600951736924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1898e2b0b13c04493e515b56490dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToggleEnabled:
+    m_PersistentCalls:
+      m_Calls: []
+  timeToggleDisabled:
+    m_PersistentCalls:
+      m_Calls: []
+  isFuture: 0
 --- !u!1 &3127991601262544011
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +442,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7211448773848044386, guid: 68ba2832aa49bf648a718125142aaf01, type: 3}
+  - {fileID: 2100000, guid: ce72ae69078125e47b010997f48e7c21, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -471,31 +491,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3401147126573473932, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.485597
+      value: 10.731
       objectReference: {fileID: 0}
     - target: {fileID: 3401147126573473932, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.97969866
+      value: 0.188
       objectReference: {fileID: 0}
     - target: {fileID: 3401147126573473932, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.562968
+      value: 7.229
       objectReference: {fileID: 0}
     - target: {fileID: 3401147126573473932, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7880108
       objectReference: {fileID: 0}
     - target: {fileID: 3401147126573473932, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3401147126573473932, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.61566144
       objectReference: {fileID: 0}
     - target: {fileID: 3401147126573473932, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3401147126573473932, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -503,7 +523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3401147126573473932, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 3401147126573473932, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
