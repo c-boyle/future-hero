@@ -31,6 +31,16 @@ public class TimeToggle : MonoBehaviour {
     }
   }
 
+  private Light[] _cachedLights = null;
+  private Light[] ChildLights {
+    get {
+      if (_cachedLights == null) {
+        _cachedLights = GetComponentsInChildren<Light>();
+      }
+      return _cachedLights;
+    }
+  }
+
   private void Start() {
     _cachedAudioSources = null;
     _cachedRenderers = null;
@@ -51,6 +61,7 @@ public class TimeToggle : MonoBehaviour {
   public void Toggle() {
     _cachedRenderers = GetComponentsInChildren<Renderer>();
     _cachedAudioSources = GetComponentsInChildren<AudioSource>();
+    _cachedLights = GetComponentsInChildren<Light>();
     SetEnabled(!toggleEnabled);
   }
   #endif
@@ -63,6 +74,9 @@ public class TimeToggle : MonoBehaviour {
       }
       foreach (var renderer in ChildRenderers) {
         renderer.enabled = enabled;
+      }
+      foreach (var light in ChildLights) {
+        light.enabled = enabled;
       }
       var toggleEvent = enabled ? timeToggleEnabled : timeToggleDisabled;
       toggleEvent?.Invoke();
