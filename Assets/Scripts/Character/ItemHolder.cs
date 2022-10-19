@@ -6,6 +6,7 @@ public class ItemHolder : MonoBehaviour {
   [SerializeField] private Transform handTransform;
   [SerializeField] private Item _heldItem;
   [SerializeField] private Collider holderCollider; 
+  [SerializeField] private AudioSource grabAudio;
 
   public Item HeldItem { get => _heldItem; }
 
@@ -44,6 +45,7 @@ public class ItemHolder : MonoBehaviour {
     }
     
     IgnoreCollisions(_heldItem, true);
+    grabAudio.Play();
   }
 
   public void DropItem() {

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FutureSeer : MonoBehaviour {
 
-  [SerializeField] private TimeLine presentTimeLine;
+  [SerializeField] private TimeToggle presentTimeLine;
 
-  [SerializeField] private TimeLine futureTimeLine;
+  [SerializeField] private TheFuture theFuture;
 
   [SerializeField] private Watch watch;
 
@@ -14,18 +14,14 @@ public class FutureSeer : MonoBehaviour {
 
   public bool TimeVisionEnabled { get => _timeVisionEnabled; }
 
+  private void Start() {
+    presentTimeLine.SetEnabled(true);
+  }
+
   public void ToggleFutureVision() {
     _timeVisionEnabled = !_timeVisionEnabled;
     presentTimeLine.SetEnabled(!_timeVisionEnabled);
-    futureTimeLine.SetEnabled(_timeVisionEnabled);
+    theFuture.SetEnabled(_timeVisionEnabled);
     watch.toggleFutureTime(_timeVisionEnabled);
-  }
-
-  public void SetFuture(TimeLine futureTimeLine) {
-    if (_timeVisionEnabled) {
-      this.futureTimeLine.SetEnabled(false);
-      futureTimeLine.SetEnabled(true);
-    }
-    this.futureTimeLine = futureTimeLine;
   }
 }
