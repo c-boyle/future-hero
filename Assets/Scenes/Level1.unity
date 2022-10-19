@@ -10004,27 +10004,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5115511332643989369, guid: cd17283d27196cf41b845331067a7103, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.373
+      value: 1.3310473
       objectReference: {fileID: 0}
     - target: {fileID: 5115511332643989369, guid: cd17283d27196cf41b845331067a7103, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.743
+      value: 6.6470356
       objectReference: {fileID: 0}
     - target: {fileID: 5115511332643989369, guid: cd17283d27196cf41b845331067a7103, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.69079626
       objectReference: {fileID: 0}
     - target: {fileID: 5115511332643989369, guid: cd17283d27196cf41b845331067a7103, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.15099859
       objectReference: {fileID: 0}
     - target: {fileID: 5115511332643989369, guid: cd17283d27196cf41b845331067a7103, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0.69079626
       objectReference: {fileID: 0}
     - target: {fileID: 5115511332643989369, guid: cd17283d27196cf41b845331067a7103, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.15099855
       objectReference: {fileID: 0}
     - target: {fileID: 5115511332643989369, guid: cd17283d27196cf41b845331067a7103, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10036,7 +10036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5115511332643989369, guid: cd17283d27196cf41b845331067a7103, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -24.66
       objectReference: {fileID: 0}
     - target: {fileID: 5599701500609347011, guid: cd17283d27196cf41b845331067a7103, type: 3}
       propertyPath: m_Name
@@ -11316,6 +11316,7 @@ GameObject:
   - component: {fileID: 7779852119723646931}
   - component: {fileID: 8242290725322981941}
   - component: {fileID: 7870968533899829796}
+  - component: {fileID: 8242290725322981942}
   m_Layer: 0
   m_Name: BackCounter
   m_TagString: Untagged
@@ -12587,6 +12588,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6437157167035567583}
   m_Mesh: {fileID: -9190172485933972725, guid: 6c25faacf718cd24c9e31d727b4f7de6, type: 3}
+--- !u!65 &8242290725322981942
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6437157167035567583}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.331687, y: 0.94642377, z: 7.275453}
+  m_Center: {x: -0.21261328, y: 0.24371451, z: 0}
 --- !u!23 &8267012739203373900
 MeshRenderer:
   m_ObjectHideFlags: 0

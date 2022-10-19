@@ -105,7 +105,7 @@ public class Interactable : MonoBehaviour {
     Interactable closestInteractable = null;
     foreach (var interactable in withinRangeInteractables) {
       bool interactorIsHoldingThisInteractable = itemHolder != null && itemHolder.HeldItem != null && itemHolder.HeldItem.Interactable == interactable;
-      if ((!interactorIsHoldingThisInteractable)) { // Skip an interactable if it's being held by the interactor or out of range
+      if ((!interactorIsHoldingThisInteractable) && interactable._rend.isVisible) { // Skip an interactable if it's being held by the interactor or out of range
         float dist = Vector3.Distance(interactorPosition, interactable.transform.position);
         if (dist < closestInteractableDist) {
           closestInteractableDist = dist;
