@@ -16,6 +16,7 @@ public class FutureSeer : MonoBehaviour {
 
   private void Start() {
     presentTimeLine.SetEnabled(true);
+    theFuture.SetEnabled(false);
   }
 
   public void ToggleFutureVision() {

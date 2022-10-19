@@ -8,8 +8,8 @@ public class AltCamera : MonoBehaviour
     [SerializeField] [MustBeAssigned] private Camera _thisCamera;
     [SerializeField] [MustBeAssigned] private Camera _copiedCamera;
     [SerializeField] [MustBeAssigned] private LayerMask _renderLayers;
-    [SerializeField] [MustBeAssigned] private bool _isInFront = true;
-    [SerializeField] [MustBeAssigned] private int _depth = 0;
+    [SerializeField] private bool _isInFront = true;
+    [SerializeField] private int _depth = 0;
 
     void Start()
     {
