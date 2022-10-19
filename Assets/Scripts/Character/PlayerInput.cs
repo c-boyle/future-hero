@@ -10,6 +10,7 @@ public class PlayerInput : BaseInput {
   [SerializeField] private CameraBob cameraBob;
   [SerializeField] private CameraShader futureShader;
   [SerializeField] private AudioSource interactionAudio;
+  [SerializeField] private DialogueManager dialogueManager;
 
   public static ControlActions Controls;
   private bool activeMovementInput = false;
@@ -22,7 +23,8 @@ public class PlayerInput : BaseInput {
 
     // Controls that alter movement
     Controls.Player.Move.performed += ctx => activeMovementInput = true;
-    Controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); };
+    Controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); movement.ToggleSprint(false);};
+    Controls.Player.Sprint.performed += ctx => movement.ToggleSprint(true);
     Controls.Player.Jump.performed += ctx => OnJump();
     Controls.Player.LookAtWatch.performed += ctx => movement.LookAtWatch();
     Controls.Player.LookAtWatch.canceled += ctx => movement.PutWatchAway();
@@ -55,6 +57,10 @@ public class PlayerInput : BaseInput {
       var cameraTransform = Camera.main.transform;
       Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
     //}
+
+    if (dialogueManager && Input.anyKeyDown){
+        dialogueManager.NextSentence();
+    }
 
   }
 

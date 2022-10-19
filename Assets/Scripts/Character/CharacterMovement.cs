@@ -18,7 +18,9 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [ReadOnly] private Vector3 moveDirection = Vector3.zero;
 
     [PositiveValueOnly] public float sensitivity = 1f;  // Mouse sensitivity
-    [PositiveValueOnly] public float sprintMultiplier = 1f;  // Increase this to a higher value when sprinting
+    [PositiveValueOnly] public float nonSprintSpeed = 1f; // Sprint multiplier when we're not sprinting
+    [PositiveValueOnly] public float sprintSpeed = 1.3f; // Sprint multiplier when we are sprinting
+    private float sprintMultiplier = 1f;  // sprintSpeed when sprinting, nonSprintSpeed otherwise
     private const float MAX_PITCH_DEGREE = 60; // How high or low the player can raise their head
     private const float GROUND_MAX_VELOCITY = 2.3f; // Maximum speed the player can reach while moving on ground
     private const float AIR_MAX_VELOCITY = 2.0f; // Maximum speed the player can reach while moving in midair
@@ -120,5 +122,13 @@ public class CharacterMovement : MonoBehaviour {
     public bool IsGrounded() {
         Vector3 groundPosition = new Vector3(_bodyCollider.bounds.center.x, _bodyCollider.bounds.min.y, _bodyCollider.bounds.center.z);
         return Physics.CheckSphere(groundPosition, 0.1f, _groundLayer);
+    }
+
+    public void ToggleSprint(bool sprint) {
+        if (sprint) {
+            sprintMultiplier = sprintSpeed;
+        } else {
+            sprintMultiplier = nonSprintSpeed;
+        }
     }
 }
