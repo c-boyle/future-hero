@@ -11,14 +11,18 @@ public class LevelTimer : Singleton<LevelTimer> {
 
   public static event EventHandler<TimerUpdateEventArgs> TimerUpdated;
 
+  private bool levelEnded = false;
+
   // Update is called once per frame
   void Update() {
-    float deltaTime = Time.deltaTime;
-    SecondsLeft -= deltaTime;
-    if (SecondsLeft <= 0) {
-      EndLevel(false);
+    if (!levelEnded) {
+      float deltaTime = Time.deltaTime;
+      SecondsLeft -= deltaTime;
+      if (SecondsLeft <= 0) {
+        EndLevel(false);
+      }
+      TimerUpdated?.Invoke(this, new() { DeltaTime = deltaTime, SecondsLeft = SecondsLeft });
     }
-    TimerUpdated?.Invoke(this, new() { DeltaTime = deltaTime, SecondsLeft = SecondsLeft });
   }
 
   public void SetSecondsLeft(float secondsLeft) {
@@ -31,7 +35,7 @@ public class LevelTimer : Singleton<LevelTimer> {
 
   public void EndLevel(bool won) {
     LevelEnd?.Invoke(this, new() { Won = won });
-    SecondsLeft = Mathf.Infinity;
+    levelEnded = true;
   }
 
   public class LevelEndEventArgs : EventArgs {
