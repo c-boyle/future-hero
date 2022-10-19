@@ -34,9 +34,9 @@ public class Interactable : MonoBehaviour {
 
 
   private readonly static HashSet<Interactable> enabledInteractables = new();
-  private readonly static HashSet<Interactable> withinRangeInteractables = new();
+  private static HashSet<Interactable> withinRangeInteractables = new();
   private static float lastRefreshTime = -1f;
-  private const float withinRangeRefreshSeconds = 1f;
+  private const float withinRangeRefreshSeconds = 0.5f;
 
   private const float maxInteractionRange = 2f;
 
@@ -127,11 +127,13 @@ public class Interactable : MonoBehaviour {
     Debug.DrawLine(lookingPoint, cameraPosition, Color.red);
 
     float currentTime = Time.time;
-    bool refreshWithinRange = lastRefreshTime < 0 || currentTime - lastRefreshTime <= withinRangeRefreshSeconds;
+    bool refreshWithinRange = lastRefreshTime < 0 || currentTime - lastRefreshTime >= withinRangeRefreshSeconds;
     HashSet<Interactable> interactablesToCheck = refreshWithinRange ? enabledInteractables : withinRangeInteractables;
     if (refreshWithinRange) {
       lastRefreshTime = currentTime;
     }
+
+    HashSet<Interactable> inRangeInteractables = new();
 
     foreach (var interactable in interactablesToCheck) {
       if (interactable.shaderChanged) {
@@ -148,12 +150,12 @@ public class Interactable : MonoBehaviour {
           closestInteractable = interactable;
         }
         if (inInteractionRange) {
-          withinRangeInteractables.Add(interactable);
-        } else {
-          withinRangeInteractables.Remove(interactable);
+          inRangeInteractables.Add(interactable);
         }
       }
     }
+
+    withinRangeInteractables = inRangeInteractables;
 
     if (closestInteractable != null) {
       Debug.DrawLine(lookingPoint, closestInteractable.transform.position, Color.cyan);
