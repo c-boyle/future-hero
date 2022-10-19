@@ -51,10 +51,10 @@ public class PlayerInput : BaseInput {
     if (activeLookInput) {
       movement.Look(Controls.Player.Look.ReadValue<Vector2>());
     }
-    if (!futureSeer.TimeVisionEnabled) {
+    //if (!futureSeer.TimeVisionEnabled) {
       var cameraTransform = Camera.main.transform;
       Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
-    }
+    //}
 
   }
 
