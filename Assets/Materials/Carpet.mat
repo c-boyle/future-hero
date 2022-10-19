@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1165267740448836589
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 0
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -20,16 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NPC
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords: []
-  m_InvalidKeywords:
+  m_Name: Carpet
+  m_Shader: {fileID: -6465566751694194690, guid: 9e0a270c7d7ebb04da3f63c3fa490e66, type: 3}
+  m_ValidKeywords:
   - _BLENDFROM_COLOR
-  - _BLENDTO_COLOR_ALT
-  - _BLENDTO_COLOR_ALT_2
-  - _BLENDTO__COLOR
-  - _ENUM_A
-  - _ENUM_COLOR
+  - _BLENDTO__COLOR_ALT
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -75,46 +58,47 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _TerrainHolesTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BLENDFROM: 0
-    - _BLENDTO: 0
+    - _BLENDTO: 1
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _Brightness: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DebugProgress_KeepAtZero: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _ENUM: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseScale: 10.2
+    - _NoiseScale: 40
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ProgressOverride: 0
     - _Progress_KEEP_ZERO: 0
-    - _RimIntensity: 0
-    - _RimThickness: 0
     - _Seed: 0
-    - _ShimmerSpeed: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _XScale: 1.79
-    - _YScale: 1.82
+    - _XScale: 1
+    - _YScale: 1
     - _ZWrite: 1
-    - _isVisible: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.5377358, g: 0.1445799, b: 0.14794783, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
+--- !u!114 &6196084449024497608
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 0
