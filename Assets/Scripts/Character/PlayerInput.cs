@@ -15,6 +15,7 @@ public class PlayerInput : BaseInput {
   public static ControlActions Controls;
   private bool activeMovementInput = false;
   private bool activeLookInput = false;
+  private Interactable closestOutlinedInteractable;
 
   private void Awake() {
     if (Controls == null) {
@@ -53,10 +54,10 @@ public class PlayerInput : BaseInput {
     if (activeLookInput) {
       movement.Look(Controls.Player.Look.ReadValue<Vector2>());
     }
-    //if (!futureSeer.TimeVisionEnabled) {
+    if (!futureSeer.TimeVisionEnabled) {
       var cameraTransform = Camera.main.transform;
-      Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
-    //}
+      closestOutlinedInteractable = Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
+    }
 
     if (dialogueManager && Input.anyKeyDown){
         dialogueManager.NextSentence();
@@ -102,6 +103,9 @@ public class PlayerInput : BaseInput {
   private void OnToggleFutureVision() {
     futureSeer.ToggleFutureVision();
     futureShader.ToggleShader();
+    if (futureSeer.TimeVisionEnabled && closestOutlinedInteractable != null && closestOutlinedInteractable.shaderChanged) {
+      closestOutlinedInteractable.toggleOutlineShader();
+    }
   }
   public void SetFutureVision(bool enabled) {
     if (futureSeer.TimeVisionEnabled != enabled) {

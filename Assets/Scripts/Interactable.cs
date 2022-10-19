@@ -178,7 +178,7 @@ public class Interactable : MonoBehaviour {
     }
   }
 
-  public static void GiveClosestInteractableOutline(Vector3 interactorPosition, ItemHolder itemHolder) {
+  public static Interactable GiveClosestInteractableOutline(Vector3 interactorPosition, ItemHolder itemHolder) {
     Interactable closestInteractable = Interactable.FindClosestInteractable(interactorPosition, itemHolder);
     if (closestInteractable != null) {
       if (!closestInteractable.shaderChanged) {
@@ -186,9 +186,10 @@ public class Interactable : MonoBehaviour {
       }
       closestInteractable.ShowPrompt();
     }
+    return closestInteractable;
   }
 
-  public static void GiveClosestInteractableInViewOutline(Vector3 cameraPosition, Vector3 cameraDirection, ItemHolder itemHolder) {
+  public static Interactable GiveClosestInteractableInViewOutline(Vector3 cameraPosition, Vector3 cameraDirection, ItemHolder itemHolder) {
     Interactable closestInteractable = Interactable.FindClosestInteractableInView(cameraPosition, cameraDirection, itemHolder);
     if (closestInteractable != null) {
       if (!closestInteractable.shaderChanged) {
@@ -196,6 +197,7 @@ public class Interactable : MonoBehaviour {
       }
       closestInteractable.ShowPrompt();
     }
+    return closestInteractable;
   }
 
   public void ShowPrompt() {
