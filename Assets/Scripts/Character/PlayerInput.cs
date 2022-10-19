@@ -57,7 +57,7 @@ public class PlayerInput : BaseInput {
       Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
     //}
 
-    if (Input.anyKeyDown){
+    if (dialogueManager && Input.anyKeyDown){
         dialogueManager.NextSentence();
     }
 
