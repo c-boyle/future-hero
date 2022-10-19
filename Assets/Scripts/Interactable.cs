@@ -27,7 +27,7 @@ public class Interactable : MonoBehaviour {
   // Prompt related variables
   [SerializeField] private TextMesh Prompt;
   public String promptText = "interact";
-  private Vector3 promptScale = new Vector3(1, 1, 1);
+  private Vector3 promptScale = Vector3.one;
 
   // public float character_size = 1f;
   // public int font_size = 0;
@@ -38,12 +38,14 @@ public class Interactable : MonoBehaviour {
   private static float lastRefreshTime = -1f;
   private const float withinRangeRefreshSeconds = 1f;
 
-  private const float maxInteractionRange = 20f;
+  private const float maxInteractionRange = 2f;
 
   private void Start() {
     // Parent
     _rend = GetComponent<Renderer>();
-    _regularShader = _rend.material.shader;
+    if (_rend != null) {
+      _regularShader = _rend.material.shader;
+    }
 
     // Children (if any)
     _childRends = GetComponentsInChildren<Renderer>();
@@ -219,10 +221,14 @@ public class Interactable : MonoBehaviour {
 
   public void toggleOutlineShader() {
     if (shaderChanged) {
-      _rend.material.shader = _regularShader;
+      if (_rend != null) {
+        _rend.material.shader = _regularShader;
+      }
       RemovePrompt();
     } else {
-      _rend.material.shader = _outlineShader;
+      if (_rend != null) {
+        _rend.material.shader = _outlineShader;
+      }
       ShowPrompt();
     }
 
