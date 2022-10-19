@@ -17,7 +17,7 @@
 		_LowIntensity("Low Light Intensity", Range(0, 10)) = 1
 
 		_OutlineColor("Outline Color", Color) = (1, 1, 1, 1)
-		_OutlineSize("Outline Size", float) = 50
+		_OutlineSize("Outline Size", float) = 8
 
 		_RimColor("Hard Edge Light Color", Color) = (1, 1, 1, 1)
 		_RimAlpha("Hard Edge Light Brightness", Range(0, 1)) = 0
