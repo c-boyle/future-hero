@@ -20,13 +20,13 @@ public class CharacterMovement : MonoBehaviour {
     [PositiveValueOnly] public float sensitivity = 1f;  // Mouse sensitivity
     [PositiveValueOnly] public float sprintMultiplier = 1f;  // Increase this to a higher value when sprinting
     private const float MAX_PITCH_DEGREE = 60; // How high or low the player can raise their head
-    [SerializeField] private float groundMaxVelocity = 15f; // Maximum speed the player can reach while moving on ground
-    private const float AIR_MAX_VELOCITY = 11f; // Maximum speed the player can reach while moving in midair
-    private const float GROUND_ACCELERATION = 3f; // How fast the player gains speed on ground
+    private const float GROUND_MAX_VELOCITY = 2.3f; // Maximum speed the player can reach while moving on ground
+    private const float AIR_MAX_VELOCITY = 2.0f; // Maximum speed the player can reach while moving in midair
+    private const float GROUND_ACCELERATION = 0.4f; // How fast the player gains speed on ground
     private const float AIR_ACCELERATION = 0.05f; // How fast the player gains speed while moving in midair
-    private const float GROUND_FRICTION = 0.11f; // How quickly the player slows to a stop on ground
-    private const float AIR_FRICTION = 0f; // How quickly the player slows to a stop while in midair
-    [SerializeField] private float jumpIntensity = 12f; // How high the player jumps
+    private const float GROUND_FRICTION = 0.04f; // How quickly the player slows to a stop on ground
+    private const float AIR_FRICTION = 0.01f; // How quickly the player slows to a stop while in midair
+    private const float jumpIntensity = 3f; // How high the player jumps
 
     // Function that gets called each time move inputs are used
     public void Move(Vector2 movement) {
@@ -82,7 +82,7 @@ public class CharacterMovement : MonoBehaviour {
         bool isGrounded = IsGrounded();
         float FRICTION = isGrounded ? GROUND_FRICTION : AIR_FRICTION;
         float ACCELERATION = (isGrounded ? GROUND_ACCELERATION : AIR_ACCELERATION) * sprintMultiplier;
-        float MAX_VELOCITY = (isGrounded ? groundMaxVelocity : AIR_MAX_VELOCITY) * sprintMultiplier;
+        float MAX_VELOCITY = (isGrounded ? GROUND_MAX_VELOCITY : AIR_MAX_VELOCITY) * sprintMultiplier;
         Vector3 currentVelocity = _rigidbody.velocity;
 
         Vector3 deltaVelocity = moveDirection * ACCELERATION;
@@ -119,6 +119,6 @@ public class CharacterMovement : MonoBehaviour {
 
     public bool IsGrounded() {
         Vector3 groundPosition = new Vector3(_bodyCollider.bounds.center.x, _bodyCollider.bounds.min.y, _bodyCollider.bounds.center.z);
-        return Physics.CheckSphere(groundPosition, 1f, _groundLayer);
+        return Physics.CheckSphere(groundPosition, 0.1f, _groundLayer);
     }
 }
