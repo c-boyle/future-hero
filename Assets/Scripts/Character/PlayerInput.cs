@@ -10,6 +10,7 @@ public class PlayerInput : BaseInput {
   [SerializeField] private CameraBob cameraBob;
   [SerializeField] private CameraShader futureShader;
   [SerializeField] private AudioSource interactionAudio;
+  [SerializeField] private DialogueManager dialogueManager;
 
   public static ControlActions Controls;
   private bool activeMovementInput = false;
@@ -55,6 +56,10 @@ public class PlayerInput : BaseInput {
       var cameraTransform = Camera.main.transform;
       Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
     //}
+
+    if (Input.anyKeyDown){
+        dialogueManager.NextSentence();
+    }
 
   }
 
