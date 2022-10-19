@@ -28,6 +28,16 @@ public class Item : MonoBehaviour {
     originalScale = transform.lossyScale;
   }
 
+  void Update()
+  {
+    // When the mop moves (specifically rotates) the scale gets altered in a non-preferable way
+    // Later should edit to only fix scale on rotation. For now we always call FixScale when items move...
+    if (transform.hasChanged)
+    {
+        FixScale();
+    }
+  }
+
   public override bool Equals(object other) {
     return base.Equals(other);
   }
@@ -54,8 +64,12 @@ public class Item : MonoBehaviour {
   }
 
   public void FixScale() {
-    var itemScale = transform.localScale;
     var newGlobalScale = transform.lossyScale;
+    if (newGlobalScale == originalScale) { // No point fixing a scale that's not altered...
+      return;
+    }
+
+    var itemScale = transform.localScale;
 
     // Revert the size of the item picked to what it was before being picked up
     transform.localScale = new(itemScale.x * originalScale.x / newGlobalScale.x, 
@@ -63,5 +77,8 @@ public class Item : MonoBehaviour {
                                itemScale.z * originalScale.z / newGlobalScale.z);
   }
 
+  void OnCollisionStay(Collision collision) {
+    FixScale();
+  }
 
 }
