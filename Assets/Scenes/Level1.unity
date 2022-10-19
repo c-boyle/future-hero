@@ -3188,7 +3188,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 200
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -3245,7 +3245,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675893589}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+<<<<<<< HEAD
   m_LocalPosition: {x: 5.81, y: 2.154, z: 4.55}
+=======
+  m_LocalPosition: {x: 7.196, y: 4.66, z: 4.06}
+>>>>>>> b1fb6d3de3de4c830d6ba4e0df8417d541e0b762
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4352,6 +4356,10 @@ PrefabInstance:
     - target: {fileID: 8923843087483422747, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: groundMaxVelocity
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923843087483422747, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: _groundLayer.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 8923843087717536974, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -8901,6 +8909,7 @@ GameObject:
   - component: {fileID: 6594362552720008438}
   - component: {fileID: 84142110980218263}
   - component: {fileID: 4569951497624532555}
+  - component: {fileID: 6594362552720008439}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -11279,6 +11288,20 @@ Transform:
   m_Father: {fileID: 6503171228665507240}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &6594362552720008439
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2613246277138128292}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3432729060447519932, guid: 6c25faacf718cd24c9e31d727b4f7de6, type: 3}
 --- !u!4 &6623325985330081027
 Transform:
   m_ObjectHideFlags: 0
