@@ -59,7 +59,7 @@ public class PlayerInput : BaseInput {
       closestOutlinedInteractable = Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
     }
 
-    if (dialogueManager && Input.anyKeyDown){
+    if (dialogueManager && dialogueManager.isDialoging && Input.anyKeyDown){
         dialogueManager.NextSentence();
     }
 
