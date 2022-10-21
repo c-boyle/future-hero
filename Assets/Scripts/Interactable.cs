@@ -18,7 +18,7 @@ public class Interactable : MonoBehaviour {
 
   // Renderers
   private Renderer _rend;
-  private Renderer[] _childRends;
+  private List<Renderer> _childRends = new();
 
   // Booleans
   private bool firstUse = true;
@@ -48,10 +48,13 @@ public class Interactable : MonoBehaviour {
     }
 
     // Children (if any)
-    _childRends = GetComponentsInChildren<Renderer>();
+    var childRenderers = GetComponentsInChildren<Renderer>();
     _childRegularShaders = new List<Shader>();
-    foreach (Renderer color in _childRends) {
-      _childRegularShaders.Add(color.material.shader);
+    foreach (Renderer color in childRenderers) {
+      if (color is not ParticleSystemRenderer) {
+        _childRegularShaders.Add(color.material.shader);
+        _childRends.Add(color);
+      }
     }
 
     // prompt
