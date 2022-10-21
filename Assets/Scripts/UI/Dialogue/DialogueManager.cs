@@ -56,6 +56,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void EndDialogue() {
+        StopAllCoroutines();
         isDialoging = false;
         finalDialogue = false;
         ClearSentence();

@@ -1176,6 +1176,8 @@ GameObject:
   - component: {fileID: 152901292}
   - component: {fileID: 152901291}
   - component: {fileID: 152901290}
+  - component: {fileID: 152901294}
+  - component: {fileID: 152901293}
   m_Layer: 0
   m_Name: Cup
   m_TagString: Untagged
@@ -1192,7 +1194,7 @@ Transform:
   m_GameObject: {fileID: 152901288}
   m_LocalRotation: {x: -0, y: 0.7115852, z: -0, w: 0.7025998}
   m_LocalPosition: {x: 1.153, y: 0.3285002, z: -0.32}
-  m_LocalScale: {x: 0.09999999, y: 0.14, z: 0.09999999}
+  m_LocalScale: {x: 0.09999993, y: 0.14, z: 0.09999993}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 937618668}
@@ -1263,6 +1265,34 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152901288}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!111 &152901293
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152901288}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: dd5f4f651d403984d9ca713323783259, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: dd5f4f651d403984d9ca713323783259, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &152901294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152901288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c37e37d7e55228478c0e306acdf8efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &157358386 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5599701500609347011, guid: cd17283d27196cf41b845331067a7103, type: 3}
@@ -6631,7 +6661,19 @@ MonoBehaviour:
   rb: {fileID: 6173076941165908543}
   enteredEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 152901294}
+        m_TargetAssemblyTypeName: CupFall, Assembly-CSharp
+        m_MethodName: playCupFall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   exitedEvent:
     m_PersistentCalls:
       m_Calls:
