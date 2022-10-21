@@ -50,12 +50,12 @@ public class TimeToggle : MonoBehaviour {
     // These functions will override any properties set using Shader.setGlobalFloat() (etc. in CameraShader).
     // Disable children that have faded away
     // TODO: Disable children renderer once they are entirely transparent
-    //float progress = Shader.GetGlobalFloat("_Progress");
-    /*
+    float progress = Shader.GetGlobalFloat("_Progress");
+    
     if (progress < 0.02 && !toggleEnabled)
       foreach (var renderer in ChildRenderers)
         renderer.enabled = false;
-    */
+    
   }
 
   #if UNITY_EDITOR
