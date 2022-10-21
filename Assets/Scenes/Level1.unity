@@ -7653,7 +7653,7 @@ MonoBehaviour:
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   shaderChanged: 0
   Prompt: {fileID: 402246425}
-  promptText: interact
+  promptText: Clean
 --- !u!23 &1279162753
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8506,7 +8506,7 @@ MonoBehaviour:
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   shaderChanged: 0
   Prompt: {fileID: 42091992}
-  promptText: interact
+  promptText: Change Music
 --- !u!82 &1429994584
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13427,6 +13427,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569791912664028743}
     m_Modifications:
+    - target: {fileID: 198574700675347726, guid: cd17283d27196cf41b845331067a7103, type: 3}
+      propertyPath: promptText
+      value: Pick Up
+      objectReference: {fileID: 0}
     - target: {fileID: 1186391085901845124, guid: cd17283d27196cf41b845331067a7103, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.205
