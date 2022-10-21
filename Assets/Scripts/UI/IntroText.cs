@@ -8,11 +8,14 @@ public class IntroText : MonoBehaviour
     [SerializeField] private DialogueManager dialogueManager;
     private bool started = false;
 
-    void Start()
+    void Awake()
     {
+        dialogueTrigger.TriggerDialogue();
+    }
+
+    void Start() {
         UIEventListener.Instance.PauseGame();
         EnableControls(false);
-        dialogueTrigger.TriggerDialogue();
     }
 
     void Update()

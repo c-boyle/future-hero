@@ -6414,6 +6414,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1035605001}
     - target: {fileID: 3703104743901103331, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
+      propertyPath: m_text
+      value: 'You have the ability to see into the future
+
+        Your favourite
+        restaurant, Future Gyro''s, is at risk!
+
+
+        Use your powers to fix
+        the future, and save Future Gyro''s
+
+        [Look into the future to start
+        the level]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703104743901103331, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
       propertyPath: m_margin.x
       value: -1117.1467
       objectReference: {fileID: 0}
@@ -6509,6 +6523,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7185367180963825850, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
+      propertyPath: field
+      value: 
+      objectReference: {fileID: 1035605005}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -6549,6 +6567,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035605000}
   m_CullTransparentMesh: 1
+--- !u!114 &1035605005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3703104743901103331, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
+  m_PrefabInstance: {fileID: 1035604999}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035605000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1044545255
 GameObject:
   m_ObjectHideFlags: 0

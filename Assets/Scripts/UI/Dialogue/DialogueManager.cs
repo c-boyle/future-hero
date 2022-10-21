@@ -5,15 +5,9 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    private Queue<string> sentences;
+    private Queue<string> sentences = new Queue<string>();
     public bool isDialoging = false; // true when we are currently showing dialogue
     public bool finalDialogue = false; // true when the final piece of dialogue IS output
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        sentences = new Queue<string>();
-    }
 
     public void StartDialogue(Dialogue dialogue)
     {

@@ -7,6 +7,10 @@ public class DialogueManagerUI : DialogueManager
 {
     [SerializeField] private TextMeshProUGUI field;
 
+    void Update() {
+        if (!field) field = FindObjectOfType<TextMeshProUGUI>();
+    }
+
     protected override IEnumerator DisplaySentence(string sentence) {
         field.text = "";
         foreach (char letter in sentence.ToCharArray())
