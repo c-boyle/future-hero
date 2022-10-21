@@ -21,15 +21,18 @@ public class ItemHolder : MonoBehaviour {
   public void GrabItem(Item itemToGrab) {
     DropItem();
 
-    oldParent = itemToGrab.transform.parent;
+    Transform itemTransform = itemToGrab.transform;
 
-    var oldGlobalScale = itemToGrab.transform.lossyScale;
-    itemToGrab.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
+    oldParent = itemTransform.parent;
+
+    var oldGlobalScale = itemTransform.lossyScale;
+    itemTransform.rotation = Quaternion.Euler(new Vector3(0,0,0));
   
-    itemToGrab.transform.SetParent(handTransform, false);
-    itemToGrab.transform.localPosition = new Vector3(0,0,0);
-    itemToGrab.transform.Rotate(Vector3.forward, 270);
+    itemTransform.SetParent(handTransform, false);
+    itemTransform.localPosition = new Vector3(0,0,0);
+    itemTransform.Rotate(Vector3.forward, 270);
 
+    itemToGrab.setLayer(gameObject.layer);
     itemToGrab.FixScale();
 
     _heldItem = itemToGrab;
@@ -45,7 +48,7 @@ public class ItemHolder : MonoBehaviour {
   public void DropItem() {
     if (_heldItem != null) {
       _heldItem.transform.SetParent(oldParent, true);
-      _heldItem.FixScale();
+      _heldItem.ReturnToOriginal();
       if (_heldItem.Rigidbody != null) {
         _heldItem.Rigidbody.isKinematic = false;
       }

@@ -7,6 +7,8 @@ public class Item : MonoBehaviour {
   [SerializeField] private string itemName;
 
   private Vector3 originalScale;
+  private int originalLayer;
+  private List<GameObject> children = new List<GameObject>();
   
   [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
 
@@ -26,6 +28,10 @@ public class Item : MonoBehaviour {
 
   void Start() {
     originalScale = transform.lossyScale;
+    originalLayer = gameObject.layer;
+    foreach(Transform transform in GetComponentsInChildren<Transform>()) {
+      children.Add(transform.gameObject);
+    }
   }
 
   void Update()
@@ -77,8 +83,19 @@ public class Item : MonoBehaviour {
                                itemScale.z * originalScale.z / newGlobalScale.z);
   }
 
+  public void setLayer(int layer){ 
+    foreach (GameObject go in children) {
+      go.layer = layer;
+    }
+  }
+
   void OnCollisionStay(Collision collision) {
     FixScale();
+  }
+
+  public void ReturnToOriginal() {
+    FixScale();
+    setLayer(originalLayer);
   }
 
 }
