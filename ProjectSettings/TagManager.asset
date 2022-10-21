@@ -3,18 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Train
+  - Human
+  - InteractReach
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - FPS
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Character
+  - WithFuturePostProcess
+  - NoFuturePostProcess
+  - Ground
   - 
   - 
   - 
