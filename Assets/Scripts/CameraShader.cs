@@ -31,12 +31,20 @@ public class CameraShader : MonoBehaviour {
     void Update() {
         if (isEffectEnabled) {
             currentVolumeWeight = Mathf.Lerp(currentVolumeWeight, 1, volumeTransitionSpeed);
+            currentVolumeWeight = currentVolumeWeight > 0.98 ? 1 : currentVolumeWeight;
+
             currentShaderProgress = Mathf.Lerp(currentShaderProgress, 1, shaderTransitionSpeed);
+            currentShaderProgress = currentShaderProgress > 0.98 ? 1 : currentShaderProgress;
+
             currentCameraFOV = Mathf.Lerp(currentCameraFOV, finalCameraFOV, cameraFOVTransitionSpeed);
         } else if (!isEffectEnabled) {
             currentVolumeWeight = Mathf.Lerp(currentVolumeWeight, 0, volumeTransitionSpeed);
-            currentCameraFOV = Mathf.Lerp(currentCameraFOV, initialCameraFOV, cameraFOVTransitionSpeed);
+            currentVolumeWeight = currentVolumeWeight < 0.02 ? 0 : currentVolumeWeight;
+
             currentShaderProgress = Mathf.Lerp(currentShaderProgress, 0, shaderTransitionSpeed);
+            currentShaderProgress = currentShaderProgress < 0.02 ? 0 : currentShaderProgress;
+
+            currentCameraFOV = Mathf.Lerp(currentCameraFOV, initialCameraFOV, cameraFOVTransitionSpeed);
         }
 
         volume.weight = currentVolumeWeight;
