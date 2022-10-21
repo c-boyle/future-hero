@@ -44,6 +44,10 @@ public class PlayerInput : BaseInput {
 
   private void Update() {
     Cursor.visible = false;
+    if (dialogueManager && dialogueManager.isDialoging){
+      return;
+    }
+
     if (activeMovementInput) {
       movement.Move(Controls.Player.Move.ReadValue<Vector2>());
       cameraBob.isBobbing = true;
@@ -57,10 +61,6 @@ public class PlayerInput : BaseInput {
     if (!futureSeer.TimeVisionEnabled) {
       var cameraTransform = Camera.main.transform;
       closestOutlinedInteractable = Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
-    }
-
-    if (dialogueManager && dialogueManager.isDialoging && Input.anyKeyDown){
-        dialogueManager.NextSentence();
     }
 
   }

@@ -55,7 +55,7 @@ public class DialogueManager : MonoBehaviour
         return;
     }
 
-    private void EndDialogue() {
+    public void EndDialogue() {
         isDialoging = false;
         finalDialogue = false;
         ClearSentence();
