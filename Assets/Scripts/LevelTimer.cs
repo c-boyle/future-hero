@@ -34,6 +34,8 @@ public class LevelTimer : Singleton<LevelTimer> {
   }
 
   public void EndLevel(bool won) {
+    if (levelEnded) return;
+    
     LevelEnd?.Invoke(this, new() { Won = won });
     levelEnded = true;
   }

@@ -11,7 +11,7 @@ public class IntroText : MonoBehaviour
     void Start()
     {
         UIEventListener.Instance.PauseGame();
-        PlayerInput.Controls.Player.Disable();
+        EnableControls(false);
         dialogueTrigger.TriggerDialogue();
     }
 
@@ -24,7 +24,7 @@ public class IntroText : MonoBehaviour
         if (!dialogueManager || !dialogueManager.isDialoging) return; // Skip if we're done intro-ing
 
         if (dialogueManager.finalDialogue) {
-            PlayerInput.Controls.Player.Enable(); // Enable controls to go in future
+            PlayerInput.Controls.Player.Enable(); // Enable controls so we can go in future
             return; // To stop anything else from triggering the next sentence
         }
 
@@ -37,8 +37,18 @@ public class IntroText : MonoBehaviour
         if (started) return;
 
         dialogueManager.EndDialogue();
-        PlayerInput.Controls.Player.Enable();
+        EnableControls(true);
         UIEventListener.Instance.UnpauseGame(); 
         started = true;
+    }
+
+    public void EnableControls(bool enable) {
+        if (enable) {
+            PlayerInput.Controls.Player.Enable();
+            PlayerInput.Controls.UI.Enable();
+        } else {
+            PlayerInput.Controls.Player.Disable();
+            PlayerInput.Controls.UI.Disable();
+        }
     }
 }

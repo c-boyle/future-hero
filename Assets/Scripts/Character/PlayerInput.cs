@@ -39,7 +39,7 @@ public class PlayerInput : BaseInput {
     Controls.Player.Interact.performed += ctx => OnInteract();
     Controls.Player.DropItem.performed += ctx => OnDropItem();
 
-    Controls.Player.Pause.performed += ctx => UIEventListener.Instance.OnPausePressed();
+    Controls.Player.Pause.performed += ctx => {if ((!dialogueManager) || (!dialogueManager.isDialoging)) UIEventListener.Instance.OnPausePressed();};
   }
 
   private void Update() {

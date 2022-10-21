@@ -17,7 +17,7 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [ReadOnly] private Vector3 velocity = Vector3.zero; // For debugging purposes
     [SerializeField] [ReadOnly] private Vector3 moveDirection = Vector3.zero;
 
-    [PositiveValueOnly] public float sensitivity = 1f;  // Mouse sensitivity
+    [PositiveValueOnly] public float sensitivity = 2f;  // Mouse sensitivity
     [PositiveValueOnly] public float nonSprintSpeed = 1f; // Sprint multiplier when we're not sprinting
     [PositiveValueOnly] public float sprintSpeed = 1.3f; // Sprint multiplier when we are sprinting
     private float sprintMultiplier = 1f;  // sprintSpeed when sprinting, nonSprintSpeed otherwise
