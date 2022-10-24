@@ -29,7 +29,7 @@ public class Item : MonoBehaviour {
   void Start() {
     originalScale = transform.lossyScale;
     originalLayer = gameObject.layer;
-    foreach(Transform transform in GetComponentsInChildren<Transform>()) {
+    foreach(Transform childTransform in transform) {
       children.Add(transform.gameObject);
     }
   }
