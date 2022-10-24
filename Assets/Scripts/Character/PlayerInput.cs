@@ -27,8 +27,8 @@ public class PlayerInput : BaseInput {
     Controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); movement.ToggleSprint(false);};
     Controls.Player.Sprint.performed += ctx => movement.ToggleSprint(true);
     Controls.Player.Jump.performed += ctx => OnJump();
-    Controls.Player.LookAtWatch.performed += ctx => movement.LookAtWatch();
-    Controls.Player.LookAtWatch.canceled += ctx => movement.PutWatchAway();
+    Controls.Player.LookAtWatch.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) movement.LookAtWatch();};
+    Controls.Player.LookAtWatch.canceled += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) movement.PutWatchAway();};
 
     // Controls that alter vision
     Controls.Player.Look.performed += ctx => activeLookInput = true;
@@ -39,11 +39,15 @@ public class PlayerInput : BaseInput {
     Controls.Player.Interact.performed += ctx => OnInteract();
     Controls.Player.DropItem.performed += ctx => OnDropItem();
 
-    Controls.Player.Pause.performed += ctx => UIEventListener.Instance.OnPausePressed();
+    Controls.Player.Pause.performed += ctx => {if ((!dialogueManager) || (!dialogueManager.isDialoging)) UIEventListener.Instance.OnPausePressed();};
   }
 
   private void Update() {
     Cursor.visible = false;
+    if (dialogueManager && dialogueManager.isDialoging){
+      return;
+    }
+
     if (activeMovementInput) {
       movement.Move(Controls.Player.Move.ReadValue<Vector2>());
       cameraBob.isBobbing = true;
@@ -57,10 +61,6 @@ public class PlayerInput : BaseInput {
     if (!futureSeer.TimeVisionEnabled) {
       var cameraTransform = Camera.main.transform;
       closestOutlinedInteractable = Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
-    }
-
-    if (dialogueManager && Input.anyKeyDown){
-        dialogueManager.NextSentence();
     }
 
   }

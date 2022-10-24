@@ -12,6 +12,8 @@ public class FutureSeer : MonoBehaviour {
 
   [SerializeField] private AudioEffects audioEffects;
 
+  [SerializeField] private IntroText introText;
+
   [SerializeField] private bool _timeVisionEnabled = false;
 
   public bool TimeVisionEnabled { get => _timeVisionEnabled; }
@@ -27,5 +29,9 @@ public class FutureSeer : MonoBehaviour {
     theFuture.SetEnabled(_timeVisionEnabled);
     watch.toggleFutureTime(_timeVisionEnabled);
     audioEffects.SetEnabled(_timeVisionEnabled);
+    
+    if (introText) {
+      introText.StartGame();
+    }
   }
 }
