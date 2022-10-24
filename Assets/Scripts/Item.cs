@@ -30,7 +30,7 @@ public class Item : MonoBehaviour {
     originalScale = transform.lossyScale;
     originalLayer = gameObject.layer;
     foreach(Transform childTransform in transform) {
-      children.Add(transform.gameObject);
+      children.Add(childTransform.gameObject);
     }
   }
 
