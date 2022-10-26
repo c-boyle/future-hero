@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using MyBox;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class PauseMenuModal : BaseModal {
   [SerializeField] private Button continueButton;
@@ -33,6 +35,11 @@ public class PauseMenuModal : BaseModal {
   }
 
   private void OnExitPressed() {
-    Application.Quit();
+#if UNITY_EDITOR
+    EditorApplication.isPlaying = false;
+#else
+Application.Quit();
+#endif
+
   }
 }
