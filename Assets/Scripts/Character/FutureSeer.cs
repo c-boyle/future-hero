@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class FutureSeer : MonoBehaviour {
 
@@ -10,7 +11,9 @@ public class FutureSeer : MonoBehaviour {
 
   [SerializeField] private Watch watch;
 
-  [SerializeField] private AudioEffects audioEffects;
+  [SerializeField] private float transitionSeconds = 1f;
+
+  [SerializeField] private FutureAudio futureAudio;
 
   [SerializeField] private IntroText introText;
 
@@ -28,10 +31,47 @@ public class FutureSeer : MonoBehaviour {
     presentTimeLine.SetEnabled(!_timeVisionEnabled);
     theFuture.SetEnabled(_timeVisionEnabled);
     watch.toggleFutureTime(_timeVisionEnabled);
-    audioEffects.SetEnabled(_timeVisionEnabled);
-    
+    futureAudio.SetFutureAudio(_timeVisionEnabled, transitionSeconds);
+
     if (introText) {
       introText.StartGame();
+    }
+  }
+
+  [System.Serializable]
+  private class FutureAudio {
+    [SerializeField] private AudioMixer audioMixer;
+
+    private const string FUTURE = "Future";
+    private const string PRESENT = "Present";
+
+    private AudioMixerSnapshot _presentSnapshot = null;
+    private AudioMixerSnapshot _futureSnapshot = null;
+
+    private AudioMixerSnapshot PresentSnapshot {
+      get {
+        if (_presentSnapshot == null) {
+          _presentSnapshot = audioMixer.FindSnapshot(PRESENT);
+        }
+        return _presentSnapshot;
+      }
+    }
+
+    private AudioMixerSnapshot FutureSnapshot {
+      get {
+        if (_futureSnapshot == null) {
+          _futureSnapshot = audioMixer.FindSnapshot(FUTURE);
+        }
+        return _futureSnapshot;
+      }
+    }
+
+    public void SetFutureAudio(bool futureEnabled, float transitionTime) {
+      if (futureEnabled) {
+        FutureSnapshot.TransitionTo(transitionTime);
+      } else {
+        PresentSnapshot.TransitionTo(transitionTime);
+      }
     }
   }
 }
