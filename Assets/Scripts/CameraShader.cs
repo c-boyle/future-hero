@@ -10,46 +10,16 @@ public class CameraShader : MonoBehaviour {
     [SerializeField] [MustBeAssigned] private Camera cam;
 
     [SerializeField] [ReadOnly] private bool isEffectEnabled = false;
-
-    [SerializeField] [ReadOnly] private float currentVolumeWeight = 0;
-    private const float volumeTransitionSpeed = 0.01f;
-
-    [SerializeField] [ReadOnly] private float currentShaderProgress = 0;
-    private const float shaderTransitionSpeed = 0.005f;
-
-    [SerializeField] [ReadOnly] private float currentCameraFOV;
-    private float initialCameraFOV;
-    private float finalCameraFOV;
-    private const float deltaCameraFOV = 4;
-    private const float cameraFOVTransitionSpeed = 0.02f;
+    private float initialFOV;
+    private float deltaFOV = 4;
+    private float finalFOV;
+    private Coroutine currentShaderCoroutine;
+    private Coroutine currentFOVCoroutine;
+    private Coroutine currentVolumeCoroutine;
 
     void Start() {
-        initialCameraFOV = cam.fieldOfView;
-        finalCameraFOV = initialCameraFOV + deltaCameraFOV;
-    }
-
-    void Update() {
-        if (isEffectEnabled) {
-            currentVolumeWeight = Mathf.Lerp(currentVolumeWeight, 1, volumeTransitionSpeed);
-            currentVolumeWeight = currentVolumeWeight > 0.98 ? 1 : currentVolumeWeight;
-
-            currentShaderProgress = Mathf.Lerp(currentShaderProgress, 1, shaderTransitionSpeed);
-            currentShaderProgress = currentShaderProgress > 0.98 ? 1 : currentShaderProgress;
-
-            currentCameraFOV = Mathf.Lerp(currentCameraFOV, finalCameraFOV, cameraFOVTransitionSpeed);
-        } else if (!isEffectEnabled) {
-            currentVolumeWeight = Mathf.Lerp(currentVolumeWeight, 0, volumeTransitionSpeed);
-            currentVolumeWeight = currentVolumeWeight < 0.02 ? 0 : currentVolumeWeight;
-
-            currentShaderProgress = Mathf.Lerp(currentShaderProgress, 0, shaderTransitionSpeed);
-            currentShaderProgress = currentShaderProgress < 0.02 ? 0 : currentShaderProgress;
-
-            currentCameraFOV = Mathf.Lerp(currentCameraFOV, initialCameraFOV, cameraFOVTransitionSpeed);
-        }
-
-        volume.weight = currentVolumeWeight;
-        Shader.SetGlobalFloat("_Progress", currentShaderProgress);
-        cam.fieldOfView = currentCameraFOV;
+        initialFOV = cam.fieldOfView;
+        finalFOV = initialFOV + deltaFOV;
     }
 
     void OnApplicationQuit() {
@@ -58,12 +28,68 @@ public class CameraShader : MonoBehaviour {
     }
 
     public void onEffectActivate() {
+        currentShaderCoroutine = StartCoroutine(TransitionShader(1, 0.8f));
+        currentVolumeCoroutine = StartCoroutine(TransitionVolume(1, 0.4f));
+        currentFOVCoroutine = StartCoroutine(TransitionFOV(finalFOV, 0.15f));
     }
 
     public void onEffectDeactivate() {
+        currentShaderCoroutine = StartCoroutine(TransitionShader(0, 0.8f));
+        currentVolumeCoroutine = StartCoroutine(TransitionVolume(0, 0.4f));
+        currentFOVCoroutine = StartCoroutine(TransitionFOV(initialFOV, 0.15f));
+    }
+    IEnumerator TransitionShader(float end, float duration) {
+        float elapsed_time = 0;
+        float currentProgress = Shader.GetGlobalFloat("_Progress");
+
+        while (elapsed_time <= duration)
+        {
+            Shader.SetGlobalFloat("_Progress", Mathf.Lerp(currentProgress, end, elapsed_time / duration));
+
+            yield return null; //Waits/skips one frame
+
+            elapsed_time += Time.deltaTime;
+        }
+
+        Shader.SetGlobalFloat("_Progress", end);
+    }
+
+    IEnumerator TransitionFOV(float end, float duration) {
+        float elapsed_time = 0;
+        float currentProgress = cam.fieldOfView;
+
+        while (elapsed_time <= duration)
+        {
+            cam.fieldOfView = Mathf.Lerp(currentProgress, end, elapsed_time / duration);
+
+            yield return null; //Waits/skips one frame
+
+            elapsed_time += Time.deltaTime;
+        }
+
+        cam.fieldOfView = end;
+    }
+
+    IEnumerator TransitionVolume(float end, float duration) {
+        float elapsed_time = 0;
+        float currentProgress = volume.weight;
+
+        while (elapsed_time <= duration) {
+            volume.weight = Mathf.Lerp(currentProgress, end, elapsed_time / duration);
+
+            yield return null; //Waits/skips one frame
+
+            elapsed_time += Time.deltaTime;
+        }
+
+        volume.weight = end;
     }
 
     public void ToggleShader() {
+        if (currentShaderCoroutine != null) StopCoroutine(currentShaderCoroutine);
+        if (currentVolumeCoroutine != null) StopCoroutine(currentShaderCoroutine);
+        if (currentFOVCoroutine != null) StopCoroutine(currentShaderCoroutine);
+
         if (!isEffectEnabled) {
             isEffectEnabled = true;
             onEffectActivate();

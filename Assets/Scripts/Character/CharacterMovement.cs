@@ -28,7 +28,8 @@ public class CharacterMovement : MonoBehaviour {
     private const float AIR_ACCELERATION = 0.05f; // How fast the player gains speed while moving in midair
     private const float GROUND_FRICTION = 0.04f; // How quickly the player slows to a stop on ground
     private const float AIR_FRICTION = 0.01f; // How quickly the player slows to a stop while in midair
-    private const float jumpIntensity = 3f; // How high the player jumps
+    private const float JUMP_INTENSITY = 3f; // How high the player jumps
+    private const float GROUND_CHECK_RADIUS = 0.225f; // Radius of the collider used for ground checking
 
     // Function that gets called each time move inputs are used
     public void Move(Vector2 movement) {
@@ -44,7 +45,7 @@ public class CharacterMovement : MonoBehaviour {
 
     // Function that lets the Future Hero Jump
     public void Jump() {
-        if (IsGrounded()) _rigidbody.AddForce(_bodyTransform.up * jumpIntensity, ForceMode.Impulse);
+        if (IsGrounded()) _rigidbody.AddForce(_bodyTransform.up * JUMP_INTENSITY, ForceMode.Impulse);
     }
 
     // Function that triggers the animation to look at the watch
@@ -120,14 +121,23 @@ public class CharacterMovement : MonoBehaviour {
     }
 
     public bool IsGrounded() {
-        Vector3 groundPosition = new Vector3(_bodyCollider.bounds.center.x, _bodyCollider.bounds.min.y, _bodyCollider.bounds.center.z);
-        return Physics.CheckSphere(groundPosition, 0.1f, _groundLayer);
+        float offset = GROUND_CHECK_RADIUS * 0.05f;
+        Vector3 groundPosition = new Vector3(_bodyCollider.bounds.center.x, _bodyCollider.bounds.min.y + GROUND_CHECK_RADIUS - offset, _bodyCollider.bounds.center.z);
+        return Physics.CheckSphere(groundPosition, GROUND_CHECK_RADIUS, _groundLayer);
+    }
+
+    // Debugs ground check size
+    private void OnDrawGizmos() {
+        float offset = GROUND_CHECK_RADIUS * 0.05f;
+        Vector3 groundPosition = new Vector3(_bodyCollider.bounds.center.x, _bodyCollider.bounds.min.y + GROUND_CHECK_RADIUS - offset, _bodyCollider.bounds.center.z);
+        Gizmos.DrawWireSphere(groundPosition, GROUND_CHECK_RADIUS);
     }
 
     public void ToggleSprint(bool sprint) {
         if (sprint) {
             sprintMultiplier = sprintSpeed;
-        } else {
+        }
+        else {
             sprintMultiplier = nonSprintSpeed;
         }
     }
