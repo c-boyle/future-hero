@@ -13,11 +13,27 @@ public class TimeToggle : MonoBehaviour {
 
   private Dictionary<Renderer, UnityEngine.Rendering.ShadowCastingMode> rendererToShadowCastingMode = new();
 
+  private ParticleSystem[] _cachedParticleSystems = null;
+  private ParticleSystem[] ChildParticleSystems {
+    get {
+      if (_cachedParticleSystems == null) {
+        _cachedParticleSystems = GetComponentsInChildren<ParticleSystem>();
+      }
+      return _cachedParticleSystems;
+    }
+  }
+
   private Renderer[] _cachedRenderers = null;
   private Renderer[] ChildRenderers {
     get {
       if (_cachedRenderers == null) {
-        _cachedRenderers = GetComponentsInChildren<Renderer>();
+        List<Renderer> nonParticleRenderers = new();
+        foreach (var renderer in GetComponentsInChildren<Renderer>()) {
+          if (renderer is not ParticleSystemRenderer) {
+            nonParticleRenderers.Add(renderer);
+          }
+        }
+        _cachedRenderers = nonParticleRenderers.ToArray();
       }
       return _cachedRenderers;
     }
@@ -76,6 +92,13 @@ public class TimeToggle : MonoBehaviour {
       foreach (var audioSource in ChildAudioSources) {
         audioSource.enabled = enabled;
       }
+      foreach (var particleSystem in ChildParticleSystems) {
+        if (enabled) {
+          particleSystem.Play(); 
+        } else {
+          particleSystem.Stop();
+        }
+      }
       foreach (var renderer in ChildRenderers) {
         renderer.enabled = enabled;
         if (rendererToShadowCastingMode.TryGetValue(renderer, out var mode)) {
@@ -92,10 +115,10 @@ public class TimeToggle : MonoBehaviour {
 
   public void DisableImmediateComponents() {
     if (gameObject.activeSelf) {
+      foreach (var particleSystem in ChildParticleSystems) {
+        particleSystem.Stop();
+      }
       foreach (var renderer in ChildRenderers) {
-        if (renderer is ParticleSystemRenderer) {
-          renderer.enabled = false;
-        }
         rendererToShadowCastingMode[renderer] = renderer.shadowCastingMode;
         renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
       }
