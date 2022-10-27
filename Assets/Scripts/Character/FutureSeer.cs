@@ -6,16 +6,15 @@ using UnityEngine.Audio;
 public class FutureSeer : MonoBehaviour {
 
   [SerializeField] private TimeToggle presentTimeLine;
-
   [SerializeField] private TheFuture theFuture;
 
   [SerializeField] private Watch watch;
 
-  [SerializeField] private float transitionSeconds = 1f;
-
-  [SerializeField] private FutureAudio futureAudio;
-
   [SerializeField] private IntroText introText;
+
+  [SerializeField] private float transitionSeconds = 1f;
+  [SerializeField] private FutureAudio futureAudio;
+  [SerializeField] private CameraShader futureShader;
 
   [SerializeField] private bool _timeVisionEnabled = false;
 
@@ -32,6 +31,7 @@ public class FutureSeer : MonoBehaviour {
     theFuture.SetEnabled(_timeVisionEnabled);
     watch.toggleFutureTime(_timeVisionEnabled);
     futureAudio.SetFutureAudio(_timeVisionEnabled, transitionSeconds);
+    futureShader.SetEffectEnabled(_timeVisionEnabled, transitionSeconds);
 
     if (introText) {
       introText.StartGame();
