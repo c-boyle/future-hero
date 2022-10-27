@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using MyBox;
+using System;
 
 public class CameraShader : MonoBehaviour {
 
@@ -27,7 +28,7 @@ public class CameraShader : MonoBehaviour {
     Shader.SetGlobalFloat("_Progress", 0);
   }
 
-  public void SetEffectEnabled(bool enabled, float transitionTime) {
+  public void SetEffectEnabled(bool enabled, float transitionTime, Action onComplete = null) {
     if (isEffectEnabled == enabled) {
       return;
     }
@@ -36,20 +37,20 @@ public class CameraShader : MonoBehaviour {
     if (currentVolumeCoroutine != null) StopCoroutine(currentShaderCoroutine);
     if (currentFOVCoroutine != null) StopCoroutine(currentShaderCoroutine);
 
-    OnSetEffectActive(enabled, transitionTime);
+    OnSetEffectActive(enabled, transitionTime, onComplete);
 
     isEffectEnabled = enabled;
   }
 
-  private void OnSetEffectActive(bool active, float transitionTime) {
+  private void OnSetEffectActive(bool active, float transitionTime, Action onComplete = null) {
     float end = active ? 1f : 0f;
     float fovEnd = active ? finalFOV : initialFOV;
-    currentShaderCoroutine = StartCoroutine(TransitionShader(end, transitionTime));
+    currentShaderCoroutine = StartCoroutine(TransitionShader(end, transitionTime, onComplete));
     currentVolumeCoroutine = StartCoroutine(TransitionVolume(end, transitionTime * 0.5f));
     currentFOVCoroutine = StartCoroutine(TransitionFOV(fovEnd, transitionTime * 0.1875f));
   }
 
-  IEnumerator TransitionShader(float end, float duration) {
+  IEnumerator TransitionShader(float end, float duration, Action onComplete = null) {
     float elapsed_time = 0;
     float currentProgress = Shader.GetGlobalFloat("_Progress");
 
@@ -62,6 +63,8 @@ public class CameraShader : MonoBehaviour {
     }
 
     Shader.SetGlobalFloat("_Progress", end);
+
+    onComplete?.Invoke();
   }
 
   IEnumerator TransitionFOV(float end, float duration) {

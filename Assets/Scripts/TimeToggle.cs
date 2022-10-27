@@ -11,6 +11,8 @@ public class TimeToggle : MonoBehaviour {
 
   [SerializeField][ReadOnly] private bool toggleEnabled = false;
 
+  private Dictionary<Renderer, UnityEngine.Rendering.ShadowCastingMode> rendererToShadowCastingMode = new();
+
   private Renderer[] _cachedRenderers = null;
   private Renderer[] ChildRenderers {
     get {
@@ -51,14 +53,14 @@ public class TimeToggle : MonoBehaviour {
     // Disable children that have faded away
     // TODO: Disable children renderer once they are entirely transparent
     float progress = Shader.GetGlobalFloat("_Progress");
-    
+
     if (progress < 0.02 && !toggleEnabled)
       foreach (var renderer in ChildRenderers)
         renderer.enabled = false;
-    
+
   }
 
-  #if UNITY_EDITOR
+#if UNITY_EDITOR
   [ButtonMethod]
   public void Toggle() {
     _cachedRenderers = GetComponentsInChildren<Renderer>();
@@ -66,7 +68,7 @@ public class TimeToggle : MonoBehaviour {
     _cachedLights = GetComponentsInChildren<Light>();
     SetEnabled(!toggleEnabled);
   }
-  #endif
+#endif
 
   public void SetEnabled(bool enabled) {
     if (gameObject.activeSelf) {
@@ -76,12 +78,30 @@ public class TimeToggle : MonoBehaviour {
       }
       foreach (var renderer in ChildRenderers) {
         renderer.enabled = enabled;
+        if (rendererToShadowCastingMode.TryGetValue(renderer, out var mode)) {
+          renderer.shadowCastingMode = mode;
+        }
       }
       foreach (var light in ChildLights) {
         light.enabled = enabled;
       }
       var toggleEvent = enabled ? timeToggleEnabled : timeToggleDisabled;
       toggleEvent?.Invoke();
+    }
+  }
+
+  public void DisableImmediateComponents() {
+    if (gameObject.activeSelf) {
+      foreach (var renderer in ChildRenderers) {
+        if (renderer is ParticleSystemRenderer) {
+          renderer.enabled = false;
+        }
+        rendererToShadowCastingMode[renderer] = renderer.shadowCastingMode;
+        renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+      }
+      foreach (var light in ChildLights) {
+        light.enabled = false;
+      }
     }
   }
 }

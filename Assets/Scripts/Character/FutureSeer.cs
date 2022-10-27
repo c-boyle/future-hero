@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,11 +28,21 @@ public class FutureSeer : MonoBehaviour {
 
   public void ToggleFutureVision() {
     _timeVisionEnabled = !_timeVisionEnabled;
-    presentTimeLine.SetEnabled(!_timeVisionEnabled);
-    theFuture.SetEnabled(_timeVisionEnabled);
     watch.toggleFutureTime(_timeVisionEnabled);
     futureAudio.SetFutureAudio(_timeVisionEnabled, transitionSeconds);
-    futureShader.SetEffectEnabled(_timeVisionEnabled, transitionSeconds);
+
+    Action disableTimeline;
+    if (_timeVisionEnabled) {
+      theFuture.SetEnabled(_timeVisionEnabled);
+      presentTimeLine.DisableImmediateComponents();
+      disableTimeline = () => presentTimeLine.SetEnabled(!_timeVisionEnabled);
+    } else {
+      presentTimeLine.SetEnabled(!_timeVisionEnabled);
+      theFuture.DisableImmediateComponents();
+      disableTimeline = () => theFuture.SetEnabled(_timeVisionEnabled);
+    }
+
+    futureShader.SetEffectEnabled(_timeVisionEnabled, transitionSeconds, disableTimeline);
 
     if (introText) {
       introText.StartGame();
