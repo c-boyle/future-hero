@@ -6200,14 +6200,6 @@ PrefabInstance:
       propertyPath: _isInFront
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2985409494986753327, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: b780773e875cfd145af240b5b30ff5de, type: 2}
-    - target: {fileID: 4961458107837619791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
-      propertyPath: watch
-      value: 
-      objectReference: {fileID: 2001101875}
     - target: {fileID: 4961458107837619791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: introText
       value: 
@@ -6228,10 +6220,6 @@ PrefabInstance:
       propertyPath: presentTimeLine
       value: 
       objectReference: {fileID: 528732911}
-    - target: {fileID: 4961458107837619791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
-      propertyPath: futureAudio.audioMixer
-      value: 
-      objectReference: {fileID: 24100000, guid: b780773e875cfd145af240b5b30ff5de, type: 2}
     - target: {fileID: 7472229314239848224, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: holderCollider
       value: 
@@ -6257,24 +6245,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1035605001}
     - target: {fileID: 8923843087483422747, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
-      propertyPath: sensitivity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8923843087483422747, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
-      propertyPath: sprintSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8923843087483422747, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: jumpIntensity
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8923843087483422747, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: groundMaxVelocity
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8923843087483422747, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
-      propertyPath: _groundLayer.m_Bits
-      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 8923843087717536974, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -10909,17 +10885,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7b4bd31b17a40784f8fd461b81081f18, type: 3}
   m_PrefabInstance: {fileID: 6173076941165908541}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2001101875 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
-  m_PrefabInstance: {fileID: 1026043323}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 663ffd7d62d9a714da52e6b535e44f1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2041549122
 GameObject:
   m_ObjectHideFlags: 0

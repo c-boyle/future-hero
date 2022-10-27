@@ -1484,16 +1484,15 @@ MonoBehaviour:
   _bodyCollider: {fileID: 2827159014478899484}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   _watchArmAnimation: {fileID: 7472229314023975396}
   pitchDegree: 0
   yawDegree: 0
   velocity: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
-  sensitivity: 1
-  sprintMultiplier: 1
-  groundMaxVelocity: 15
-  jumpIntensity: 12
+  sensitivity: 2
+  nonSprintSpeed: 1
+  sprintSpeed: 1.5
 --- !u!114 &8923843087483422746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1510,8 +1509,8 @@ MonoBehaviour:
   itemHolder: {fileID: 7472229314239848224}
   futureSeer: {fileID: 4961458107837619791}
   cameraBob: {fileID: 5001831470480072933}
-  futureShader: {fileID: 6833996545267069720}
   interactionAudio: {fileID: 2985409494986753327}
+  dialogueManager: {fileID: 0}
 --- !u!114 &4961458107837619791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1526,7 +1525,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   presentTimeLine: {fileID: 0}
   theFuture: {fileID: 0}
-  watch: {fileID: 7754216125492438131}
+  watch: {fileID: 7754216126538770214}
+  introText: {fileID: 0}
+  transitionSeconds: 1
+  futureAudio:
+    audioMixer: {fileID: 24100000, guid: b780773e875cfd145af240b5b30ff5de, type: 2}
+  futureShader: {fileID: 6833996545267069720}
   _timeVisionEnabled: 0
 --- !u!82 &2985409494986753327
 AudioSource:
@@ -1537,7 +1541,7 @@ AudioSource:
   m_GameObject: {fileID: 8581246045155444791}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: b780773e875cfd145af240b5b30ff5de, type: 2}
   m_audioClip: {fileID: 8300000, guid: 09a23d5766e3bcf47a6078fd79e7d12d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1729,9 +1733,6 @@ MonoBehaviour:
   volume: {fileID: 2567422800216417720}
   cam: {fileID: 8923843087717536974}
   isEffectEnabled: 0
-  currentVolumeWeight: 0
-  currentShaderProgress: 0
-  currentCameraFOV: 0
 --- !u!114 &5001831470480072933
 MonoBehaviour:
   m_ObjectHideFlags: 0
