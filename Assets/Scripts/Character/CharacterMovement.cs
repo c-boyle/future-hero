@@ -13,7 +13,13 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [ReadOnly] private float pitchDegree = 0f;
     [SerializeField] [ReadOnly] private float yawDegree = 0f;
     [SerializeField] [ReadOnly] private Vector3 velocity = Vector3.zero; // For debugging purposes
+    [SerializeField] [ReadOnly] private Vector3 velocityLocal = Vector3.zero;
     [SerializeField] [ReadOnly] private Vector3 moveDirection = Vector3.zero;
+    [SerializeField] [ReadOnly] private Vector3 moveDirectionLocal = Vector3.zero;
+    [SerializeField] [ReadOnly] public bool isMovingForward = false;
+    [SerializeField] [ReadOnly] public bool isMovingBackward = false;
+    [SerializeField] [ReadOnly] public bool isMovingRight = false;
+    [SerializeField] [ReadOnly] public bool isMovingLeft = false;
 
     [PositiveValueOnly] public float sensitivity = 2f;  // Mouse sensitivity
     [PositiveValueOnly] public float nonSprintSpeed = 1f; // Sprint multiplier when we're not sprinting
@@ -32,6 +38,7 @@ public class CharacterMovement : MonoBehaviour {
     // Function that gets called each time move inputs are used
     public void Move(Vector2 movement) {
         moveDirection = _bodyTransform.right * movement.x + _bodyTransform.forward * movement.y;
+        moveDirectionLocal = new Vector3(movement.x, 0, movement.y);
     }
 
     // Function that gets called each time the mouse is moved
@@ -83,6 +90,11 @@ public class CharacterMovement : MonoBehaviour {
 
         // For debugging purposes
         velocity = _rigidbody.velocity;
+        velocityLocal = transform.InverseTransformDirection(velocity);
+        isMovingForward = velocityLocal.z > MAX_VELOCITY * 0.5;
+        isMovingBackward = -velocityLocal.z > MAX_VELOCITY * 0.5;
+        isMovingRight = velocityLocal.x > MAX_VELOCITY * 0.5;
+        isMovingLeft = -velocityLocal.x > MAX_VELOCITY * 0.5;
     }
 
     // Helper function to convert a wrapped angle to a non wrapped angle (etc. 270 -> -90)

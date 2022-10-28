@@ -2104,6 +2104,7 @@ GameObject:
   - component: {fileID: 8961430419220664973}
   - component: {fileID: 2827159014478899484}
   - component: {fileID: 4846740945935135842}
+  - component: {fileID: 1022074986432161519}
   - component: {fileID: 8923843087483422747}
   - component: {fileID: 8923843087483422746}
   - component: {fileID: 4961458107837619791}
@@ -2164,6 +2165,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1022074986432161519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8581246045155444791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ee09d08db3d974d90bc2d5991b8e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {fileID: 8923843087483422747}
+  armsTransform: {fileID: 4625304006976465694}
+  cameraTransform: {fileID: 8923843087717536976}
+  breatheIntensity: 1
+  breatheSpeed: 1
+  bobIntensity: 1
+  bobSpeed: 1
+  dragOffset: 0
+  bobVerticalOffset: 0
+  bobLeftOffset: 0
+  bobRightOffset: 0
+  breatheOffset: 0
+  GLOBAL_BOB_MULTIPLIER: 1
+  isEnabled: 1
 --- !u!114 &8923843087483422747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2186,7 +2213,13 @@ MonoBehaviour:
   pitchDegree: 0
   yawDegree: 0
   velocity: {x: 0, y: 0, z: 0}
+  velocityLocal: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
+  moveDirectionLocal: {x: 0, y: 0, z: 0}
+  isMovingForward: 0
+  isMovingBackward: 0
+  isMovingRight: 0
+  isMovingLeft: 0
   sensitivity: 2
   nonSprintSpeed: 1
   sprintSpeed: 1.5
@@ -2204,8 +2237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 8923843087483422747}
   itemHolder: {fileID: 7472229314239848224}
+  viewBob: {fileID: 1022074986432161519}
   futureSeer: {fileID: 4961458107837619791}
-  cameraBob: {fileID: 5001831470480072933}
   interactionAudio: {fileID: 2985409494986753327}
   FPSArmsManager: {fileID: 6865234424685512300}
   dialogueManager: {fileID: 0}
@@ -2402,7 +2435,6 @@ GameObject:
   - component: {fileID: 8923843087717536974}
   - component: {fileID: 8923843087717536975}
   - component: {fileID: 6833996545267069720}
-  - component: {fileID: 5001831470480072933}
   - component: {fileID: 7754216125630304146}
   m_Layer: 0
   m_Name: Main Camera
@@ -2495,27 +2527,6 @@ MonoBehaviour:
   volume: {fileID: 2567422800216417720}
   cam: {fileID: 8923843087717536974}
   isEffectEnabled: 0
---- !u!114 &5001831470480072933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8923843087717536977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ee09d08db3d974d90bc2d5991b8e76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 8923843087717536974}
-  breatheIntensity: 1
-  breatheSpeed: 1
-  bobIntensity: 1
-  bobSpeed: 1
-  offset: 0
-  isEnabled: 1
-  isBreathing: 1
-  isBobbing: 0
 --- !u!114 &7754216125630304146
 MonoBehaviour:
   m_ObjectHideFlags: 0
