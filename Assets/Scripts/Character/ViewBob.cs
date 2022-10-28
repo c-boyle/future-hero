@@ -16,8 +16,8 @@ public class ViewBob : MonoBehaviour {
     [SerializeField] [PositiveValueOnly] private float breatheSpeed = 1;
     [SerializeField] [PositiveValueOnly] private float bobIntensity = 1;
     [SerializeField] [PositiveValueOnly] private float bobSpeed = 1;
-    private float dragTransition = 0.05f;
-    private float dragMax = -0.06f;
+    private float dragTransition = 0.05f; // how fast the arm pulls back when you begin moving
+    private float dragMax = -0.06f; // how much the arm pulls back when you begin moving
 
     [SerializeField] [ReadOnly] private float dragOffset = 0;
     [SerializeField] [ReadOnly] private float bobVerticalOffset = 0;
@@ -32,7 +32,7 @@ public class ViewBob : MonoBehaviour {
     private Vector3 cameraInitialLocalPosition;
     private Vector3 armsInitialLocalPosition;
     public bool isEnabled = true;
-    public float GLOBAL_BOB_SPEED_MULTIPLIER; // for sprinting
+    public float GLOBAL_BOB_SPEED_MULTIPLIER; // bob speed multiplier for sprinting
 
     void Start() {
         cameraInitialLocalPosition = cameraTransform.localPosition;
@@ -127,6 +127,7 @@ public class ViewBob : MonoBehaviour {
             Vector3 dragOffsetVector = new Vector3(0, dragOffset / 4, dragOffset);
             Vector3 bobOffsetVector = new Vector3(bobLeftOffset + bobRightOffset, bobVerticalOffset, 0);
             Vector3 breatheOffsetVector = new Vector3(0, breatheOffset, 0);
+
             armsTransform.localPosition = armsInitialLocalPosition + dragOffsetVector + bobOffsetVector + breatheOffsetVector;
             cameraTransform.localPosition = cameraInitialLocalPosition + // camera bob is based on arms bob, but less
                 Vector3.Scale(breatheOffsetVector, new Vector3(0, 0.08f, 0)) +
