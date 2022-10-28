@@ -57,7 +57,7 @@ public class ViewBob : MonoBehaviour {
     }
 
     IEnumerator BobLeft() {
-        float INTENSITY = bobIntensity * 0.02f * 1.5f;
+        float INTENSITY = bobIntensity * 0.02f;
         float SPEED = bobSpeed * 7f * GLOBAL_BOB_SPEED_MULTIPLIER;
 
         float x = 0;
@@ -74,7 +74,7 @@ public class ViewBob : MonoBehaviour {
     }
 
     IEnumerator BobRight() {
-        float INTENSITY = bobIntensity * 0.02f * 1.5f * -1; // negative sign here
+        float INTENSITY = bobIntensity * 0.02f * -1; // negative sign here
         float SPEED = bobSpeed * 7f * GLOBAL_BOB_SPEED_MULTIPLIER;
 
         float x = 0;
