@@ -21,6 +21,7 @@ public class CameraShader : MonoBehaviour {
   void Start() {
     initialFOV = cam.fieldOfView;
     finalFOV = initialFOV + deltaFOV;
+    cam.cullingMask = cam.cullingMask & ~(1 << LayerMask.NameToLayer("FPS")); // don't render the FPS layer
   }
 
   void OnApplicationQuit() {
