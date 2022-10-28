@@ -12,6 +12,8 @@ public class UIEventListener : Singleton<UIEventListener> {
 
   private static float timeScaleBeforePause;
 
+  public bool GameIsPaused { get; private set; }
+
   void Start() {
     LevelTimer.LevelEnd += OnLevelEnd;
   }
@@ -39,10 +41,12 @@ public class UIEventListener : Singleton<UIEventListener> {
   public void PauseGame() {
     timeScaleBeforePause = Time.timeScale;
     Time.timeScale = 0;
+    GameIsPaused = true;
   }
 
   public void UnpauseGame() {
     Time.timeScale = timeScaleBeforePause;
+    GameIsPaused = false;
   }
 
   private void EnableUIControls() {
