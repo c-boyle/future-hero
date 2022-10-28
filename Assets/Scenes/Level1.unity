@@ -6239,6 +6239,10 @@ PrefabInstance:
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: 24300002, guid: b780773e875cfd145af240b5b30ff5de, type: 2}
+    - target: {fileID: 1178932905530485185, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1465133207559499637, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: _isInFront
       value: 0
@@ -6385,7 +6389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8923843087717536974, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 959
+      value: 951
       objectReference: {fileID: 0}
     - target: {fileID: 8961430419220664973, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_RootOrder

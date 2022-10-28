@@ -12,7 +12,7 @@ public class CameraShader : MonoBehaviour {
 
   [SerializeField][ReadOnly] private bool isEffectEnabled = false;
   private float initialFOV;
-  private float deltaFOV = 4;
+  private float deltaFOV = 8;
   private float finalFOV;
   private Coroutine currentShaderCoroutine;
   private Coroutine currentFOVCoroutine;
@@ -47,7 +47,7 @@ public class CameraShader : MonoBehaviour {
     float fovEnd = active ? finalFOV : initialFOV;
     currentShaderCoroutine = StartCoroutine(TransitionShader(end, transitionTime, onComplete));
     currentVolumeCoroutine = StartCoroutine(TransitionVolume(end, transitionTime * 0.5f));
-    currentFOVCoroutine = StartCoroutine(TransitionFOV(fovEnd, transitionTime * 0.1875f));
+    currentFOVCoroutine = StartCoroutine(TransitionFOV(fovEnd, transitionTime * 0.25f));
   }
 
   IEnumerator TransitionShader(float end, float duration, Action onComplete = null) {
