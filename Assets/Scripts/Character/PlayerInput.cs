@@ -10,6 +10,7 @@ public class PlayerInput : BaseInput {
   [SerializeField] private CameraBob cameraBob;
   [SerializeField] private CameraShader futureShader;
   [SerializeField] private AudioSource interactionAudio;
+  [SerializeField] private FPSArmsManager FPSArmsManager;
   [SerializeField] private DialogueManager dialogueManager;
 
   public static ControlActions Controls;
@@ -27,8 +28,8 @@ public class PlayerInput : BaseInput {
     Controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); movement.ToggleSprint(false);};
     Controls.Player.Sprint.performed += ctx => movement.ToggleSprint(true);
     Controls.Player.Jump.performed += ctx => OnJump();
-    Controls.Player.LookAtWatch.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) movement.LookAtWatch();};
-    Controls.Player.LookAtWatch.canceled += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) movement.PutWatchAway();};
+    Controls.Player.LookAtWatch.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = true; };
+    Controls.Player.LookAtWatch.canceled += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = false; };
 
     // Controls that alter vision
     Controls.Player.Look.performed += ctx => activeLookInput = true;

@@ -9,8 +9,6 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [MustBeAssigned] private Transform _cameraTransform;
     [SerializeField] [MustBeAssigned] private Collider _bodyCollider;
     [SerializeField] [MustBeAssigned] private LayerMask _groundLayer;
-    [SerializeField] [MustBeAssigned] private Animation _watchArmAnimation;
-
 
     [SerializeField] [ReadOnly] private float pitchDegree = 0f;
     [SerializeField] [ReadOnly] private float yawDegree = 0f;
@@ -46,19 +44,6 @@ public class CharacterMovement : MonoBehaviour {
     // Function that lets the Future Hero Jump
     public void Jump() {
         if (IsGrounded()) _rigidbody.AddForce(_bodyTransform.up * JUMP_INTENSITY, ForceMode.Impulse);
-    }
-
-    // Function that triggers the animation to look at the watch
-    public void LookAtWatch() {
-        _watchArmAnimation.Stop("reverseToggleWatchArm_Left");
-        // _watchArmAnimation["reverseToggleWatchArm_Left"].speed = 1f;
-        _watchArmAnimation.Play("reverseToggleWatchArm_Left");
-    }
-
-    public void PutWatchAway() {
-        _watchArmAnimation.Stop("toggleWatchArm_Left");
-        // _watchArmAnimation["toggleWatchArm_Left"].speed = -1f;
-        _watchArmAnimation.Play("toggleWatchArm_Left");
     }
 
     /*
