@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using MyBox;
 
 public class Interactable : MonoBehaviour {
   [SerializeField] private UnityEvent interactionAction;
@@ -20,14 +21,13 @@ public class Interactable : MonoBehaviour {
   private Renderer _rend;
   private List<Renderer> _childRends = new();
 
-  // Booleans
-  private bool firstUse = true;
-  public bool shaderChanged = false;
-
   // Prompt related variables
   [SerializeField] private TextMesh Prompt;
   public String promptText = "interact";
   private Vector3 promptScale = Vector3.one;
+
+  // Booleans
+  [ReadOnly] public bool shaderChanged = false;
 
   // public float character_size = 1f;
   // public int font_size = 0;
@@ -78,13 +78,9 @@ public class Interactable : MonoBehaviour {
     }
   }
 
-  private void OnDestroy(){
-    this.OnDisable();
-  }
-
   private void OnInteract(ItemHolder itemHolder = null) {
 
-    if (!gameObject.activeSelf || (disableAfterFirstUse && !firstUse)) {
+    if (!gameObject.activeSelf) {
       return;
     }
     bool meetsItemRequirement = requireItem == null || (itemHolder != null && requireItem == itemHolder.HeldItem);
@@ -98,8 +94,12 @@ public class Interactable : MonoBehaviour {
         Destroy(itemToDestroy.gameObject);
       }
       interactionAction?.Invoke();
-      firstUse = !firstUse;
+
       // Debug.Log(name + " interacted");
+
+      if (disableAfterFirstUse) {
+        this.enabled = false;
+      }
     }
   }
 
