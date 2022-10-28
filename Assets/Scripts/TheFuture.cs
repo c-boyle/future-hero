@@ -27,4 +27,10 @@ public class TheFuture : MonoBehaviour {
       timeToggle.SetEnabled(enabled);
     }
   }
+
+  public void DisableImmediateComponents() {
+    foreach (var timeToggle in timeToggles) {
+      timeToggle.DisableImmediateComponents();
+    }
+  }
 }

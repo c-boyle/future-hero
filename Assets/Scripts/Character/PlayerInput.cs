@@ -8,7 +8,6 @@ public class PlayerInput : BaseInput {
 
   [SerializeField] private FutureSeer futureSeer;
   [SerializeField] private CameraBob cameraBob;
-  [SerializeField] private CameraShader futureShader;
   [SerializeField] private AudioSource interactionAudio;
   [SerializeField] private FPSArmsManager FPSArmsManager;
   [SerializeField] private DialogueManager dialogueManager;
@@ -103,7 +102,6 @@ public class PlayerInput : BaseInput {
 
   private void OnToggleFutureVision() {
     futureSeer.ToggleFutureVision();
-    futureShader.ToggleShader();
     if (futureSeer.TimeVisionEnabled && closestOutlinedInteractable != null && closestOutlinedInteractable.shaderChanged) {
       closestOutlinedInteractable.toggleOutlineShader();
     }
