@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.UI;
 
 public class Marker : MonoBehaviour {
@@ -12,14 +13,12 @@ public class Marker : MonoBehaviour {
 
   private static RectTransform uiRoot = null;
   private static Camera mainCamera = null;
+  private readonly static ObjectPool<RectTransform> uiMarkerPool = new(CreateUIMarker, OnGetUIMarker, OnReleaseUIMarker, OnDestroyUIMarker, true, 2, 4);
+  private static int uiMarkerCount = 0;
 
   public void Activate() {
-    if (uiRoot == null) {
-      uiRoot = UIEventListener.Instance.transform as RectTransform;
-    }
-    GameObject markerObject = new("UIMarker for: " + name, typeof(Image));
-    markerObject.transform.SetParent(uiRoot, false);
-    StartCoroutine(DisplayMarker(markerObject.transform as RectTransform));
+    var uiMarker = uiMarkerPool.Get();
+    StartCoroutine(DisplayMarker(uiMarker));
   }
 
   private IEnumerator DisplayMarker(RectTransform uiMarker) {
@@ -28,24 +27,44 @@ public class Marker : MonoBehaviour {
     }
     uiMarker.GetComponent<Image>().sprite = icon;
     uiMarker.sizeDelta = new(iconBoxSize, iconBoxSize);
-    //uiMarker.sizeDelta = icon.textureRect.max;
     float markerTimer = markerDuration;
     float edgeBuffer = uiMarker.rect.size.x / 2;
     while (markerTimer >= 0) {
-      var screenPoint = WorldToScreenPointProjected(mainCamera, transform.position);
-      uiMarker.position = ScreenPointEdgeClamp(screenPoint, edgeBuffer);
-
-      markerTimer -= Time.deltaTime;
-
-      // This is a pretty cruddy fix for hiding these on game pause, but it's better than nothing for now (for a better implementation, UIEventListener should probably hide these on pause)
-      if (Time.deltaTime == 0f) {
-        uiMarker.gameObject.SetActive(false);
-      } else {
+      if (!UIEventListener.Instance.GameIsPaused) {
         uiMarker.gameObject.SetActive(true);
+        var screenPoint = WorldToScreenPointProjected(mainCamera, transform.position);
+        uiMarker.position = ScreenPointEdgeClamp(screenPoint, edgeBuffer);
+
+        markerTimer -= Time.deltaTime;
+      } else {
+        uiMarker.gameObject.SetActive(false);
       }
 
       yield return null;
     }
+    uiMarkerPool.Release(uiMarker);
+  }
+
+  private static RectTransform CreateUIMarker() {
+    if (uiRoot == null) {
+      uiRoot = UIEventListener.Instance.transform as RectTransform;
+    }
+    GameObject markerObject = new($"UIMarker ({uiMarkerCount})", typeof(Image));
+    markerObject.transform.SetParent(uiRoot, false);
+    markerObject.SetActive(false);
+    uiMarkerCount++;
+    return markerObject.transform as RectTransform;
+  }
+
+  private static void OnGetUIMarker(RectTransform uiMarker) {
+    uiMarker.gameObject.SetActive(true);
+  }
+
+  private static void OnReleaseUIMarker(RectTransform uiMarker) {
+    uiMarker.gameObject.SetActive(false);
+  }
+
+  public static void OnDestroyUIMarker(RectTransform uiMarker) {
     Destroy(uiMarker.gameObject);
   }
 
