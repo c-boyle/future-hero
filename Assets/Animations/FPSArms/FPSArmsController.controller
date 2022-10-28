@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ShowWatch
-  m_Speed: 2
+  m_Speed: 2.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1388530891571788618}
@@ -89,7 +89,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HideWatch
-  m_Speed: 2
+  m_Speed: 2.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7845981126485196757}
@@ -201,9 +201,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.33195874
+  m_TransitionDuration: 0.21597356
   m_TransitionOffset: 0
-  m_ExitTime: 0.0026534284
+  m_ExitTime: 0.0026534342
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -305,9 +305,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.3287056
+  m_TransitionDuration: 0.23324364
   m_TransitionOffset: 0
-  m_ExitTime: 0.004253957
+  m_ExitTime: 0.0042539565
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
