@@ -13,6 +13,8 @@ public abstract class Watch : MonoBehaviour
 
     protected const int minuteLength = 60;
     protected bool isFuture = false;
+
+    protected bool notTransitioning = true;
    
 
     private void Start() {
@@ -21,7 +23,7 @@ public abstract class Watch : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        UpdateWatch();
+        if (notTransitioning) UpdateWatch();
     }
 
     private void SetPresent(object sender, LevelTimer.TimerUpdateEventArgs e) {
@@ -35,6 +37,15 @@ public abstract class Watch : MonoBehaviour
     }
 
     public void toggleFutureTime(bool timeVision) {
+        StopAllCoroutines();
+        StartCoroutine(TransitionEffect());
         isFuture = timeVision;
     }
+
+    protected virtual IEnumerator TransitionEffect() {
+        notTransitioning = false;
+        Debug.Log("Time is changing!!!");
+        notTransitioning = true;
+        return null;
+    } 
 }

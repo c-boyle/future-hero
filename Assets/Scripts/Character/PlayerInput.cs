@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInput : BaseInput {
   [SerializeField] private ViewBob viewBob;
@@ -102,6 +103,8 @@ public class PlayerInput : BaseInput {
   }
 
   private void OnToggleFutureVision() {
+    StopCoroutine(VibrateController());
+    StartCoroutine(VibrateController());
     futureSeer.ToggleFutureVision();
     if (futureSeer.TimeVisionEnabled && closestOutlinedInteractable != null && closestOutlinedInteractable.shaderChanged) {
       closestOutlinedInteractable.toggleOutlineShader();
@@ -111,6 +114,13 @@ public class PlayerInput : BaseInput {
     if (futureSeer.TimeVisionEnabled != enabled) {
       OnToggleFutureVision();
     }
+  }
+
+  private IEnumerator VibrateController() {
+    var gamepad = Gamepad.current;
+    gamepad.SetMotorSpeeds(0.01f, 0.01f);
+    yield return new WaitForSeconds(0.5f);
+    gamepad.SetMotorSpeeds(0f, 0f);
   }
 
 }
