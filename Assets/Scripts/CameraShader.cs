@@ -3,74 +3,98 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using MyBox;
+using System;
 
 public class CameraShader : MonoBehaviour {
 
-    [SerializeField] [MustBeAssigned] private PostProcessVolume volume;
-    [SerializeField] [MustBeAssigned] private Camera cam;
+  [SerializeField][MustBeAssigned] private PostProcessVolume volume;
+  [SerializeField][MustBeAssigned] private Camera cam;
 
-    [SerializeField] [ReadOnly] private bool isEffectEnabled = false;
+  [SerializeField][ReadOnly] private bool isEffectEnabled = false;
+  private float initialFOV;
+  private float deltaFOV = 8;
+  private float finalFOV;
+  private Coroutine currentShaderCoroutine;
+  private Coroutine currentFOVCoroutine;
+  private Coroutine currentVolumeCoroutine;
 
-    [SerializeField] [ReadOnly] private float currentVolumeWeight = 0;
-    private const float volumeTransitionSpeed = 0.01f;
+  void Start() {
+    initialFOV = cam.fieldOfView;
+    finalFOV = initialFOV + deltaFOV;
+    cam.cullingMask = cam.cullingMask & ~(1 << LayerMask.NameToLayer("FPS")); // don't render the FPS layer
+  }
 
-    [SerializeField] [ReadOnly] private float currentShaderProgress = 0;
-    private const float shaderTransitionSpeed = 0.005f;
+  void OnApplicationQuit() {
+    // This has to be here because of a Unity bug or else the propery value will not go back to default
+    Shader.SetGlobalFloat("_Progress", 0);
+  }
 
-    [SerializeField] [ReadOnly] private float currentCameraFOV;
-    private float initialCameraFOV;
-    private float finalCameraFOV;
-    private const float deltaCameraFOV = 4;
-    private const float cameraFOVTransitionSpeed = 0.02f;
-
-    void Start() {
-        initialCameraFOV = cam.fieldOfView;
-        finalCameraFOV = initialCameraFOV + deltaCameraFOV;
+  public void SetEffectEnabled(bool enabled, float transitionTime, Action onComplete = null) {
+    if (isEffectEnabled == enabled) {
+      return;
     }
 
-    void Update() {
-        if (isEffectEnabled) {
-            currentVolumeWeight = Mathf.Lerp(currentVolumeWeight, 1, volumeTransitionSpeed);
-            currentVolumeWeight = currentVolumeWeight > 0.98 ? 1 : currentVolumeWeight;
+    if (currentShaderCoroutine != null) StopCoroutine(currentShaderCoroutine);
+    if (currentVolumeCoroutine != null) StopCoroutine(currentShaderCoroutine);
+    if (currentFOVCoroutine != null) StopCoroutine(currentShaderCoroutine);
 
-            currentShaderProgress = Mathf.Lerp(currentShaderProgress, 1, shaderTransitionSpeed);
-            currentShaderProgress = currentShaderProgress > 0.98 ? 1 : currentShaderProgress;
+    OnSetEffectActive(enabled, transitionTime, onComplete);
 
-            currentCameraFOV = Mathf.Lerp(currentCameraFOV, finalCameraFOV, cameraFOVTransitionSpeed);
-        } else if (!isEffectEnabled) {
-            currentVolumeWeight = Mathf.Lerp(currentVolumeWeight, 0, volumeTransitionSpeed);
-            currentVolumeWeight = currentVolumeWeight < 0.02 ? 0 : currentVolumeWeight;
+    isEffectEnabled = enabled;
+  }
 
-            currentShaderProgress = Mathf.Lerp(currentShaderProgress, 0, shaderTransitionSpeed);
-            currentShaderProgress = currentShaderProgress < 0.02 ? 0 : currentShaderProgress;
+  private void OnSetEffectActive(bool active, float transitionTime, Action onComplete = null) {
+    float end = active ? 1f : 0f;
+    float fovEnd = active ? finalFOV : initialFOV;
+    currentShaderCoroutine = StartCoroutine(TransitionShader(end, transitionTime, onComplete));
+    currentVolumeCoroutine = StartCoroutine(TransitionVolume(end, transitionTime * 0.5f));
+    currentFOVCoroutine = StartCoroutine(TransitionFOV(fovEnd, transitionTime * 0.25f));
+  }
 
-            currentCameraFOV = Mathf.Lerp(currentCameraFOV, initialCameraFOV, cameraFOVTransitionSpeed);
-        }
+  IEnumerator TransitionShader(float end, float duration, Action onComplete = null) {
+    float elapsed_time = 0;
+    float currentProgress = Shader.GetGlobalFloat("_Progress");
 
-        volume.weight = currentVolumeWeight;
-        Shader.SetGlobalFloat("_Progress", currentShaderProgress);
-        cam.fieldOfView = currentCameraFOV;
+    while (elapsed_time <= duration) {
+      Shader.SetGlobalFloat("_Progress", Mathf.Lerp(currentProgress, end, elapsed_time / duration));
+
+      yield return null; //Waits/skips one frame
+
+      elapsed_time += Time.deltaTime;
     }
 
-    void OnApplicationQuit() {
-        // This has to be here because of a Unity bug or else the propery value will not go back to default
-        Shader.SetGlobalFloat("_Progress", 0);
+    Shader.SetGlobalFloat("_Progress", end);
+
+    onComplete?.Invoke();
+  }
+
+  IEnumerator TransitionFOV(float end, float duration) {
+    float elapsed_time = 0;
+    float currentProgress = cam.fieldOfView;
+
+    while (elapsed_time <= duration) {
+      cam.fieldOfView = Mathf.Lerp(currentProgress, end, elapsed_time / duration);
+
+      yield return null; //Waits/skips one frame
+
+      elapsed_time += Time.deltaTime;
     }
 
-    public void onEffectActivate() {
+    cam.fieldOfView = end;
+  }
+
+  IEnumerator TransitionVolume(float end, float duration) {
+    float elapsed_time = 0;
+    float currentProgress = volume.weight;
+
+    while (elapsed_time <= duration) {
+      volume.weight = Mathf.Lerp(currentProgress, end, elapsed_time / duration);
+
+      yield return null; //Waits/skips one frame
+
+      elapsed_time += Time.deltaTime;
     }
 
-    public void onEffectDeactivate() {
-    }
-
-    public void ToggleShader() {
-        if (!isEffectEnabled) {
-            isEffectEnabled = true;
-            onEffectActivate();
-        }
-        else {
-            isEffectEnabled = false;
-            onEffectDeactivate();
-        }
-    }
+    volume.weight = end;
+  }
 }

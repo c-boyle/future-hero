@@ -9,6 +9,7 @@ public class AltCamera : MonoBehaviour
     [SerializeField] [MustBeAssigned] private Camera _copiedCamera;
     [SerializeField] [MustBeAssigned] private LayerMask _renderLayers;
     [SerializeField] private bool _isInFront = true;
+    [SerializeField] private bool _isCopyingFOV = true;
     [SerializeField] private int _depth = 0;
 
     void Start()
@@ -21,6 +22,6 @@ public class AltCamera : MonoBehaviour
     }
 
     void Update() {
-        _thisCamera.fieldOfView = _copiedCamera.fieldOfView;
+        if (_isCopyingFOV) _thisCamera.fieldOfView = _copiedCamera.fieldOfView;
     }
 }
