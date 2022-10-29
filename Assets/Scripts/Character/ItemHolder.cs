@@ -8,7 +8,7 @@ public class ItemHolder : MonoBehaviour {
   [SerializeField] private Collider holderCollider; 
   [SerializeField] private AudioSource grabAudio;
   
-  [SerializeField] private float pullForce = 6e-06f;
+  [SerializeField] private float pullForce = 1e-05f;
   [SerializeField] private float rotateForce = 0.008f;
 
   [SerializeField] private float pullDecay = 0.7f;
@@ -40,12 +40,12 @@ public class ItemHolder : MonoBehaviour {
 
       Vector3 direction;
 
-      Vector3 targetPosition = handTransform.position + (Vector3.up * _heldItem.itemBounds.extents.y/2);
       _heldItem.Rigidbody.velocity *= pullDecay;
+      Vector3 targetPosition = handTransform.position + (Vector3.up * _heldItem.itemBounds.extents.y/2);
       if (Vector3.Distance(targetPosition, _heldItem.Rigidbody.position) > pullDistance) {
-        direction = (targetPosition - _heldItem.Rigidbody.position) ;
-        _heldItem.Rigidbody.AddForce(Vector3.ClampMagnitude(direction, pullForce));
-      }
+        direction = (targetPosition - _heldItem.Rigidbody.position);
+        _heldItem.Rigidbody.AddForce(direction * pullForce);
+      } 
       
 
       _heldItem.Rigidbody.angularVelocity *= rotateDecay;
@@ -62,7 +62,7 @@ public class ItemHolder : MonoBehaviour {
         
         target = new Vector3(targetX, 0, targetZ);
         direction = Vector3.Scale((target - modAngles), new Vector3(1,0,1));
-        _heldItem.Rigidbody.AddTorque(Vector3.ClampMagnitude(direction, rotateForce));
+        _heldItem.Rigidbody.AddTorque(direction * rotateForce);
       }
 
     }
