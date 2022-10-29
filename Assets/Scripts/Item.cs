@@ -7,7 +7,6 @@ public class Item : MonoBehaviour {
   // Name acts as a key
   [SerializeField] private string itemName;
 
-  private Rigidbody itemRigidbody;
   private Vector3 originalScale;
   private int originalLayer;
   private float originalMass;
@@ -37,10 +36,9 @@ public class Item : MonoBehaviour {
   }
 
   void Start() {
-    itemRigidbody = GetComponent<Rigidbody>();
     originalScale = transform.lossyScale;
     originalLayer = gameObject.layer;
-    if (itemRigidbody) originalMass = itemRigidbody.mass;
+    if (Rigidbody) originalMass = Rigidbody.mass;
 
     foreach(Transform childTransform in transform) {
       children.Add(childTransform.gameObject);
@@ -106,7 +104,7 @@ public class Item : MonoBehaviour {
   }
 
   public void SetMass(float mass) {
-    if (itemRigidbody) itemRigidbody.mass = mass; 
+    if (Rigidbody) Rigidbody.mass = mass; 
   }
 
   public void SetLayer(int layer){ 
