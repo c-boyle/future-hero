@@ -28,8 +28,8 @@ public abstract class Watch : MonoBehaviour
 
     private void SetPresent(object sender, LevelTimer.TimerUpdateEventArgs e) {
         int secondsLeft = (int)e.SecondsLeft;
-        presentSeconds = (int)Math.Floor((double)(secondsLeft/minuteLength));
-        presentMinutes = secondsLeft%minuteLength;
+        presentMinutes = (int)Math.Floor((double)(secondsLeft/minuteLength));
+        presentSeconds = secondsLeft%minuteLength;
     }
 
     protected virtual void UpdateWatch() {

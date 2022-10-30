@@ -34,6 +34,6 @@ public class DigitalWatch : Watch
     } 
 
     private void DisplayTime(int minutes, int seconds) {
-        digits.text = seconds.ToString("D2") + ":" + minutes.ToString("D2");
+        digits.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
     }
 }
