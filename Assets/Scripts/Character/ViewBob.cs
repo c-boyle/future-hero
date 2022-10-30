@@ -32,7 +32,21 @@ public class ViewBob : MonoBehaviour {
     private Vector3 cameraInitialLocalPosition;
     private Vector3 armsInitialLocalPosition;
     public bool isEnabled = true;
-    public float GLOBAL_BOB_SPEED_MULTIPLIER; // bob speed multiplier for sprinting
+    public float globalSpeedMultiplier; // bob speed multiplier for sprinting
+
+    // More constants
+    private const float BOB_VERTICAL_INTENSITY_MULTIPLIER = 0.02f;
+    private const float BOB_VERTICAL_SPEED_MULTIPLIER = 7f;
+    private const float BOB_LEFT_INTENSITY_MULTIPLIER = 0.02f;
+    private const float BOB_LEFT_SPEED_MULTIPLIER = 7f;
+    private const float BOB_RIGHT_INTENSITY_MULTIPLIER = 0.02f;
+    private const float BOB_RIGHT_SPEED_MULTIPLIER = 7f;
+    private const float BREATHE_INTENSITY_MULTIPLIER = 0.008f;
+    private const float BREATHE_SPEED_MULTIPLIER = 2f;
+    private const float DRAG_Z_MULTIPLIER = 1f;
+    private const float DRAG_Y_MULTIPLIER = 0.25f;
+    private Vector3 CAMERA_SCALE_BREATHE = new Vector3(0, 0.08f, 0); // percentage of the breathe offset that the camera uses
+    private Vector3 CAMERA_SCALE_BOB = new Vector3(0, 0.1f, 0);
 
     void Start() {
         cameraInitialLocalPosition = cameraTransform.localPosition;
@@ -40,8 +54,8 @@ public class ViewBob : MonoBehaviour {
     }
 
     IEnumerator BobVertical() {
-        float INTENSITY = bobIntensity * 0.02f;
-        float SPEED = bobSpeed * 7f * GLOBAL_BOB_SPEED_MULTIPLIER;
+        float INTENSITY = bobIntensity * BOB_VERTICAL_INTENSITY_MULTIPLIER;
+        float SPEED = bobSpeed * BOB_VERTICAL_SPEED_MULTIPLIER * globalSpeedMultiplier;
 
         float x = 0;
         while (x <= Mathf.PI) {
@@ -57,8 +71,8 @@ public class ViewBob : MonoBehaviour {
     }
 
     IEnumerator BobLeft() {
-        float INTENSITY = bobIntensity * 0.02f;
-        float SPEED = bobSpeed * 7f * GLOBAL_BOB_SPEED_MULTIPLIER;
+        float INTENSITY = bobIntensity * BOB_LEFT_INTENSITY_MULTIPLIER;
+        float SPEED = bobSpeed * BOB_LEFT_SPEED_MULTIPLIER * globalSpeedMultiplier;
 
         float x = 0;
         while (x <= Mathf.PI) {
@@ -74,8 +88,8 @@ public class ViewBob : MonoBehaviour {
     }
 
     IEnumerator BobRight() {
-        float INTENSITY = bobIntensity * 0.02f * -1; // negative sign here
-        float SPEED = bobSpeed * 7f * GLOBAL_BOB_SPEED_MULTIPLIER;
+        float INTENSITY = bobIntensity * BOB_RIGHT_INTENSITY_MULTIPLIER * -1; // negative sign here
+        float SPEED = bobSpeed * BOB_RIGHT_SPEED_MULTIPLIER * globalSpeedMultiplier;
 
         float x = 0;
         while (x <= Mathf.PI) {
@@ -91,8 +105,8 @@ public class ViewBob : MonoBehaviour {
     }
 
     IEnumerator Breathe() {
-        float INTENSITY = breatheIntensity * 0.008f;
-        float SPEED = breatheSpeed * 2f;
+        float INTENSITY = breatheIntensity * BREATHE_INTENSITY_MULTIPLIER;
+        float SPEED = breatheSpeed * BREATHE_SPEED_MULTIPLIER;
 
         float x = 0;
         while (x <= (Mathf.PI * 2)) {
@@ -124,14 +138,14 @@ public class ViewBob : MonoBehaviour {
                 dragOffset = Mathf.Lerp(dragOffset, 0, dragTransition);
             }
 
-            Vector3 dragOffsetVector = new Vector3(0, dragOffset / 4, dragOffset);
+            Vector3 dragOffsetVector = new Vector3(0, dragOffset * DRAG_Y_MULTIPLIER, dragOffset * DRAG_Z_MULTIPLIER);
             Vector3 bobOffsetVector = new Vector3(bobLeftOffset + bobRightOffset, bobVerticalOffset, 0);
             Vector3 breatheOffsetVector = new Vector3(0, breatheOffset, 0);
 
             armsTransform.localPosition = armsInitialLocalPosition + dragOffsetVector + bobOffsetVector + breatheOffsetVector;
             cameraTransform.localPosition = cameraInitialLocalPosition + // camera bob is based on arms bob, but less
-                Vector3.Scale(breatheOffsetVector, new Vector3(0, 0.08f, 0)) +
-                bobOffsetVector.magnitude * new Vector3(0, 0.1f, 0); // converting horizontal bobbing to vertical bobbing
+                Vector3.Scale(breatheOffsetVector, CAMERA_SCALE_BREATHE) +
+                bobOffsetVector.magnitude * CAMERA_SCALE_BOB; // converting horizontal bobbing to vertical bobbing
         }
     }
 }
