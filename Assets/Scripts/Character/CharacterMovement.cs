@@ -21,7 +21,7 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [ReadOnly] public bool isMovingRight = false;
     [SerializeField] [ReadOnly] public bool isMovingLeft = false;
 
-    [PositiveValueOnly] public float sensitivity = 2f;  // Mouse sensitivity
+    [PositiveValueOnly] public float sensitivity = 5f;  // Mouse sensitivity
     [PositiveValueOnly] public float nonSprintSpeed = 1f; // Sprint multiplier when we're not sprinting
     [PositiveValueOnly] public float sprintSpeed = 1.3f; // Sprint multiplier when we are sprinting
     private float sprintMultiplier = 1f;  // sprintSpeed when sprinting, nonSprintSpeed otherwise

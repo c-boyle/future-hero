@@ -7230,6 +7230,18 @@ PrefabInstance:
       propertyPath: futureAudio.audioMixer
       value: 
       objectReference: {fileID: 24100000, guid: b780773e875cfd145af240b5b30ff5de, type: 2}
+    - target: {fileID: 5853391570232394577, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.659
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853391570232394577, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.696
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853391570232394577, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.471
+      objectReference: {fileID: 0}
     - target: {fileID: 6865234424685512300, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: isWatchShown
       value: 0
@@ -7240,6 +7252,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7472229314023975387, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472229314239848224, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: pullDecay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472229314239848224, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: pullForce
+      value: 0.00008
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472229314239848224, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: pullDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7472229314239848224, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}

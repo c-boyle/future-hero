@@ -22,6 +22,7 @@ public class PlayerInput : BaseInput {
     if (Controls == null) {
       Controls = new();
     }
+    Cursor.visible = false;
 
     // Controls that alter movement
     Controls.Player.Move.performed += ctx => activeMovementInput = true;
@@ -45,7 +46,6 @@ public class PlayerInput : BaseInput {
   }
 
   private void Update() {
-    Cursor.visible = false;
     if (dialogueManager && dialogueManager.isDialoging){
       return;
     }
@@ -119,7 +119,10 @@ public class PlayerInput : BaseInput {
   private IEnumerator VibrateController() {
     var gamepad = Gamepad.current;
     gamepad.SetMotorSpeeds(0.01f, 0.01f);
-    yield return new WaitForSeconds(0.5f);
+    for(int i = 0; i < 5; i++){
+      if (UIEventListener.Instance.GameIsPaused) break; // If we pause the game just stop
+      yield return new WaitForSeconds(0.1f);
+    }
     gamepad.SetMotorSpeeds(0f, 0f);
   }
 
