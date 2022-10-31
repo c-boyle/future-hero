@@ -14,7 +14,6 @@ public class Item : MonoBehaviour {
   private List<GameObject> children = new List<GameObject>();
 
   public List<Collider> allColliders = new List<Collider>(); 
-  [SerializeField] [ReadOnly] private bool isColliding = false;
 
   public Bounds itemBounds;
   [SerializeField] [ReadOnly] private Bounds structureBounds;

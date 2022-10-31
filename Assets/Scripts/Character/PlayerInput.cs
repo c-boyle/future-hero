@@ -103,8 +103,6 @@ public class PlayerInput : BaseInput {
   }
 
   private void OnToggleFutureVision() {
-    StopCoroutine(VibrateController());
-    StartCoroutine(VibrateController());
     futureSeer.ToggleFutureVision();
     if (futureSeer.TimeVisionEnabled && closestOutlinedInteractable != null && closestOutlinedInteractable.shaderChanged) {
       closestOutlinedInteractable.toggleOutlineShader();
@@ -114,16 +112,6 @@ public class PlayerInput : BaseInput {
     if (futureSeer.TimeVisionEnabled != enabled) {
       OnToggleFutureVision();
     }
-  }
-
-  private IEnumerator VibrateController() {
-    var gamepad = Gamepad.current;
-    gamepad.SetMotorSpeeds(0.01f, 0.01f);
-    for(int i = 0; i < 5; i++){
-      if (UIEventListener.Instance.GameIsPaused) break; // If we pause the game just stop
-      yield return new WaitForSeconds(0.1f);
-    }
-    gamepad.SetMotorSpeeds(0f, 0f);
   }
 
 }

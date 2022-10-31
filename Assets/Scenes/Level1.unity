@@ -199,7 +199,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cup
   allColliders: []
-  isColliding: 0
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -446,7 +445,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cup
   allColliders: []
-  isColliding: 0
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -1321,7 +1319,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cup
   allColliders: []
-  isColliding: 0
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -2491,7 +2488,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cup
   allColliders: []
-  isColliding: 0
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -3193,6 +3189,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 919322443}
     - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 514293191}
@@ -3204,6 +3208,26 @@ PrefabInstance:
       propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 779552402}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 451398971}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: TriggerNotification
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: Watch, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3401147126573473932, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3664,7 +3688,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cup
   allColliders: []
-  isColliding: 0
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -5204,7 +5227,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cup
   allColliders: []
-  isColliding: 0
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -6122,7 +6144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cup
   allColliders: []
-  isColliding: 0
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -6774,7 +6795,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cup
   allColliders: []
-  isColliding: 0
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -7142,6 +7162,10 @@ PrefabInstance:
       propertyPath: _isInFront
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1984751590039026284, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ca66de5018cb27a41990462ebfa5cdce, type: 2}
     - target: {fileID: 2220665138822461257, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -7282,6 +7306,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770212, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770212, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770212, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770212, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: watchFace
+      value: 
+      objectReference: {fileID: 1351758251}
     - target: {fileID: 8581246045155444791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_Name
       value: FutureHero
@@ -7366,7 +7410,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9150922704266581790, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_Name
+      value: WatchFace
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150922704266581790, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6433780795880713818, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
 --- !u!1001 &1035604999
 PrefabInstance:
@@ -7524,6 +7577,10 @@ PrefabInstance:
     - target: {fileID: 7071942749806940788, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071942749806940789, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 114.299805
       objectReference: {fileID: 0}
     - target: {fileID: 7071942749806940789, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7792,6 +7849,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 451398971}
+        m_TargetAssemblyTypeName: Watch, Assembly-CSharp
+        m_MethodName: TriggerNotification
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1076078015
 GameObject:
   m_ObjectHideFlags: 0
@@ -8030,7 +8099,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cup
   allColliders: []
-  isColliding: 0
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -8565,7 +8633,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cup
   allColliders: []
-  isColliding: 0
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -9337,6 +9404,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 451398971}
+        m_TargetAssemblyTypeName: Watch, Assembly-CSharp
+        m_MethodName: TriggerNotification
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   requireItem: {fileID: 4717321637381505904}
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 0}
@@ -9897,6 +9976,11 @@ CapsuleCollider:
   m_Height: 1.7470018
   m_Direction: 1
   m_Center: {x: -0.0000018965037, y: -0.00000021670412, z: -0.011000634}
+--- !u!1 &1351758251 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9150922704266581790, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+  m_PrefabInstance: {fileID: 1026043323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1369222918 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7209910829388111827, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
@@ -10074,7 +10158,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cup
   allColliders: []
-  isColliding: 0
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -10820,7 +10903,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cup
   allColliders: []
-  isColliding: 0
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
