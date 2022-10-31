@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class TimedAudio : MonoBehaviour {
   [SerializeField] private AudioSource audioSource;
-  [SerializeField] private LevelTimer timer;
   [SerializeField] private float secondsLeftForPitchChange = 40f;
+  [SerializeField] private float endPitch = 1.5f;
 
   private float startPitch;
-  [SerializeField] private float endPitch = 1.5f;
+  
 
   private void Start() {
     startPitch = audioSource.pitch;
   }
 
   private void Update() {
-    if (timer.SecondsLeft <= secondsLeftForPitchChange) {
+    if (LevelTimer.Instance.SecondsLeft <= secondsLeftForPitchChange) {
       float stepSize = (endPitch - startPitch) / secondsLeftForPitchChange;
       audioSource.pitch += stepSize * Time.deltaTime;
     } else {
