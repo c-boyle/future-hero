@@ -36,7 +36,7 @@ public class ItemHolder : MonoBehaviour {
   }
 
   private void ForceToHand() {
-    if (_heldItem && _heldItem.Rigidbody) {
+    if (_heldItem != null && _heldItem.Rigidbody != null) {
 
       Vector3 direction;
 

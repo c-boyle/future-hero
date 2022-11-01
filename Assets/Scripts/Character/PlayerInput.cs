@@ -18,6 +18,10 @@ public class PlayerInput : BaseInput {
   private bool isSprinting = false;
   private Interactable closestOutlinedInteractable;
 
+  // Constants
+  private const float INITIAL_SPEED_MULTIPLIER = 1f;
+  private const float SPRINT_SPEED_MULTIPLIER = 1.3f;
+
   private void Awake() {
     if (Controls == null) {
       Controls = new();
@@ -26,8 +30,8 @@ public class PlayerInput : BaseInput {
 
     // Controls that alter movement
     Controls.Player.Move.performed += ctx => activeMovementInput = true;
-    Controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); movement.ToggleSprint(false);};
-    Controls.Player.Sprint.performed += ctx => { isSprinting = true; movement.ToggleSprint(true); };
+    Controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); movement.sprintMultiplier = INITIAL_SPEED_MULTIPLIER; };
+    Controls.Player.Sprint.performed += ctx => { isSprinting = true; };
     Controls.Player.Sprint.canceled += ctx => isSprinting = false;
     Controls.Player.Jump.performed += ctx => OnJump();
     Controls.Player.LookAtWatch.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = true; };
@@ -53,9 +57,11 @@ public class PlayerInput : BaseInput {
       movement.Move(Controls.Player.Move.ReadValue<Vector2>());
     }
     if (isSprinting) {
-      viewBob.GLOBAL_BOB_SPEED_MULTIPLIER = 1.3f;
+      movement.sprintMultiplier = SPRINT_SPEED_MULTIPLIER;
+      viewBob.globalSpeedMultiplier = SPRINT_SPEED_MULTIPLIER;
     } else {
-      viewBob.GLOBAL_BOB_SPEED_MULTIPLIER = 1;
+      movement.sprintMultiplier = INITIAL_SPEED_MULTIPLIER;
+      viewBob.globalSpeedMultiplier = INITIAL_SPEED_MULTIPLIER;
     }
     if (activeLookInput) {
       movement.Look(Controls.Player.Look.ReadValue<Vector2>());

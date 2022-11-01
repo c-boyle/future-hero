@@ -16,7 +16,6 @@ public class Item : MonoBehaviour {
   public List<Collider> allColliders = new List<Collider>(); 
 
   public Bounds itemBounds;
-  [SerializeField] [ReadOnly] private Bounds structureBounds;
   
   [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
 
@@ -49,7 +48,6 @@ public class Item : MonoBehaviour {
       itemBounds.Encapsulate(allColliders[i].bounds);
     }
 
-    structureBounds = GameObject.Find("Structure").GetComponent<Collider>().bounds;    
   }
 
   void Update()
