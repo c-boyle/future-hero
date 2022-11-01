@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class OldLady : MonoBehaviour
+public class PushPlayer : MonoBehaviour
 {
     private float force_backwards = 500f;
-    private float force_upwards = 200f;
+    private float force_upwards = 100f;
 
     private AudioSource ladyVoice;
+    private Rigidbody rigidBody;
 
     [SerializeField] private AudioClip talking1;
     [SerializeField] private AudioClip talking2;
@@ -18,21 +19,40 @@ public class OldLady : MonoBehaviour
     [SerializeField] private AudioClip mumbling2;
     [SerializeField] private AudioClip mumbling3;
 
-
     public bool mumble = true;  
 
     void Start() {
         ladyVoice = gameObject.AddComponent<AudioSource>();
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     private void OnTriggerEnter(Collider collider) {
         if (collider.tag == "Player"){ 
-            Debug.Log("YAY");
             Vector3 force = -(collider.transform.forward * force_backwards) + (collider.transform.up * force_upwards);
             collider.attachedRigidbody.AddForce(force);
 
-            playAngrySound();
+            // playAngrySound();
+            if (rigidBody) {
+                rigidBody.AddForce(transform.up * force_upwards * (rigidBody.mass / collider.attachedRigidbody.mass) / 4);
+            }
         }
+
+        if (collider.tag == "Employee"){
+            Debug.Log("We should move...");
+            transform.position -= transform.right; 
+        }
+
+    }
+
+    private void OnTriggerExit(Collider collider) {
+        if (collider.tag == "Employee"){
+            StartCoroutine(WaitABit());
+        }
+    }
+
+    private IEnumerator WaitABit() {
+        yield return new WaitForSeconds(2f);
+        transform.position += transform.right;  
     }
 
     private void playAngrySound() {
