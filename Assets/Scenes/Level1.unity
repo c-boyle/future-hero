@@ -1898,58 +1898,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: startDelay.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: startDelay.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minScalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].time
-      value: 0.026756287
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].time
-      value: 0.96319705
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[0].time
-      value: 0.023409788
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[1].time
-      value: 0.9899597
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].value
-      value: 0.33783722
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].value
-      value: 0.35135043
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9188062267743548055, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
       propertyPath: m_Name
       value: AngryEmojiEffect
@@ -3096,6 +3044,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 919322443}
     - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 514293191}
@@ -3107,6 +3067,46 @@ PrefabInstance:
       propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 779552402}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 1814941178}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[5].m_Target
+      value: 
+      objectReference: {fileID: 1242053784}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: Stop
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: UnityEngine.ParticleSystem, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
+      value: UnityEngine.ParticleSystem, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354324922, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
+      propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3401147126573473932, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4136,58 +4136,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: startDelay.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: startDelay.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minScalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].time
-      value: 0.026756287
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].time
-      value: 0.96319705
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[0].time
-      value: 0.023409788
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[1].time
-      value: 0.9899597
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].value
-      value: 0.33783722
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].value
-      value: 0.35135043
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9188062267743548055, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
       propertyPath: m_Name
       value: AngryEmojiEffect
@@ -4249,58 +4197,6 @@ PrefabInstance:
     - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: startDelay.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: startDelay.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minScalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].time
-      value: 0.026756287
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].time
-      value: 0.96319705
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[0].time
-      value: 0.023409788
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[1].time
-      value: 0.9899597
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].value
-      value: 0.33783722
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].value
-      value: 0.35135043
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[1].value
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9188062267743548055, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
       propertyPath: m_Name
@@ -6103,62 +5999,6 @@ PrefabInstance:
     - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: startDelay.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: startDelay.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minScalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].time
-      value: 0.026756287
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].time
-      value: 0.96319705
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[0].time
-      value: 0.023409788
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[1].time
-      value: 0.9899597
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].value
-      value: 0.33783722
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].value
-      value: 0.35135043
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[1].value
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9188062267743548055, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
       propertyPath: m_Name
@@ -8325,58 +8165,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: startDelay.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: startDelay.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minScalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].time
-      value: 0.026756287
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].time
-      value: 0.96319705
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[0].time
-      value: 0.023409788
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[1].time
-      value: 0.9899597
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].value
-      value: 0.33783722
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].value
-      value: 0.35135043
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9188062267743548055, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
       propertyPath: m_Name
       value: AngryEmojiEffect
@@ -8874,58 +8662,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: startDelay.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: startDelay.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minScalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].time
-      value: 0.026756287
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].time
-      value: 0.96319705
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[0].time
-      value: 0.023409788
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[1].time
-      value: 0.9899597
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].value
-      value: 0.33783722
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].value
-      value: 0.35135043
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
-      propertyPath: EmissionModule.rateOverTime.minCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9188062267743548055, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
       propertyPath: m_Name
       value: AngryEmojiEffect
@@ -9369,6 +9105,11 @@ CapsuleCollider:
   m_Height: 1.7470018
   m_Direction: 1
   m_Center: {x: -0.0000018965037, y: -0.00000021670412, z: -0.011000634}
+--- !u!198 &1242053784 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+  m_PrefabInstance: {fileID: 1422061714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1259834950
 GameObject:
   m_ObjectHideFlags: 0
@@ -11102,6 +10843,87 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421404543}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1422061714
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 779552401}
+    m_Modifications:
+    - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.116
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.19417554
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.19417554
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6799235
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.6799235
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548048, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: startDelay.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: startDelay.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: EmissionModule.rateOverTime.minScalar
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188062267743548055, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+      propertyPath: m_Name
+      value: AngryEmojiEffect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
 --- !u!1 &1425680785 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7b4bd31b17a40784f8fd461b81081f18, type: 3}
@@ -12590,6 +12412,11 @@ PrefabInstance:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7b4bd31b17a40784f8fd461b81081f18, type: 3}
   m_PrefabInstance: {fileID: 6173076942209685988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1814941178 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9188062267743548049, guid: 2c08f61ac747c854397c61ac2527fb42, type: 3}
+  m_PrefabInstance: {fileID: 2035945025}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1819141295
 GameObject:
