@@ -1534,13 +1534,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152901288}
   m_LocalRotation: {x: -0, y: 0.7115852, z: -0, w: 0.7025998}
-  m_LocalPosition: {x: 1.153, y: 0.3285002, z: -0.32}
-  m_LocalScale: {x: 0.09999993, y: 0.14, z: 0.09999993}
+  m_LocalPosition: {x: 3.263, y: 0.5297501, z: 8.074588}
+  m_LocalScale: {x: 0.09999992, y: 0.07, z: 0.09999992}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 937618668}
-  m_Father: {fileID: 2061402809}
-  m_RootOrder: 0
+  m_Father: {fileID: 528732912}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 90.728, z: 0}
 --- !u!136 &152901290
 CapsuleCollider:
@@ -4482,6 +4482,7 @@ Transform:
   - {fileID: 462379619}
   - {fileID: 448304908}
   - {fileID: 1700905171}
+  - {fileID: 152901289}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7326,6 +7327,30 @@ PrefabInstance:
       propertyPath: watchFace
       value: 
       objectReference: {fileID: 1351758251}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: futureColour.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: futureColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: futureColour.r
+      value: 0.6698113
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: presentColour.b
+      value: 0.735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: presentColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: presentColour.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8581246045155444791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_Name
       value: FutureHero
@@ -13540,8 +13565,7 @@ Transform:
   m_LocalPosition: {x: 0.9599999, y: -0.71, z: 9.654588}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 152901289}
+  m_Children: []
   m_Father: {fileID: 1134501026}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

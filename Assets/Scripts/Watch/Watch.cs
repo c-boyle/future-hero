@@ -53,16 +53,26 @@ public abstract class Watch : MonoBehaviour
     }
 
     public void toggleFutureTime(bool timeVision) {
-        StopAllCoroutines();
+        if (isFuture == timeVision) return;
+        
+        SetGlow(false);
+
+        StopCoroutine(TransitionManager());
         StartCoroutine(TransitionManager());
+
+        StopCoroutine(TransitionTime());
         StartCoroutine(TransitionTime());
+
         Color start = (isFuture) ? futureColour : presentColour;
         Color end = (isFuture) ? presentColour : futureColour;
+        StopCoroutine(TransitionColour(end, start));
         StartCoroutine(TransitionColour(start, end));
+
         isFuture = timeVision;
     }
 
     protected IEnumerator TransitionManager() {
+        transitionTime = 0.0f;
         var gamepad = Gamepad.current;
         if (gamepad != null) gamepad.SetMotorSpeeds(0.01f, 0.01f);
         notTransitioning = false;
@@ -70,7 +80,6 @@ public abstract class Watch : MonoBehaviour
             transitionTime += deltaTransition;
             yield return null;
         }
-        transitionTime = 0.0f;
         notTransitioning = true;
         if (gamepad != null) gamepad.SetMotorSpeeds(0.0f, 0.0f);
     }
