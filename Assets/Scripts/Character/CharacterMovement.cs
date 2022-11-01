@@ -16,10 +16,13 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [ReadOnly] private Vector3 velocityLocal = Vector3.zero;
     [SerializeField] [ReadOnly] private Vector3 moveDirection = Vector3.zero;
     [SerializeField] [ReadOnly] private Vector3 moveDirectionLocal = Vector3.zero;
+    [SerializeField] [ReadOnly] private Vector3 viewDirection = Vector3.zero;
     [SerializeField] [ReadOnly] public bool isMovingForward = false;
     [SerializeField] [ReadOnly] public bool isMovingBackward = false;
     [SerializeField] [ReadOnly] public bool isMovingRight = false;
     [SerializeField] [ReadOnly] public bool isMovingLeft = false;
+    [SerializeField] [ReadOnly] public bool isRotatingRight = false;
+    [SerializeField] [ReadOnly] public bool isRotatingLeft = false;
 
     [PositiveValueOnly] public float sensitivity = 2f;  // Mouse sensitivity
     [PositiveValueOnly] public float sprintMultiplier = 1f;  // sprintSpeed when sprinting, nonSprintSpeed otherwise
@@ -41,10 +44,11 @@ public class CharacterMovement : MonoBehaviour {
     }
 
     // Function that gets called each time the mouse is moved
-    public void Look(Vector2 viewDirection) {
+    public void Look(Vector2 lookDirection) {
         Vector3 cameraRotation = ConvertAngle(_cameraTransform.localRotation.eulerAngles);
         Vector3 playerRotation = ConvertAngle(_bodyTransform.rotation.eulerAngles);
-        SetView(cameraRotation.x - viewDirection.y * sensitivity, playerRotation.y + viewDirection.x * sensitivity);
+        SetView(cameraRotation.x - lookDirection.y * sensitivity, playerRotation.y + lookDirection.x * sensitivity);
+        viewDirection = lookDirection;
     }
 
     // Function that lets the Future Hero Jump
@@ -94,6 +98,8 @@ public class CharacterMovement : MonoBehaviour {
         isMovingBackward = -velocityLocal.z > MAX_VELOCITY * NON_STATIONARY_RATIO;
         isMovingRight = velocityLocal.x > MAX_VELOCITY * NON_STATIONARY_RATIO;
         isMovingLeft = -velocityLocal.x > MAX_VELOCITY * NON_STATIONARY_RATIO;
+        isRotatingLeft = viewDirection.x < 0;
+        isRotatingRight = viewDirection.x > 0;
     }
 
     // Helper function to convert a wrapped angle to a non wrapped angle (etc. 270 -> -90)
@@ -114,6 +120,7 @@ public class CharacterMovement : MonoBehaviour {
         Vector3 playerRotation = ConvertAngle(_bodyTransform.rotation.eulerAngles);
         yawDegree = yaw;
         _bodyTransform.rotation = Quaternion.Euler(playerRotation.x, yawDegree, playerRotation.z);
+
     }
 
     public bool IsGrounded() {
