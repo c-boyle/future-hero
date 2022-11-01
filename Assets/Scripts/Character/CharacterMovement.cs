@@ -16,7 +16,7 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [ReadOnly] private Vector3 velocityLocal = Vector3.zero;
     [SerializeField] [ReadOnly] private Vector3 moveDirection = Vector3.zero;
     [SerializeField] [ReadOnly] private Vector3 moveDirectionLocal = Vector3.zero;
-    [SerializeField] [ReadOnly] private Vector3 viewDirection = Vector3.zero;
+    [SerializeField] [ReadOnly] private Vector2 viewDirection = Vector2.zero;
     [SerializeField] [ReadOnly] public bool isMovingForward = false;
     [SerializeField] [ReadOnly] public bool isMovingBackward = false;
     [SerializeField] [ReadOnly] public bool isMovingRight = false;
