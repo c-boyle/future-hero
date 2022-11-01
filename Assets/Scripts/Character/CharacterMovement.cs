@@ -9,18 +9,20 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [MustBeAssigned] private Transform _cameraTransform;
     [SerializeField] [MustBeAssigned] private Collider _bodyCollider;
     [SerializeField] [MustBeAssigned] private LayerMask _groundLayer;
-    [SerializeField] [MustBeAssigned] private Animation _watchArmAnimation;
-
 
     [SerializeField] [ReadOnly] private float pitchDegree = 0f;
     [SerializeField] [ReadOnly] private float yawDegree = 0f;
     [SerializeField] [ReadOnly] private Vector3 velocity = Vector3.zero; // For debugging purposes
+    [SerializeField] [ReadOnly] private Vector3 velocityLocal = Vector3.zero;
     [SerializeField] [ReadOnly] private Vector3 moveDirection = Vector3.zero;
+    [SerializeField] [ReadOnly] private Vector3 moveDirectionLocal = Vector3.zero;
+    [SerializeField] [ReadOnly] public bool isMovingForward = false;
+    [SerializeField] [ReadOnly] public bool isMovingBackward = false;
+    [SerializeField] [ReadOnly] public bool isMovingRight = false;
+    [SerializeField] [ReadOnly] public bool isMovingLeft = false;
 
     [PositiveValueOnly] public float sensitivity = 2f;  // Mouse sensitivity
-    [PositiveValueOnly] public float nonSprintSpeed = 1f; // Sprint multiplier when we're not sprinting
-    [PositiveValueOnly] public float sprintSpeed = 1.3f; // Sprint multiplier when we are sprinting
-    private float sprintMultiplier = 1f;  // sprintSpeed when sprinting, nonSprintSpeed otherwise
+    [PositiveValueOnly] public float sprintMultiplier = 1f;  // sprintSpeed when sprinting, nonSprintSpeed otherwise
     private const float MAX_PITCH_DEGREE = 60; // How high or low the player can raise their head
     private const float GROUND_MAX_VELOCITY = 2.3f; // Maximum speed the player can reach while moving on ground
     private const float AIR_MAX_VELOCITY = 2.0f; // Maximum speed the player can reach while moving in midair
@@ -30,10 +32,12 @@ public class CharacterMovement : MonoBehaviour {
     private const float AIR_FRICTION = 0.01f; // How quickly the player slows to a stop while in midair
     private const float JUMP_INTENSITY = 3f; // How high the player jumps
     private const float GROUND_CHECK_RADIUS = 0.225f; // Radius of the collider used for ground checking
+    private const float NON_STATIONARY_RATIO = 0.5f; // The player is considered "moving" if currentVelocity > MAX_VELOCITY * NON_STATIONARY_RATIO
 
     // Function that gets called each time move inputs are used
     public void Move(Vector2 movement) {
         moveDirection = _bodyTransform.right * movement.x + _bodyTransform.forward * movement.y;
+        moveDirectionLocal = new Vector3(movement.x, 0, movement.y);
     }
 
     // Function that gets called each time the mouse is moved
@@ -46,19 +50,6 @@ public class CharacterMovement : MonoBehaviour {
     // Function that lets the Future Hero Jump
     public void Jump() {
         if (IsGrounded()) _rigidbody.AddForce(_bodyTransform.up * JUMP_INTENSITY, ForceMode.Impulse);
-    }
-
-    // Function that triggers the animation to look at the watch
-    public void LookAtWatch() {
-        _watchArmAnimation.Stop("reverseToggleWatchArm_Left");
-        // _watchArmAnimation["reverseToggleWatchArm_Left"].speed = 1f;
-        _watchArmAnimation.Play("reverseToggleWatchArm_Left");
-    }
-
-    public void PutWatchAway() {
-        _watchArmAnimation.Stop("toggleWatchArm_Left");
-        // _watchArmAnimation["toggleWatchArm_Left"].speed = -1f;
-        _watchArmAnimation.Play("toggleWatchArm_Left");
     }
 
     /*
@@ -98,6 +89,11 @@ public class CharacterMovement : MonoBehaviour {
 
         // For debugging purposes
         velocity = _rigidbody.velocity;
+        velocityLocal = transform.InverseTransformDirection(velocity);
+        isMovingForward = velocityLocal.z > MAX_VELOCITY * NON_STATIONARY_RATIO;
+        isMovingBackward = -velocityLocal.z > MAX_VELOCITY * NON_STATIONARY_RATIO;
+        isMovingRight = velocityLocal.x > MAX_VELOCITY * NON_STATIONARY_RATIO;
+        isMovingLeft = -velocityLocal.x > MAX_VELOCITY * NON_STATIONARY_RATIO;
     }
 
     // Helper function to convert a wrapped angle to a non wrapped angle (etc. 270 -> -90)
@@ -131,14 +127,5 @@ public class CharacterMovement : MonoBehaviour {
         float offset = GROUND_CHECK_RADIUS * 0.05f;
         Vector3 groundPosition = new Vector3(_bodyCollider.bounds.center.x, _bodyCollider.bounds.min.y + GROUND_CHECK_RADIUS - offset, _bodyCollider.bounds.center.z);
         Gizmos.DrawWireSphere(groundPosition, GROUND_CHECK_RADIUS);
-    }
-
-    public void ToggleSprint(bool sprint) {
-        if (sprint) {
-            sprintMultiplier = sprintSpeed;
-        }
-        else {
-            sprintMultiplier = nonSprintSpeed;
-        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MyBox;
 
 public class Item : MonoBehaviour {
   // Name acts as a key
@@ -8,7 +9,14 @@ public class Item : MonoBehaviour {
 
   private Vector3 originalScale;
   private int originalLayer;
+  private float originalMass;
+
   private List<GameObject> children = new List<GameObject>();
+
+  public List<Collider> allColliders = new List<Collider>(); 
+  [SerializeField] [ReadOnly] private bool isColliding = false;
+
+  public Bounds itemBounds;
   
   [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
 
@@ -29,9 +37,18 @@ public class Item : MonoBehaviour {
   void Start() {
     originalScale = transform.lossyScale;
     originalLayer = gameObject.layer;
+    if (Rigidbody) originalMass = Rigidbody.mass;
+
     foreach(Transform childTransform in transform) {
       children.Add(childTransform.gameObject);
     }
+    allColliders = new List<Collider>(GetComponentsInChildren<Collider>());
+
+    itemBounds = allColliders[0].bounds;
+    for(int i = 1; i < allColliders.Count; i++){
+      itemBounds.Encapsulate(allColliders[i].bounds);
+    }
+
   }
 
   void Update()
@@ -41,6 +58,7 @@ public class Item : MonoBehaviour {
     if (transform.hasChanged)
     {
         FixScale();
+        transform.hasChanged = false;
     }
   }
 
@@ -83,19 +101,20 @@ public class Item : MonoBehaviour {
                                itemScale.z * originalScale.z / newGlobalScale.z);
   }
 
-  public void setLayer(int layer){ 
+  public void SetMass(float mass) {
+    if (Rigidbody) Rigidbody.mass = mass; 
+  }
+
+  public void SetLayer(int layer){ 
     foreach (GameObject go in children) {
       go.layer = layer;
     }
   }
 
-  void OnCollisionStay(Collision collision) {
-    FixScale();
-  }
-
   public void ReturnToOriginal() {
     FixScale();
-    setLayer(originalLayer);
+    // SetLayer(originalLayer);
+    SetMass(originalMass);
   }
 
 }
