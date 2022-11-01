@@ -39,7 +39,7 @@ public class PushPlayer : MonoBehaviour
 
         if (collider.tag == "Employee"){
             Debug.Log("We should move...");
-            transform.position -= transform.right; 
+            transform.position -= transform.right*0.4f; 
         }
 
     }
@@ -52,7 +52,7 @@ public class PushPlayer : MonoBehaviour
 
     private IEnumerator WaitABit() {
         yield return new WaitForSeconds(2f);
-        transform.position += transform.right;  
+        transform.position += transform.right*0.4f;  
     }
 
     private void playAngrySound() {
