@@ -36,6 +36,11 @@ public class LevelTimer : Singleton<LevelTimer> {
   public void EndLevel(bool won) {
     if (levelEnded) return;
     
+    // Look at the watch
+    // Skip to time end
+    // Stop looking at watch
+    // Play end cutscene
+
     LevelEnd?.Invoke(this, new() { Won = won });
     levelEnded = true;
   }
