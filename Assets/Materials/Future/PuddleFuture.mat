@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 9e0a270c7d7ebb04da3f63c3fa490e66, type: 3}
   m_ValidKeywords:
   - _BLENDFROM_TRANSPARENT
-  - _BLENDTO__COLOR_ALT
+  - _BLENDTO__COLOR
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -61,7 +61,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _BLENDFROM: 2
-    - _BLENDTO: 1
+    - _BLENDTO: 0
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
@@ -84,7 +84,7 @@ Material:
     - _YScale: 0.163
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.28034887, g: 0.5961022, b: 0.7924528, a: 1}
+    - _Color: {r: 0.2901961, g: 0.78039217, b: 0.81960785, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &384116919916686371
