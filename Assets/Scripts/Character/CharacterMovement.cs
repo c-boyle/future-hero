@@ -24,6 +24,11 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [ReadOnly] public bool isMovingLeft = false;
     [SerializeField] [ReadOnly] public bool isRotatingRight = false;
     [SerializeField] [ReadOnly] public bool isRotatingLeft = false;
+    // Jump rise start
+    // Jump rise end
+    // Jump mid air
+    // jump fall start
+    // jump fall end
 
     [PositiveValueOnly] public float sensitivity = 2f;  // Mouse sensitivity
     [PositiveValueOnly] public bool isSprintEnabled = false;  // sprintSpeed when sprinting, nonSprintSpeed otherwise
