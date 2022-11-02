@@ -8,7 +8,6 @@ using System;
 public abstract class Watch : MonoBehaviour
 {
     [SerializeField] private GameObject watchFace;
-    private PostProcessVolume watchPPV;
     private Renderer watchRenderer;
     [SerializeField] private Color presentColour = new Color(0,0,1,0); [SerializeField] private Color futureColour = new Color(1,0,0,0); 
     protected float transitionTime = 0.0f; protected float transitionMax = 1.0f; protected float deltaTransition = 0.03f;  
@@ -28,7 +27,6 @@ public abstract class Watch : MonoBehaviour
     private void Start() {
         LevelTimer.TimerUpdated += SetPresent;
         if (watchFace != null) {
-            watchPPV = watchFace.GetComponent<PostProcessVolume>();
             watchRenderer = watchFace.GetComponent<Renderer>();
             if (watchRenderer != null) { 
                 watchRenderer.material.color = presentColour;
