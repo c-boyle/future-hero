@@ -9,7 +9,7 @@ public class Marker : MonoBehaviour {
   [SerializeField] private Sprite icon;
   [SerializeField] private float iconBoxSize;
 
-  private const float markerDuration = 5f;
+  private const float markerDuration = 7f;
 
   private static RectTransform uiRoot = null;
   private static Camera mainCamera = null;

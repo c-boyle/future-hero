@@ -97,10 +97,12 @@ public abstract class Watch : MonoBehaviour
     }
 
     protected void SetGlow(bool glow) {
+        if (watchRenderer == null) return;
+        
         Material material = watchRenderer.material;
         if (glow) {
             material.EnableKeyword("_EMISSION");
-            material.SetColor("_EmissionColor", material.color * 2.5f);
+            material.SetColor("_EmissionColor", material.color * 3.5f);
         } else {
             material.DisableKeyword("_EMISSION");
             material.SetColor("_EmissionColor", Color.black);
@@ -114,7 +116,6 @@ public abstract class Watch : MonoBehaviour
     protected IEnumerator GlowNotification() {
         for(int i = 0; i < 3; i++) {
             SetGlow(true);
-            yield return null;
             yield return new WaitForSeconds(0.5f);   
             SetGlow(false);
             yield return new WaitForSeconds(0.5f);   
