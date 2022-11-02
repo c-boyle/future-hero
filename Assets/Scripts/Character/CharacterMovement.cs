@@ -17,6 +17,7 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [ReadOnly] private Vector3 moveDirection = Vector3.zero;
     [SerializeField] [ReadOnly] private Vector3 moveDirectionLocal = Vector3.zero;
     [SerializeField] [ReadOnly] private Vector2 viewDirection = Vector2.zero;
+    [SerializeField] [ReadOnly] public bool isSprinting = false;
     [SerializeField] [ReadOnly] public bool isMovingForward = false;
     [SerializeField] [ReadOnly] public bool isMovingBackward = false;
     [SerializeField] [ReadOnly] public bool isMovingRight = false;
@@ -25,6 +26,7 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [ReadOnly] public bool isRotatingLeft = false;
 
     [PositiveValueOnly] public float sensitivity = 2f;  // Mouse sensitivity
+    [PositiveValueOnly] public bool isSprintEnabled = false;  // sprintSpeed when sprinting, nonSprintSpeed otherwise
     [PositiveValueOnly] public float sprintMultiplier = 1f;  // sprintSpeed when sprinting, nonSprintSpeed otherwise
     private const float MAX_PITCH_DEGREE = 60; // How high or low the player can raise their head
     private const float GROUND_MAX_VELOCITY = 2.3f; // Maximum speed the player can reach while moving on ground
@@ -79,8 +81,8 @@ public class CharacterMovement : MonoBehaviour {
     void FixedUpdate() {
         bool isGrounded = IsGrounded();
         float FRICTION = isGrounded ? GROUND_FRICTION : AIR_FRICTION;
-        float ACCELERATION = (isGrounded ? GROUND_ACCELERATION : AIR_ACCELERATION) * sprintMultiplier;
-        float MAX_VELOCITY = (isGrounded ? GROUND_MAX_VELOCITY : AIR_MAX_VELOCITY) * sprintMultiplier;
+        float ACCELERATION = (isGrounded ? GROUND_ACCELERATION : AIR_ACCELERATION) * (isSprintEnabled ? sprintMultiplier : 1 );
+        float MAX_VELOCITY = (isGrounded ? GROUND_MAX_VELOCITY : AIR_MAX_VELOCITY) * (isSprintEnabled ? sprintMultiplier : 1 );
         Vector3 currentVelocity = _rigidbody.velocity;
 
         Vector3 deltaVelocity = moveDirection * ACCELERATION;
@@ -98,6 +100,7 @@ public class CharacterMovement : MonoBehaviour {
         isMovingBackward = -velocityLocal.z > MAX_VELOCITY * NON_STATIONARY_RATIO;
         isMovingRight = velocityLocal.x > MAX_VELOCITY * NON_STATIONARY_RATIO;
         isMovingLeft = -velocityLocal.x > MAX_VELOCITY * NON_STATIONARY_RATIO;
+        isSprinting = isSprintEnabled && isMovingForward;
         isRotatingLeft = viewDirection.x < 0;
         isRotatingRight = viewDirection.x > 0;
     }

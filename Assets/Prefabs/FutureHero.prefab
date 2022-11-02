@@ -1045,6 +1045,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWatchShown: 0
+  isSprinting: 0
+  isMidAir: 0
   animator: {fileID: 133045398669200728}
 --- !u!1 &5471012777290038354
 GameObject:
@@ -1239,6 +1241,12 @@ MonoBehaviour:
   _heldItem: {fileID: 0}
   holderCollider: {fileID: 0}
   grabAudio: {fileID: 635879598930849974}
+  pullForce: 0.00001
+  rotateForce: 0.008
+  pullDecay: 0.7
+  rotateDecay: 0.4
+  pullDistance: 0.2
+  rotateDistance: 10
 --- !u!82 &635879598930849974
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2177,6 +2185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ee09d08db3d974d90bc2d5991b8e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FPSArmsManager: {fileID: 6865234424685512300}
   movement: {fileID: 8923843087483422747}
   armsTransform: {fileID: 4625304006976465694}
   cameraTransform: {fileID: 8923843087717536976}
@@ -2189,8 +2198,9 @@ MonoBehaviour:
   bobLeftOffset: 0
   bobRightOffset: 0
   breatheOffset: 0
-  GLOBAL_BOB_MULTIPLIER: 1
   isEnabled: 1
+  globalSpeedMultiplier: 0
+  yawRotation: 0
 --- !u!114 &8923843087483422747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2216,13 +2226,17 @@ MonoBehaviour:
   velocityLocal: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
   moveDirectionLocal: {x: 0, y: 0, z: 0}
+  viewDirection: {x: 0, y: 0}
+  isSprinting: 0
   isMovingForward: 0
   isMovingBackward: 0
   isMovingRight: 0
   isMovingLeft: 0
+  isRotatingRight: 0
+  isRotatingLeft: 0
   sensitivity: 2
-  nonSprintSpeed: 1
-  sprintSpeed: 1.5
+  isSprintEnabled: 0
+  sprintMultiplier: 1
 --- !u!114 &8923843087483422746
 MonoBehaviour:
   m_ObjectHideFlags: 0

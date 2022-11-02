@@ -29,9 +29,9 @@ public class PlayerInput : BaseInput {
     // Controls that alter movement
     Controls.Player.Move.performed += ctx => activeMovementInput = true;
     Controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); movement.sprintMultiplier = INITIAL_SPEED_MULTIPLIER; };
-    Controls.Player.Sprint.performed += ctx => { isSprinting = true; };
+    Controls.Player.Sprint.performed += ctx => isSprinting = true;
     Controls.Player.Sprint.canceled += ctx => isSprinting = false;
-    Controls.Player.Jump.performed += ctx => OnJump();
+    Controls.Player.Jump.performed += ctx => { OnJump(); };
     Controls.Player.LookAtWatch.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = true; };
     Controls.Player.LookAtWatch.canceled += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = false; };
 
@@ -56,9 +56,11 @@ public class PlayerInput : BaseInput {
       movement.Move(Controls.Player.Move.ReadValue<Vector2>());
     }
     if (isSprinting) {
+      movement.isSprintEnabled = true;
       movement.sprintMultiplier = SPRINT_SPEED_MULTIPLIER;
       viewBob.globalSpeedMultiplier = SPRINT_SPEED_MULTIPLIER;
     } else {
+      movement.isSprintEnabled = false;
       movement.sprintMultiplier = INITIAL_SPEED_MULTIPLIER;
       viewBob.globalSpeedMultiplier = INITIAL_SPEED_MULTIPLIER;
     }
