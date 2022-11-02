@@ -4,10 +4,10 @@ using UnityEngine;
 using MyBox;
 
 // TODO: Add randomness
-// TODO: Add rotational inertia
 // TODO: add jump drift
 
 public class ViewBob : MonoBehaviour {
+    [SerializeField] [MustBeAssigned] private FPSArmsManager FPSArmsManager;
     [SerializeField] [MustBeAssigned] private CharacterMovement movement;
     [SerializeField] [MustBeAssigned] private Transform armsTransform;
     [SerializeField] [MustBeAssigned] private Transform cameraTransform;
@@ -31,6 +31,7 @@ public class ViewBob : MonoBehaviour {
 
     private Vector3 cameraInitialLocalPosition;
     private Vector3 armsInitialLocalPosition;
+    private Vector3 armsInitialLocalRotation;
     public bool isEnabled = true;
     public float globalSpeedMultiplier; // bob speed multiplier for sprinting
 
@@ -48,9 +49,16 @@ public class ViewBob : MonoBehaviour {
     private Vector3 CAMERA_SCALE_BREATHE = new Vector3(0, 0.08f, 0); // percentage of the breathe offset that the camera uses
     private Vector3 CAMERA_SCALE_BOB = new Vector3(0, 0.1f, 0);
 
+    // Variables related to rotating
+    [SerializeField] [ReadOnly] private float yawRotation = 0;
+    float MAX_YAW = 2f;
+    float ROTATE_SIDES_TRANSITION = 0.03f;
+    float ROTATE_MIDDLE_TRANSITION = 0.02f;
+
     void Start() {
         cameraInitialLocalPosition = cameraTransform.localPosition;
         armsInitialLocalPosition = armsTransform.localPosition;
+        armsInitialLocalRotation = armsTransform.localRotation.eulerAngles;
     }
 
     IEnumerator BobVertical() {
@@ -121,6 +129,11 @@ public class ViewBob : MonoBehaviour {
         currentBreatheRoutine = null;
     }
 
+    void HandleAnimations() {
+        if (movement.isSprinting) FPSArmsManager.isSprinting = true;
+        else FPSArmsManager.isSprinting = false;
+    }
+
     void Update() {
         if (isEnabled) {
             if (currentBreatheRoutine == null) currentBreatheRoutine = StartCoroutine(Breathe());
@@ -146,6 +159,14 @@ public class ViewBob : MonoBehaviour {
             cameraTransform.localPosition = cameraInitialLocalPosition + // camera bob is based on arms bob, but less
                 Vector3.Scale(breatheOffsetVector, CAMERA_SCALE_BREATHE) +
                 bobOffsetVector.magnitude * CAMERA_SCALE_BOB; // converting horizontal bobbing to vertical bobbing
+
+            // Rotation inertia calculation
+            if (movement.isRotatingLeft) yawRotation = Mathf.Lerp(yawRotation, MAX_YAW, ROTATE_SIDES_TRANSITION);
+            else if (movement.isRotatingRight) yawRotation = Mathf.Lerp(yawRotation, -MAX_YAW, ROTATE_SIDES_TRANSITION);
+            else if (!movement.isRotatingLeft && !movement.isRotatingRight) yawRotation = Mathf.Lerp(yawRotation, 0, ROTATE_MIDDLE_TRANSITION);
+            armsTransform.localRotation = Quaternion.Euler(armsInitialLocalRotation + new Vector3(0, yawRotation, 0));
         }
+
+        HandleAnimations();
     }
 }
