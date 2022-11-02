@@ -4,10 +4,10 @@ using UnityEngine;
 using MyBox;
 
 // TODO: Add randomness
-// TODO: Add rotational inertia
 // TODO: add jump drift
 
 public class ViewBob : MonoBehaviour {
+    [SerializeField] [MustBeAssigned] private FPSArmsManager FPSArmsManager;
     [SerializeField] [MustBeAssigned] private CharacterMovement movement;
     [SerializeField] [MustBeAssigned] private Transform armsTransform;
     [SerializeField] [MustBeAssigned] private Transform cameraTransform;
@@ -129,6 +129,11 @@ public class ViewBob : MonoBehaviour {
         currentBreatheRoutine = null;
     }
 
+    void HandleAnimations() {
+        if (movement.isSprinting) FPSArmsManager.isSprinting = true;
+        else FPSArmsManager.isSprinting = false;
+    }
+
     void Update() {
         if (isEnabled) {
             if (currentBreatheRoutine == null) currentBreatheRoutine = StartCoroutine(Breathe());
@@ -161,5 +166,7 @@ public class ViewBob : MonoBehaviour {
             else if (!movement.isRotatingLeft && !movement.isRotatingRight) yawRotation = Mathf.Lerp(yawRotation, 0, ROTATE_MIDDLE_TRANSITION);
             armsTransform.localRotation = Quaternion.Euler(armsInitialLocalRotation + new Vector3(0, yawRotation, 0));
         }
+
+        HandleAnimations();
     }
 }
