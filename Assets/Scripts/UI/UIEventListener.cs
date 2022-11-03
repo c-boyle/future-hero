@@ -52,10 +52,12 @@ public class UIEventListener : Singleton<UIEventListener> {
   private void EnableUIControls() {
     PlayerInput.Controls.Player.Disable();
     PlayerInput.Controls.UI.Enable();
+    Cursor.visible = true;
   }
 
   private void DisableUIControls() {
     PlayerInput.Controls.UI.Disable();
     PlayerInput.Controls.Player.Enable();
+    Cursor.visible = false;
   }
 }

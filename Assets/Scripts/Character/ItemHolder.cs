@@ -8,13 +8,13 @@ public class ItemHolder : MonoBehaviour {
   [SerializeField] private Collider holderCollider; 
   [SerializeField] private AudioSource grabAudio;
   
-  [SerializeField] private float pullForce = 1e-05f;
+  [SerializeField] private float pullForce = 8e-05f;
   [SerializeField] private float rotateForce = 0.008f;
 
-  [SerializeField] private float pullDecay = 0.7f;
+  [SerializeField] private float pullDecay = 0.0f;
   [SerializeField] private float rotateDecay = 0.4f;
 
-  [SerializeField] private float pullDistance = 0.2f;
+  [SerializeField] private float pullDistance = 0.0f;
   [SerializeField] private float rotateDistance = 10;
   
   private bool holding = false;

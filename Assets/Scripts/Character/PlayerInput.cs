@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInput : BaseInput {
   [SerializeField] private ViewBob viewBob;
@@ -25,6 +26,7 @@ public class PlayerInput : BaseInput {
     if (Controls == null) {
       Controls = new();
     }
+    Cursor.visible = false;
 
     // Controls that alter movement
     Controls.Player.Move.performed += ctx => activeMovementInput = true;
@@ -48,7 +50,6 @@ public class PlayerInput : BaseInput {
   }
 
   private void Update() {
-    Cursor.visible = false;
     if (dialogueManager && dialogueManager.isDialoging){
       return;
     }
