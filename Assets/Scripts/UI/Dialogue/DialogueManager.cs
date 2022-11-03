@@ -5,20 +5,13 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    private Queue<string> sentences;
-    [SerializeField] private TextMesh field;
-    public bool isDialoging = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        sentences = new Queue<string>();
-    }
+    private Queue<string> sentences = new Queue<string>();
+    public bool isDialoging = false; // true when we are currently showing dialogue
+    public bool finalDialogue = false; // true when the final piece of dialogue IS output
 
     public void StartDialogue(Dialogue dialogue)
     {
         isDialoging = true;
-        Debug.Log("Just starting...");
         sentences.Clear();
 
         foreach (string sentence in dialogue.sentences) {
@@ -34,30 +27,34 @@ public class DialogueManager : MonoBehaviour
         }
         
         if (!isDialoging) {
-            Debug.Log("yeedogeee");
             return;
         }
         
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(DisplaySentence(sentence));
-    }
 
-    IEnumerator DisplaySentence(string sentence) {
-        field.text = "";
-        foreach (char letter in sentence.ToCharArray())
-        {
-            field.text += letter;
-            yield return null;
+        if (sentences.Count == 0) {
+            finalDialogue = true;
         }
     }
 
-    private void EndDialogue()
-    {
+    protected virtual IEnumerator DisplaySentence(string sentence) {
+        Debug.Log("sentence: " + sentence);
+        return null;
+    }
+
+    protected virtual void ClearSentence() {
+        Debug.Log("Clear!");
+        return;
+    }
+
+    public void EndDialogue() {
+        StopAllCoroutines();
         isDialoging = false;
-        field.text = "";
+        finalDialogue = false;
+        ClearSentence();
         sentences.Clear();
-        Debug.Log("end...");
     }
 
 }

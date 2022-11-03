@@ -8,9 +8,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private DialogueManager manager;
 
     void Start() {
-        if (!manager) {
-            manager = FindObjectOfType<DialogueManager>();
-        }
+        if (!manager) manager = FindObjectOfType<DialogueManager>();
     }
 
     public void TriggerDialogue() {

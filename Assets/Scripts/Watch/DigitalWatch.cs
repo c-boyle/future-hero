@@ -16,6 +16,21 @@ public class DigitalWatch : Watch
             minutes = presentMinutes;
             seconds = presentSeconds;
         }
-        digits.text = seconds.ToString("D2") + ":" + minutes.ToString("D2");
+        DisplayTime(minutes, seconds);
+    }
+
+    protected override IEnumerator TransitionTime() {
+        while(!notTransitioning && (transitionTime < transitionMax)) {
+            System.Random rnd = new System.Random();
+            int jibbMin = rnd.Next(100);
+            int jibbSec = rnd.Next(minuteLength);
+
+            DisplayTime(jibbMin, jibbSec);
+            yield return new WaitForSeconds(0.15f);
+        }
+    } 
+
+    private void DisplayTime(int minutes, int seconds) {
+        digits.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
     }
 }
