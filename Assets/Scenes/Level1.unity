@@ -2486,6 +2486,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7b4bd31b17a40784f8fd461b81081f18, type: 3}
   m_PrefabInstance: {fileID: 227715491}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &270532040 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5346902459514641782, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
+  m_PrefabInstance: {fileID: 763842250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &290073808
 GameObject:
   m_ObjectHideFlags: 0
@@ -5620,61 +5625,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1192026154}
     m_Modifications:
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].FixedSpeed
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[1].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[2].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[1]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[2]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4]._useFixedSpeed
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].<Transform>k__BackingField
@@ -5696,10 +5649,6 @@ PrefabInstance:
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4].<Transform>k__BackingField
       value: 
       objectReference: {fileID: 528020185}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].<MatchHeight>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7464464861476032485, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5747,10 +5696,6 @@ PrefabInstance:
     - target: {fileID: 7844368481584305503, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: m_Name
       value: Ruffian4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7844368481584305503, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
@@ -5943,6 +5888,7 @@ MonoBehaviour:
       FixedSpeed: 1
       <SecondsToReachPoint>k__BackingField: 0
   rb: {fileID: 0}
+  animator: {fileID: 0}
   pointOfNoReturn: 2
   currentPathIndex: 0
   loop: 0
@@ -6143,6 +6089,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803535610}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!198 &815832147 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5346902459514641782, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
+  m_PrefabInstance: {fileID: 877980300}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &824555449 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3933127635128215367, guid: 7b4bd31b17a40784f8fd461b81081f18, type: 3}
@@ -6671,61 +6622,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1192026154}
     m_Modifications:
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].FixedSpeed
       value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[1].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[2].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[1]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[2]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4]._useFixedSpeed
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].<Transform>k__BackingField
@@ -6747,10 +6646,6 @@ PrefabInstance:
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4].<Transform>k__BackingField
       value: 
       objectReference: {fileID: 528020185}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].<MatchHeight>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7464464861476032485, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -6798,10 +6693,6 @@ PrefabInstance:
     - target: {fileID: 7844368481584305503, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: m_Name
       value: Ruffian2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7844368481584305503, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
@@ -10533,23 +10424,23 @@ PrefabInstance:
     - target: {fileID: 5358596483017011077, guid: 8f048ed699c984a4b98eb26a7e7f59d3, type: 3}
       propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[12].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 815832147}
     - target: {fileID: 5358596483017011077, guid: 8f048ed699c984a4b98eb26a7e7f59d3, type: 3}
       propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[13].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2005091969}
     - target: {fileID: 5358596483017011077, guid: 8f048ed699c984a4b98eb26a7e7f59d3, type: 3}
       propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[14].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 270532040}
     - target: {fileID: 5358596483017011077, guid: 8f048ed699c984a4b98eb26a7e7f59d3, type: 3}
       propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[15].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1381859978}
     - target: {fileID: 5358596483017011077, guid: 8f048ed699c984a4b98eb26a7e7f59d3, type: 3}
       propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[16].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1540408331}
     - target: {fileID: 5358596483017011077, guid: 8f048ed699c984a4b98eb26a7e7f59d3, type: 3}
       propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[17].m_Target
       value: 
@@ -10813,6 +10704,11 @@ CapsuleCollider:
   m_Height: 1.7470018
   m_Direction: 1
   m_Center: {x: -0.0000018965037, y: -0.00000021670412, z: -0.011000634}
+--- !u!198 &1381859978 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5346902459514641782, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
+  m_PrefabInstance: {fileID: 1790769386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!54 &1400034545 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
@@ -11379,6 +11275,11 @@ Transform:
   m_Father: {fileID: 569791912664028743}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &1540408331 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5346902459514641782, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
+  m_PrefabInstance: {fileID: 1822882125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1543127807
 GameObject:
   m_ObjectHideFlags: 0
@@ -12285,62 +12186,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1192026154}
     m_Modifications:
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[1].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[2].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[1]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[2]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].<Transform>k__BackingField
       value: 
@@ -12361,10 +12206,6 @@ PrefabInstance:
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4].<Transform>k__BackingField
       value: 
       objectReference: {fileID: 528020185}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].<MatchHeight>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7464464861476032485, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -12412,10 +12253,6 @@ PrefabInstance:
     - target: {fileID: 7844368481584305503, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: m_Name
       value: Ruffian5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7844368481584305503, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
@@ -12525,61 +12362,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1192026154}
     m_Modifications:
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].FixedSpeed
       value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[1].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[2].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[1]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[2]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4]._useFixedSpeed
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].<Transform>k__BackingField
@@ -12601,10 +12386,6 @@ PrefabInstance:
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4].<Transform>k__BackingField
       value: 
       objectReference: {fileID: 682732527}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].<MatchHeight>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7464464861476032485, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -12652,10 +12433,6 @@ PrefabInstance:
     - target: {fileID: 7844368481584305503, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: m_Name
       value: Ruffian6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7844368481584305503, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
@@ -12747,61 +12524,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1192026154}
     m_Modifications:
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].FixedSpeed
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[1].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[2].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[1]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[2]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4]._useFixedSpeed
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].<Transform>k__BackingField
@@ -12823,10 +12548,6 @@ PrefabInstance:
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[4].<Transform>k__BackingField
       value: 
       objectReference: {fileID: 528020185}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].<MatchHeight>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7464464861476032485, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -12874,10 +12595,6 @@ PrefabInstance:
     - target: {fileID: 7844368481584305503, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: m_Name
       value: Ruffian3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7844368481584305503, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
@@ -13551,6 +13268,11 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!198 &2005091969 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5346902459514641782, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
+  m_PrefabInstance: {fileID: 1877154476}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2009416882
 GameObject:
   m_ObjectHideFlags: 0
@@ -13924,6 +13646,7 @@ MonoBehaviour:
       FixedSpeed: 1
       <SecondsToReachPoint>k__BackingField: 0
   rb: {fileID: 0}
+  animator: {fileID: 0}
   pointOfNoReturn: 2
   currentPathIndex: 0
   loop: 0
@@ -15875,53 +15598,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1192026154}
     m_Modifications:
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584076, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.size
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[1].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[2].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3].FixedSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[1]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[2]._useFixedSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3]._useFixedSpeed
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].<Transform>k__BackingField
@@ -15939,10 +15618,6 @@ PrefabInstance:
       propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[3].<Transform>k__BackingField
       value: 
       objectReference: {fileID: 528020185}
-    - target: {fileID: 6925870211754584077, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
-      propertyPath: paths.Array.data[0].<PathPoints>k__BackingField.Array.data[0].<MatchHeight>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7464464861476032485, guid: 76ddc4f66578b2a4ab42d499e6da6dcd, type: 3}
       propertyPath: m_RootOrder
       value: 0
