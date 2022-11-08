@@ -30,4 +30,5 @@ public class RigidbodyPressurePlate : MonoBehaviour {
       exitedEvent?.Invoke();
     }
   }
+
 }

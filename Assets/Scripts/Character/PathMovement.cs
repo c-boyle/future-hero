@@ -6,6 +6,7 @@ using MyBox;
 public class PathMovement : MonoBehaviour {
 
   [SerializeField] private List<Path> paths;
+  [SerializeField] private Rigidbody rb;
   [SerializeField] private int pointOfNoReturn = 2;
   [SerializeField] private int currentPathIndex = 0;
   [SerializeField] private bool loop = false;
@@ -42,8 +43,8 @@ public class PathMovement : MonoBehaviour {
       currentPointOriginalTime = paths[currentPathIndex].PathPoints[currentPathPoint].SecondsToReachPoint;
 
       var targetPosition = paths[currentPathIndex].PathPoints[currentPathPoint].Transform.position;
-      var position = transform.position;
-      Vector3 direction = targetPosition - position;
+      var rbPosition = rb.position;
+      Vector3 direction = targetPosition - rbPosition;
 
       float distToTarget;
       if (paths[currentPathIndex].PathPoints[currentPathPoint].MatchHeight) {
@@ -56,7 +57,7 @@ public class PathMovement : MonoBehaviour {
         normalizedDirection = direction.normalized;
       }
 
-      transform.LookAt(position + direction, Vector3.up);
+      transform.LookAt(rbPosition + direction, Vector3.up);
 
       if (paths[currentPathIndex].PathPoints[currentPathPoint].UseFixedSpeed) {
         stepSpeed = paths[currentPathIndex].PathPoints[currentPathPoint].FixedSpeed;
@@ -75,7 +76,7 @@ public class PathMovement : MonoBehaviour {
 
   private void FixedUpdate() {
     if (stepSpeed >= 0) {
-      transform.position = transform.position + stepSpeed * normalizedDirection * Time.fixedDeltaTime;
+      transform.position += stepSpeed * Time.fixedDeltaTime * normalizedDirection;
     }
   }
 

@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 4370986186660261987}
   - component: {fileID: 4454574651126986757}
   - component: {fileID: 4852229590876954683}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: CH_Ruffian_Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5019490069209455720}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000017166137, y: 0.86766243, z: 0.0049579334}
+  m_LocalPosition: {x: 0.00000017166137, y: 0.86766243, z: 0.087}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1051,7 +1051,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7844368481584305503}
-  m_LocalRotation: {x: -0.000000007922575, y: 0.961557, z: -0.000000003759232, w: 0.27460566}
+  m_LocalRotation: {x: 0, y: 0.96155703, z: 0, w: 0.2746054}
   m_LocalPosition: {x: 3.18, y: -0.095, z: 11.639}
   m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 0
@@ -1074,7 +1074,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -1187,7 +1187,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paths:
-  - <PathPoints>k__BackingField: []
+  - <PathPoints>k__BackingField:
+    - <Transform>k__BackingField: {fileID: 0}
+      <MatchHeight>k__BackingField: 1
+      _useFixedSpeed: 1
+      FixedSpeed: 0.4
+      <SecondsToReachPoint>k__BackingField: 0
+    - <Transform>k__BackingField: {fileID: 0}
+      <MatchHeight>k__BackingField: 0
+      _useFixedSpeed: 1
+      FixedSpeed: 0.8
+      <SecondsToReachPoint>k__BackingField: 0
+    - <Transform>k__BackingField: {fileID: 0}
+      <MatchHeight>k__BackingField: 0
+      _useFixedSpeed: 1
+      FixedSpeed: 0.8
+      <SecondsToReachPoint>k__BackingField: 0
+    - <Transform>k__BackingField: {fileID: 0}
+      <MatchHeight>k__BackingField: 0
+      _useFixedSpeed: 1
+      FixedSpeed: 0.8
+      <SecondsToReachPoint>k__BackingField: 0
+    - <Transform>k__BackingField: {fileID: 0}
+      <MatchHeight>k__BackingField: 0
+      _useFixedSpeed: 1
+      FixedSpeed: 0.8
+      <SecondsToReachPoint>k__BackingField: 0
   rb: {fileID: 6925870211754584076}
   pointOfNoReturn: 2
   currentPathIndex: 0
