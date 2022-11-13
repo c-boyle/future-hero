@@ -19,9 +19,6 @@ public class AnimatorRandomizer : MonoBehaviour {
 
   private float savedAnimatorSpeed;
 
-  private static int pausedCount = 0;
-  private static int resumedCount = 0;
-
   // Start is called before the first frame update
   void Awake() {
     if (randomizeSpeed) {
@@ -30,9 +27,7 @@ public class AnimatorRandomizer : MonoBehaviour {
     if (randomizeStartTime) {
       savedAnimatorSpeed = animatorToRandomize.speed;
       animatorToRandomize.speed = 0f;
-      pausedCount++;
-      Debug.Log("Paused, count: " + pausedCount);
-      Helpers.InvokeAfterTime(() => { animatorToRandomize.speed = savedAnimatorSpeed; resumedCount++; Debug.Log("Resumed, count: " + resumedCount); }, Random.Range(randomStartTimeMin, randomStartTimeMax));
+      Helpers.InvokeAfterTime(() => animatorToRandomize.speed = savedAnimatorSpeed, Random.Range(randomStartTimeMin, randomStartTimeMax));
     }
   }
 }
