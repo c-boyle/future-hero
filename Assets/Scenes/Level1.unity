@@ -7386,6 +7386,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  destroyTargetOnCollision: 0
+  disablePressurePlateOnActivation: 0
   rb: {fileID: 1400034545}
 --- !u!1 &1076078015
 GameObject:
@@ -9219,6 +9221,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  destroyTargetOnCollision: 0
+  disablePressurePlateOnActivation: 0
   rb: {fileID: 868373888}
 --- !u!114 &1279162752
 MonoBehaviour:
@@ -12452,6 +12456,8 @@ MonoBehaviour:
   exitedEvent:
     m_PersistentCalls:
       m_Calls: []
+  destroyTargetOnCollision: 1
+  disablePressurePlateOnActivation: 1
   item: {fileID: 2107328575304186656, guid: d404c57a86f234445b24d449d9db902e, type: 3}
 --- !u!1 &1700905170
 GameObject:

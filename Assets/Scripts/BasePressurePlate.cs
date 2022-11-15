@@ -6,10 +6,18 @@ using UnityEngine.Events;
 public abstract class BasePressurePlate : MonoBehaviour {
   [SerializeField] private UnityEvent enteredEvent;
   [SerializeField] private UnityEvent exitedEvent;
+  [SerializeField] private bool destroyTargetOnCollision = false;
+  [SerializeField] private bool disablePressurePlateOnActivation = false;
 
   void OnTriggerEnter(Collider collider) {
     if (CheckCollider(collider)) {
       enteredEvent?.Invoke();
+      if (destroyTargetOnCollision) {
+        Destroy(collider.attachedRigidbody.gameObject);
+      }
+      if (disablePressurePlateOnActivation) {
+        this.enabled = false;
+      }
     }
   }
 
@@ -22,6 +30,9 @@ public abstract class BasePressurePlate : MonoBehaviour {
   void OnCollisionEnter(Collision collision) {
     if (CheckCollider(collision.collider)) {
       enteredEvent?.Invoke();
+      if (destroyTargetOnCollision) {
+        Destroy(collision.rigidbody.gameObject);
+      }
     }
   }
   void OnCollisionExit(Collision collision) {
