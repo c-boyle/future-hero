@@ -13,11 +13,14 @@ public class LevelTimer : Singleton<LevelTimer> {
 
   private bool levelEnded = false;
 
+  public static float SecondsSpentInLevel { get; private set; } = 0f;
+
   // Update is called once per frame
   void Update() {
     if (!levelEnded) {
       float deltaTime = Time.deltaTime;
       SecondsLeft -= deltaTime;
+      SecondsSpentInLevel += deltaTime;
       if (SecondsLeft <= 0) {
         EndLevel(false);
       }
