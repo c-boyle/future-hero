@@ -10,7 +10,11 @@ public static class Helpers {
     SceneManager.LoadScene(activeScene.name);
   }
 
-  public static IEnumerator InvokeAfterTime(Action action, float timeToWait) {
+  public static void InvokeAfterTime(Action action, float timeToWait) {
+    CoroutineManager.Instance.ScheduleCoroutine(_InvokeAfterTime(action, timeToWait));
+  }
+
+  private static IEnumerator _InvokeAfterTime(Action action, float timeToWait) {
     yield return new WaitForSeconds(timeToWait);
     action.Invoke();
   }

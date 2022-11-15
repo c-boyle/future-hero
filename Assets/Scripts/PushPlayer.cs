@@ -50,7 +50,7 @@ public class PushPlayer : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitABit() {
+  private IEnumerator WaitABit() {
         yield return new WaitForSeconds(2f);
         transform.position += transform.right*0.4f;  
     }

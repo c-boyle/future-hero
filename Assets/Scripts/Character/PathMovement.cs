@@ -7,6 +7,7 @@ public class PathMovement : MonoBehaviour {
 
   [SerializeField] private List<Path> paths;
   [SerializeField] private Rigidbody rb;
+  [SerializeField] private Animator animator;
   [SerializeField] private int pointOfNoReturn = 2;
   [SerializeField] private int currentPathIndex = 0;
   [SerializeField] private bool loop = false;
@@ -18,6 +19,9 @@ public class PathMovement : MonoBehaviour {
 
   // Update is called once per frame
   void Update() {
+    if (animator != null) {
+      animator.SetBool("moving", Moving);
+    }
     if (!Moving) {
       return;
     }
@@ -76,7 +80,7 @@ public class PathMovement : MonoBehaviour {
 
   private void FixedUpdate() {
     if (stepSpeed >= 0) {
-      rb.velocity = stepSpeed * normalizedDirection;
+      transform.position += stepSpeed * Time.fixedDeltaTime * normalizedDirection;
     }
   }
 
