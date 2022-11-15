@@ -16,6 +16,9 @@ public class ItemHolder : MonoBehaviour {
 
   [SerializeField] private float pullDistance = 0.0f;
   [SerializeField] private float rotateDistance = 10;
+
+  private float maxStrength = 500f;
+  private float throwMultiplier = 100f;
   
   private bool holding = false;
 
@@ -35,6 +38,17 @@ public class ItemHolder : MonoBehaviour {
     }
   }
 
+  private void ApplyForceToObject(Vector3 force, Item item) {
+    Vector3 newForce = force;
+
+    RaycastHit hit;
+    if (Physics.Raycast(item.transform.position, force, out hit, force.magnitude)){
+      newForce = Vector3.ClampMagnitude(force, hit.distance * 500);
+    }
+
+    item.Rigidbody.AddForce(newForce);
+  }
+
   private void ForceToHand() {
     if (_heldItem != null && _heldItem.Rigidbody != null) {
 
@@ -44,7 +58,7 @@ public class ItemHolder : MonoBehaviour {
       Vector3 targetPosition = handTransform.position + (Vector3.up * _heldItem.itemBounds.extents.y/2);
       if (Vector3.Distance(targetPosition, _heldItem.Rigidbody.position) > pullDistance) {
         direction = (targetPosition - _heldItem.Rigidbody.position);
-        _heldItem.Rigidbody.AddForce(direction * pullForce);
+        ApplyForceToObject(direction * pullForce, _heldItem);
       } 
       
 
@@ -90,7 +104,7 @@ public class ItemHolder : MonoBehaviour {
     grabAudio.Play();
   }
 
-  public void DropItem() {
+  public void DropItem(float windup = 0) {
     if (_heldItem != null) {
       _heldItem.ReturnToOriginal();
 
@@ -99,6 +113,12 @@ public class ItemHolder : MonoBehaviour {
         _heldItem.Rigidbody.useGravity = true;
       }
       IgnoreCollisions(_heldItem, false);
+
+      float outwardForce = windup * throwMultiplier;
+
+      Vector3 throwStrength = Vector3.ClampMagnitude(handTransform.up * outwardForce, maxStrength) ;
+      Debug.Log("throwStrength:" + throwStrength);
+      ApplyForceToObject(throwStrength, _heldItem);
 
       _heldItem = null;
     }

@@ -11,8 +11,8 @@ public abstract class BaseInput : MonoBehaviour {
     Interactable.UseClosestInteractable(transform.position, itemHolder);
   }
 
-  protected virtual void OnDropItem() {
-    itemHolder.DropItem();
+  protected virtual void OnDropItem(float windup = 0) {
+    itemHolder.DropItem(windup);
   }
 
 }
