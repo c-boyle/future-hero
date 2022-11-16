@@ -6,6 +6,7 @@ public class Smoker : NPC
 {
 
     [SerializeField] private Cigarette cig;
+    [SerializeField] private Interactable cigInteract;
 
     
 
@@ -21,7 +22,7 @@ public class Smoker : NPC
     protected override void IsAngry() {
         if(angry) return;
         angry = true;
-        Interactable.UseClosestInteractable(cig.transform.position, null);
+        Interactable.UseInteractable(cigInteract, null);
         cig.ThrownToFuture();
     }
 }
