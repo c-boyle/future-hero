@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MyBox;
+using UnityEngine.Events;
 
 public class Item : MonoBehaviour {
   // Name acts as a key
   [SerializeField] private string itemName;
+  [SerializeField] private UnityEvent onPickup;
+  [SerializeField] private UnityEvent onDrop;
 
   private Vector3 originalScale;
   private int originalLayer;
@@ -48,6 +51,14 @@ public class Item : MonoBehaviour {
       itemBounds.Encapsulate(allColliders[i].bounds);
     }
 
+  }
+
+  public void PickedUp() {
+    onPickup?.Invoke();
+  }
+
+  public void Dropped() {
+    onDrop?.Invoke();
   }
 
   void Update()

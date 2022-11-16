@@ -15,6 +15,7 @@ public class Interactable : MonoBehaviour {
   // Shaders for items
   private Shader _regularShader;
   private List<Shader> _childRegularShaders;
+  private Color? _regularOutlineColor;
   [SerializeField] private Shader _outlineShader;
 
   // Renderers
@@ -23,7 +24,7 @@ public class Interactable : MonoBehaviour {
 
   // Prompt related variables
   [SerializeField] private TextMesh Prompt;
-  public String promptText = "interact";
+  public string promptText = "interact";
   private Vector3 promptScale = Vector3.one;
 
   // Booleans
@@ -39,6 +40,8 @@ public class Interactable : MonoBehaviour {
   private const float withinRangeRefreshSeconds = 0.5f;
 
   private const float maxInteractionRange = 2f;
+
+  private Color originalPromptColor;
 
   private void Start() {
     // Parent
@@ -62,7 +65,7 @@ public class Interactable : MonoBehaviour {
     Prompt.text = promptText;
     promptScale = Prompt.transform.localScale;
     Prompt.transform.localScale = new Vector3(0, 0, 0);
-
+    originalPromptColor = Prompt.color;
   }
 
   private void OnEnable() {
@@ -83,7 +86,7 @@ public class Interactable : MonoBehaviour {
     if (!gameObject.activeSelf) {
       return;
     }
-    bool meetsItemRequirement = requireItem == null || (itemHolder != null && requireItem == itemHolder.HeldItem);
+    bool meetsItemRequirement = MeetsItemRequirement(itemHolder);
     if (meetsItemRequirement) {
       if (giveItem != null && itemHolder != null) {
         itemHolder.GrabItem(giveItem);
@@ -185,9 +188,9 @@ public class Interactable : MonoBehaviour {
     Interactable closestInteractable = Interactable.FindClosestInteractable(interactorPosition, itemHolder);
     if (closestInteractable != null) {
       if (!closestInteractable.shaderChanged) {
-        closestInteractable.toggleOutlineShader();
+        closestInteractable.toggleOutlineShader(itemHolder);
       }
-      closestInteractable.ShowPrompt();
+      closestInteractable.ShowPrompt(itemHolder);
     }
     return closestInteractable;
   }
@@ -196,14 +199,18 @@ public class Interactable : MonoBehaviour {
     Interactable closestInteractable = Interactable.FindClosestInteractableInView(cameraPosition, cameraDirection, itemHolder);
     if (closestInteractable != null) {
       if (!closestInteractable.shaderChanged) {
-        closestInteractable.toggleOutlineShader();
+        closestInteractable.toggleOutlineShader(itemHolder);
       }
-      closestInteractable.ShowPrompt();
+      closestInteractable.ShowPrompt(itemHolder);
     }
     return closestInteractable;
   }
 
-  public void ShowPrompt() {
+  private bool MeetsItemRequirement(ItemHolder itemHolder) {
+    return requireItem == null || (itemHolder != null && requireItem == itemHolder.HeldItem);
+  }
+
+  public void ShowPrompt(ItemHolder itemHolder) {
     // GameObject UItextGO = new GameObject("Text2");
     // UItextGO.transform.SetParent(canvas_transform);
 
@@ -219,14 +226,17 @@ public class Interactable : MonoBehaviour {
     Quaternion current = Prompt.transform.rotation;
     Prompt.transform.rotation = Quaternion.Euler(new Vector3(current.eulerAngles.x, rotation.eulerAngles.y, current.eulerAngles.z));
     // Prompt.transform.rotation = rotation;
-
+    bool meetsItemRequirement = MeetsItemRequirement(itemHolder);
+    Prompt.text = meetsItemRequirement ? promptText : "Item Needed To Interact";
+    Prompt.color = meetsItemRequirement ? originalPromptColor : Color.red;
   }
 
   public void RemovePrompt() {
     Prompt.transform.localScale = new Vector3(0, 0, 0);
   }
 
-  public void toggleOutlineShader() {
+  public void toggleOutlineShader(ItemHolder itemHolder = null) {
+    bool meetsItemRequirement = MeetsItemRequirement(itemHolder);
     if (shaderChanged) {
       if (_rend != null) {
         _rend.material.shader = _regularShader;
@@ -235,8 +245,13 @@ public class Interactable : MonoBehaviour {
     } else {
       if (_rend != null) {
         _rend.material.shader = _outlineShader;
+        if (!_regularOutlineColor.HasValue) {
+          _regularOutlineColor = _rend.material.GetColor("_OutlineColor");
+        }
+        Color outlineColor = meetsItemRequirement ? _regularOutlineColor.Value : Color.red;
+        _rend.material.SetColor("_OutlineColor", outlineColor);
       }
-      ShowPrompt();
+      ShowPrompt(itemHolder);
     }
 
     int index = 0;
@@ -245,6 +260,11 @@ public class Interactable : MonoBehaviour {
         colour.material.shader = _childRegularShaders[index];
       } else {
         colour.material.shader = _outlineShader;
+        if (!_regularOutlineColor.HasValue) {
+          _regularOutlineColor = colour.material.GetColor("_OutlineColor");
+        }
+        Color outlineColor = meetsItemRequirement ? _regularOutlineColor.Value : Color.red;
+        colour.material.SetColor("_OutlineColor", outlineColor);
       }
       index++;
     }
