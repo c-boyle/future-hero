@@ -53,17 +53,19 @@ public class ViewBob : MonoBehaviour {
     private const float DRAG_Z_MULTIPLIER = -0.06f;
     private const float DRAG_Y_MULTIPLIER = -0.015f;
     private float DRAG_TRANSITION = 0.08f; // how fast the arm pulls back when you begin moving
+
     // Constants related to rotating
     float YAW_MAX = 3f;
     float ROTATE_SIDES_TRANSITION = 0.03f;
     float ROTATE_MIDDLE_TRANSITION = 0.02f;
 
-    // Constants related to jumping
+    // Constants for the rebound when you land upon finishing your jump
     private const float JUMP_LAND_INTENSITY = 0.02f;
     private const float JUMP_LAND_SPEED = 10f;
     private const float JUMP_LAND_CYCLE = Mathf.PI;
     private readonly Func<float, float> JUMP_LAND_AMPLITUDE = (float x) => -Mathf.Abs(Mathf.Sin(x));
 
+    // FPS arms move upwards when you begin your jump
     private const float JUMP_AIR_TRANSITION = 0.06f;
     private const float JUMP_AIR_MULTIPLIER = 0.03f;
     private float jumpAirProgress = 0;
