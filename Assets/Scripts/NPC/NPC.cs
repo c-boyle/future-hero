@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PushPlayer : MonoBehaviour
+public class NPC : MonoBehaviour
 {
+    protected int angerLevel = 0;
+    protected int maxAngerValue = 10;
+
     private float force_backwards = 500f;
     private float force_upwards = 100f;
 
-    private AudioSource ladyVoice;
+    private AudioSource voice;
     private Rigidbody rigidBody;
 
     [SerializeField] private AudioClip talking1;
@@ -22,37 +25,23 @@ public class PushPlayer : MonoBehaviour
     public bool mumble = true;  
 
     void Start() {
-        ladyVoice = gameObject.AddComponent<AudioSource>();
+        voice = gameObject.AddComponent<AudioSource>();
         rigidBody = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider collider) {
+    protected virtual void OnTriggerEnter(Collider collider) {
         if (collider.tag == "Player"){ 
             Vector3 force = -(collider.transform.forward * force_backwards) + (collider.transform.up * force_upwards);
             collider.attachedRigidbody.AddForce(force);
 
-            // playAngrySound();
-            if (rigidBody) {
-                rigidBody.AddForce(transform.up * force_upwards * (rigidBody.mass / collider.attachedRigidbody.mass) / 4);
-            }
+            // // playAngrySound();
+            // if (rigidBody) {
+            //     rigidBody.AddForce(transform.up * force_upwards * (rigidBody.mass / collider.attachedRigidbody.mass) / 4);
+            // }
+
+            UpdateAnger(angerLevel+1);
         }
 
-        if (collider.tag == "Employee"){
-            Debug.Log("We should move...");
-            transform.position -= transform.right*0.4f; 
-        }
-
-    }
-
-    private void OnTriggerExit(Collider collider) {
-        if (collider.tag == "Employee"){
-            StartCoroutine(WaitABit());
-        }
-    }
-
-  private IEnumerator WaitABit() {
-        yield return new WaitForSeconds(2f);
-        transform.position += transform.right*0.4f;  
     }
 
     private void playAngrySound() {
@@ -67,10 +56,19 @@ public class PushPlayer : MonoBehaviour
         int index = rnd.Next(sounds.Length);
         AudioClip soundToPlay = sounds[index]; 
         if (soundToPlay) {
-            ladyVoice.clip = soundToPlay;
-            ladyVoice.volume = 1f;
-            ladyVoice.Play(0);
+            voice.clip = soundToPlay;
+            voice.volume = 1f;
+            voice.Play(0);
         }
         
+    }
+
+    protected void UpdateAnger(int anger) {
+        angerLevel = anger;
+        if (angerLevel >= maxAngerValue) IsAngry();
+    }
+
+    protected virtual void IsAngry(){
+        Debug.Log("You wouldn't like me when I'm angry... >:(");
     }
 }

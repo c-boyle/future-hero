@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using MyBox;
 
 public class Interactable : MonoBehaviour {
-  [SerializeField] private UnityEvent interactionAction;
+  [SerializeField] public UnityEvent interactionAction;
   [Tooltip("Set to none if no item is required to interact.")][SerializeField] private Item requireItem = null;
   [SerializeField] private bool destroyRequiredItemOnInteraction = false;
   [SerializeField] private Item giveItem = null;

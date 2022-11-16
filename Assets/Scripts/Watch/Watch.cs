@@ -107,11 +107,11 @@ public abstract class Watch : MonoBehaviour {
   }
 
   protected IEnumerator GlowNotification() {
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 7; i++) {
       SetGlow(true);
-      yield return new WaitForSeconds(0.5f);
+      yield return new WaitForSeconds(0.25f);
       SetGlow(false);
-      yield return new WaitForSeconds(0.5f);
+      yield return new WaitForSeconds(0.25f);
     }
   }
 }
