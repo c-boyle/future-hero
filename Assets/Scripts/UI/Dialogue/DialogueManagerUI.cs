@@ -7,11 +7,15 @@ public class DialogueManagerUI : DialogueManager
 {
     [SerializeField] private TextMeshProUGUI field;
 
+    private const string TEXT_BACKGROUND_HEX = "#00000088";
+
     protected override IEnumerator DisplaySentence(string sentence) {
         field.text = "";
+        string displayedText = "";
         foreach (char letter in sentence.ToCharArray())
         {
-            field.text += letter;
+            displayedText += letter;
+            field.text = $"<mark={TEXT_BACKGROUND_HEX}>" + displayedText + "</mark>";
             yield return null;
         }
     }
