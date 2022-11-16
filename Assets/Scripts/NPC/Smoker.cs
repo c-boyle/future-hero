@@ -27,14 +27,6 @@ public class Smoker : NPC
     }
 
     protected override void IsAngry() {
-        if (cig.gameObject.activeSelf) cig.MoveTo(dropCigarettePos, dropCigaretteRot);
-        
-        if (!smokerPath.Moving) {
-            smokerAngry.Play();
-            smokerPath.Moving = true;
 
-            yellingCashierAngry.Stop();
-            yellingCashierPath.Moving = true;
-        }
     }
 }

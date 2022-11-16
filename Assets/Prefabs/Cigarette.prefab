@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2354984399976391030}
   - component: {fileID: 1294332933504889239}
   - component: {fileID: 1354324922}
-  - component: {fileID: 8712519383807705166}
+  - component: {fileID: 5464736502101687250}
   - component: {fileID: 1951356476}
   - component: {fileID: 1951356475}
   m_Layer: 0
@@ -225,13 +225,13 @@ MonoBehaviour:
         m_CallState: 2
   requireItem: {fileID: 0}
   destroyRequiredItemOnInteraction: 0
-  giveItem: {fileID: 8712519383807705166}
+  giveItem: {fileID: 0}
   disableAfterFirstUse: 0
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 0}
   promptText: Take Cigarette
   shaderChanged: 0
---- !u!114 &8712519383807705166
+--- !u!114 &5464736502101687250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,45 +240,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 4697642869799652643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3d2ad8f3b2c86a44bd6196dd57e0fd3, type: 3}
+  m_Script: {fileID: 11500000, guid: e076638d4c8a5e04b824b371904bdbcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Cigarette
   onPickup:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelTimer, Assembly-CSharp
-        m_MethodName: RestoreSecondsLeft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onDrop:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelTimer, Assembly-CSharp
-        m_MethodName: LowerSecondsLeftTo
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 10
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   allColliders: []
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
-  <Rigidbody>k__BackingField: {fileID: 1951356476}
+  <Rigidbody>k__BackingField: {fileID: 0}
 --- !u!54 &1951356476
 Rigidbody:
   m_ObjectHideFlags: 0

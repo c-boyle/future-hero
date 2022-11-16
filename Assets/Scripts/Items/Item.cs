@@ -58,6 +58,7 @@ public class Item : MonoBehaviour {
     if (itemBounds != null) {
       float delta = Time.deltaTime;
       riskSpeed = Mathf.Min(itemBounds.extents.x / delta, itemBounds.extents.y / delta );
+      riskSpeed /= 2;
     }
 
   }
@@ -139,8 +140,8 @@ public class Item : MonoBehaviour {
     float distance = speed * Time.deltaTime * 2; // approx. distance item will move in next 2 frames
     Vector3 position = transform.position;
     RaycastHit hit;
-    if (Physics.BoxCast(position, itemBounds.extents, velocity, out hit, transform.rotation, distance)){
-      Rigidbody.velocity *= ((riskSpeed*0.8f)/speed);
+    if (Physics.BoxCast(position, transform.localScale, velocity, out hit, transform.rotation, distance)){
+      Rigidbody.velocity *= (riskSpeed/speed);
     }
   }
 
