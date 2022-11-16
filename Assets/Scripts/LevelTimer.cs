@@ -12,6 +12,8 @@ public class LevelTimer : Singleton<LevelTimer> {
   public static event EventHandler<TimerUpdateEventArgs> TimerUpdated;
 
   private bool levelEnded = false;
+  private float originalSecondsLeft = -1f;
+  private float setSecondsLeft;
 
   public static float SecondsSpentInLevel { get; private set; } = 0f;
 
@@ -28,17 +30,21 @@ public class LevelTimer : Singleton<LevelTimer> {
     }
   }
 
-  public void SetSecondsLeft(float secondsLeft) {
-    SecondsLeft = secondsLeft;
+  public void LowerSecondsLeftTo(float seconds) {
+    originalSecondsLeft = SecondsLeft;
+    SecondsLeft = Mathf.Min(seconds, SecondsLeft);
+    setSecondsLeft = SecondsLeft;
   }
 
-  public void AddSecondsLeft(float seconds) {
-    SecondsLeft += seconds;
+  public void RestoreSecondsLeft() {
+    if (originalSecondsLeft != -1f) {
+      SecondsLeft = originalSecondsLeft - (setSecondsLeft - SecondsLeft);
+    }
   }
 
   public void EndLevel(bool won) {
     if (levelEnded) return;
-    
+
     // Look at the watch
     // Skip to time end
     // Stop looking at watch

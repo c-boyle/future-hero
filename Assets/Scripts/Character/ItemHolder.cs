@@ -74,11 +74,9 @@ public class ItemHolder : MonoBehaviour {
     Transform itemTransform = itemToGrab.transform;
 
     oldParent = itemTransform.parent;
-
-    var oldGlobalScale = itemTransform.lossyScale;
     
     _heldItem = itemToGrab;
-
+    
     if (_heldItem.Rigidbody != null) {
       holding = true;
       _heldItem.Rigidbody.useGravity = false;
@@ -88,6 +86,7 @@ public class ItemHolder : MonoBehaviour {
     
     IgnoreCollisions(_heldItem, true);
     grabAudio.Play();
+    _heldItem.PickedUp();
   }
 
   public void DropItem() {
@@ -100,6 +99,7 @@ public class ItemHolder : MonoBehaviour {
       }
       IgnoreCollisions(_heldItem, false);
 
+      _heldItem.Dropped();
       _heldItem = null;
     }
   }

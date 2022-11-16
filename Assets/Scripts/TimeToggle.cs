@@ -74,16 +74,22 @@ public class TimeToggle : MonoBehaviour {
     if (gameObject.activeSelf) {
       this.toggleEnabled = enabled;
       foreach (var audioSource in ChildAudioSources) {
-        audioSource.enabled = enabled;
+        if (audioSource != null) {
+          audioSource.enabled = enabled;
+        }
       }
       foreach (var renderer in ChildRenderers) {
-        renderer.enabled = enabled;
-        if (rendererToShadowCastingMode.TryGetValue(renderer, out var mode)) {
-          renderer.shadowCastingMode = mode;
+        if (renderer != null) {
+          renderer.enabled = enabled;
+          if (rendererToShadowCastingMode.TryGetValue(renderer, out var mode)) {
+            renderer.shadowCastingMode = mode;
+          }
         }
       }
       foreach (var light in ChildLights) {
-        light.enabled = enabled;
+        if (light != null) {
+          light.enabled = enabled;
+        }
       }
       var toggleEvent = enabled ? timeToggleEnabled : timeToggleDisabled;
       toggleEvent?.Invoke();
@@ -93,14 +99,18 @@ public class TimeToggle : MonoBehaviour {
   public void DisableImmediateComponents() {
     if (gameObject.activeSelf) {
       foreach (var renderer in ChildRenderers) {
-        if (renderer is ParticleSystemRenderer a) {
-          renderer.enabled = false;
+        if (renderer != null) {
+          if (renderer is ParticleSystemRenderer a) {
+            renderer.enabled = false;
+          }
+          rendererToShadowCastingMode[renderer] = renderer.shadowCastingMode;
+          renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         }
-        rendererToShadowCastingMode[renderer] = renderer.shadowCastingMode;
-        renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
       }
       foreach (var light in ChildLights) {
-        light.enabled = false;
+        if (light != null) {
+          light.enabled = false;
+        }
       }
     }
   }

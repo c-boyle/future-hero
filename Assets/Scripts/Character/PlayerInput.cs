@@ -113,7 +113,7 @@ public class PlayerInput : BaseInput {
   private void OnToggleFutureVision() {
     futureSeer.ToggleFutureVision();
     if (futureSeer.TimeVisionEnabled && closestOutlinedInteractable != null && closestOutlinedInteractable.shaderChanged) {
-      closestOutlinedInteractable.toggleOutlineShader();
+      closestOutlinedInteractable.toggleOutlineShader(itemHolder);
     }
   }
   public void SetFutureVision(bool enabled) {
