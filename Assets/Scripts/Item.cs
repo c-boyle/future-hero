@@ -14,6 +14,8 @@ public class Item : MonoBehaviour {
   private int originalLayer;
   private float originalMass;
 
+  private float riskSpeed = 3f;
+
   private List<GameObject> children = new List<GameObject>();
 
   public List<Collider> allColliders = new List<Collider>(); 
@@ -70,6 +72,10 @@ public class Item : MonoBehaviour {
         FixScale();
         transform.hasChanged = false;
     }
+
+    if (Rigidbody && Rigidbody.velocity.magnitude > riskSpeed ) {
+        CheckForWall(Rigidbody.velocity);
+    }
   }
 
   public override bool Equals(object other) {
@@ -118,6 +124,17 @@ public class Item : MonoBehaviour {
   public void SetLayer(int layer){ 
     foreach (GameObject go in children) {
       go.layer = layer;
+    }
+  }
+
+  public void CheckForWall(Vector3 velocity) {
+    float speed = velocity.magnitude;
+    float distance = speed * Time.deltaTime * 2; // approx. distance item will move in next 2 frames
+    Vector3 position = transform.position;
+    RaycastHit hit;
+    Debug.Log(velocity.magnitude);
+    if (Physics.BoxCast(position, itemBounds.extents, velocity, out hit, transform.rotation, distance)){
+      Rigidbody.velocity *= (riskSpeed - 1)/speed;
     }
   }
 

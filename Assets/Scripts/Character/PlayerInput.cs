@@ -90,7 +90,7 @@ public class PlayerInput : BaseInput {
 
   private void OnDestroy() {
     OnDisable();
-    Controls = null;
+    Controls = null; 
   }
 
   protected override void OnInteract() {

@@ -18,7 +18,7 @@ public class ItemHolder : MonoBehaviour {
   [SerializeField] private float rotateDistance = 10;
 
   private float maxStrength = 500f;
-  private float throwMultiplier = 100f;
+  private float throwMultiplier = 220f;
   
   private bool holding = false;
 
@@ -39,14 +39,7 @@ public class ItemHolder : MonoBehaviour {
   }
 
   private void ApplyForceToObject(Vector3 force, Item item) {
-    Vector3 newForce = force;
-
-    RaycastHit hit;
-    if (Physics.Raycast(item.transform.position, force, out hit, force.magnitude)){
-      newForce = Vector3.ClampMagnitude(force, hit.distance * 500);
-    }
-
-    item.Rigidbody.AddForce(newForce);
+    item.Rigidbody.AddForce(force);
   }
 
   private void ForceToHand() {
@@ -113,10 +106,10 @@ public class ItemHolder : MonoBehaviour {
       }
       IgnoreCollisions(_heldItem, false);
 
-      float outwardForce = windup * throwMultiplier;
+      float outwardForce = Mathf.Pow(windup, 2) * throwMultiplier;
 
       Vector3 throwStrength = Vector3.ClampMagnitude(handTransform.up * outwardForce, maxStrength) ;
-      Debug.Log("throwStrength:" + throwStrength);
+      // Debug.Log("throwStrength:" + throwStrength);
       ApplyForceToObject(throwStrength, _heldItem);
 
       _heldItem.Dropped();
