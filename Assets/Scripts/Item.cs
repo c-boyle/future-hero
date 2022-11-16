@@ -48,9 +48,16 @@ public class Item : MonoBehaviour {
     }
     allColliders = new List<Collider>(GetComponentsInChildren<Collider>());
 
-    itemBounds = allColliders[0].bounds;
-    for(int i = 1; i < allColliders.Count; i++){
-      itemBounds.Encapsulate(allColliders[i].bounds);
+    if (allColliders.Count > 0) {
+      itemBounds = allColliders[0].bounds;
+      for(int i = 1; i < allColliders.Count; i++){
+        itemBounds.Encapsulate(allColliders[i].bounds);
+      }
+    }
+
+    if (itemBounds != null) {
+      float delta = Time.deltaTime;
+      riskSpeed = Mathf.Min(itemBounds.extents.x / delta, itemBounds.extents.y / delta );
     }
 
   }
@@ -132,9 +139,8 @@ public class Item : MonoBehaviour {
     float distance = speed * Time.deltaTime * 2; // approx. distance item will move in next 2 frames
     Vector3 position = transform.position;
     RaycastHit hit;
-    Debug.Log(velocity.magnitude);
     if (Physics.BoxCast(position, itemBounds.extents, velocity, out hit, transform.rotation, distance)){
-      Rigidbody.velocity *= (riskSpeed - 1)/speed;
+      Rigidbody.velocity *= ((riskSpeed*0.8f)/speed);
     }
   }
 
