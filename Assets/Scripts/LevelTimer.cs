@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 using MyBox;
 
 public class LevelTimer : Singleton<LevelTimer> {
@@ -11,9 +13,13 @@ public class LevelTimer : Singleton<LevelTimer> {
 
   public static event EventHandler<TimerUpdateEventArgs> TimerUpdated;
 
+  [SerializeField] public UnityEvent futureIsStarting;
+
   private bool levelEnded = false;
   private float originalSecondsLeft = -1f;
   private float setSecondsLeft;
+
+  private bool futureNotTriggered = true;
 
   public static float SecondsSpentInLevel { get; private set; } = 0f;
 
@@ -25,9 +31,18 @@ public class LevelTimer : Singleton<LevelTimer> {
       SecondsSpentInLevel += deltaTime;
       if (SecondsLeft <= 0) {
         EndLevel(false);
+      } else if (GetRealSeconds() <= 10 && futureNotTriggered) {
+        futureIsStarting?.Invoke();
+        futureNotTriggered = false;
       }
+
       TimerUpdated?.Invoke(this, new() { DeltaTime = deltaTime, SecondsLeft = SecondsLeft });
     }
+  }
+
+  private float GetRealSeconds() {
+    if (originalSecondsLeft == -1f) return SecondsLeft;
+    return originalSecondsLeft - (setSecondsLeft - SecondsLeft);
   }
 
   public void LowerSecondsLeftTo(float seconds) {
@@ -39,6 +54,7 @@ public class LevelTimer : Singleton<LevelTimer> {
   public void RestoreSecondsLeft() {
     if (originalSecondsLeft != -1f) {
       SecondsLeft = originalSecondsLeft - (setSecondsLeft - SecondsLeft);
+      originalSecondsLeft = -1f;
     }
   }
 

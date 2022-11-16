@@ -99,18 +99,19 @@ public class ItemHolder : MonoBehaviour {
   public void DropItem(float windup = 0) {
     if (_heldItem != null) {
       _heldItem.ReturnToOriginal();
-
+      IgnoreCollisions(_heldItem, false);
+      
       if (_heldItem.Rigidbody != null) {
         holding = false;
         _heldItem.Rigidbody.useGravity = true;
+        _heldItem.Rigidbody.isKinematic = false;
+
+        float outwardForce = Mathf.Pow(windup, 2) * throwMultiplier;
+        Vector3 throwStrength = Vector3.ClampMagnitude(handTransform.up * outwardForce, maxStrength) ;
+        // Debug.Log("throwStrength:" + throwStrength);
+        ApplyForceToObject(throwStrength, _heldItem);
       }
-      IgnoreCollisions(_heldItem, false);
 
-      float outwardForce = Mathf.Pow(windup, 2) * throwMultiplier;
-
-      Vector3 throwStrength = Vector3.ClampMagnitude(handTransform.up * outwardForce, maxStrength) ;
-      // Debug.Log("throwStrength:" + throwStrength);
-      ApplyForceToObject(throwStrength, _heldItem);
 
       _heldItem.Dropped();
       _heldItem = null;

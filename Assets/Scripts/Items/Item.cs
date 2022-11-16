@@ -56,23 +56,21 @@ public class Item : MonoBehaviour {
     }
 
     if (itemBounds != null) {
-      float delta = Time.deltaTime;
+      float delta = Time.deltaTime * 2;
       riskSpeed = Mathf.Min(itemBounds.extents.x / delta, itemBounds.extents.y / delta );
-      riskSpeed /= 2;
     }
 
   }
 
-  public void PickedUp() {
+  public virtual void PickedUp() {
     onPickup?.Invoke();
   }
 
-  public void Dropped() {
+  public virtual void Dropped() {
     onDrop?.Invoke();
   }
 
-  void Update()
-  {
+  protected virtual void Update() {
     // When the mop moves (specifically rotates) the scale gets altered in a non-preferable way
     // Later should edit to only fix scale on rotation. For now we always call FixScale when items move...
     if (transform.hasChanged)
@@ -80,9 +78,11 @@ public class Item : MonoBehaviour {
         FixScale();
         transform.hasChanged = false;
     }
+  }
 
+  void FixedUpdate() {
     if (Rigidbody && Rigidbody.velocity.magnitude > riskSpeed ) {
-        CheckForWall(Rigidbody.velocity);
+      CheckForWall(Rigidbody.velocity);
     }
   }
 
@@ -137,11 +137,12 @@ public class Item : MonoBehaviour {
 
   public void CheckForWall(Vector3 velocity) {
     float speed = velocity.magnitude;
-    float distance = speed * Time.deltaTime * 2; // approx. distance item will move in next 2 frames
+    float distance = speed * Time.deltaTime * 2; // approx. distance item will move in next 2 physics updates
     Vector3 position = transform.position;
     RaycastHit hit;
     if (Physics.BoxCast(position, transform.localScale, velocity, out hit, transform.rotation, distance)){
-      Rigidbody.velocity *= (riskSpeed/speed);
+      Rigidbody.velocity *= (riskSpeed/speed) * 0.8f;
+
     }
   }
 

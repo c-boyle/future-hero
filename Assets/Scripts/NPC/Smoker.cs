@@ -5,15 +5,7 @@ using UnityEngine;
 public class Smoker : NPC
 {
 
-    [SerializeField] private PathMovement smokerPath;
-    [SerializeField] private PathMovement yellingCashierPath;
-
-    [SerializeField] private Vector3 dropCigarettePos;
-    [SerializeField] private Vector3 dropCigaretteRot;
     [SerializeField] private Cigarette cig;
-
-    [SerializeField] private ParticleSystem smokerAngry;
-    [SerializeField] private ParticleSystem yellingCashierAngry;
 
     
 
@@ -27,6 +19,9 @@ public class Smoker : NPC
     }
 
     protected override void IsAngry() {
-
+        if(angry) return;
+        angry = true;
+        Interactable.UseClosestInteractable(cig.transform.position, null);
+        cig.ThrownToFuture();
     }
 }

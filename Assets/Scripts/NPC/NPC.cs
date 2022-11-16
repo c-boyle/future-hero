@@ -7,6 +7,7 @@ public class NPC : MonoBehaviour
 {
     protected int angerLevel = 0;
     protected int maxAngerValue = 10;
+    protected bool angry = false;
 
     private float force_backwards = 500f;
     private float force_upwards = 100f;
@@ -63,12 +64,16 @@ public class NPC : MonoBehaviour
         
     }
 
-    protected void UpdateAnger(int anger) {
+    public void UpdateAnger(int anger) {
+        Debug.Log("we are now " + anger + " angry!");
         angerLevel = anger;
-        if (angerLevel >= maxAngerValue) IsAngry();
+        if (angerLevel >= maxAngerValue) {
+            IsAngry();
+        }
     }
 
     protected virtual void IsAngry(){
         Debug.Log("You wouldn't like me when I'm angry... >:(");
     }
+
 }
