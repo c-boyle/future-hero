@@ -5015,7 +5015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1935243104735377519, guid: f3d88311d902cd742897930f93e4cc77, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 1.2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1935243104735377519, guid: f3d88311d902cd742897930f93e4cc77, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
@@ -5027,7 +5027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1935243104735377519, guid: f3d88311d902cd742897930f93e4cc77, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1935243104735377519, guid: f3d88311d902cd742897930f93e4cc77, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -17471,6 +17471,22 @@ PrefabInstance:
     - target: {fileID: 3127991600779876560, guid: 6ff77dc7471260c41a8518e4641b11cd, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127991600779876560, guid: 6ff77dc7471260c41a8518e4641b11cd, type: 3}
+      propertyPath: MaxDistance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127991600779876560, guid: 6ff77dc7471260c41a8518e4641b11cd, type: 3}
+      propertyPath: MinDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127991600779876560, guid: 6ff77dc7471260c41a8518e4641b11cd, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127991600779876561, guid: 6ff77dc7471260c41a8518e4641b11cd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.874
       objectReference: {fileID: 0}
     - target: {fileID: 3127991600951736923, guid: 6ff77dc7471260c41a8518e4641b11cd, type: 3}
       propertyPath: m_RootOrder
