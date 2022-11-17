@@ -17,6 +17,7 @@ public class PlayerInput : BaseInput {
   private bool activeLookInput = false;
   private bool isSprinting = false;
   private Interactable closestOutlinedInteractable;
+  private float pickupTime = 0;
 
   // Constants
   private const float INITIAL_SPEED_MULTIPLIER = 1f;
@@ -44,7 +45,9 @@ public class PlayerInput : BaseInput {
 
     // Controls that affect environment
     Controls.Player.Interact.performed += ctx => OnInteract();
-    Controls.Player.DropItem.performed += ctx => OnDropItem();
+    Controls.Player.DropItem.performed += ctx => {pickupTime = Time.time;};
+    Controls.Player.DropItem.canceled += ctx => OnDropItem(Time.time - pickupTime);
+    
 
     Controls.Player.Pause.performed += ctx => {if ((!dialogueManager) || (!dialogueManager.isDialoging)) UIEventListener.Instance.OnPausePressed();};
   }
@@ -87,7 +90,7 @@ public class PlayerInput : BaseInput {
 
   private void OnDestroy() {
     OnDisable();
-    Controls = null;
+    Controls = null; 
   }
 
   protected override void OnInteract() {
@@ -99,10 +102,10 @@ public class PlayerInput : BaseInput {
     }
   }
 
-  protected override void OnDropItem() {
+  protected override void OnDropItem(float windup = 0) {
     // Disable item dropping in the future?
     if (!futureSeer.TimeVisionEnabled) {
-      base.OnDropItem();
+      base.OnDropItem(windup);
     }
   }
 

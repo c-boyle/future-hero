@@ -14,6 +14,8 @@ public class Item : MonoBehaviour {
   private int originalLayer;
   private float originalMass;
 
+  private float riskSpeed = 3f;
+
   private List<GameObject> children = new List<GameObject>();
 
   public List<Collider> allColliders = new List<Collider>(); 
@@ -46,29 +48,41 @@ public class Item : MonoBehaviour {
     }
     allColliders = new List<Collider>(GetComponentsInChildren<Collider>());
 
-    itemBounds = allColliders[0].bounds;
-    for(int i = 1; i < allColliders.Count; i++){
-      itemBounds.Encapsulate(allColliders[i].bounds);
+    if (allColliders.Count > 0) {
+      itemBounds = allColliders[0].bounds;
+      for(int i = 1; i < allColliders.Count; i++){
+        itemBounds.Encapsulate(allColliders[i].bounds);
+      }
+    }
+
+    if (itemBounds != null) {
+      float delta = Time.deltaTime * 2;
+      riskSpeed = Mathf.Min(itemBounds.extents.x / delta, itemBounds.extents.y / delta );
     }
 
   }
 
-  public void PickedUp() {
+  public virtual void PickedUp() {
     onPickup?.Invoke();
   }
 
-  public void Dropped() {
+  public virtual void Dropped() {
     onDrop?.Invoke();
   }
 
-  void Update()
-  {
+  protected virtual void Update() {
     // When the mop moves (specifically rotates) the scale gets altered in a non-preferable way
     // Later should edit to only fix scale on rotation. For now we always call FixScale when items move...
     if (transform.hasChanged)
     {
         FixScale();
         transform.hasChanged = false;
+    }
+  }
+
+  void FixedUpdate() {
+    if (Rigidbody && Rigidbody.velocity.magnitude > riskSpeed ) {
+      CheckForWall(Rigidbody.velocity);
     }
   }
 
@@ -118,6 +132,17 @@ public class Item : MonoBehaviour {
   public void SetLayer(int layer){ 
     foreach (GameObject go in children) {
       go.layer = layer;
+    }
+  }
+
+  public void CheckForWall(Vector3 velocity) {
+    float speed = velocity.magnitude;
+    float distance = speed * Time.deltaTime * 2; // approx. distance item will move in next 2 physics updates
+    Vector3 position = transform.position;
+    RaycastHit hit;
+    if (Physics.BoxCast(position, transform.localScale, velocity, out hit, transform.rotation, distance)){
+      Rigidbody.velocity *= (riskSpeed/speed) * 0.8f;
+
     }
   }
 

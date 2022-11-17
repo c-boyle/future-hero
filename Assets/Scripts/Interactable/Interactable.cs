@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using MyBox;
 
 public class Interactable : MonoBehaviour {
-  [SerializeField] private UnityEvent interactionAction;
+  [SerializeField] public UnityEvent interactionAction;
   [Tooltip("Set to none if no item is required to interact.")][SerializeField] private Item requireItem = null;
   [SerializeField] private bool destroyRequiredItemOnInteraction = false;
   [SerializeField] private Item giveItem = null;
@@ -81,7 +81,7 @@ public class Interactable : MonoBehaviour {
     }
   }
 
-  private void OnInteract(ItemHolder itemHolder = null) {
+  protected virtual void OnInteract(ItemHolder itemHolder = null) {
 
     if (!gameObject.activeSelf) {
       return;
@@ -170,6 +170,12 @@ public class Interactable : MonoBehaviour {
     return closestInteractable;
   }
 
+  public static void UseInteractable(Interactable interactable, ItemHolder itemHolder) {
+    if (interactable != null) {
+      interactable.OnInteract(itemHolder);
+    }
+  }
+
   public static void UseClosestInteractable(Vector3 interactorPosition, ItemHolder itemHolder) {
     Interactable closestInteractable = Interactable.FindClosestInteractable(interactorPosition, itemHolder);
     if (closestInteractable != null) {
@@ -206,7 +212,7 @@ public class Interactable : MonoBehaviour {
     return closestInteractable;
   }
 
-  private bool MeetsItemRequirement(ItemHolder itemHolder) {
+  protected virtual bool MeetsItemRequirement(ItemHolder itemHolder) {
     return requireItem == null || (itemHolder != null && requireItem == itemHolder.HeldItem);
   }
 
