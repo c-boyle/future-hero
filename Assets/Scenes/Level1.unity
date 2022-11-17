@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 4801816}
   - component: {fileID: 4801819}
   - component: {fileID: 4801818}
+  - component: {fileID: 4801820}
   m_Layer: 0
   m_Name: Roof
   m_TagString: Untagged
@@ -383,6 +384,20 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4801815}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!64 &4801820
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4801815}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &20458623
 GameObject:
@@ -14661,6 +14676,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 451398971}
+        m_TargetAssemblyTypeName: Watch, Assembly-CSharp
+        m_MethodName: TriggerNotification
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   requireItem: {fileID: 1951356481}
   destroyRequiredItemOnInteraction: 1
   giveItem: {fileID: 0}
@@ -17272,6 +17299,7 @@ GameObject:
   - component: {fileID: 2395472319607690569}
   - component: {fileID: 9194862936424476844}
   - component: {fileID: 406112733454440161}
+  - component: {fileID: 9194862936424476845}
   m_Layer: 0
   m_Name: Overhead
   m_TagString: Untagged
@@ -23648,4 +23676,18 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2479359807210189872}
+  m_Mesh: {fileID: -5831055944878052066, guid: 6c25faacf718cd24c9e31d727b4f7de6, type: 3}
+--- !u!64 &9194862936424476845
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2479359807210189872}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -5831055944878052066, guid: 6c25faacf718cd24c9e31d727b4f7de6, type: 3}
