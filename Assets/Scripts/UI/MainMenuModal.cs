@@ -18,6 +18,8 @@ public class MainMenuModal : BaseModal {
     PlayerInput.Controls.UI.Enable();
   }
 
+  protected override void OnCancel(UnityEngine.InputSystem.InputAction.CallbackContext ctx) { }
+
   private void OnControlsPressed() {
     OpenSubModal(controlsModal);
   }
