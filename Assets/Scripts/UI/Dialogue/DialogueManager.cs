@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+
+    [SerializeField] private UnityEvent onDialogueOver;
+
     private Queue<string> sentences = new Queue<string>();
     public bool isDialoging = false; // true when we are currently showing dialogue
     public bool finalDialogue = false; // true when the final piece of dialogue IS output
@@ -55,6 +59,7 @@ public class DialogueManager : MonoBehaviour
         finalDialogue = false;
         ClearSentence();
         sentences.Clear();
+        onDialogueOver?.Invoke();
     }
 
 }

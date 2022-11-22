@@ -193,6 +193,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 4595697}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 746445818}
   promptText: Pick Up
@@ -469,6 +470,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 20458626}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 1972578175}
   promptText: Pick Up
@@ -1138,6 +1140,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 143748831}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 1023004749}
   promptText: Pick Up
@@ -2306,14 +2309,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283359048}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0.01}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1411130593}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.099, y: 1.7510009}
@@ -2465,6 +2468,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c2d9a7a7befee4383f37c47b45889e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDialogueOver:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1411130593}
+        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
+        m_MethodName: LookAt
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 528801141}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 309003983}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 283359048}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   isDialoging: 0
   finalDialogue: 0
   field: {fileID: 283359050}
@@ -2966,6 +3008,110 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1898e2b0b13c04493e515b56490dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &309003983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 309003984}
+  - component: {fileID: 309003985}
+  m_Layer: 1
+  m_Name: Interactable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &309003984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309003983}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.158, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1411130593}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &309003985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309003983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e343b2ba319572a418e2cfc9f1263bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1411130593}
+        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
+        m_MethodName: LookAt
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 868373889}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 283359048}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 283359053}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: TriggerDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 309003985}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: SetPromptText
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  requireItem: {fileID: 0}
+  destroyRequiredItemOnInteraction: 0
+  giveItem: {fileID: 0}
+  disableAfterFirstUse: 0
+  rootObject: {fileID: 856528171}
+  _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
+  Prompt: {fileID: 1883458620}
+  promptText: Talk
+  shaderChanged: 0
 --- !u!4 &313411544 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2107328575304186658, guid: d404c57a86f234445b24d449d9db902e, type: 3}
@@ -3683,6 +3829,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 405598447}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 1660411809}
   promptText: Pick Up
@@ -4741,6 +4888,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &528801140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 528801141}
+  m_Layer: 0
+  m_Name: InteractablePersonLookPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &528801141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528801140}
+  m_LocalRotation: {x: -0, y: -0.70080173, z: -0, w: 0.71335614}
+  m_LocalPosition: {x: 3.1085851, y: -0.091, z: 8.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1700905171}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &556453209
 GameObject:
   m_ObjectHideFlags: 0
@@ -5483,6 +5661,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 748151420}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 290073810}
   promptText: Pick Up
@@ -6052,6 +6231,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 0}
   disableAfterFirstUse: 1
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 233180969}
   promptText: Ask To Turn Stove Down
@@ -6466,6 +6646,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 853721699}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 1979414724}
   promptText: Pick Up
@@ -6763,6 +6944,11 @@ MeshFilter:
 --- !u!54 &868373888 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 4846740945935135842, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+  m_PrefabInstance: {fileID: 1026043323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &868373889 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8961430419220664973, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
   m_PrefabInstance: {fileID: 1026043323}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &877980300
@@ -7157,6 +7343,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 967408464}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 1299523791}
   promptText: Pick Up
@@ -8743,6 +8930,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 1078906415}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 1134441870}
   promptText: Pick Up
@@ -9202,6 +9390,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 1173534464}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 1900914082}
   promptText: Pick Up
@@ -10735,6 +10924,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 0}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 402246425}
   promptText: Clean Up
@@ -11111,6 +11301,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 1293990303}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 416356941}
   promptText: Pick Up
@@ -12338,6 +12529,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 1410875432}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 1330573817}
   promptText: Pick Up
@@ -12521,53 +12713,6 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2006890550330923437, guid: 7ee373f751e9cf24cb062d84245bf568, type: 3}
   m_PrefabInstance: {fileID: 1411130592}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1411130600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856528171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e343b2ba319572a418e2cfc9f1263bf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 283359048}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 283359053}
-        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
-        m_MethodName: TriggerDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  requireItem: {fileID: 0}
-  destroyRequiredItemOnInteraction: 0
-  giveItem: {fileID: 0}
-  disableAfterFirstUse: 1
-  _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
-  Prompt: {fileID: 1883458620}
-  promptText: Talk
-  shaderChanged: 0
 --- !u!1 &1414649141
 GameObject:
   m_ObjectHideFlags: 0
@@ -13222,6 +13367,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 1543127810}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 344179983}
   promptText: Pick Up
@@ -14187,6 +14333,7 @@ Transform:
   - {fileID: 1638701252}
   - {fileID: 118397301}
   - {fileID: 1050798203}
+  - {fileID: 528801141}
   m_Father: {fileID: 528732912}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15048,6 +15195,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 1
   giveItem: {fileID: 0}
   disableAfterFirstUse: 1
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 691238055}
   promptText: Put In Bucket
