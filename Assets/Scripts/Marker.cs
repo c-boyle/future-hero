@@ -28,14 +28,16 @@ public class Marker : MonoBehaviour {
     }
 
     Debug.Log(uiMarkerPool.CountAll + " = " + uiMarkerPool.CountActive + "+" + uiMarkerPool.CountInactive);
-    
+
     uiMarker = uiMarkerPool.Get();
     StartCoroutine(DisplayMarker(uiMarker));
   }
 
   public void Deactivate() {
-    uiMarkerPool.Release(uiMarker);
-    uiMarker = null;
+    if (uiMarker != null) {
+      uiMarkerPool.Release(uiMarker);
+      uiMarker = null;
+    }
     gameObject.SetActive(false);
   }
 
@@ -80,7 +82,7 @@ public class Marker : MonoBehaviour {
   }
 
   public static void OnDestroyUIMarker(RectTransform uiMarker) {
-    if(uiMarker) Destroy(uiMarker.gameObject);
+    if (uiMarker) Destroy(uiMarker.gameObject);
   }
 
   // Citation: https://forum.unity.com/threads/camera-worldtoscreenpoint-bug.85311/
