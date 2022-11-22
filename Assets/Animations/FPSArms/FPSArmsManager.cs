@@ -16,4 +16,12 @@ public class FPSArmsManager : MonoBehaviour
         animator.SetBool("isSprinting", isSprinting);
         animator.SetBool("isMidAir", isMidAir);
     }
+
+    public void StartJump() {
+        // Only queue the jump animation if the current state is idle
+        AnimatorStateInfo currentState = animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo nextState = animator.GetNextAnimatorStateInfo(0);
+        if (currentState.IsName("Idle") || nextState.IsName("Idle"))
+            animator.SetTrigger("startJump");
+    }
 }

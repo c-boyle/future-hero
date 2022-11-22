@@ -16,6 +16,9 @@ public class ItemHolder : MonoBehaviour {
 
   [SerializeField] private float pullDistance = 0.0f;
   [SerializeField] private float rotateDistance = 10;
+
+  private float maxStrength = 500f;
+  private float throwMultiplier = 220f;
   
   private bool holding = false;
 
@@ -35,6 +38,10 @@ public class ItemHolder : MonoBehaviour {
     }
   }
 
+  private void ApplyForceToObject(Vector3 force, Item item) {
+    item.Rigidbody.AddForce(force);
+  }
+
   private void ForceToHand() {
     if (_heldItem != null && _heldItem.Rigidbody != null) {
 
@@ -44,7 +51,7 @@ public class ItemHolder : MonoBehaviour {
       Vector3 targetPosition = handTransform.position + (Vector3.up * _heldItem.itemBounds.extents.y/2);
       if (Vector3.Distance(targetPosition, _heldItem.Rigidbody.position) > pullDistance) {
         direction = (targetPosition - _heldItem.Rigidbody.position);
-        _heldItem.Rigidbody.AddForce(direction * pullForce);
+        ApplyForceToObject(direction * pullForce, _heldItem);
       } 
       
 
@@ -74,11 +81,9 @@ public class ItemHolder : MonoBehaviour {
     Transform itemTransform = itemToGrab.transform;
 
     oldParent = itemTransform.parent;
-
-    var oldGlobalScale = itemTransform.lossyScale;
     
     _heldItem = itemToGrab;
-
+    
     if (_heldItem.Rigidbody != null) {
       holding = true;
       _heldItem.Rigidbody.useGravity = false;
@@ -88,18 +93,27 @@ public class ItemHolder : MonoBehaviour {
     
     IgnoreCollisions(_heldItem, true);
     grabAudio.Play();
+    _heldItem.PickedUp();
   }
 
-  public void DropItem() {
+  public void DropItem(float windup = 0) {
     if (_heldItem != null) {
       _heldItem.ReturnToOriginal();
-
+      IgnoreCollisions(_heldItem, false);
+      
       if (_heldItem.Rigidbody != null) {
         holding = false;
         _heldItem.Rigidbody.useGravity = true;
-      }
-      IgnoreCollisions(_heldItem, false);
+        _heldItem.Rigidbody.isKinematic = false;
 
+        float outwardForce = Mathf.Pow(windup, 2) * throwMultiplier;
+        Vector3 throwStrength = Vector3.ClampMagnitude(handTransform.up * outwardForce, maxStrength) ;
+        // Debug.Log("throwStrength:" + throwStrength);
+        ApplyForceToObject(throwStrength, _heldItem);
+      }
+
+
+      _heldItem.Dropped();
       _heldItem = null;
     }
   }
