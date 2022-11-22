@@ -8,8 +8,10 @@ public class Marker : MonoBehaviour {
 
   [SerializeField] private Sprite icon;
   [SerializeField] private float iconBoxSize;
+  [SerializeField] private bool clampToScreenEdge = true;
+  [SerializeField] private float markerDuration = 7f;
 
-  private const float markerDuration = 7f;
+  private RectTransform uiMarker = null;
 
   private static RectTransform uiRoot = null;
   private static Camera mainCamera = null;
@@ -17,6 +19,9 @@ public class Marker : MonoBehaviour {
   private static int uiMarkerCount = 0;
 
   public void Activate() {
+    if (!gameObject.activeSelf) {
+      return;
+    }
     if (uiRoot == null) {
       uiRoot = UIEventListener.Instance.transform as RectTransform;
       if (uiMarkerPool.CountAll > 0) uiMarkerPool.Clear();
@@ -24,8 +29,14 @@ public class Marker : MonoBehaviour {
 
     Debug.Log(uiMarkerPool.CountAll + " = " + uiMarkerPool.CountActive + "+" + uiMarkerPool.CountInactive);
     
-    var uiMarker = uiMarkerPool.Get();
+    uiMarker = uiMarkerPool.Get();
     StartCoroutine(DisplayMarker(uiMarker));
+  }
+
+  public void Deactivate() {
+    uiMarkerPool.Release(uiMarker);
+    uiMarker = null;
+    gameObject.SetActive(false);
   }
 
   private IEnumerator DisplayMarker(RectTransform uiMarker) {
@@ -40,7 +51,7 @@ public class Marker : MonoBehaviour {
       if (!UIEventListener.Instance.GameIsPaused) {
         uiMarker.gameObject.SetActive(true);
         var screenPoint = WorldToScreenPointProjected(mainCamera, transform.position);
-        uiMarker.position = ScreenPointEdgeClamp(screenPoint, edgeBuffer);
+        uiMarker.position = clampToScreenEdge ? ScreenPointEdgeClamp(screenPoint, edgeBuffer) : screenPoint;
 
         markerTimer -= Time.deltaTime;
       } else {
