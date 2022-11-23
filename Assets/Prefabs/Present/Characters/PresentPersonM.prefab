@@ -267,7 +267,8 @@ GameObject:
   - component: {fileID: 2480589368434281529}
   - component: {fileID: 8081411782737164914}
   - component: {fileID: 2432801296796692852}
-  m_Layer: 1
+  - component: {fileID: 8407608552209093309}
+  m_Layer: 0
   m_Name: PresentPersonM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,6 +346,26 @@ MonoBehaviour:
   randomizeStartTime: 1
   randomStartTimeMin: 0
   randomStartTimeMax: 3
+--- !u!114 &8407608552209093309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2841097208309220175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc76d89ec23324b42b336656d272cd01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angryParticle: {fileID: 0}
+  talking1: {fileID: 0}
+  talking2: {fileID: 0}
+  talking3: {fileID: 0}
+  mumbling1: {fileID: 0}
+  mumbling2: {fileID: 0}
+  mumbling3: {fileID: 0}
+  mumble: 1
 --- !u!1 &3252239954318891151
 GameObject:
   m_ObjectHideFlags: 0

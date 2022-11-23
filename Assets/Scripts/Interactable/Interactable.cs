@@ -23,7 +23,7 @@ public class Interactable : MonoBehaviour {
   private List<Renderer> _childRends = new();
 
   // Prompt related variables
-  [SerializeField] private TextMesh Prompt;
+  [SerializeField] protected TextMesh Prompt;
   public string promptText = "interact";
   private Vector3 promptScale = Vector3.one;
 
@@ -213,6 +213,7 @@ public class Interactable : MonoBehaviour {
   }
 
   protected virtual bool MeetsItemRequirement(ItemHolder itemHolder) {
+    Prompt.text = promptText;
     return requireItem == null || (itemHolder != null && requireItem == itemHolder.HeldItem);
   }
 
@@ -233,7 +234,7 @@ public class Interactable : MonoBehaviour {
     Prompt.transform.rotation = Quaternion.Euler(new Vector3(current.eulerAngles.x, rotation.eulerAngles.y, current.eulerAngles.z));
     // Prompt.transform.rotation = rotation;
     bool meetsItemRequirement = MeetsItemRequirement(itemHolder);
-    Prompt.text = meetsItemRequirement ? promptText : "Item Needed To Interact";
+    Prompt.text = meetsItemRequirement ? Prompt.text : "Item Needed To Interact";
     Prompt.color = meetsItemRequirement ? originalPromptColor : Color.red;
   }
 

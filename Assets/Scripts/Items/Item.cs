@@ -7,8 +7,9 @@ using UnityEngine.Events;
 public class Item : MonoBehaviour {
   // Name acts as a key
   [SerializeField] private string itemName;
-  [SerializeField] private UnityEvent onPickup;
-  [SerializeField] private UnityEvent onDrop;
+  [SerializeField] protected UnityEvent onPickup;
+  [SerializeField] protected UnityEvent onDrop;
+  public bool held = false;
 
   private Vector3 originalScale;
   private int originalLayer;
@@ -57,16 +58,20 @@ public class Item : MonoBehaviour {
 
     if (itemBounds != null) {
       float delta = Time.deltaTime * 2;
-      riskSpeed = Mathf.Min(itemBounds.extents.x / delta, itemBounds.extents.y / delta );
+      // riskSpeed = Mathf.Min(itemBounds.extents.x / delta, itemBounds.extents.y / delta );
+      riskSpeed = 0;
     }
 
   }
 
   public virtual void PickedUp() {
+    Debug.Log("Picked Up!!");
+    held = true;
     onPickup?.Invoke();
   }
 
   public virtual void Dropped() {
+    held = false;
     onDrop?.Invoke();
   }
 
@@ -75,9 +80,13 @@ public class Item : MonoBehaviour {
     // Later should edit to only fix scale on rotation. For now we always call FixScale when items move...
     if (transform.hasChanged)
     {
-        FixScale();
-        transform.hasChanged = false;
+      MovementHappening();
+      transform.hasChanged = false;
     }
+  }
+
+  protected virtual void MovementHappening() {
+    FixScale();
   }
 
   void FixedUpdate() {
@@ -137,11 +146,12 @@ public class Item : MonoBehaviour {
 
   public void CheckForWall(Vector3 velocity) {
     float speed = velocity.magnitude;
-    float distance = speed * Time.deltaTime * 2; // approx. distance item will move in next 2 physics updates
+    float distance = speed * Time.deltaTime; // approx. distance item will move in next 2 physics updates
     Vector3 position = transform.position;
     RaycastHit hit;
-    if (Physics.BoxCast(position, transform.localScale, velocity, out hit, transform.rotation, distance)){
-      Rigidbody.velocity *= (riskSpeed/speed) * 0.8f;
+    if (Physics.BoxCast(position, itemBounds.extents, velocity, out hit, transform.rotation, distance)){
+      float newSpeed = hit.distance/Time.deltaTime;
+      Rigidbody.velocity *= (newSpeed/speed);
 
     }
   }

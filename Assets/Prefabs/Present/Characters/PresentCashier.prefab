@@ -1543,6 +1543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7055005603373217182}
   - component: {fileID: 7377691458189267574}
+  - component: {fileID: 8855102150661593244}
   m_Layer: 0
   m_Name: PresentCashier
   m_TagString: Employee
@@ -1583,6 +1584,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &8855102150661593244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684190564237127460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2bc03764fb8a04b89dd249dbd47764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angryParticle: {fileID: 0}
+  pushPlayer: 1
+  talking1: {fileID: 0}
+  talking2: {fileID: 0}
+  talking3: {fileID: 0}
+  mumbling1: {fileID: 0}
+  mumbling2: {fileID: 0}
+  mumbling3: {fileID: 0}
+  mumble: 1
 --- !u!1 &7784006276779866354
 GameObject:
   m_ObjectHideFlags: 0

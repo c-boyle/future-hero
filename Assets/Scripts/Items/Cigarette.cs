@@ -6,34 +6,56 @@ public class Cigarette : Item
 {
     [SerializeField] private GameObject futureCig;
     private bool match = false;
+    [SerializeField] private ParticleSystem smoke;
+    public bool smoking = true;
 
     protected override void Update() {
         if (match) MatchCigarettes(futureCig, gameObject);
     }
 
+    void OnCollisionEnter(Collision collision) {
+        CheckCig(collision.gameObject.GetComponent<Interactable>());
+    }
+
+    void OnTriggerEnter(Collider collider) {
+        CheckCig(collider.gameObject.GetComponent<Interactable>()); 
+    }
+
+    private void CheckCig(Interactable interactable) {
+        if (!smoking || !match) return; // If cigarette is not smoking, no risk. Return
+        
+        if (interactable != null) { // If we are given a suitable interactable, it can put cig out
+            SafePosition();
+
+            Cup cup = interactable.gameObject.GetComponent<Cup>(); // If it's a cup, owner is mad
+            if (cup != null) cup.OwnerIsAngry();
+        }
+        else if (!held) base.Dropped(); // No interactable, so fire happens!
+    }
+
     public void ThrownToFuture() {
+        if (held) return;
         MatchCigarettes(gameObject, futureCig);
-        Dropped();
     }
 
     public override void PickedUp() {
-        StopAllCoroutines();
-        base.PickedUp();
+        if (smoking) base.PickedUp();
+        else held = true;
     }
 
     public override void Dropped() {
-        StartCoroutine(DropCigarette());
         match = true;
+        held = false;
     }
 
-    private IEnumerator DropCigarette() {
-        yield return new WaitForSeconds(3f);
-        if (!SafePosition()) base.Dropped();
+    public void SafePosition() {
+        base.PickedUp();
+        PutOut();
     }
 
-    private bool SafePosition() {
-        // At the moment there is no safe place to drop the cigarette
-        return false;
+    private void PutOut() {
+        smoking = false;
+        if (smoke != null) smoke.Stop();
     }
 
     private void MatchCigarettes(GameObject cig1, GameObject cig2) {

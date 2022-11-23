@@ -8,20 +8,12 @@ public class Smoker : NPC
     [SerializeField] private Cigarette cig;
     [SerializeField] private Interactable cigInteract;
 
-    
-
-    protected void OnCollisionEnter(Collision collision) {
-        Collider collider = collision.collider;
-        if (collider.tag != "Player"){
-            UpdateAnger(maxAngerValue);
-        }
-
-        base.OnTriggerEnter(collider);
-    }
-
     protected override void IsAngry() {
         if(angry) return;
         angry = true;
+
+        if (cig.held) return;
+        
         Interactable.UseInteractable(cigInteract, null);
         cig.ThrownToFuture();
     }
