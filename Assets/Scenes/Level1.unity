@@ -22334,6 +22334,66 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleEnabled.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleDisabled.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleDisabled.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 204538585}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleDisabled.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 204538585}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleDisabled.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleDisabled.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleDisabled.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleDisabled.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075798856, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
+      propertyPath: timeToggleDisabled.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3404644661666673, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
       propertyPath: m_Layer
       value: 1
