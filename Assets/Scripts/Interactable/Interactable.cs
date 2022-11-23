@@ -103,7 +103,7 @@ public class Interactable : MonoBehaviour {
         itemHolder.GrabItem(giveItem);
         interactionAction?.Invoke();
       }
-    } else if (MeetsItemRequirement(itemHolder)) {
+    } else if (MeetsItemRequirement(itemHolder) && (giveItem == null || !giveItem.Rigidbody.isKinematic)) {
       if (destroyRequiredItemOnInteraction) {
         var itemToDestroy = itemHolder.HeldItem;
         itemHolder.DropItem();
