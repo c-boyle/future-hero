@@ -8,6 +8,7 @@ public class Cigarette : Item
     private bool match = false;
     [SerializeField] private ParticleSystem smoke;
     public bool smoking = true;
+    private bool danger = false;
 
     protected override void Update() {
         if (match) MatchCigarettes(futureCig, gameObject);
@@ -30,7 +31,10 @@ public class Cigarette : Item
             Cup cup = interactable.gameObject.GetComponent<Cup>(); // If it's a cup, owner is mad
             if (cup != null) cup.OwnerIsAngry();
         }
-        else if (!held) base.Dropped(); // No interactable, so fire happens!
+        else if (!held && !danger) {
+            base.Dropped(); // No interactable, so fire happens!
+            danger = true;
+        }
     }
 
     public void ThrownToFuture() {
@@ -41,11 +45,13 @@ public class Cigarette : Item
     public override void PickedUp() {
         if (smoking) base.PickedUp();
         else held = true;
+        danger = false;
     }
 
     public override void Dropped() {
         match = true;
         held = false;
+        Debug.Log("Drop1");
     }
 
     public void SafePosition() {

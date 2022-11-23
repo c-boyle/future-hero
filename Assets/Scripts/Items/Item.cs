@@ -71,6 +71,7 @@ public class Item : MonoBehaviour {
   }
 
   public virtual void Dropped() {
+    Debug.Log("Drop2");
     held = false;
     onDrop?.Invoke();
   }

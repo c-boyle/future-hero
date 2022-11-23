@@ -52,7 +52,9 @@ public class LevelTimer : Singleton<LevelTimer> {
   }
 
   public void RestoreSecondsLeft() {
+    Debug.Log("Restoring Seconds");
     if (originalSecondsLeft != -1f) {
+      Debug.Log("SecondsLeft = " + originalSecondsLeft + " - (" + setSecondsLeft + " - " + SecondsLeft + ")");
       SecondsLeft = originalSecondsLeft - (setSecondsLeft - SecondsLeft);
       originalSecondsLeft = -1f;
     }
