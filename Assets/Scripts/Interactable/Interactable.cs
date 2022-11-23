@@ -4,18 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using MyBox;
-using TMPro;
 
 public class Interactable : MonoBehaviour {
   [SerializeField] public UnityEvent interactionAction;
-  [SerializeField] public List<UnityEvent> useCountDependentEvents;
   [Tooltip("Set to none if no item is required to interact.")][SerializeField] private Item requireItem = null;
   [SerializeField] private bool destroyRequiredItemOnInteraction = false;
   [SerializeField] private Item giveItem = null;
   [SerializeField] private bool disableAfterFirstUse = false;
   [SerializeField] private GameObject rootObject = null;
-
-  private int interactionCount = 0;
 
   // Shaders for items
   private Shader _regularShader;
@@ -62,7 +58,7 @@ public class Interactable : MonoBehaviour {
     var childRenderers = rootObject.GetComponentsInChildren<Renderer>();
     _childRegularShaders = new List<Shader>();
     foreach (Renderer color in childRenderers) {
-      if (color is not ParticleSystemRenderer && (!color.TryGetComponent<TMP_Text>(out var tmpText) && !color.TryGetComponent<TextMesh>(out var textMesh))) {
+      if (color is not ParticleSystemRenderer) {
         _childRegularShaders.Add(color.material.shader);
         _childRends.Add(color);
       }
@@ -90,6 +86,7 @@ public class Interactable : MonoBehaviour {
   }
 
   protected virtual void OnInteract(ItemHolder itemHolder = null) {
+
     if (!gameObject.activeSelf) {
       return;
     }
@@ -104,10 +101,7 @@ public class Interactable : MonoBehaviour {
         Destroy(itemToDestroy.gameObject);
       }
       interactionAction?.Invoke();
-      if (useCountDependentEvents.Count > 0) {
-        useCountDependentEvents[Mathf.Min(interactionCount, useCountDependentEvents.Count - 1)]?.Invoke();
-      }
-      interactionCount++;
+
       // Debug.Log(name + " interacted");
 
       if (disableAfterFirstUse) {
