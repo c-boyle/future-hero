@@ -21,7 +21,7 @@ public class ItemHolder : MonoBehaviour {
   private float throwMultiplier = 220f;
   private float originalItemMass;
 
-  private bool holding = false;
+  public bool holding = false;
 
   public Item HeldItem { get => _heldItem; }
 
@@ -91,6 +91,9 @@ public class ItemHolder : MonoBehaviour {
       originalItemMass = _heldItem.Rigidbody.mass;
       _heldItem.SetMass(0);
       ForceToHand();
+    } else { // Not meant to be picked up
+      _heldItem = null;
+      return;
     }
 
     IgnoreCollisions(_heldItem, true);

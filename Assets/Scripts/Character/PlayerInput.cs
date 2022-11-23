@@ -13,6 +13,8 @@ public class PlayerInput : BaseInput {
   [SerializeField] private DialogueManager dialogueManager;
   [SerializeField] private LineRenderer trajectoryRenderer;
 
+  [SerializeField] private Watch watch;
+
   public static ControlActions Controls;
   private bool activeMovementInput = false;
   private bool activeLookInput = false;
@@ -37,8 +39,8 @@ public class PlayerInput : BaseInput {
     Controls.Player.Sprint.performed += ctx => isSprinting = true;
     Controls.Player.Sprint.canceled += ctx => isSprinting = false;
     Controls.Player.Jump.performed += ctx => { OnJump(); };
-    Controls.Player.LookAtWatch.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = true; };
-    Controls.Player.LookAtWatch.canceled += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = false; };
+    Controls.Player.LookAtWatch.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = true; watch.LookingAt(true);};
+    Controls.Player.LookAtWatch.canceled += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = false; watch.LookingAt(false);};
 
     // Controls that alter vision
     Controls.Player.Look.performed += ctx => activeLookInput = true;
@@ -47,8 +49,8 @@ public class PlayerInput : BaseInput {
 
     // Controls that affect environment
     Controls.Player.Interact.performed += ctx => OnInteract();
-    Controls.Player.DropItem.performed += ctx => { pickupTime = Time.time; holdingDrop = true; };
-    Controls.Player.DropItem.canceled += ctx => { OnDropItem(Time.time - pickupTime); holdingDrop = false; itemHolder.ClearThrowTrajectory(trajectoryRenderer); };
+    Controls.Player.PickDrop.performed += ctx => { pickupTime = Time.time; holdingDrop = true; };
+    Controls.Player.PickDrop.canceled += ctx => { OnPickDropItem(Time.time - pickupTime); holdingDrop = false; itemHolder.ClearThrowTrajectory(trajectoryRenderer); };
     
 
     Controls.Player.Pause.performed += ctx => {if ((!dialogueManager) || (!dialogueManager.isDialoging)) UIEventListener.Instance.OnPausePressed();};
@@ -107,10 +109,10 @@ public class PlayerInput : BaseInput {
     }
   }
 
-  protected override void OnDropItem(float windup = 0) {
+  protected override void OnPickDropItem(float windup = 0) {
     // Disable item dropping in the future?
     if (!futureSeer.TimeVisionEnabled) {
-      base.OnDropItem(windup);
+      base.OnPickDropItem(windup);
     }
   }
 
