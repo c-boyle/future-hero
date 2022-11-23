@@ -23,6 +23,10 @@ public class LevelTimer : Singleton<LevelTimer> {
 
   public static float SecondsSpentInLevel { get; private set; } = 0f;
 
+  void Start() {
+    SecondsSpentInLevel = 0f;
+  }
+
   // Update is called once per frame
   void Update() {
     if (!levelEnded) {
@@ -69,7 +73,6 @@ public class LevelTimer : Singleton<LevelTimer> {
     // Play end cutscene
 
     LevelEnd?.Invoke(this, new() { Won = won });
-    SecondsSpentInLevel = 0f;
     levelEnded = true;
   }
 

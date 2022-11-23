@@ -43,9 +43,11 @@ public class Cigarette : Item
     }
 
     public override void PickedUp() {
+        match = true;
         if (smoking) base.PickedUp();
         else held = true;
         danger = false;
+        
     }
 
     public override void Dropped() {
