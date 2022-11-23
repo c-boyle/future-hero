@@ -47,8 +47,8 @@ public class PlayerInput : BaseInput {
 
     // Controls that affect environment
     Controls.Player.Interact.performed += ctx => OnInteract();
-    Controls.Player.DropItem.performed += ctx => { pickupTime = Time.time; holdingDrop = true; };
-    Controls.Player.DropItem.canceled += ctx => { OnDropItem(Time.time - pickupTime); holdingDrop = false; itemHolder.ClearThrowTrajectory(trajectoryRenderer); };
+    Controls.Player.PickDrop.performed += ctx => { pickupTime = Time.time; holdingDrop = true; };
+    Controls.Player.PickDrop.canceled += ctx => { OnPickDropItem(Time.time - pickupTime); holdingDrop = false; itemHolder.ClearThrowTrajectory(trajectoryRenderer); };
     
 
     Controls.Player.Pause.performed += ctx => {if ((!dialogueManager) || (!dialogueManager.isDialoging)) UIEventListener.Instance.OnPausePressed();};
@@ -107,10 +107,10 @@ public class PlayerInput : BaseInput {
     }
   }
 
-  protected override void OnDropItem(float windup = 0) {
+  protected override void OnPickDropItem(float windup = 0) {
     // Disable item dropping in the future?
     if (!futureSeer.TimeVisionEnabled) {
-      base.OnDropItem(windup);
+      base.OnPickDropItem(windup);
     }
   }
 

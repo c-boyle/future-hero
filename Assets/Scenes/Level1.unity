@@ -1434,7 +1434,6 @@ GameObject:
   - component: {fileID: 152901299}
   - component: {fileID: 152901298}
   - component: {fileID: 152901300}
-  - component: {fileID: 152901297}
   - component: {fileID: 152901293}
   - component: {fileID: 152901296}
   m_Layer: 0
@@ -1459,7 +1458,7 @@ Transform:
   - {fileID: 937618668}
   - {fileID: 751422896}
   m_Father: {fileID: 528732912}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 6.6666646, y: 180.121, z: 0}
 --- !u!23 &152901291
 MeshRenderer:
@@ -1541,66 +1540,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &152901297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152901288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e343b2ba319572a418e2cfc9f1263bf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 152901299}
-        m_TargetAssemblyTypeName: Anim, Assembly-CSharp
-        m_MethodName: PlayAnimation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 302986225}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 573667862}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  requireItem: {fileID: 0}
-  destroyRequiredItemOnInteraction: 0
-  giveItem: {fileID: 0}
-  disableAfterFirstUse: 0
-  rootObject: {fileID: 0}
-  _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
-  Prompt: {fileID: 751422894}
-  promptText: Pick Up
-  shaderChanged: 0
 --- !u!114 &152901298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1693,7 +1632,7 @@ MonoBehaviour:
         m_CallState: 2
   requireItem: {fileID: 0}
   destroyRequiredItemOnInteraction: 0
-  giveItem: {fileID: 0}
+  giveItem: {fileID: 152901298}
   disableAfterFirstUse: 0
   rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
@@ -5104,10 +5043,10 @@ Transform:
   - {fileID: 462379619}
   - {fileID: 1923263431}
   - {fileID: 760352431}
-  - {fileID: 543450652929057147}
   - {fileID: 1700905171}
-  - {fileID: 8911954081425025518}
+  - {fileID: 543450652929057147}
   - {fileID: 152901289}
+  - {fileID: 8911954081425025518}
   - {fileID: 1279162748}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -11363,7 +11302,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  redHerringPromptText: interact
+  redHerringPromptText: Clean Up
   futurePuddle: {fileID: 1798791476}
 --- !u!1 &1281656427
 GameObject:
@@ -14795,7 +14734,7 @@ Transform:
   - {fileID: 118397301}
   - {fileID: 1050798203}
   m_Father: {fileID: 528732912}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1735694354
 GameObject:

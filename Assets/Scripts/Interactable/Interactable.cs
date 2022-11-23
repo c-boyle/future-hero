@@ -85,17 +85,18 @@ public class Interactable : MonoBehaviour {
     }
   }
 
-  protected virtual void OnInteract(ItemHolder itemHolder = null) {
+  protected virtual void OnInteract(ItemHolder itemHolder = null, bool grab = false) {
 
     if (!gameObject.activeSelf) {
       return;
     }
-    bool meetsItemRequirement = MeetsItemRequirement(itemHolder);
-    if (meetsItemRequirement) {
-      if (giveItem != null && itemHolder != null) {
+    if (grab) {
+      if (MeetsGrabRequirement(itemHolder)){
         itemHolder.GrabItem(giveItem);
+        interactionAction?.Invoke();
       }
-      if (destroyRequiredItemOnInteraction && meetsItemRequirement) {
+    } else if (MeetsItemRequirement(itemHolder)) {
+      if (destroyRequiredItemOnInteraction) {
         var itemToDestroy = itemHolder.HeldItem;
         itemHolder.DropItem();
         Destroy(itemToDestroy.gameObject);
@@ -174,23 +175,23 @@ public class Interactable : MonoBehaviour {
     return closestInteractable;
   }
 
-  public static void UseInteractable(Interactable interactable, ItemHolder itemHolder) {
+  public static void UseInteractable(Interactable interactable, ItemHolder itemHolder, bool grab = false) {
     if (interactable != null) {
-      interactable.OnInteract(itemHolder);
+      interactable.OnInteract(itemHolder, grab);
     }
   }
 
-  public static void UseClosestInteractable(Vector3 interactorPosition, ItemHolder itemHolder) {
+  public static void UseClosestInteractable(Vector3 interactorPosition, ItemHolder itemHolder, bool grab = false) {
     Interactable closestInteractable = Interactable.FindClosestInteractable(interactorPosition, itemHolder);
     if (closestInteractable != null) {
-      closestInteractable.OnInteract(itemHolder);
+      closestInteractable.OnInteract(itemHolder, grab);
     }
   }
 
-  public static void UseClosestInteractableInView(Vector3 cameraPosition, Vector3 cameraDirection, ItemHolder itemHolder) {
+  public static void UseClosestInteractableInView(Vector3 cameraPosition, Vector3 cameraDirection, ItemHolder itemHolder, bool grab = false) {
     Interactable closestInteractable = Interactable.FindClosestInteractableInView(cameraPosition, cameraDirection, itemHolder);
     if (closestInteractable != null) {
-      closestInteractable.OnInteract(itemHolder);
+      closestInteractable.OnInteract(itemHolder, grab);
     }
   }
 
@@ -219,6 +220,10 @@ public class Interactable : MonoBehaviour {
   protected virtual bool MeetsItemRequirement(ItemHolder itemHolder) {
     Prompt.text = promptText;
     return requireItem == null || (itemHolder != null && requireItem == itemHolder.HeldItem);
+  }
+
+  protected bool MeetsGrabRequirement(ItemHolder itemHolder) {
+    return giveItem != null && itemHolder != null;
   }
 
   public void ShowPrompt(ItemHolder itemHolder) {
