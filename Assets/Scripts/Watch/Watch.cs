@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.InputSystem;
 using System;
@@ -8,6 +9,11 @@ using System;
 public abstract class Watch : MonoBehaviour {
   [SerializeField] private Renderer watchRenderer;
   [SerializeField] private Color presentColour = new Color(0, 0, 1, 0); [SerializeField] private Color futureColour = new Color(1, 0, 0, 0);
+
+  [SerializeField] private Image TimeLeftVisual;
+  private float percentageTime = 0;
+  protected bool lookingAt = false;
+
   protected float transitionTime = 0.0f; protected float transitionMax = 1.0f; protected float deltaTransition = 0.03f;
 
   protected int futureSeconds = 0;
@@ -21,8 +27,12 @@ public abstract class Watch : MonoBehaviour {
 
   protected bool notTransitioning = true;
 
+  [SerializeField] protected float totalSeconds;
+
 
   private void Start() {
+    totalSeconds = 240f;
+    TimeLeftVisual.type = Image.Type.Filled;
     LevelTimer.TimerUpdated += SetPresent;
     if (watchRenderer != null) {
       watchRenderer.material.color = presentColour;
@@ -32,11 +42,15 @@ public abstract class Watch : MonoBehaviour {
 
   // Update is called once per frame
   void Update() {
-    if (notTransitioning) UpdateWatch();
+    if (notTransitioning) {
+      UpdateWatch();
+      UpdateTimeLeft();
+    }
   }
 
   private void SetPresent(object sender, LevelTimer.TimerUpdateEventArgs e) {
     int secondsLeft = (int)e.SecondsLeft;
+    percentageTime = (totalSeconds - secondsLeft) / totalSeconds;
     presentMinutes = (int)Math.Floor((double)(secondsLeft / minuteLength));
     presentSeconds = secondsLeft % minuteLength;
   }
@@ -45,8 +59,15 @@ public abstract class Watch : MonoBehaviour {
     return;
   }
 
+  private void UpdateTimeLeft() {
+    if(!isFuture) TimeLeftVisual.fillAmount = percentageTime;
+    else TimeLeftVisual.fillAmount = 1;
+  }
+
   public void toggleFutureTime(bool timeVision) {
     if (isFuture == timeVision) return;
+
+    float prevTime = transitionTime;
 
     SetGlow(false);
 
@@ -60,6 +81,9 @@ public abstract class Watch : MonoBehaviour {
     Color end = (isFuture) ? presentColour : futureColour;
     StopCoroutine(TransitionColour(end, start));
     StartCoroutine(TransitionColour(start, end));
+    
+    StopCoroutine(TransitionTimeLeft(prevTime));
+    StartCoroutine(TransitionTimeLeft(prevTime));
 
     isFuture = timeVision;
   }
@@ -89,6 +113,16 @@ public abstract class Watch : MonoBehaviour {
     }
   }
 
+  protected IEnumerator TransitionTimeLeft(float prevTime = 0f) {
+    float start = (!isFuture) ? percentageTime : 1;
+    float end = (!isFuture) ? 1 : percentageTime;
+    start = Mathf.Lerp(start, end, prevTime/transitionMax);
+    while (!notTransitioning && (transitionTime < transitionMax)) {
+      TimeLeftVisual.fillAmount = Mathf.Lerp(start, end, transitionTime/transitionMax);
+      yield return null;
+    }
+  }
+
   protected void SetGlow(bool glow) {
     if (watchRenderer == null) return;
 
@@ -114,4 +148,9 @@ public abstract class Watch : MonoBehaviour {
       yield return new WaitForSeconds(0.25f);
     }
   }
+
+  public virtual void LookingAt(bool look) {
+    StopAllCoroutines();
+    lookingAt = look;
+  } 
 }

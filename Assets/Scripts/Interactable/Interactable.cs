@@ -69,7 +69,12 @@ public class Interactable : MonoBehaviour {
     Prompt.text = promptText;
     promptScale = Prompt.transform.localScale;
     Prompt.transform.localScale = new Vector3(0, 0, 0);
-    originalPromptColor = Prompt.color;
+    if (giveItem == null) {
+      _regularOutlineColor = Color.blue;
+      originalPromptColor = _regularOutlineColor.Value;
+    } else {
+      originalPromptColor = Prompt.color;
+    }
   }
 
   private void OnEnable() {

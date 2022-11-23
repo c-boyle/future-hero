@@ -13,6 +13,8 @@ public class PlayerInput : BaseInput {
   [SerializeField] private DialogueManager dialogueManager;
   [SerializeField] private LineRenderer trajectoryRenderer;
 
+  [SerializeField] private Watch watch;
+
   public static ControlActions Controls;
   private bool activeMovementInput = false;
   private bool activeLookInput = false;
@@ -37,8 +39,8 @@ public class PlayerInput : BaseInput {
     Controls.Player.Sprint.performed += ctx => isSprinting = true;
     Controls.Player.Sprint.canceled += ctx => isSprinting = false;
     Controls.Player.Jump.performed += ctx => { OnJump(); };
-    Controls.Player.LookAtWatch.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = true; };
-    Controls.Player.LookAtWatch.canceled += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = false; };
+    Controls.Player.LookAtWatch.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = true; watch.LookingAt(true);};
+    Controls.Player.LookAtWatch.canceled += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = false; watch.LookingAt(false);};
 
     // Controls that alter vision
     Controls.Player.Look.performed += ctx => activeLookInput = true;

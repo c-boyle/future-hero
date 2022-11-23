@@ -86,10 +86,6 @@ public class ItemHolder : MonoBehaviour {
     _heldItem = itemToGrab;
 
     if (_heldItem.Rigidbody != null) {
-      if (_heldItem.Rigidbody.isKinematic) { // Not meant to be picked up
-        _heldItem = null;
-        return;
-      }
       holding = true;
       _heldItem.Rigidbody.useGravity = false;
       originalItemMass = _heldItem.Rigidbody.mass;

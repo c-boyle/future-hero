@@ -59,6 +59,7 @@ public class Cigarette : Item
     public void SafePosition() {
         base.PickedUp();
         PutOut();
+        danger = false;
     }
 
     private void PutOut() {
