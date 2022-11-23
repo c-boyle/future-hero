@@ -8994,12 +8994,20 @@ PrefabInstance:
         North or T) to start the level, and explore for clues to fix the future!]'
       objectReference: {fileID: 0}
     - target: {fileID: 3703104743901103331, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
+      propertyPath: m_margin.w
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703104743901103331, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
       propertyPath: m_margin.x
-      value: -1117.1467
+      value: -600
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703104743901103331, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
+      propertyPath: m_margin.y
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 3703104743901103331, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
       propertyPath: m_margin.z
-      value: -1127.8506
+      value: -600
       objectReference: {fileID: 0}
     - target: {fileID: 7071942748436260231, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
       propertyPath: m_IsActive
