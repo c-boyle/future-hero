@@ -8962,6 +8962,19 @@ PrefabInstance:
       propertyPath: manager
       value: 
       objectReference: {fileID: 1035605001}
+    - target: {fileID: 1816757903, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: Your favourite restaurant, Future Gyros, is at risk!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816757903, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
+      propertyPath: dialogue.sentences.Array.data[2]
+      value: Use your powers to fix the future, and save Future Gyros!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816757903, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
+      propertyPath: dialogue.sentences.Array.data[3]
+      value: '[Look into the future (Button North or T) to start the level. Explore
+        the restaurant for clues to fix the future!]'
+      objectReference: {fileID: 0}
     - target: {fileID: 1816757904, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
       propertyPath: dialogueManager
       value: 
@@ -8978,7 +8991,7 @@ PrefabInstance:
         the future, and save Future Gyro''s
 
         [Look into the future (Button
-        North or T) to start the level]'
+        North or T) to start the level, and explore for clues to fix the future!]'
       objectReference: {fileID: 0}
     - target: {fileID: 3703104743901103331, guid: 823ccb81d5e1fac42ab82816973d76b0, type: 3}
       propertyPath: m_margin.x
