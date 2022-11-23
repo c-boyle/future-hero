@@ -7800,6 +7800,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 809892768703466018, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4961458107837619791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: introText
       value: 
@@ -7812,6 +7816,18 @@ PrefabInstance:
       propertyPath: presentTimeLine
       value: 
       objectReference: {fileID: 528732911}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: watchRenderer
+      value: 
+      objectReference: {fileID: 1428685862}
+    - target: {fileID: 8221983694384242628, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_Parameters.alignment
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8221983694384242628, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_Parameters.numCapVertices
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8581246045155444791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_Name
       value: FutureHero
@@ -13623,6 +13639,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421404543}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1428685862 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3240788645011943626, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+  m_PrefabInstance: {fileID: 1026043323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1437011746
 GameObject:
   m_ObjectHideFlags: 0
