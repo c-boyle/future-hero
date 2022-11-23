@@ -6,12 +6,15 @@ using UnityEngine.Events;
 using MyBox;
 
 public class Interactable : MonoBehaviour {
-  [SerializeField] public UnityEvent interactionAction;
+  public UnityEvent interactionAction;
+  [SerializeField] private List<UnityEvent> useCountDependentActions;
   [Tooltip("Set to none if no item is required to interact.")][SerializeField] private Item requireItem = null;
   [SerializeField] private bool destroyRequiredItemOnInteraction = false;
   [SerializeField] private Item giveItem = null;
   [SerializeField] private bool disableAfterFirstUse = false;
   [SerializeField] private GameObject rootObject = null;
+
+  private int interactionCount = 0;
 
   // Shaders for items
   private Shader _regularShader;
@@ -100,13 +103,17 @@ public class Interactable : MonoBehaviour {
         itemHolder.GrabItem(giveItem);
         interactionAction?.Invoke();
       }
-    } else if (MeetsItemRequirement(itemHolder)) {
+    } else if (MeetsItemRequirement(itemHolder) && (giveItem == null || !giveItem.Rigidbody.isKinematic)) {
       if (destroyRequiredItemOnInteraction) {
         var itemToDestroy = itemHolder.HeldItem;
         itemHolder.DropItem();
         Destroy(itemToDestroy.gameObject);
       }
       interactionAction?.Invoke();
+      if (useCountDependentActions.Count > 0) {
+        useCountDependentActions[Mathf.Min(interactionCount, useCountDependentActions.Count - 1)]?.Invoke();
+      }
+      interactionCount++;
 
       // Debug.Log(name + " interacted");
 
