@@ -8,7 +8,7 @@ public class DigitalWatch : Watch
     [SerializeField] TMP_Text digits;
 
     void Awake() {
-        digits.gameObject.SetActive(lookingAt);
+        digits.enabled = lookingAt;
     }
 
     protected override void UpdateWatch() {
@@ -39,8 +39,7 @@ public class DigitalWatch : Watch
     }
 
     public override void LookingAt(bool look) {
-        StopAllCoroutines();
-        digits.gameObject.SetActive(look);
+        digits.enabled = look;
         base.LookingAt(look);
     } 
 }

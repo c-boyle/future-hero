@@ -8153,6 +8153,42 @@ PrefabInstance:
       propertyPath: TimeLeftVisual
       value: 
       objectReference: {fileID: 1408849377}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: futureColour.b
+      value: 0.8346274
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: futureColour.g
+      value: 0.09927912
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: futureColour.r
+      value: 0.9150943
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: regressColour.b
+      value: 0.12436577
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: regressColour.g
+      value: 0.011764695
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: regressColour.r
+      value: 0.972549
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: progressColour.b
+      value: 0.06890195
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: progressColour.g
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754216126538770214, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: progressColour.r
+      value: 0.062032763
+      objectReference: {fileID: 0}
     - target: {fileID: 8581246045155444791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_Name
       value: FutureHero
@@ -10900,7 +10936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5464736502101687250, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: onDrop.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: TriggerNotification
+      value: RegressNotification
       objectReference: {fileID: 0}
     - target: {fileID: 5464736502101687250, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: onPickup.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -10924,7 +10960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5464736502101687250, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: onPickup.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: TriggerNotification
+      value: ProgressNotification
       objectReference: {fileID: 0}
     - target: {fileID: 5464736502101687250, guid: cb920146fb1b1864eb366c5ec6ee33bd, type: 3}
       propertyPath: onDrop.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -11397,7 +11433,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 451398971}
         m_TargetAssemblyTypeName: Watch, Assembly-CSharp
-        m_MethodName: TriggerNotification
+        m_MethodName: ProgressNotification
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12477,7 +12513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5358596483017011077, guid: 8f048ed699c984a4b98eb26a7e7f59d3, type: 3}
       propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[17].m_MethodName
-      value: TriggerNotification
+      value: ProgressNotification
       objectReference: {fileID: 0}
     - target: {fileID: 5358596483017011077, guid: 8f048ed699c984a4b98eb26a7e7f59d3, type: 3}
       propertyPath: interactionAction.m_PersistentCalls.m_Calls.Array.data[17].m_TargetAssemblyTypeName
@@ -13027,7 +13063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.48235294}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7294118}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

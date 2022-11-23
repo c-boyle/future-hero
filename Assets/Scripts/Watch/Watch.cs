@@ -9,6 +9,7 @@ using System;
 public abstract class Watch : MonoBehaviour {
   [SerializeField] private Renderer watchRenderer;
   [SerializeField] private Color presentColour = new Color(0, 0, 1, 0); [SerializeField] private Color futureColour = new Color(1, 0, 0, 0);
+  [SerializeField] private Color progressColour; [SerializeField] private Color regressColour; 
 
   [SerializeField] private Image TimeLeftVisual;
   private float percentageTime = 0;
@@ -50,6 +51,9 @@ public abstract class Watch : MonoBehaviour {
 
   private void SetPresent(object sender, LevelTimer.TimerUpdateEventArgs e) {
     int secondsLeft = (int)e.SecondsLeft;
+    
+    if(secondsLeft % 60 == 0) TriggerNotification();
+
     percentageTime = (totalSeconds - secondsLeft) / totalSeconds;
     presentMinutes = (int)Math.Floor((double)(secondsLeft / minuteLength));
     presentSeconds = secondsLeft % minuteLength;
@@ -66,26 +70,23 @@ public abstract class Watch : MonoBehaviour {
 
   public void toggleFutureTime(bool timeVision) {
     if (isFuture == timeVision) return;
-
-    float prevTime = transitionTime;
-
+    
+    isFuture = timeVision;
+    
     SetGlow(false);
 
     StopCoroutine(TransitionManager());
-    StartCoroutine(TransitionManager());
-
     StopCoroutine(TransitionTime());
-    StartCoroutine(TransitionTime());
+    StopCoroutine(TransitionTimeLeft());
 
-    Color start = (isFuture) ? futureColour : presentColour;
-    Color end = (isFuture) ? presentColour : futureColour;
+    StartCoroutine(TransitionManager());
+    StartCoroutine(TransitionTime());
+    StartCoroutine(TransitionTimeLeft());
+
+    Color start = (!isFuture) ? futureColour : presentColour;
+    Color end = (!isFuture) ? presentColour : futureColour;
     StopCoroutine(TransitionColour(end, start));
     StartCoroutine(TransitionColour(start, end));
-    
-    StopCoroutine(TransitionTimeLeft(prevTime));
-    StartCoroutine(TransitionTimeLeft(prevTime));
-
-    isFuture = timeVision;
   }
 
   protected IEnumerator TransitionManager() {
@@ -114,43 +115,59 @@ public abstract class Watch : MonoBehaviour {
   }
 
   protected IEnumerator TransitionTimeLeft(float prevTime = 0f) {
-    float start = (!isFuture) ? percentageTime : 1;
-    float end = (!isFuture) ? 1 : percentageTime;
-    start = Mathf.Lerp(start, end, prevTime/transitionMax);
+    float start = (isFuture) ? percentageTime : 1;
+    float end = (isFuture) ? 1 : percentageTime;
+    // start = Mathf.Lerp(end, start, prevTime/transitionMax);
     while (!notTransitioning && (transitionTime < transitionMax)) {
       TimeLeftVisual.fillAmount = Mathf.Lerp(start, end, transitionTime/transitionMax);
       yield return null;
     }
   }
 
-  protected void SetGlow(bool glow) {
+  protected void SetGlow(bool glow, Color color) {
     if (watchRenderer == null) return;
 
     Material material = watchRenderer.material;
     if (glow) {
       material.EnableKeyword("_EMISSION");
-      material.SetColor("_EmissionColor", material.color * 3.5f);
+      material.SetColor("_EmissionColor", color * 3.5f);
     } else {
       material.DisableKeyword("_EMISSION");
       material.SetColor("_EmissionColor", Color.black);
     }
   }
 
-  public void TriggerNotification() {
-    StartCoroutine(GlowNotification());
+  protected void SetGlow(bool glow) {
+    SetGlow(glow, watchRenderer.material.color);
   }
 
-  protected IEnumerator GlowNotification() {
-    for (int i = 0; i < 7; i++) {
-      SetGlow(true);
+  public void TriggerNotification(Color color) {
+    StopCoroutine(GlowNotification(color));
+    StartCoroutine(GlowNotification(color));
+  }
+
+  public void TriggerNotification() {
+    TriggerNotification(watchRenderer.material.color);
+  }
+
+  public void ProgressNotification(){
+    TriggerNotification(progressColour);
+  }
+
+  public void RegressNotification() {
+    TriggerNotification(regressColour);
+  }
+
+  protected IEnumerator GlowNotification(Color color) {
+    for (int i = 0; i < 4; i++) {
+      SetGlow(true, color);
       yield return new WaitForSeconds(0.25f);
-      SetGlow(false);
+      SetGlow(false, color);
       yield return new WaitForSeconds(0.25f);
     }
   }
 
   public virtual void LookingAt(bool look) {
-    StopAllCoroutines();
     lookingAt = look;
   } 
 }
