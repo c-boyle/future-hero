@@ -5,7 +5,7 @@ using TMPro;
 
 public class DialogueManagerUI : DialogueManager
 {
-    [SerializeField] private TextMeshProUGUI field;
+    [SerializeField] private TMP_Text field;
 
     private const string TEXT_BACKGROUND_HEX = "#00000088";
 
