@@ -9,11 +9,11 @@ public class RedHerringInteractable : Interactable
     public UnityEvent redHerringAction;
     public string redHerringPromptText = "interact";
 
-    protected override void OnInteract(ItemHolder itemHolder = null) {
-        if (itemHolder != null && requireRedHerring == itemHolder.HeldItem) {
+    protected override void OnInteract(ItemHolder itemHolder = null, bool grab = false) {
+        if (!grab && itemHolder != null && requireRedHerring == itemHolder.HeldItem) {
             redHerringAction?.Invoke();
         } else {
-            base.OnInteract(itemHolder);
+            base.OnInteract(itemHolder, grab);
         }
     }
 

@@ -7,6 +7,10 @@ public class DigitalWatch : Watch
 {
     [SerializeField] TMP_Text digits;
 
+    void Awake() {
+        digits.enabled = lookingAt;
+    }
+
     protected override void UpdateWatch() {
         int minutes, seconds;
         if (isFuture) {
@@ -33,4 +37,9 @@ public class DigitalWatch : Watch
     private void DisplayTime(int minutes, int seconds) {
         digits.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
     }
+
+    public override void LookingAt(bool look) {
+        digits.enabled = look;
+        base.LookingAt(look);
+    } 
 }

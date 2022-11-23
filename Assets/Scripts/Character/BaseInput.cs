@@ -11,8 +11,12 @@ public abstract class BaseInput : MonoBehaviour {
     Interactable.UseClosestInteractable(transform.position, itemHolder);
   }
 
-  protected virtual void OnDropItem(float windup = 0) {
-    itemHolder.DropItem(windup);
+  protected virtual void OnPickDropItem(float windup = 0) {
+    if (!itemHolder.holding) {
+      var cameraTransform = Camera.main.transform;
+      Interactable.UseClosestInteractableInView(cameraTransform.position, cameraTransform.forward, itemHolder, true);
+    }
+    else itemHolder.DropItem(windup);
   }
 
 }
