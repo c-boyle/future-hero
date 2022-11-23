@@ -47,7 +47,7 @@ public class ViewBob : MonoBehaviour {
     private const float BREATHE_CYCLE = Mathf.PI * 2;
     private readonly Func<float, float> BREATHE_AMPLITUDE = (float x) => Mathf.Sin(x);
 
-    private Vector3 CAMERA_BOB_MULTIPLIER = new Vector3(0, 0.12f, 0);
+    private Vector3 CAMERA_BOB_MULTIPLIER = new Vector3(0, 0.05f, 0);
 
     // Constants related to dragging
     private const float DRAG_Z_MULTIPLIER = -0.06f;
