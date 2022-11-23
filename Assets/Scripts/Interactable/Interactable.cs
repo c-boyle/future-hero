@@ -11,6 +11,7 @@ public class Interactable : MonoBehaviour {
   [SerializeField] private bool destroyRequiredItemOnInteraction = false;
   [SerializeField] private Item giveItem = null;
   [SerializeField] private bool disableAfterFirstUse = false;
+  [SerializeField] private GameObject rootObject = null;
 
   // Shaders for items
   private Shader _regularShader;
@@ -44,14 +45,17 @@ public class Interactable : MonoBehaviour {
   private Color originalPromptColor;
 
   private void Start() {
+    if (rootObject == null) {
+      rootObject = gameObject;
+    }
     // Parent
-    _rend = GetComponent<Renderer>();
+    _rend = rootObject.GetComponent<Renderer>();
     if (_rend != null) {
       _regularShader = _rend.material.shader;
     }
 
     // Children (if any)
-    var childRenderers = GetComponentsInChildren<Renderer>();
+    var childRenderers = rootObject.GetComponentsInChildren<Renderer>();
     _childRegularShaders = new List<Shader>();
     foreach (Renderer color in childRenderers) {
       if (color is not ParticleSystemRenderer) {
@@ -278,5 +282,10 @@ public class Interactable : MonoBehaviour {
 
     shaderChanged = !shaderChanged;
 
+  }
+
+  public void SetPromptText(string promptText) {
+    this.promptText = promptText;
+    Prompt.text = promptText;
   }
 }

@@ -16,8 +16,9 @@ public class TimedAudio : MonoBehaviour {
 
   private void Update() {
     if (LevelTimer.Instance.SecondsLeft <= secondsLeftForPitchChange) {
-      float stepSize = (endPitch - startPitch) / secondsLeftForPitchChange;
-      audioSource.pitch += stepSize * Time.deltaTime;
+      float pitchDiff = endPitch - startPitch;
+      float pitchChangePercent = 1f - (LevelTimer.Instance.SecondsLeft / secondsLeftForPitchChange);
+      audioSource.pitch = startPitch + (pitchDiff * pitchChangePercent);
     } else {
       if (audioSource.pitch != startPitch) {
         var diffBefore = Mathf.Abs(startPitch - audioSource.pitch);

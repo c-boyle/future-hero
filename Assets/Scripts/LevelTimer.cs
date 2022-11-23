@@ -67,6 +67,7 @@ public class LevelTimer : Singleton<LevelTimer> {
     // Play end cutscene
 
     LevelEnd?.Invoke(this, new() { Won = won });
+    SecondsSpentInLevel = 0f;
     levelEnded = true;
   }
 
