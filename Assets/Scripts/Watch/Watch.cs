@@ -15,7 +15,7 @@ public abstract class Watch : MonoBehaviour {
   private float percentageTime = 0;
   protected bool lookingAt = false;
 
-  protected float transitionTime = 0.0f; protected float transitionMax = 1.0f; protected float deltaTransition = 0.03f;
+  protected float transitionTime = 1.0f; protected float prevTime = 1.0f; protected float transitionMax = 1.0f; protected float deltaTransition = 0.03f;
 
   protected int futureSeconds = 0;
   protected int futureMinutes = 0;
@@ -30,6 +30,12 @@ public abstract class Watch : MonoBehaviour {
 
   [SerializeField] protected float totalSeconds;
 
+
+  Coroutine transitionTimeLeft = null;
+
+  Coroutine neutralGlow = null;
+  Coroutine progressGlow = null; 
+  Coroutine regressGlow = null;
 
   private void Start() {
     totalSeconds = 240f;
@@ -51,7 +57,7 @@ public abstract class Watch : MonoBehaviour {
 
   private void SetPresent(object sender, LevelTimer.TimerUpdateEventArgs e) {
     int secondsLeft = (int)e.SecondsLeft;
-    
+
     if(secondsLeft % 60 == 0) TriggerNotification();
 
     percentageTime = (totalSeconds - secondsLeft) / totalSeconds;
@@ -77,11 +83,13 @@ public abstract class Watch : MonoBehaviour {
 
     StopCoroutine(TransitionManager());
     StopCoroutine(TransitionTime());
-    StopCoroutine(TransitionTimeLeft());
+    if(transitionTimeLeft != null) StopCoroutine(transitionTimeLeft);
+
+    prevTime = transitionTime;
 
     StartCoroutine(TransitionManager());
     StartCoroutine(TransitionTime());
-    StartCoroutine(TransitionTimeLeft());
+    transitionTimeLeft = StartCoroutine(TransitionTimeLeft(prevTime));
 
     Color start = (!isFuture) ? futureColour : presentColour;
     Color end = (!isFuture) ? presentColour : futureColour;
@@ -114,10 +122,10 @@ public abstract class Watch : MonoBehaviour {
     }
   }
 
-  protected IEnumerator TransitionTimeLeft(float prevTime = 0f) {
+  protected IEnumerator TransitionTimeLeft(float prevTime = 1f) {
     float start = (isFuture) ? percentageTime : 1;
     float end = (isFuture) ? 1 : percentageTime;
-    // start = Mathf.Lerp(end, start, prevTime/transitionMax);
+    start = Mathf.Lerp(end, start, prevTime/transitionMax);
     while (!notTransitioning && (transitionTime < transitionMax)) {
       TimeLeftVisual.fillAmount = Mathf.Lerp(start, end, transitionTime/transitionMax);
       yield return null;
@@ -141,21 +149,28 @@ public abstract class Watch : MonoBehaviour {
     SetGlow(glow, watchRenderer.material.color);
   }
 
-  public void TriggerNotification(Color color) {
-    StopCoroutine(GlowNotification(color));
-    StartCoroutine(GlowNotification(color));
+  public Coroutine TriggerNotification(Color color) {
+    StopGlows();
+    return StartCoroutine(GlowNotification(color));
   }
 
   public void TriggerNotification() {
-    TriggerNotification(watchRenderer.material.color);
+    neutralGlow = TriggerNotification(watchRenderer.material.color);
   }
 
   public void ProgressNotification(){
-    TriggerNotification(progressColour);
+    progressGlow = TriggerNotification(progressColour);
+    
   }
 
   public void RegressNotification() {
-    TriggerNotification(regressColour);
+    regressGlow = TriggerNotification(regressColour);
+  }
+
+  private void StopGlows() {
+    if(neutralGlow != null) StopCoroutine(neutralGlow);
+    if(progressGlow != null) StopCoroutine(progressGlow);
+    if(regressGlow != null) StopCoroutine(regressGlow);
   }
 
   protected IEnumerator GlowNotification(Color color) {

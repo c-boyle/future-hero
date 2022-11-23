@@ -39,6 +39,9 @@ public class Cigarette : Item
 
     public void ThrownToFuture() {
         if (held) return;
+        match = true;
+        Rigidbody.isKinematic = false;
+        futureCig.transform.position += Vector3.up * 0.01f;
         MatchCigarettes(gameObject, futureCig);
     }
 
@@ -67,7 +70,7 @@ public class Cigarette : Item
         if (smoke != null) smoke.Stop();
     }
 
-    private void MatchCigarettes(GameObject cig1, GameObject cig2) {
+    private void MatchCigarettes(GameObject cig1, GameObject cig2, bool presentMoving=false) {
         Transform toBe = cig2.transform;
         Transform isNow = cig1.transform;
 
@@ -75,10 +78,14 @@ public class Cigarette : Item
         Vector3 futureScale = toBe.lossyScale;
         Vector3 itemScale = isNow.localScale;
 
-        // Rigidbody.MovePosition(future.position);
-        // Rigidbody.MoveRotation(future.rotation);
-        cig1.transform.position = toBe.position;
-        cig1.transform.rotation = toBe.rotation;
+        if(presentMoving){
+            Rigidbody.isKinematic = false;
+            Rigidbody.MovePosition(toBe.position);
+            Rigidbody.MoveRotation(toBe.rotation);
+        }else{
+            cig1.transform.position = toBe.position;
+            cig1.transform.rotation = toBe.rotation;
+        }
         
         // Revert the size of cig to what it should be in future --> SHOULD TURN TO Item FUNCTION time permitting!
         cig1.transform.localScale = new(itemScale.x * futureScale.x / originalScale.x, 
