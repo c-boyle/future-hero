@@ -8,6 +8,8 @@ public class NPC : MonoBehaviour
     protected int angerLevel = 0;
     protected int maxAngerValue = 10;
     protected bool angry = false;
+    [SerializeField] protected ParticleSystem angryParticle;
+    public bool pushPlayer = false;
 
     private float force_backwards = 500f;
     private float force_upwards = 100f;
@@ -28,10 +30,11 @@ public class NPC : MonoBehaviour
     void Start() {
         voice = gameObject.AddComponent<AudioSource>();
         rigidBody = GetComponent<Rigidbody>();
+
     }
 
     protected virtual void OnTriggerEnter(Collider collider) {
-        if (collider.tag == "Player"){ 
+        if (collider.tag == "Player" && pushPlayer){ 
             Vector3 force = -(collider.transform.forward * force_backwards) + (collider.transform.up * force_upwards);
             collider.attachedRigidbody.AddForce(force);
 
@@ -45,7 +48,19 @@ public class NPC : MonoBehaviour
 
     }
 
-    private void playAngrySound() {
+    protected void OnCollisionEnter(Collision collision) {
+        Collider collider = collision.collider;
+        String tag = collider.tag;
+
+        if (tag != "Player" && collision.rigidbody != null && collision.rigidbody.velocity.magnitude > 0){
+            UpdateAnger(maxAngerValue);
+        }
+
+        OnTriggerEnter(collider);
+    }
+    
+
+    private void PlayAngrySound() {
         AudioClip[] sounds;
         if (mumble) {
             sounds = new AudioClip[] {mumbling1, mumbling2, mumbling3};
@@ -72,8 +87,14 @@ public class NPC : MonoBehaviour
         }
     }
 
+    public void SetAngry(bool angry = true) {
+        if (angry) UpdateAnger(maxAngerValue);
+        else UpdateAnger(0);
+    }
+
     protected virtual void IsAngry(){
         Debug.Log("You wouldn't like me when I'm angry... >:(");
+        if (angryParticle != null) angryParticle.Play(); 
     }
 
 }

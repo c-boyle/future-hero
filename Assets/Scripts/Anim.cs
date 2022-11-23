@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class Anim : MonoBehaviour
 {
-    // [SerializeField]
-    // Start is called before the first frame update
-    public void playAnimation(){ 
-        GetComponent<Animation>().Play();
+    bool played = false;
+
+    public void PlayAnimation(){ 
+        Animation animate = GetComponent<Animation>();
+        if (!played) {
+            animate.Play();
+            StartCoroutine(TriggerAfterAnimation(animate));
+            played = true;
+        }
+    }
+
+    protected virtual IEnumerator TriggerAfterAnimation(Animation animate) {
+        Debug.Log("animating...");
+        return null;
     }
 }
