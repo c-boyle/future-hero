@@ -7939,6 +7939,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 809892768703466018, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4961458107837619791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: introText
       value: 
@@ -7955,6 +7959,14 @@ PrefabInstance:
       propertyPath: watchRenderer
       value: 
       objectReference: {fileID: 1428685862}
+    - target: {fileID: 8221983694384242628, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_Parameters.alignment
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8221983694384242628, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
+      propertyPath: m_Parameters.numCapVertices
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8581246045155444791, guid: f46053260d8a7284fb177e351e1ff5cd, type: 3}
       propertyPath: m_Name
       value: FutureHero

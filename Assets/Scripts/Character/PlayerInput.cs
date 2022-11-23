@@ -11,6 +11,7 @@ public class PlayerInput : BaseInput {
   [SerializeField] private AudioSource interactionAudio;
   [SerializeField] private FPSArmsManager FPSArmsManager;
   [SerializeField] private DialogueManager dialogueManager;
+  [SerializeField] private LineRenderer trajectoryRenderer;
 
   public static ControlActions Controls;
   private bool activeMovementInput = false;
@@ -18,6 +19,7 @@ public class PlayerInput : BaseInput {
   private bool isSprinting = false;
   private Interactable closestOutlinedInteractable;
   private float pickupTime = 0;
+  private bool holdingDrop = false;
 
   // Constants
   private const float INITIAL_SPEED_MULTIPLIER = 1f;
@@ -45,8 +47,8 @@ public class PlayerInput : BaseInput {
 
     // Controls that affect environment
     Controls.Player.Interact.performed += ctx => OnInteract();
-    Controls.Player.DropItem.performed += ctx => {pickupTime = Time.time;};
-    Controls.Player.DropItem.canceled += ctx => OnDropItem(Time.time - pickupTime);
+    Controls.Player.DropItem.performed += ctx => { pickupTime = Time.time; holdingDrop = true; };
+    Controls.Player.DropItem.canceled += ctx => { OnDropItem(Time.time - pickupTime); holdingDrop = false; itemHolder.ClearThrowTrajectory(trajectoryRenderer); };
     
 
     Controls.Player.Pause.performed += ctx => {if ((!dialogueManager) || (!dialogueManager.isDialoging)) UIEventListener.Instance.OnPausePressed();};
@@ -70,6 +72,9 @@ public class PlayerInput : BaseInput {
     }
     if (activeLookInput) {
       movement.Look(Controls.Player.Look.ReadValue<Vector2>());
+    }
+    if (holdingDrop && Time.time - pickupTime >= 0.1f) {
+      itemHolder.DrawThrowTrajectory(trajectoryRenderer, Time.time - pickupTime);
     }
     if (!futureSeer.TimeVisionEnabled) {
       var cameraTransform = Camera.main.transform;
