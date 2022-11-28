@@ -14,7 +14,9 @@ public class Smoker : NPC
 
         if (cig.held) return;
         
-        Interactable.UseInteractable(cigInteract, null);
         cig.ThrownToFuture();
+        Interactable.UseInteractable(cigInteract, null);
+        // cig.RigidBody.isKinematic = false;
+        
     }
 }

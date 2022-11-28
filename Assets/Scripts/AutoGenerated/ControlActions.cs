@@ -46,7 +46,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""PickDrop"",
                     ""type"": ""Button"",
                     ""id"": ""7f380efe-47ec-4cd2-8ebd-26d9c65d1024"",
                     ""expectedControlType"": ""Button"",
@@ -64,7 +64,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""DropItem"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""7249100a-5616-4a79-b3ca-f66e4371d438"",
                     ""expectedControlType"": ""Button"",
@@ -282,7 +282,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Interact"",
+                    ""action"": ""PickDrop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -293,7 +293,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Interact"",
+                    ""action"": ""PickDrop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -326,7 +326,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""DropItem"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -337,7 +337,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""DropItem"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1048,9 +1048,9 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_PickDrop = m_Player.FindAction("PickDrop", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_DropItem = m_Player.FindAction("DropItem", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_ToggleVision = m_Player.FindAction("ToggleVision", throwIfNotFound: true);
         m_Player_LookAtWatch = m_Player.FindAction("LookAtWatch", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
@@ -1128,9 +1128,9 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_PickDrop;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_DropItem;
+    private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_ToggleVision;
     private readonly InputAction m_Player_LookAtWatch;
     private readonly InputAction m_Player_Pause;
@@ -1141,9 +1141,9 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
         public PlayerActions(@ControlActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @PickDrop => m_Wrapper.m_Player_PickDrop;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @ToggleVision => m_Wrapper.m_Player_ToggleVision;
         public InputAction @LookAtWatch => m_Wrapper.m_Player_LookAtWatch;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
@@ -1163,15 +1163,15 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                 @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @PickDrop.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickDrop;
+                @PickDrop.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickDrop;
+                @PickDrop.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickDrop;
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @DropItem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropItem;
-                @DropItem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropItem;
-                @DropItem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropItem;
+                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @ToggleVision.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleVision;
                 @ToggleVision.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleVision;
                 @ToggleVision.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleVision;
@@ -1194,15 +1194,15 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
+                @PickDrop.started += instance.OnPickDrop;
+                @PickDrop.performed += instance.OnPickDrop;
+                @PickDrop.canceled += instance.OnPickDrop;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @DropItem.started += instance.OnDropItem;
-                @DropItem.performed += instance.OnDropItem;
-                @DropItem.canceled += instance.OnDropItem;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
                 @ToggleVision.started += instance.OnToggleVision;
                 @ToggleVision.performed += instance.OnToggleVision;
                 @ToggleVision.canceled += instance.OnToggleVision;
@@ -1373,9 +1373,9 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
+        void OnPickDrop(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnDropItem(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
         void OnToggleVision(InputAction.CallbackContext context);
         void OnLookAtWatch(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
