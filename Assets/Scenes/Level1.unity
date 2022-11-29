@@ -14354,6 +14354,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2480589368434281529, guid: 7ee373f751e9cf24cb062d84245bf568, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: fecbffef913a4fa4db2e6f6cc3ffafbd, type: 2}
     - target: {fileID: 2841097208309220175, guid: 7ee373f751e9cf24cb062d84245bf568, type: 3}
       propertyPath: m_Name
       value: Smoker
@@ -14574,7 +14578,7 @@ MonoBehaviour:
       FixedSpeed: 1
       <SecondsToReachPoint>k__BackingField: 0
   rb: {fileID: 1419674058}
-  animator: {fileID: 0}
+  animator: {fileID: 1419674066}
   pointOfNoReturn: 2
   currentPathIndex: 0
   loop: 0
@@ -14619,6 +14623,11 @@ MonoBehaviour:
   mumble: 1
   cig: {fileID: 1951356481}
   cigInteract: {fileID: 1951356483}
+--- !u!95 &1419674066 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2480589368434281529, guid: 7ee373f751e9cf24cb062d84245bf568, type: 3}
+  m_PrefabInstance: {fileID: 1419674051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1421404543
 GameObject:
   m_ObjectHideFlags: 0
