@@ -46,6 +46,7 @@ public class TimeToggle : MonoBehaviour {
   private void Start() {
     _cachedAudioSources = null;
     _cachedRenderers = null;
+    _cachedLights = null;
   }
 
   void Update() {
@@ -100,7 +101,7 @@ public class TimeToggle : MonoBehaviour {
     if (gameObject.activeSelf) {
       foreach (var renderer in ChildRenderers) {
         if (renderer != null) {
-          if (renderer is ParticleSystemRenderer a) {
+          if (renderer is ParticleSystemRenderer) {
             renderer.enabled = false;
           }
           rendererToShadowCastingMode[renderer] = renderer.shadowCastingMode;
