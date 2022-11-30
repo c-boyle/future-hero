@@ -18,8 +18,8 @@ public class ControlsPromptPanel : MonoBehaviour {
   }
 
   public void Refresh(PlayerInput.PlayerInputEventArgs e) {
-    dropPrompt.SetActive(e.HoldingItem);
-    throwPrompt.SetActive(e.HoldingItem);
+    dropPrompt.SetActive(e.ItemHolder.holding);
+    throwPrompt.SetActive(e.ItemHolder.holding);
     string timeText = "Look Into " + (e.TimeVisionEnabled ? "Past" : "Future");
     toggleTimePromptText.text = timeText;
   }

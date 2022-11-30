@@ -25,6 +25,16 @@ public class PlayerInput : BaseInput {
   private float pickupTime = 0;
   private bool holdingDrop = false;
 
+  private Camera _camera = null;
+  private Camera MainCamera {
+    get {
+      if (_camera == null) {
+        _camera = Camera.main;
+      }
+      return _camera;
+    }
+  }
+
   // Constants
   private const float INITIAL_SPEED_MULTIPLIER = 1f;
   private const float SPRINT_SPEED_MULTIPLIER = 1.3f;
@@ -41,8 +51,8 @@ public class PlayerInput : BaseInput {
     Controls.Player.Sprint.performed += ctx => isSprinting = true;
     Controls.Player.Sprint.canceled += ctx => isSprinting = false;
     Controls.Player.Jump.performed += ctx => { OnJump(); };
-    Controls.Player.LookAtWatch.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = true; watch.LookingAt(true);};
-    Controls.Player.LookAtWatch.canceled += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = false; watch.LookingAt(false);};
+    Controls.Player.LookAtWatch.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = true; watch.LookingAt(true); };
+    Controls.Player.LookAtWatch.canceled += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = false; watch.LookingAt(false); };
 
     // Controls that alter vision
     Controls.Player.Look.performed += ctx => activeLookInput = true;
@@ -53,13 +63,13 @@ public class PlayerInput : BaseInput {
     Controls.Player.Interact.performed += ctx => OnInteract();
     Controls.Player.PickDrop.performed += ctx => { pickupTime = Time.time; holdingDrop = true; };
     Controls.Player.PickDrop.canceled += ctx => { OnPickDropItem(Time.time - pickupTime); holdingDrop = false; itemHolder.ClearThrowTrajectory(trajectoryRenderer); };
-    
 
-    Controls.Player.Pause.performed += ctx => {if ((!dialogueManager) || (!dialogueManager.isDialoging)) UIEventListener.Instance.OnPausePressed();};
+
+    Controls.Player.Pause.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) UIEventListener.Instance.OnPausePressed(); };
   }
 
   private void Update() {
-    if ((dialogueManager && dialogueManager.isDialoging) || !Controls.Player.enabled){
+    if ((dialogueManager && dialogueManager.isDialoging) || !Controls.Player.enabled) {
       return;
     }
     if (activeMovementInput) {
@@ -81,12 +91,12 @@ public class PlayerInput : BaseInput {
       itemHolder.DrawThrowTrajectory(trajectoryRenderer, Time.time - pickupTime);
     }
     if (!futureSeer.TimeVisionEnabled) {
-      var cameraTransform = Camera.main.transform;
+      var cameraTransform = MainCamera.transform;
       closestOutlinedInteractable = Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
     }
     PlayerInputEventArgs inputData = new() {
       InRangeInteractable = closestOutlinedInteractable,
-      HoldingItem = itemHolder.holding,
+      ItemHolder = itemHolder,
       TimeVisionEnabled = futureSeer.TimeVisionEnabled
     };
     OnPlayerInput?.Invoke(this, inputData);
@@ -104,7 +114,7 @@ public class PlayerInput : BaseInput {
 
   private void OnDestroy() {
     OnDisable();
-    Controls = null; 
+    Controls = null;
   }
 
   protected override void OnInteract() {
@@ -141,7 +151,7 @@ public class PlayerInput : BaseInput {
 
   public class PlayerInputEventArgs : EventArgs {
     public Interactable InRangeInteractable { get; set; }
-    public bool HoldingItem { get; set; }
+    public ItemHolder ItemHolder { get; set; }
     public bool TimeVisionEnabled { get; set; }
   }
 

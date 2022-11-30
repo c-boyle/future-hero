@@ -8,6 +8,8 @@ public class InteractableControlsPrompt : MonoBehaviour {
   [SerializeField] private TMP_Text interactPromptText;
   [SerializeField] private GameObject pickupPrompt;
 
+  private Color? originalInteractColor = null;
+
   public void Show() {
     gameObject.SetActive(true);
   }
@@ -20,8 +22,15 @@ public class InteractableControlsPrompt : MonoBehaviour {
     if (e.InRangeInteractable != null) {
       Show();
       interactPrompt.SetActive(true);
-      interactPromptText.text = e.InRangeInteractable.promptText;
+      bool meetsItemRequirement = e.InRangeInteractable.MeetsItemRequirement(e.ItemHolder);
+      var interactText =  e.InRangeInteractable.promptText;
+      interactText += meetsItemRequirement ? "" : $" [Item Needed: {e.InRangeInteractable.RequiredItem.ItemName}]";
+      interactPromptText.text = interactText;
       pickupPrompt.SetActive(e.InRangeInteractable.IsItem);
+      if (!originalInteractColor.HasValue) {
+        originalInteractColor = interactPromptText.color;
+      }
+      interactPromptText.color = meetsItemRequirement ? originalInteractColor.Value : Color.red;
     } else {
       Hide();
     }

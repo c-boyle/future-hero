@@ -16,6 +16,7 @@ public class Interactable : MonoBehaviour {
 
   private Item _item = null;
   public bool IsItem { get => _item != null; }
+  public Item RequiredItem { get => requireItem; }
 
   private int interactionCount = 0;
 
@@ -235,7 +236,7 @@ public class Interactable : MonoBehaviour {
     return closestInteractable;
   }
 
-  protected virtual bool MeetsItemRequirement(ItemHolder itemHolder) {
+  public virtual bool MeetsItemRequirement(ItemHolder itemHolder) {
     Prompt.text = promptText;
     return requireItem == null || (itemHolder != null && requireItem == itemHolder.HeldItem);
   }
