@@ -38,6 +38,7 @@ public class UIEventListener : Singleton<UIEventListener> {
 
   private void OnPlayerInput(object sender, PlayerInput.PlayerInputEventArgs e) {
     controlsPromptPanel.Refresh(e);
+    interactableControlsPrompt.Refresh(e);
   }
 
   public void OnPausePressed() {

@@ -14,6 +14,9 @@ public class Interactable : MonoBehaviour {
   [SerializeField] private bool disableAfterFirstUse = false;
   [SerializeField] private GameObject rootObject = null;
 
+  private Item _item = null;
+  public bool IsItem { get => _item != null; }
+
   private int interactionCount = 0;
 
   // Shaders for items
@@ -78,6 +81,8 @@ public class Interactable : MonoBehaviour {
     } else {
       originalPromptColor = Prompt.color;
     }
+
+    TryGetComponent<Item>(out _item);
   }
 
   private void OnEnable() {
