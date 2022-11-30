@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9053834311527226030}
   - component: {fileID: 9053834311527226025}
   - component: {fileID: 9053834311527226024}
-  - component: {fileID: 6526223198590108424}
   m_Layer: 5
   m_Name: InteractableControlsPrompt
   m_TagString: Untagged
@@ -81,21 +80,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &6526223198590108424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9053834311527226031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3522fd65b61ecd246a20afbd0cf2c569, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropPrompt: {fileID: 0}
-  throwPrompt: {fileID: 0}
-  toggleTimePrompt: {fileID: 0}
 --- !u!1001 &3332256031611295101
 PrefabInstance:
   m_ObjectHideFlags: 0

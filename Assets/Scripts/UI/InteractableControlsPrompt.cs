@@ -13,4 +13,13 @@ public class InteractableControlsPrompt : MonoBehaviour {
   public void Hide() {
     gameObject.SetActive(false);
   }
+
+  public void Refresh(PlayerInput.PlayerInputEventArgs e) {
+    if (e.InRangeInteractable != null) {
+      Show();
+      interactPromptText.text = e.InRangeInteractable.promptText;
+    } else {
+      Hide();
+    }
+  }
 }

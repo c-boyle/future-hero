@@ -15,6 +15,8 @@ public class PlayerInput : BaseInput {
 
   [SerializeField] private Watch watch;
 
+  public static event EventHandler<PlayerInputEventArgs> OnPlayerInput;
+
   public static ControlActions Controls;
   private bool activeMovementInput = false;
   private bool activeLookInput = false;
@@ -57,7 +59,7 @@ public class PlayerInput : BaseInput {
   }
 
   private void Update() {
-    if (dialogueManager && dialogueManager.isDialoging){
+    if ((dialogueManager && dialogueManager.isDialoging) || !Controls.Player.enabled){
       return;
     }
     if (activeMovementInput) {
@@ -82,7 +84,12 @@ public class PlayerInput : BaseInput {
       var cameraTransform = Camera.main.transform;
       closestOutlinedInteractable = Interactable.GiveClosestInteractableInViewOutline(cameraTransform.position, cameraTransform.forward, itemHolder);
     }
-
+    PlayerInputEventArgs inputData = new() {
+      InRangeInteractable = closestOutlinedInteractable,
+      HoldingItem = itemHolder.holding,
+      TimeVisionEnabled = futureSeer.TimeVisionEnabled
+    };
+    OnPlayerInput?.Invoke(this, inputData);
   }
 
   private void OnEnable() {
@@ -130,6 +137,12 @@ public class PlayerInput : BaseInput {
     if (futureSeer.TimeVisionEnabled != enabled) {
       OnToggleFutureVision();
     }
+  }
+
+  public class PlayerInputEventArgs : EventArgs {
+    public Interactable InRangeInteractable { get; set; }
+    public bool HoldingItem { get; set; }
+    public bool TimeVisionEnabled { get; set; }
   }
 
 }
