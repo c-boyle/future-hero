@@ -173,7 +173,8 @@ public class Interactable : MonoBehaviour {
         float distToLookingPoint = Vector3.Distance(lookingPoint, interactablePosition);
         float distToCamera = Vector3.Distance(cameraPosition, interactablePosition);
         bool inInteractionRange = distToCamera <= maxInteractionRange;
-        if (distToLookingPoint < closestInteractableDist && inInteractionRange) {
+        bool inInteractionView = Vector3.Angle(cameraDirection, interactablePosition - cameraPosition) < 45f;
+        if (distToLookingPoint < closestInteractableDist && inInteractionRange && inInteractionView) {
           closestInteractableDist = distToLookingPoint;
           closestInteractable = interactable;
         }
