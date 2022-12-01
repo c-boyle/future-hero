@@ -19,7 +19,6 @@ public class RedHerringInteractable : Interactable
 
     public override bool MeetsItemRequirement(ItemHolder itemHolder) {
         if (itemHolder != null && requireRedHerring == itemHolder.HeldItem) {
-            Prompt.text = redHerringPromptText;
             return true;
         }
         return base.MeetsItemRequirement(itemHolder);
