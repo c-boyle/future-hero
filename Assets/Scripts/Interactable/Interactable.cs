@@ -104,8 +104,9 @@ public class Interactable : MonoBehaviour {
         itemHolder.DropItem();
         Destroy(itemToDestroy.gameObject);
       }
-      if (Item is Cup && itemHolder.HeldItem is Cigarette cig) {
+      if (Item is Cup cup && itemHolder.HeldItem is Cigarette cig) {
         cig.SafePosition();
+        cup.OwnerIsAngry();
       }
       interactionAction?.Invoke();
       if (useCountDependentActions.Count > 0) {
