@@ -13,7 +13,7 @@ public class ControlsPrompt : MonoBehaviour {
 
   private static readonly HashSet<ControlsPrompt> controlsPrompts = new();
 
-  private static ControlType _controlType;
+  private static ControlType _controlType = ControlType.Gamepad;
   public static ControlType DisplayedControlType {
     get => _controlType;
     set {
