@@ -62,6 +62,14 @@ public class UIEventListener : Singleton<UIEventListener> {
     controlsPromptPanel.Show();
   }
 
+  public void ShowTimeTogglePrompt() {
+    controlsPromptPanel.ShowTimeTogglePrompt();
+  }
+
+  public void HideTimeTogglePrompt() {
+    controlsPromptPanel.HideTimeTogglePrompt();
+  }
+
   private void EnableUIControls() {
     PlayerInput.Controls.Player.Disable();
     PlayerInput.Controls.UI.Enable();
