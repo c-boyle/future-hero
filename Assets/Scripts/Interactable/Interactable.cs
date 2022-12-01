@@ -15,7 +15,7 @@ public class Interactable : MonoBehaviour {
   [SerializeField] private GameObject rootObject = null;
 
   private Item _item = null;
-  public bool IsItem { get => _item != null; }
+  public Item Item { get => _item; }
   public Item RequiredItem { get => requireItem; }
 
   private int interactionCount = 0;
@@ -114,6 +114,9 @@ public class Interactable : MonoBehaviour {
         var itemToDestroy = itemHolder.HeldItem;
         itemHolder.DropItem();
         Destroy(itemToDestroy.gameObject);
+      }
+      if (Item is Cup && itemHolder.HeldItem is Cigarette cig) {
+        cig.SafePosition();
       }
       interactionAction?.Invoke();
       if (useCountDependentActions.Count > 0) {

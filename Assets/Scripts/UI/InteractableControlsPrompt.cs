@@ -7,8 +7,10 @@ public class InteractableControlsPrompt : MonoBehaviour {
   [SerializeField] private GameObject interactPrompt;
   [SerializeField] private TMP_Text interactPromptText;
   [SerializeField] private GameObject pickupPrompt;
+  [SerializeField] private TMP_Text pickupPromptText;
 
-  private Color? originalInteractColor = null;
+  private const string PICKUP_TEXT = "Pick Up";
+  private const string PICKUP_TEXT_ITEM_HELD = "Pick Up [Must Drop Item First]";
 
   public void Show() {
     gameObject.SetActive(true);
@@ -21,16 +23,22 @@ public class InteractableControlsPrompt : MonoBehaviour {
   public void Refresh(PlayerInput.PlayerInputEventArgs e) {
     if (e.InRangeInteractable != null) {
       Show();
-      interactPrompt.SetActive(true);
-      bool meetsItemRequirement = e.InRangeInteractable.MeetsItemRequirement(e.ItemHolder);
-      var interactText =  e.InRangeInteractable.promptText;
-      interactText += meetsItemRequirement ? "" : $" [Item Needed: {e.InRangeInteractable.RequiredItem.ItemName}]";
-      interactPromptText.text = interactText;
-      pickupPrompt.SetActive(e.InRangeInteractable.IsItem);
-      if (!originalInteractColor.HasValue) {
-        originalInteractColor = interactPromptText.color;
+      if (e.InRangeInteractable.Item == null) {
+        pickupPrompt.SetActive(false);
+        interactPrompt.SetActive(true);
+        bool meetsItemRequirement = e.InRangeInteractable.MeetsItemRequirement(e.ItemHolder);
+        var interactText = e.InRangeInteractable.promptText;
+        interactText += meetsItemRequirement ? "" : " [Item Needed]";
+        interactPromptText.text = interactText;
+      } else {
+        interactPrompt.SetActive(false);
+        pickupPrompt.SetActive(true);
+        pickupPromptText.text = e.ItemHolder.holding ? PICKUP_TEXT_ITEM_HELD : PICKUP_TEXT;
       }
-      interactPromptText.color = meetsItemRequirement ? originalInteractColor.Value : Color.red;
+      if (e.InRangeInteractable.Item is Cup && e.ItemHolder.HeldItem is Cigarette cig && cig.smoking) {
+        interactPrompt.SetActive(true);
+        interactPromptText.text = "Extinguish";
+      }
     } else {
       Hide();
     }
