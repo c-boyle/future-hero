@@ -123,7 +123,7 @@ public class PlayerInput : BaseInput {
   }
 
   private void OnChange(ControlsPrompt.ControlType type) {
-    Debug.Log("--" + type);
+    // Debug.Log("--" + type);
     ControlsPrompt.ChangeControlType(type);
   }
 
