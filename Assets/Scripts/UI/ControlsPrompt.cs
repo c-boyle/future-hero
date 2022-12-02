@@ -17,13 +17,15 @@ public class ControlsPrompt : MonoBehaviour {
   public static ControlType DisplayedControlType {
     get => _controlType;
     set {
-      if (_controlType != value) {
-        _controlType = value;
-        foreach (ControlsPrompt prompt in controlsPrompts) {
-          prompt.SetControlType(_controlType);
-        }
+      _controlType = value;
+      foreach (ControlsPrompt prompt in controlsPrompts) {
+        prompt.SetControlType(_controlType);
       }
     }
+  }
+
+  public static void ChangeControlType(ControlType type) {
+    DisplayedControlType = type;
   }
 
   private void Start() {
