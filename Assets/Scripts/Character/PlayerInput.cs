@@ -45,6 +45,10 @@ public class PlayerInput : BaseInput {
     }
     Cursor.visible = false;
 
+    // Controls that detect type
+    Controls.Detection.GamepadDetect.performed += ctx => OnChange(ControlsPrompt.ControlType.Gamepad);
+    Controls.Detection.KeyboardDetect.performed += ctx => OnChange(ControlsPrompt.ControlType.Keyboard);
+
     // Controls that alter movement
     Controls.Player.Move.performed += ctx => activeMovementInput = true;
     Controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); movement.sprintMultiplier = INITIAL_SPEED_MULTIPLIER; };
@@ -104,6 +108,7 @@ public class PlayerInput : BaseInput {
 
   private void OnEnable() {
     Controls.Enable();
+    Controls.Detection.Enable();
     Controls.Player.Enable();
     Controls.UI.Disable();
   }
@@ -115,6 +120,11 @@ public class PlayerInput : BaseInput {
   private void OnDestroy() {
     OnDisable();
     Controls = null;
+  }
+
+  private void OnChange(ControlsPrompt.ControlType type) {
+    Debug.Log("--" + type);
+    ControlsPrompt.ChangeControlType(type);
   }
 
   protected override void OnInteract() {
