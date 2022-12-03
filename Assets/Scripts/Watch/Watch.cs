@@ -143,6 +143,7 @@ public abstract class Watch : MonoBehaviour {
       material.DisableKeyword("_EMISSION");
       material.SetColor("_EmissionColor", Color.black);
     }
+    TimeLeftVisual.gameObject.SetActive(!glow);
   }
 
   protected void SetGlow(bool glow) {
