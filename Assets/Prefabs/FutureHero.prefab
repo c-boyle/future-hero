@@ -1487,6 +1487,7 @@ MonoBehaviour:
   rotateDecay: 0.4
   pullDistance: 0.2
   rotateDistance: 10
+  holding: 0
 --- !u!82 &635879598930849974
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1929,6 +1930,10 @@ MonoBehaviour:
   watchRenderer: {fileID: 0}
   presentColour: {r: 0, g: 0, b: 1, a: 0}
   futureColour: {r: 1, g: 0, b: 0, a: 0}
+  progressColour: {r: 0, g: 0, b: 0, a: 0}
+  regressColour: {r: 0, g: 0, b: 0, a: 0}
+  TimeLeftVisual: {fileID: 0}
+  totalSeconds: 0
   minuteHand: {fileID: 7754216126818142862}
   secondHand: {fileID: 7754216126307207702}
 --- !u!1 &7754216125942456265
@@ -2272,6 +2277,10 @@ MonoBehaviour:
   watchRenderer: {fileID: 3240788645011943626}
   presentColour: {r: 0, g: 0, b: 1, a: 0}
   futureColour: {r: 1, g: 0, b: 0, a: 0}
+  progressColour: {r: 0, g: 0, b: 0, a: 0}
+  regressColour: {r: 0, g: 0, b: 0, a: 0}
+  TimeLeftVisual: {fileID: 0}
+  totalSeconds: 0
   digits: {fileID: 7754216126538770212}
 --- !u!1 &7754216126818142863
 GameObject:
@@ -2381,7 +2390,7 @@ Transform:
   m_GameObject: {fileID: 8581246045155444791}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 29, y: 29, z: 29}
+  m_LocalScale: {x: 25, y: 25, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2836403977583407819}
@@ -2499,6 +2508,7 @@ MonoBehaviour:
   FPSArmsManager: {fileID: 6865234424685512300}
   dialogueManager: {fileID: 0}
   trajectoryRenderer: {fileID: 8221983694384242628}
+  watch: {fileID: 0}
 --- !u!114 &4961458107837619791
 MonoBehaviour:
   m_ObjectHideFlags: 0
