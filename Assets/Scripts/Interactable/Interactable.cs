@@ -14,6 +14,10 @@ public class Interactable : MonoBehaviour {
   [SerializeField] private bool disableAfterFirstUse = false;
   [SerializeField] private GameObject rootObject = null;
 
+  private Item _item = null;
+  public Item Item { get => _item; }
+  public Item RequiredItem { get => requireItem; }
+
   private int interactionCount = 0;
 
   // Shaders for items
@@ -26,10 +30,7 @@ public class Interactable : MonoBehaviour {
   private Renderer _rend;
   private List<Renderer> _childRends = new();
 
-  // Prompt related variables
-  [SerializeField] protected TextMesh Prompt;
   public string promptText = "interact";
-  private Vector3 promptScale = Vector3.one;
 
   // Booleans
   [ReadOnly] public bool shaderChanged = false;
@@ -67,17 +68,11 @@ public class Interactable : MonoBehaviour {
       }
     }
 
-    // prompt
-    // TextMesh Prompt = GetComponentInChildren<TextMesh>();
-    Prompt.text = promptText;
-    promptScale = Prompt.transform.localScale;
-    Prompt.transform.localScale = new Vector3(0, 0, 0);
     if (giveItem == null) {
       _regularOutlineColor = Color.blue;
-      originalPromptColor = _regularOutlineColor.Value;
-    } else {
-      originalPromptColor = Prompt.color;
     }
+
+    TryGetComponent<Item>(out _item);
   }
 
   private void OnEnable() {
@@ -108,6 +103,10 @@ public class Interactable : MonoBehaviour {
         var itemToDestroy = itemHolder.HeldItem;
         itemHolder.DropItem();
         Destroy(itemToDestroy.gameObject);
+      }
+      if (Item is Cup cup && itemHolder.HeldItem is Cigarette cig) {
+        cig.SafePosition();
+        cup.OwnerIsAngry();
       }
       interactionAction?.Invoke();
       if (useCountDependentActions.Count > 0) {
@@ -168,7 +167,8 @@ public class Interactable : MonoBehaviour {
         float distToLookingPoint = Vector3.Distance(lookingPoint, interactablePosition);
         float distToCamera = Vector3.Distance(cameraPosition, interactablePosition);
         bool inInteractionRange = distToCamera <= maxInteractionRange;
-        if (distToLookingPoint < closestInteractableDist && inInteractionRange) {
+        bool inInteractionView = Vector3.Angle(cameraDirection, interactablePosition - cameraPosition) < 45f;
+        if (distToLookingPoint < closestInteractableDist && inInteractionRange && inInteractionView) {
           closestInteractableDist = distToLookingPoint;
           closestInteractable = interactable;
         }
@@ -213,7 +213,6 @@ public class Interactable : MonoBehaviour {
       if (!closestInteractable.shaderChanged) {
         closestInteractable.toggleOutlineShader(itemHolder);
       }
-      closestInteractable.ShowPrompt(itemHolder);
     }
     return closestInteractable;
   }
@@ -224,43 +223,16 @@ public class Interactable : MonoBehaviour {
       if (!closestInteractable.shaderChanged) {
         closestInteractable.toggleOutlineShader(itemHolder);
       }
-      closestInteractable.ShowPrompt(itemHolder);
     }
     return closestInteractable;
   }
 
-  protected virtual bool MeetsItemRequirement(ItemHolder itemHolder) {
-    Prompt.text = promptText;
+  public virtual bool MeetsItemRequirement(ItemHolder itemHolder) {
     return requireItem == null || (itemHolder != null && requireItem == itemHolder.HeldItem);
   }
 
   protected bool MeetsGrabRequirement(ItemHolder itemHolder) {
     return giveItem != null && itemHolder != null;
-  }
-
-  public void ShowPrompt(ItemHolder itemHolder) {
-    // GameObject UItextGO = new GameObject("Text2");
-    // UItextGO.transform.SetParent(canvas_transform);
-
-    // RectTransform trans = UItextGO.AddComponent<RectTransform>();
-    // trans.anchoredPosition = new Vector2(x, y);
-
-    // Text text = UItextGO.AddComponent<Text>();
-    // text.text = text_to_print;
-    // text.fontSize = font_size;
-    // text.color = text_color;
-    Prompt.transform.localScale = promptScale;
-    Quaternion rotation = Quaternion.LookRotation(Camera.main.transform.forward);
-    Quaternion current = Prompt.transform.rotation;
-    Prompt.transform.rotation = Quaternion.Euler(new Vector3(current.eulerAngles.x, rotation.eulerAngles.y, current.eulerAngles.z));
-    // Prompt.transform.rotation = rotation;
-    bool meetsItemRequirement = MeetsItemRequirement(itemHolder);
-    Prompt.text = meetsItemRequirement ? Prompt.text : "Item Needed To Interact";
-    Prompt.color = meetsItemRequirement ? originalPromptColor : Color.red;
-  }
-
-  public void RemovePrompt() {
-    Prompt.transform.localScale = new Vector3(0, 0, 0);
   }
 
   public void toggleOutlineShader(ItemHolder itemHolder = null) {
@@ -269,7 +241,6 @@ public class Interactable : MonoBehaviour {
       if (_rend != null) {
         _rend.material.shader = _regularShader;
       }
-      RemovePrompt();
     } else {
       if (_rend != null) {
         _rend.material.shader = _outlineShader;
@@ -279,12 +250,11 @@ public class Interactable : MonoBehaviour {
         Color outlineColor = meetsItemRequirement ? _regularOutlineColor.Value : Color.red;
         _rend.material.SetColor("_OutlineColor", outlineColor);
       }
-      ShowPrompt(itemHolder);
     }
 
     int index = 0;
     foreach (Renderer colour in _childRends) {
-      if (shaderChanged || colour.gameObject == Prompt.gameObject) {
+      if (shaderChanged) {
         colour.material.shader = _childRegularShaders[index];
       } else {
         colour.material.shader = _outlineShader;
@@ -303,6 +273,5 @@ public class Interactable : MonoBehaviour {
 
   public void SetPromptText(string promptText) {
     this.promptText = promptText;
-    Prompt.text = promptText;
   }
 }
