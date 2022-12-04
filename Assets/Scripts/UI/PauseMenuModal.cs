@@ -15,7 +15,7 @@ public class PauseMenuModal : BaseModal {
   [SerializeField] private Button restartButton;
   [SerializeField] private Button mainMenuButton;
   [SerializeField] private Button quitGameButton;
-  [SerializeField] private BaseModal controlsModal;
+  [SerializeField] private ControlsModal controlsModal;
   [SerializeField] private SettingsModal settingsModal;
 
   private void Start() {
