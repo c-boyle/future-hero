@@ -55,7 +55,7 @@ public class CharacterMovement : MonoBehaviour {
     public void Look(Vector2 lookDirection) {
         Vector3 cameraRotation = ConvertAngle(_cameraTransform.localRotation.eulerAngles);
         Vector3 playerRotation = ConvertAngle(_bodyTransform.rotation.eulerAngles);
-        var sensitivity = PlayerPrefs.GetFloat("sensitivity", 2.4f);
+        var sensitivity = SettingsInitializer.Instance.Sensitiviy;
         SetView(cameraRotation.x - lookDirection.y * sensitivity, playerRotation.y + lookDirection.x * sensitivity);
         viewDirection = lookDirection;
     }
