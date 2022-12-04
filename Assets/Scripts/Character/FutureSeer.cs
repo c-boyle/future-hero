@@ -11,7 +11,7 @@ public class FutureSeer : MonoBehaviour {
 
   [SerializeField] private Watch watch;
 
-  [SerializeField] private IntroText introText;
+  [SerializeField] private UIText introText;
 
   [SerializeField] private float transitionSeconds = 1f;
   [SerializeField] private FutureAudio futureAudio;
