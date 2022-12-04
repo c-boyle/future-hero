@@ -32,7 +32,6 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [ReadOnly] public bool isJumpTriggered = false;
     [SerializeField] [ReadOnly] public bool isJumpStarted = false;
 
-    [PositiveValueOnly] public float sensitivity = 2f;  // Mouse sensitivity
     [PositiveValueOnly] public bool isSprintEnabled = false;  // sprintSpeed when sprinting, nonSprintSpeed otherwise
     [PositiveValueOnly] public float sprintMultiplier = 1f;  // sprintSpeed when sprinting, nonSprintSpeed otherwise
     private const float MAX_PITCH_DEGREE = 60; // How high or low the player can raise their head
@@ -56,6 +55,7 @@ public class CharacterMovement : MonoBehaviour {
     public void Look(Vector2 lookDirection) {
         Vector3 cameraRotation = ConvertAngle(_cameraTransform.localRotation.eulerAngles);
         Vector3 playerRotation = ConvertAngle(_bodyTransform.rotation.eulerAngles);
+        var sensitivity = PlayerPrefs.GetFloat("sensitivity", 2.4f);
         SetView(cameraRotation.x - lookDirection.y * sensitivity, playerRotation.y + lookDirection.x * sensitivity);
         viewDirection = lookDirection;
     }

@@ -636,12 +636,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92396391598ef24c8ae6bb6f02edd59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstSelectButton: {fileID: 179892265296951419}
+  firstSelectable: {fileID: 179892265296951419}
   continueButton: {fileID: 179892265296951419}
   controlsButton: {fileID: 179892263723539020}
+  settingsButton: {fileID: 966725592092279628}
   restartButton: {fileID: 179892263699818382}
-  exitButton: {fileID: 179892264224040127}
+  mainMenuButton: {fileID: 1212424210496091145}
+  quitGameButton: {fileID: 179892264224040127}
   controlsModal: {fileID: 0}
+  settingsModal: {fileID: 0}
 --- !u!1 &179892265296951417
 GameObject:
   m_ObjectHideFlags: 0
