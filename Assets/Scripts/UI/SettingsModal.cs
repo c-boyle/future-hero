@@ -11,12 +11,6 @@ public class SettingsModal : BaseModal {
   [SerializeField] private Slider sensitivitySlider;
   [SerializeField] private Toggle inGameTimerToggle;
   [SerializeField] private Button backButton;
-  [SerializeField] private TimeInLevelTextView timeInLevelTextView;
-  [SerializeField] private AudioMixer gameAudioMixer;
-
-  private const string MASTER_VOLUME = "master_volume";
-  private const string SENSITIVITY = "sensitivity";
-  private const string IN_GAME_TIMER = "in_game_timer";
 
   private void Start() {
     volumeSlider.value =  SettingsInitializer.Instance.MasterVolume;

@@ -46,4 +46,12 @@ public class SettingsInitializer : Singleton<SettingsInitializer> {
     gameAudioMixer.SetFloat(MASTER_VOLUME, MasterVolume);
     timeInLevelTextView.gameObject.SetActive(InGameTimerEnabled);
   }
+
+  public void SetInGameTimerHidden(bool hidden) {
+    if (hidden) {
+      timeInLevelTextView.gameObject.SetActive(false);
+    } else {
+      timeInLevelTextView.gameObject.SetActive(InGameTimerEnabled);
+    }
+  }
 }
