@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4697642869799652643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.485597, y: 0.97969866, z: 8.562968}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3225647050690445315}
@@ -227,6 +227,7 @@ MonoBehaviour:
   destroyRequiredItemOnInteraction: 0
   giveItem: {fileID: 0}
   disableAfterFirstUse: 0
+  rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   Prompt: {fileID: 0}
   promptText: Take Cigarette
@@ -250,11 +251,15 @@ MonoBehaviour:
   onDrop:
     m_PersistentCalls:
       m_Calls: []
+  held: 0
   allColliders: []
   itemBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   <Rigidbody>k__BackingField: {fileID: 0}
+  futureCig: {fileID: 0}
+  smoke: {fileID: 0}
+  smoking: 1
 --- !u!54 &1951356476
 Rigidbody:
   m_ObjectHideFlags: 0

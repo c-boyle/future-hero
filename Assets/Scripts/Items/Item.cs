@@ -17,6 +17,8 @@ public class Item : MonoBehaviour {
 
   private float riskSpeed = 3f;
 
+  public string ItemName { get => itemName; }
+
   private List<GameObject> children = new List<GameObject>();
 
   public List<Collider> allColliders = new List<Collider>(); 
