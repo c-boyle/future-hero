@@ -60,8 +60,8 @@ public class ViewBob : MonoBehaviour {
     float ROTATE_MIDDLE_TRANSITION = 0.02f;
 
     // Constants for the rebound when you land upon finishing your jump
-    private const float JUMP_LAND_INTENSITY = 0.02f;
-    private const float JUMP_LAND_SPEED = 10f;
+    private const float JUMP_LAND_INTENSITY = 0.0333f;
+    private const float JUMP_LAND_SPEED = 16.67f;
     private const float JUMP_LAND_CYCLE = Mathf.PI;
     private readonly Func<float, float> JUMP_LAND_AMPLITUDE = (float x) => -Mathf.Abs(Mathf.Sin(x));
 

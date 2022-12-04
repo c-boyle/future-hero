@@ -36,14 +36,14 @@ public class CharacterMovement : MonoBehaviour {
     [PositiveValueOnly] public bool isSprintEnabled = false;  // sprintSpeed when sprinting, nonSprintSpeed otherwise
     [PositiveValueOnly] public float sprintMultiplier = 1f;  // sprintSpeed when sprinting, nonSprintSpeed otherwise
     private const float MAX_PITCH_DEGREE = 60; // How high or low the player can raise their head
-    private const float GROUND_MAX_VELOCITY = 2.3f; // Maximum speed the player can reach while moving on ground
-    private const float AIR_MAX_VELOCITY = 2.0f; // Maximum speed the player can reach while moving in midair
+    private const float GROUND_MAX_VELOCITY = 3f; // Maximum speed the player can reach while moving on ground
+    private const float AIR_MAX_VELOCITY = 2.6f; // Maximum speed the player can reach while moving in midair
     private const float GROUND_ACCELERATION = 0.4f; // How fast the player gains speed on ground
     private const float AIR_ACCELERATION = 0.05f; // How fast the player gains speed while moving in midair
     private const float GROUND_FRICTION = 0.04f; // How quickly the player slows to a stop on ground
     private const float AIR_FRICTION = 0.01f; // How quickly the player slows to a stop while in midair
-    private const float JUMP_INTENSITY = 3f; // How high the player jumps
-    private const float GROUND_CHECK_RADIUS = 0.225f; // Radius of the collider used for ground checking
+    private const float JUMP_INTENSITY = 4f; // How high the player jumps
+    private const float GROUND_CHECK_RADIUS = 0.375f; // Radius of the collider used for ground checking
     private const float NON_STATIONARY_RATIO = 0.2f; // The player is considered "moving" if currentVelocity > MAX_VELOCITY * NON_STATIONARY_RATIO
 
     // Function that gets called each time move inputs are used
