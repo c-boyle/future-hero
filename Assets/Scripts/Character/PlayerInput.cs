@@ -38,8 +38,8 @@ public class PlayerInput : BaseInput {
   public static ControlsPrompt.ControlType ControlType { get; private set; }
 
   // Constants
-  private const float INITIAL_SPEED_MULTIPLIER = 1f;
-  private const float SPRINT_SPEED_MULTIPLIER = 1.3f;
+  private const float INITIAL_SPEED_MULTIPLIER = 1.2f;
+  private const float SPRINT_SPEED_MULTIPLIER = 2f;
 
   private void Awake() {
     if (Controls == null) {

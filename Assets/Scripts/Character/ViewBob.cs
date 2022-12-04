@@ -28,17 +28,17 @@ public class ViewBob : MonoBehaviour {
 
     // Constants related to bobbing
     private const float BOB_VERTICAL_INTENSITY = 0.02f;
-    private const float BOB_VERTICAL_SPEED = 7f;
+    private const float BOB_VERTICAL_SPEED = 6f;
     private const float BOB_VERTICAL_CYCLE = Mathf.PI;
     private readonly Func<float, float> BOB_VERTICAL_AMPLITUDE = (float x) => -Mathf.Abs(Mathf.Sin(x));
 
     private const float BOB_LEFT_INTENSITY = 0.02f;
-    private const float BOB_LEFT_SPEED = 7f;
+    private const float BOB_LEFT_SPEED = 6f;
     private const float BOB_LEFT_CYCLE = Mathf.PI;
     private readonly Func<float, float> BOB_LEFT_AMPLITUDE = (float x) => -Mathf.Abs(Mathf.Sin(x));
 
     private const float BOB_RIGHT_INTENSITY = 0.02f;
-    private const float BOB_RIGHT_SPEED = 7f;
+    private const float BOB_RIGHT_SPEED = 6f;
     private const float BOB_RIGHT_CYCLE = Mathf.PI;
     private readonly Func<float, float> BOB_RIGHT_AMPLITUDE = (float x) => -Mathf.Abs(Mathf.Sin(x));
 
@@ -47,10 +47,10 @@ public class ViewBob : MonoBehaviour {
     private const float BREATHE_CYCLE = Mathf.PI * 2;
     private readonly Func<float, float> BREATHE_AMPLITUDE = (float x) => Mathf.Sin(x);
 
-    private Vector3 CAMERA_BOB_MULTIPLIER = new Vector3(0, 0.12f, 0);
+    private Vector3 CAMERA_BOB_MULTIPLIER = new Vector3(0, 0.05f, 0);
 
     // Constants related to dragging
-    private const float DRAG_Z_MULTIPLIER = -0.06f;
+    private const float DRAG_Z_MULTIPLIER = -0.04f;
     private const float DRAG_Y_MULTIPLIER = -0.015f;
     private float DRAG_TRANSITION = 0.08f; // how fast the arm pulls back when you begin moving
 
@@ -60,8 +60,8 @@ public class ViewBob : MonoBehaviour {
     float ROTATE_MIDDLE_TRANSITION = 0.02f;
 
     // Constants for the rebound when you land upon finishing your jump
-    private const float JUMP_LAND_INTENSITY = 0.02f;
-    private const float JUMP_LAND_SPEED = 10f;
+    private const float JUMP_LAND_INTENSITY = 0.0333f;
+    private const float JUMP_LAND_SPEED = 16.67f;
     private const float JUMP_LAND_CYCLE = Mathf.PI;
     private readonly Func<float, float> JUMP_LAND_AMPLITUDE = (float x) => -Mathf.Abs(Mathf.Sin(x));
 
