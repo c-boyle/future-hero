@@ -38,13 +38,17 @@ public class SettingsInitializer : Singleton<SettingsInitializer> {
     }
     set {
       PlayerPrefs.SetInt(IN_GAME_TIMER, value ? 1 : 0);
-      timeInLevelTextView.gameObject.SetActive(value);
+      if (timeInLevelTextView != null) {
+        timeInLevelTextView.gameObject.SetActive(value);
+      }
     }
   }
 
   void Start() {
     gameAudioMixer.SetFloat(MASTER_VOLUME, MasterVolume);
-    timeInLevelTextView.gameObject.SetActive(InGameTimerEnabled);
+    if (timeInLevelTextView != null) {
+      timeInLevelTextView.gameObject.SetActive(InGameTimerEnabled);
+    }
   }
 
   public void SetInGameTimerHidden(bool hidden) {
