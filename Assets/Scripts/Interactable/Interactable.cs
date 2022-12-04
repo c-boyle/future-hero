@@ -44,7 +44,7 @@ public class Interactable : MonoBehaviour {
   private static float lastRefreshTime = -1f;
   private const float withinRangeRefreshSeconds = 0.5f;
 
-  private const float maxInteractionRange = 2f;
+  private const float maxInteractionRange = 2.5f;
 
   private Color originalPromptColor;
 
