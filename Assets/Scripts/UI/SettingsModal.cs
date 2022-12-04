@@ -11,6 +11,7 @@ public class SettingsModal : BaseModal {
   [SerializeField] private Slider sensitivitySlider;
   [SerializeField] private Toggle inGameTimerToggle;
   [SerializeField] private Button backButton;
+  [SerializeField] private TimeInLevelTextView timeInLevelTextView;
   [SerializeField] private AudioMixer gameAudioMixer;
 
   private const string MASTER_VOLUME = "master_volume";
@@ -42,6 +43,7 @@ public class SettingsModal : BaseModal {
 
   private void OnInGameTimerToggleChanged(bool newValue) {
     PlayerPrefs.SetInt(IN_GAME_TIMER, newValue ? 1 : 0);
+    timeInLevelTextView.gameObject.SetActive(newValue);
   }
 
   private void OnBackPressed() {
