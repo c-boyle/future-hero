@@ -13,10 +13,37 @@ public class SettingsInitializer : Singleton<SettingsInitializer> {
   private const string SENSITIVITY = "sensitivity";
   private const string IN_GAME_TIMER = "in_game_timer";
 
-  void Start() {
-    gameAudioMixer.SetFloat(MASTER_VOLUME, PlayerPrefs.GetFloat(MASTER_VOLUME, -8f));
-    PlayerPrefs.GetFloat(SENSITIVITY, 2.4f);
-    timeInLevelTextView.gameObject.SetActive(PlayerPrefs.GetInt(IN_GAME_TIMER, 0) == 1);
+  public float MasterVolume {
+    get {
+      return PlayerPrefs.GetFloat(MASTER_VOLUME, -8f);
+    }
+    set {
+      PlayerPrefs.SetFloat(MASTER_VOLUME, value);
+      gameAudioMixer.SetFloat(MASTER_VOLUME, value);
+    }
   }
 
+  public float Sensitiviy {
+    get {
+      return PlayerPrefs.GetFloat(SENSITIVITY, 2.4f);
+    }
+    set {
+      PlayerPrefs.SetFloat(SENSITIVITY, value);
+    }
+  }
+
+  public bool InGameTimerEnabled {
+    get {
+      return PlayerPrefs.GetInt(IN_GAME_TIMER, 0) == 1;
+    }
+    set {
+      PlayerPrefs.SetInt(IN_GAME_TIMER, value ? 1 : 0);
+      timeInLevelTextView.gameObject.SetActive(value);
+    }
+  }
+
+  void Start() {
+    gameAudioMixer.SetFloat(MASTER_VOLUME, MasterVolume);
+    timeInLevelTextView.gameObject.SetActive(InGameTimerEnabled);
+  }
 }

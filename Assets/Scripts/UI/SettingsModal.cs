@@ -19,9 +19,9 @@ public class SettingsModal : BaseModal {
   private const string IN_GAME_TIMER = "in_game_timer";
 
   private void Start() {
-    volumeSlider.value = PlayerPrefs.GetFloat(MASTER_VOLUME, -8f);
-    sensitivitySlider.value = PlayerPrefs.GetFloat(SENSITIVITY, 2.4f);
-    inGameTimerToggle.isOn = PlayerPrefs.GetInt(IN_GAME_TIMER, 0) == 1;
+    volumeSlider.value =  SettingsInitializer.Instance.MasterVolume;
+    sensitivitySlider.value =  SettingsInitializer.Instance.Sensitiviy;
+    inGameTimerToggle.isOn = SettingsInitializer.Instance.InGameTimerEnabled;
 
     volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
     sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
@@ -33,17 +33,15 @@ public class SettingsModal : BaseModal {
     if (newValue <= volumeSlider.minValue) {
       newValue = -80f;
     }
-    gameAudioMixer.SetFloat(MASTER_VOLUME, newValue);
-    PlayerPrefs.SetFloat(MASTER_VOLUME, newValue);
+    SettingsInitializer.Instance.MasterVolume = newValue;
   }
 
   private void OnSensitivityChanged(float newValue) {
-    PlayerPrefs.SetFloat(SENSITIVITY, newValue);
+    SettingsInitializer.Instance.Sensitiviy = newValue;
   }
 
   private void OnInGameTimerToggleChanged(bool newValue) {
-    PlayerPrefs.SetInt(IN_GAME_TIMER, newValue ? 1 : 0);
-    timeInLevelTextView.gameObject.SetActive(newValue);
+    SettingsInitializer.Instance.InGameTimerEnabled = newValue;
   }
 
   private void OnBackPressed() {
