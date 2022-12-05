@@ -1439,7 +1439,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131106520}
   m_LocalRotation: {x: -0, y: 0.7372774, z: -0, w: 0.67559016}
-  m_LocalPosition: {x: 5.07, y: -0.195, z: 7.4869995}
+  m_LocalPosition: {x: 2.77, y: -0.309, z: 4.948}
   m_LocalScale: {x: 0.44999996, y: 0.225, z: 0.44999996}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1851,10 +1851,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 131106522}
+        m_TargetAssemblyTypeName: Marker, Assembly-CSharp
+        m_MethodName: Deactivate
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9985,8 +9985,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.86122537, y: 1, z: 0.5129843}
+  m_Center: {x: 0.069387294, y: 0, z: -0.2435073}
 --- !u!23 &1064291051
 MeshRenderer:
   m_ObjectHideFlags: 0
