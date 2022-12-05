@@ -51,7 +51,7 @@ public class UIText : MonoBehaviour
     }
 
     public void FreeingAction(string action) {
-        finalText = "(" + action + " to continue)";
+        finalText = string.Empty;
         switch(action) {
         case "move":
             SetFreeingAction(PlayerInput.Controls.Player.Move);
@@ -115,7 +115,7 @@ public class UIText : MonoBehaviour
         nextPrompt.gameObject.SetActive(false);
 
         nextPrompt.text = "(press anything to continue)";
-        finalText = "(press anything to continue)";
+        finalText = string.Empty;
         actionPresent = false;
 
         

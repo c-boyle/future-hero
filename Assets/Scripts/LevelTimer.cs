@@ -27,6 +27,7 @@ public class LevelTimer : Singleton<LevelTimer> {
   void Start() {
     originalStartingSeconds = SecondsLeft;
     SecondsSpentInLevel = 0f;
+    TimerUpdated?.Invoke(this, new() { DeltaTime = 0f, SecondsLeft = SecondsLeft });
   }
 
   // Update is called once per frame

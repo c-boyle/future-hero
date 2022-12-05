@@ -62,8 +62,6 @@ public abstract class Watch : MonoBehaviour {
   private void SetPresent(object sender, LevelTimer.TimerUpdateEventArgs e) {
     int secondsLeft = (int)e.SecondsLeft;
 
-    if(secondsLeft % 60 == 0) TriggerNotification();
-
     percentageTime = (totalSeconds - secondsLeft) / totalSeconds;
     presentMinutes = (int)Math.Floor((double)(secondsLeft / minuteLength));
     presentSeconds = secondsLeft % minuteLength;

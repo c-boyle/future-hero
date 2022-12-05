@@ -7709,7 +7709,6 @@ MonoBehaviour:
     sentences:
     - You have the ability to see into the future.
     - Your favourite restaurant, Future Gyros, is at risk!
-    - Your favourite restaurant, Future Gyros, is at risk!
     - "Use your powers to explore the restaurant for clues to fix the future! \n"
     - 'Save Future Gyros!
 
@@ -7742,20 +7741,6 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 522216056}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1589829318}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -7866,8 +7851,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.86122537, y: 1, z: 0.5129843}
-  m_Center: {x: 0.069387294, y: 0, z: -0.2435073}
+  m_Size: {x: 0.72715765, y: 1, z: 0.51298416}
+  m_Center: {x: 0.0023518347, y: 0, z: -0.24351996}
 --- !u!23 &775370533
 MeshRenderer:
   m_ObjectHideFlags: 0
