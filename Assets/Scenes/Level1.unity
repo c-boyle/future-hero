@@ -3562,7 +3562,8 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2016991693}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7579079673970040524, guid: 41acd260343d1d344b9c23c4f4316e96, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 41acd260343d1d344b9c23c4f4316e96, type: 3}
 --- !u!4 &370398574 stripped
 Transform:
@@ -3598,7 +3599,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: dd5f4f651d403984d9ca713323783259, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: dd5f4f651d403984d9ca713323783259, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -3618,7 +3620,7 @@ MonoBehaviour:
   interactionAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 370398579}
         m_TargetAssemblyTypeName: Anim, Assembly-CSharp
         m_MethodName: PlayAnimation
         m_Mode: 1
@@ -3629,7 +3631,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 302986228}
         m_TargetAssemblyTypeName: PuddleFuture, Assembly-CSharp
         m_MethodName: Happens
@@ -3642,7 +3644,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1821010682}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -3711,11 +3713,11 @@ MonoBehaviour:
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
   promptText: Pick Up
   shaderChanged: 0
-  requireRedHerring: {fileID: 0}
+  requireRedHerring: {fileID: 1951356481}
   redHerringAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1208600792}
         m_TargetAssemblyTypeName: NPC, Assembly-CSharp
         m_MethodName: SetAngry
         m_Mode: 6
@@ -16303,11 +16305,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819141295}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1821010682 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2143960315852521318, guid: f5f4825c67ef8384bbfae80c7a365b51, type: 3}
-  m_PrefabInstance: {fileID: 7552490819956567773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1822882125
 PrefabInstance:
   m_ObjectHideFlags: 0
