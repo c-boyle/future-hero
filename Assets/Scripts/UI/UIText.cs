@@ -8,9 +8,11 @@ public class UIText : MonoBehaviour
 {
     [SerializeField] private DialogueTrigger dialogueTrigger;
     [SerializeField] private DialogueManager dialogueManager;
-    private InputAction freeingAction = null; 
+    [SerializeField] private InputAction? freeingAction = null; 
+    [SerializeField] private bool actionPresent = false;
     private bool gaming = false;
     public Action<InputAction.CallbackContext> handler;
+    [SerializeField] private GameObject screenDarkener;
 
     void Awake() {
         handler = (InputAction.CallbackContext ctx) => Unpause(ctx);
@@ -23,6 +25,8 @@ public class UIText : MonoBehaviour
 
     public void TriggerSpecificDialogue(DialogueTrigger trigger)
     {
+        screenDarkener.SetActive(true);
+        
         EnableControls(false);
         dialogueManager.EndDialogue();
         dialogueTrigger = trigger;
@@ -31,7 +35,8 @@ public class UIText : MonoBehaviour
         UIEventListener.Instance.PauseGame();
     }
 
-    private void SetFreeingAction(InputAction action = null) {
+    private void SetFreeingAction(InputAction? action = null) {
+        actionPresent = true;
         if(freeingAction != null) freeingAction.performed -= handler;
         freeingAction = action;
         if(freeingAction != null) freeingAction.performed += handler;
@@ -51,8 +56,18 @@ public class UIText : MonoBehaviour
         case "jump":
             SetFreeingAction(PlayerInput.Controls.Player.Jump);
             break;
+        case "interact":
+            SetFreeingAction(PlayerInput.Controls.Player.Interact);
+            break;
+        case "drop":
+        case "pickup":
+            SetFreeingAction(PlayerInput.Controls.Player.PickDrop);
+            break;
+        case "lookat":
+            SetFreeingAction(PlayerInput.Controls.Player.LookAtWatch);
+            break;
         default:
-            SetFreeingAction();
+            actionPresent = false;
             break;
         }
 
@@ -66,18 +81,28 @@ public class UIText : MonoBehaviour
     void Proceed() {
         if (!dialogueManager || !dialogueManager.isDialoging) return; // Skip if we're not 'dialoging'
 
-        if (dialogueManager.finalDialogue && freeingAction != null) {
+        if (dialogueManager.finalDialogue && actionPresent) {
+            Debug.Log("HERE! " + actionPresent);
             PlayerInput.Controls.Player.Enable(); // Enable controls so we can use freeing action
             return; // To stop anything else from triggering the next sentence
         }
 
         if (Input.anyKeyDown){
+            if (dialogueManager.finalDialogue) Unpause();
             dialogueManager.NextSentence();
         }
     }
 
     public void Unpause(InputAction.CallbackContext ctx) {
+        Unpause();
+    }
+
+    public void Unpause() {
         if (gaming) return;
+
+        screenDarkener.SetActive(false);
+
+        actionPresent = false;
 
         dialogueManager.EndDialogue();
         EnableControls(true);
