@@ -1,22 +1,56 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UIText : MonoBehaviour
 {
     [SerializeField] private DialogueTrigger dialogueTrigger;
     [SerializeField] private DialogueManager dialogueManager;
-    private bool started = false;
+    private InputAction freeingAction = null; 
+    private bool gaming = false;
+
+    void Awake() {
+        FreeingAction("future");
+        TriggerSpecificDialogue(dialogueTrigger);
+    }
 
     public void TriggerSpecificDialogue(DialogueTrigger trigger)
     {
+        dialogueManager.EndDialogue();
         dialogueTrigger = trigger;
+        gaming = false;
         dialogueTrigger.TriggerDialogue();
-    }
-
-    void Start() {
         UIEventListener.Instance.PauseGame();
         EnableControls(false);
+    }
+
+    private void SetFreeingAction(InputAction action = null) {
+        if(freeingAction != null) freeingAction.performed -= ctx=>Unpause();
+        freeingAction = action;
+        if(freeingAction != null) freeingAction.performed += ctx=>Unpause();
+    }
+
+    public void FreeingAction(string action) {
+        switch(action) {
+        case "move":
+            SetFreeingAction(PlayerInput.Controls.Player.Move);
+            break;
+        case "look":
+            SetFreeingAction(PlayerInput.Controls.Player.Look);
+            break;
+        case "future":
+            SetFreeingAction(PlayerInput.Controls.Player.ToggleVision);
+            break;
+        case "jump":
+            SetFreeingAction(PlayerInput.Controls.Player.Jump);
+            break;
+        default:
+            SetFreeingAction();
+            break;
+        }
+
     }
 
     void Update()
@@ -25,10 +59,10 @@ public class UIText : MonoBehaviour
     }
 
     void Proceed() {
-        if (!dialogueManager || !dialogueManager.isDialoging) return; // Skip if we're done intro-ing
+        if (!dialogueManager || !dialogueManager.isDialoging) return; // Skip if we're not 'dialoging'
 
-        if (dialogueManager.finalDialogue) {
-            PlayerInput.Controls.Player.Enable(); // Enable controls so we can go in future
+        if (dialogueManager.finalDialogue && freeingAction != null) {
+            PlayerInput.Controls.Player.Enable(); // Enable controls so we can use freeing action
             return; // To stop anything else from triggering the next sentence
         }
 
@@ -37,13 +71,13 @@ public class UIText : MonoBehaviour
         }
     }
 
-    public void StartGame() {
-        if (started) return;
+    public void Unpause() {
+        if (gaming) return;
 
         dialogueManager.EndDialogue();
         EnableControls(true);
         UIEventListener.Instance.UnpauseGame(); 
-        started = true;
+        gaming = true;
     }
 
     public void EnableControls(bool enable) {

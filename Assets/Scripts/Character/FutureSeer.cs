@@ -44,9 +44,9 @@ public class FutureSeer : MonoBehaviour {
 
     futureShader.SetEffectEnabled(_timeVisionEnabled, transitionSeconds, disableTimeline);
 
-    if (introText) {
-      introText.StartGame();
-    }
+    // if (introText) {
+    //   introText.StartGame();
+    // }
   }
 
   [System.Serializable]
