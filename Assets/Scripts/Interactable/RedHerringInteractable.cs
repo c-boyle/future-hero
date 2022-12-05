@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class RedHerringInteractable : Interactable {
-  [Tooltip("Set to none if no item is required to red herring.")][SerializeField] private Item requireRedHerring = null;
+  [Tooltip("Set to none if no item is required to red herring.")][SerializeField] protected Item requireRedHerring = null;
   public UnityEvent redHerringAction;
   public string redHerringPromptText = "interact";
 
   protected override void OnInteract(ItemHolder itemHolder = null, bool grab = false) {
-    if (!grab && itemHolder != null && requireRedHerring == itemHolder.HeldItem) {
+    if (!grab && MeetsRedHerringRequirement(itemHolder)) {
       redHerringAction?.Invoke();
       if (Item is Cup cup && itemHolder.HeldItem is Cigarette cig) {
         cig.SafePosition();
@@ -20,10 +20,11 @@ public class RedHerringInteractable : Interactable {
     }
   }
 
+  protected virtual bool MeetsRedHerringRequirement(ItemHolder itemHolder) {
+    return itemHolder != null && requireRedHerring == itemHolder.HeldItem;
+  }
+
   public override bool MeetsItemRequirement(ItemHolder itemHolder) {
-    if (itemHolder != null && requireRedHerring == itemHolder.HeldItem) {
-      return true;
-    }
-    return base.MeetsItemRequirement(itemHolder);
+    return MeetsRedHerringRequirement(itemHolder) || base.MeetsItemRequirement(itemHolder);
   }
 }
