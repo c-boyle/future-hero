@@ -31,6 +31,8 @@ public class MainMenuModal : BaseModal {
 
   private void OnPlayPressed() {
     CloseAll();
+    SettingsInitializer.Instance.IsTutorial = true;
+    SettingsInitializer.Instance.GlowHelp = true;
     PlayerInput.Controls = null;
     SceneManager.LoadScene("Level1");
   }

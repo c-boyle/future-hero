@@ -30,6 +30,7 @@ public class ControlsPrompt : MonoBehaviour {
 
   private void Start() {
     controlsPrompts.Add(this);
+    SetControlType(_controlType);
   }
 
   private void OnDestroy() {

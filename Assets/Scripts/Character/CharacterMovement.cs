@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] [MustBeAssigned] private Transform _cameraTransform;
     [SerializeField] [MustBeAssigned] private Collider _bodyCollider;
     [SerializeField] [MustBeAssigned] private LayerMask _groundLayer;
+    [SerializeField] [MustBeAssigned] private Transform levelStart;
 
     [SerializeField] [ReadOnly] private float pitchDegree = 0f;
     [SerializeField] [ReadOnly] private float yawDegree = 0f;
@@ -45,6 +46,10 @@ public class CharacterMovement : MonoBehaviour {
     private const float GROUND_CHECK_RADIUS = 0.375f; // Radius of the collider used for ground checking
     private const float NON_STATIONARY_RATIO = 0.2f; // The player is considered "moving" if currentVelocity > MAX_VELOCITY * NON_STATIONARY_RATIO
 
+    void Start() {
+        if(!SettingsInitializer.Instance.IsTutorial) transform.position = levelStart.position + new Vector3(0, 1, 0);
+    } 
+    
     // Function that gets called each time move inputs are used
     public void Move(Vector2 movement) {
         moveDirection = _bodyTransform.right * movement.x + _bodyTransform.forward * movement.y;

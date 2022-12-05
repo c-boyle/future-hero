@@ -18,6 +18,13 @@ public class DialogueManagerUI : DialogueManager
             field.text = $"<mark={TEXT_BACKGROUND_HEX}>" + displayedText + "</mark>";
             yield return null;
         }
+        currentSentence = "";
+    }
+
+    protected override void FinishSentence() {
+        field.text = currentSentence;
+        currentSentence = "";
+        return;
     }
 
     protected override void ClearSentence() {
