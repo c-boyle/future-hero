@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class BaseModal : MonoBehaviour {
 
-  [Tooltip("This is the button that will be selected first upon opening this modal.")][SerializeField] private Button firstSelectButton;
+  [Tooltip("This is the button that will be selected first upon opening this modal.")][SerializeField] private Selectable firstSelectable;
+  private Selectable lastSelectedSelectable;
 
   private Action onClose;
 
@@ -17,10 +19,10 @@ public class BaseModal : MonoBehaviour {
   }
 
   public virtual void Open() {
-    Show();
-    if (firstSelectButton != null) {
-      firstSelectButton.Select();
+    if (firstSelectable != null) {
+      firstSelectable.Select();
     }
+    Show();
   }
 
   public void Open(Action onClose) {
@@ -52,11 +54,15 @@ public class BaseModal : MonoBehaviour {
 
   private void Show() {
     gameObject.SetActive(true);
+    if (lastSelectedSelectable != null) {
+      lastSelectedSelectable.Select();
+    }
     PlayerInput.Controls.UI.Cancel.performed += OnCancel;
   }
 
   private void Hide() {
     gameObject.SetActive(false);
     PlayerInput.Controls.UI.Cancel.performed -= OnCancel;
+    lastSelectedSelectable = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
   }
 }
