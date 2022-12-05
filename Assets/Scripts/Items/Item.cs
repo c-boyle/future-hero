@@ -9,6 +9,7 @@ public class Item : MonoBehaviour {
   [SerializeField] private string itemName;
   [SerializeField] protected UnityEvent onPickup;
   [SerializeField] protected UnityEvent onDrop;
+  [SerializeField] protected UnityEvent onHardCollision;
   public bool held = false;
 
   private Vector3 originalScale;
@@ -64,6 +65,12 @@ public class Item : MonoBehaviour {
       riskSpeed = 0;
     }
 
+  }
+
+  private void OnCollisionEnter(Collision collision) {
+    if (collision.relativeVelocity.magnitude > 1f) {
+      onHardCollision?.Invoke();
+    }
   }
 
   public virtual void PickedUp() {
