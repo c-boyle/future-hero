@@ -35,6 +35,8 @@ public class PlayerInput : BaseInput {
     }
   }
 
+  public static ControlsPrompt.ControlType ControlType { get; private set; }
+
   // Constants
   private const float INITIAL_SPEED_MULTIPLIER = 1.2f;
   private const float SPRINT_SPEED_MULTIPLIER = 2f;
@@ -125,6 +127,7 @@ public class PlayerInput : BaseInput {
   private void OnChange(ControlsPrompt.ControlType type) {
     // Debug.Log("--" + type);
     ControlsPrompt.ChangeControlType(type);
+    ControlType = type;
   }
 
   protected override void OnInteract() {
