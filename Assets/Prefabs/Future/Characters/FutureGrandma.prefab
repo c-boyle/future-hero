@@ -90,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 994405589003948297}
   m_LocalRotation: {x: 0, y: 0.70335126, z: 0, w: 0.7108425}
   m_LocalPosition: {x: 7.283, y: 0.004000008, z: 10.319}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1357505469725400714}
@@ -109,7 +109,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 22100000, guid: e69b53c9db8c9044f8baed252ac7f3eb, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -523,7 +523,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab33b938524e7304798b3a2cdbbb9c90, type: 2}
+  - {fileID: 2100000, guid: 3ac6b018a5abbb742b3edcd105d4e855, type: 2}
+  - {fileID: 2100000, guid: 287b651bb661e084a993ab9c6ab8dff7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -548,7 +549,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 8861087411932143285, guid: 96f541aee030ad6408ad4f00d8246616, type: 3}
+  m_Mesh: {fileID: 8861087411932143285, guid: 35bce49a98d5d3d4c9dbdc956d8c56da, type: 3}
   m_Bones:
   - {fileID: 2349742227658042540}
   - {fileID: 295360901238701111}

@@ -30,6 +30,10 @@ public class PathMovement : MonoBehaviour {
         paths[currentPathIndex].PathPoints[currentPathPoint - 1].SecondsToReachPoint = currentPointOriginalTime;
         currentPathPoint = 0;
       } else {
+        Moving = false;
+        if (animator != null) {
+          animator.SetBool("moving", false);
+        }
         normalizedDirection = Vector3.zero;
         return;
       }
