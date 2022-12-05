@@ -14,6 +14,10 @@ public class PaperTowel : Item
         orginalPaperScale = paper.transform.localScale;
     }
 
+    public bool HasUsesLeft() {
+      return numDries > 0;
+    }
+
     public bool Use() {
         if (numDries <= 0) return false;
         Shrink();
