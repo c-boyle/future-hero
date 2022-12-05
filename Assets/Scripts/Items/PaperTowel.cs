@@ -8,6 +8,7 @@ public class PaperTowel : Item
     private int numDries;
     private Vector3 orginalPaperScale;
     [SerializeField] private GameObject paper;
+    [SerializeField] private AudioSource tearingSound;
 
     void Awake() {
         numDries = maxDries;
@@ -21,6 +22,7 @@ public class PaperTowel : Item
     public bool Use() {
         if (numDries <= 0) return false;
         Shrink();
+        tearingSound.Play();
         return true;
 
     }
