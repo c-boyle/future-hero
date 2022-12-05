@@ -52,6 +52,7 @@ public class FutureSeer : MonoBehaviour {
   [System.Serializable]
   private class FutureAudio {
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private AudioSource transitionSound;
 
     private const string FUTURE = "Future";
     private const string PRESENT = "Present";
@@ -83,6 +84,8 @@ public class FutureSeer : MonoBehaviour {
       } else {
         PresentSnapshot.TransitionTo(transitionTime);
       }
+      transitionSound.pitch = transitionSound.clip.length / transitionTime;
+      transitionSound.Play();
     }
   }
 }
