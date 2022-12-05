@@ -10,26 +10,31 @@ public class UIText : MonoBehaviour
     [SerializeField] private DialogueManager dialogueManager;
     private InputAction freeingAction = null; 
     private bool gaming = false;
+    public Action<InputAction.CallbackContext> handler;
 
     void Awake() {
-        FreeingAction("future");
+        handler = (InputAction.CallbackContext ctx) => Unpause(ctx);
+    }
+
+    void Start() {
+        FreeingAction("move");
         TriggerSpecificDialogue(dialogueTrigger);
     }
 
     public void TriggerSpecificDialogue(DialogueTrigger trigger)
     {
+        EnableControls(false);
         dialogueManager.EndDialogue();
         dialogueTrigger = trigger;
         gaming = false;
         dialogueTrigger.TriggerDialogue();
         UIEventListener.Instance.PauseGame();
-        EnableControls(false);
     }
 
     private void SetFreeingAction(InputAction action = null) {
-        if(freeingAction != null) freeingAction.performed -= ctx=>Unpause();
+        if(freeingAction != null) freeingAction.performed -= handler;
         freeingAction = action;
-        if(freeingAction != null) freeingAction.performed += ctx=>Unpause();
+        if(freeingAction != null) freeingAction.performed += handler;
     }
 
     public void FreeingAction(string action) {
@@ -71,7 +76,7 @@ public class UIText : MonoBehaviour
         }
     }
 
-    public void Unpause() {
+    public void Unpause(InputAction.CallbackContext ctx) {
         if (gaming) return;
 
         dialogueManager.EndDialogue();
