@@ -27,13 +27,12 @@ public class LevelTimer : Singleton<LevelTimer> {
   void Start() {
     originalStartingSeconds = SecondsLeft;
     SecondsSpentInLevel = 0f;
-    TimerUpdated?.Invoke(this, new() { DeltaTime = 0f, SecondsLeft = SecondsLeft });
   }
 
   // Update is called once per frame
   void Update() {
+    float deltaTime = Time.deltaTime;
     if (!levelEnded && !SettingsInitializer.Instance.IsTutorial) {
-      float deltaTime = Time.deltaTime;
       SecondsLeft -= deltaTime;
       SecondsSpentInLevel += deltaTime;
       if (SecondsLeft <= 0) {
@@ -42,9 +41,8 @@ public class LevelTimer : Singleton<LevelTimer> {
         futureIsStarting?.Invoke();
         futureNotTriggered = false;
       }
-
-      TimerUpdated?.Invoke(this, new() { DeltaTime = deltaTime, SecondsLeft = SecondsLeft });
     }
+    TimerUpdated?.Invoke(this, new() { DeltaTime = deltaTime, SecondsLeft = SecondsLeft });
   }
 
   private float GetRealSeconds() {
