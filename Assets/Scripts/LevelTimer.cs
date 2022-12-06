@@ -15,6 +15,11 @@ public class LevelTimer : Singleton<LevelTimer> {
 
   [SerializeField] public UnityEvent futureIsStarting;
 
+  [SerializeField] private GameObject fireFuture;
+  [SerializeField] private GameObject ruffianFuture;
+  [SerializeField] private GameObject puddleFuture;
+  [SerializeField] private GameEndData gameEndData;
+
   private bool levelEnded = false;
   private float originalSecondsLeft = -1f;
   private float setSecondsLeft;
@@ -71,7 +76,12 @@ public class LevelTimer : Singleton<LevelTimer> {
     // Skip to time end
     // Stop looking at watch
     // Play end cutscene
-
+    gameEndData.SecondsSpentInLevel = SecondsSpentInLevel;
+    var endingID = string.Empty;
+    endingID += fireFuture.activeSelf ? "fire" : string.Empty;
+    endingID += ruffianFuture.activeSelf ? "ruffian" : string.Empty;
+    endingID += puddleFuture.activeSelf ? "puddle" : string.Empty;
+    gameEndData.CurrentEndingID = endingID;
     LevelEnd?.Invoke(this, new() { Won = won });
     levelEnded = true;
   }
