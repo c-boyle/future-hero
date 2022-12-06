@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 using System;
 
 public abstract class Watch : MonoBehaviour {
@@ -29,6 +30,9 @@ public abstract class Watch : MonoBehaviour {
   protected bool notTransitioning = true;
 
   [SerializeField] protected float totalSeconds;
+
+  private bool firstGlow = true;
+  [SerializeField] private UnityEvent firstGlowActions;
 
 
   Coroutine transitionTimeLeft = null;
@@ -57,8 +61,6 @@ public abstract class Watch : MonoBehaviour {
 
   private void SetPresent(object sender, LevelTimer.TimerUpdateEventArgs e) {
     int secondsLeft = (int)e.SecondsLeft;
-
-    if(secondsLeft % 60 == 0) TriggerNotification();
 
     percentageTime = (totalSeconds - secondsLeft) / totalSeconds;
     presentMinutes = (int)Math.Floor((double)(secondsLeft / minuteLength));
@@ -183,6 +185,13 @@ public abstract class Watch : MonoBehaviour {
       yield return waitQuaterSecond;
       SetGlow(false, color);
       yield return waitQuaterSecond;
+    }
+    if(firstGlow) {
+      firstGlow = false;
+      if(SettingsInitializer.Instance.GlowHelp) {
+        firstGlowActions.Invoke();
+        SettingsInitializer.Instance.GlowHelp = false;
+      }
     }
     var waitThreeSeconds = new WaitForSeconds(3f);
     yield return waitThreeSeconds;

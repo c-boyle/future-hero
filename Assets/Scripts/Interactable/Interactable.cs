@@ -14,6 +14,9 @@ public class Interactable : MonoBehaviour {
   [SerializeField] private bool disableAfterFirstUse = false;
   [SerializeField] private GameObject rootObject = null;
 
+  [SerializeField] private bool notYetOutlined = true;
+  [SerializeField] private UnityEvent onFirstOutline;
+
   private Item _item = null;
   public Item Item { get => _item; }
   public Item RequiredItem { get => requireItem; }
@@ -249,6 +252,10 @@ public class Interactable : MonoBehaviour {
         }
         Color outlineColor = meetsItemRequirement ? _regularOutlineColor.Value : Color.red;
         _rend.material.SetColor("_OutlineColor", outlineColor);
+        if(notYetOutlined) {
+          notYetOutlined = false;
+          onFirstOutline.Invoke();
+        }
       }
     }
 

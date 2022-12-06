@@ -15,15 +15,15 @@ public abstract class BasePressurePlate : MonoBehaviour {
       if (destroyTargetOnCollision) {
         Destroy(collider.attachedRigidbody.gameObject);
       }
-      if (disablePressurePlateOnActivation) {
-        this.enabled = false;
-      }
     }
   }
 
   void OnTriggerExit(Collider collider) {
     if (CheckCollider(collider)) {
       exitedEvent?.Invoke();
+      if (disablePressurePlateOnActivation) {
+        Destroy(gameObject);
+      }
     }
   }
 
