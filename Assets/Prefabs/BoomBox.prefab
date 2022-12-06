@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &196907551380833131
 Transform:
@@ -99,7 +99,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6554567575376043709
 Transform:
@@ -182,7 +182,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7564270316762081959
 Transform:
@@ -614,7 +614,6 @@ MonoBehaviour:
   disableAfterFirstUse: 1
   rootObject: {fileID: 0}
   _outlineShader: {fileID: 4800000, guid: 6d70b45468730ec43bcb82698864c596, type: 3}
-  Prompt: {fileID: 0}
   promptText: Change Music
   shaderChanged: 0
 --- !u!114 &5358596483017011083
@@ -630,7 +629,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 5358596483017011082}
-  secondsLeftForPitchChange: 40
+  secondsLeftForChanges: 40
+  playWhenUnderSecondsLeft: 1
+  changePitch: 1
   endPitch: 1.5
 --- !u!1 &5748181856756376735
 GameObject:
@@ -648,7 +649,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8080203406015380969
 Transform:
@@ -731,7 +732,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6606441612035672976
 Transform:
@@ -814,7 +815,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4421184041468523990
 Transform:
@@ -897,7 +898,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7488971474229741315
 Transform:
@@ -1019,6 +1020,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoubleMusicNote
       objectReference: {fileID: 0}
+    - target: {fileID: 4624627592660581189, guid: af9fb6a3ed64306419237dc4a4293eef, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624627594538408106, guid: af9fb6a3ed64306419237dc4a4293eef, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af9fb6a3ed64306419237dc4a4293eef, type: 3}
 --- !u!4 &752230155123854609 stripped
@@ -1033,6 +1042,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5609011651244543301}
     m_Modifications:
+    - target: {fileID: 4967188210070721721, guid: 64e0a4907c5395b499b7ff3e659cba50, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4967188211385808721, guid: 64e0a4907c5395b499b7ff3e659cba50, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1080,6 +1093,10 @@ PrefabInstance:
     - target: {fileID: 4967188211385808726, guid: 64e0a4907c5395b499b7ff3e659cba50, type: 3}
       propertyPath: m_Name
       value: SingleMusicNote
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967188211385808726, guid: 64e0a4907c5395b499b7ff3e659cba50, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64e0a4907c5395b499b7ff3e659cba50, type: 3}

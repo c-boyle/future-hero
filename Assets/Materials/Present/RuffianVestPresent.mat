@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2533204014487888031
+--- !u!114 &-8885972799168073937
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,6 +71,26 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_789a0d78bb4a4c49a90d24d14ed36eb6_Texture_1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DBase:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DRoughness:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BLENDFROM: 0
@@ -82,21 +102,27 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.25123277
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
+    - _NormalMultiplier: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Progress_KEEP_ZERO: 0
+    - _RoughnessMultiplier: 0.5
+    - _RoughnessScale: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _TransitionScaleX: 0.5
+    - _TransitionScaleY: 0.5
     - _UVSec: 0
     - _XScale: 0.5
     - _YScale: 0.5
     - _ZWrite: 1
+    - _isMetallic: 0
     m_Colors:
-    - _Color: {r: 0.26415092, g: 0.15574937, b: 0.15574937, a: 1}
+    - _Color: {r: 0.026800001, g: 0.025440002, b: 0.04184, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
