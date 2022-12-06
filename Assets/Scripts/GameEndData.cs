@@ -4,14 +4,14 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = nameof(GameEndData), menuName = nameof(GameEndData))]
 public class GameEndData : ScriptableObject {
-  public string Headline { get { endingsSeen.Add(CurrentEndingID); return EndingIDToEndingData[CurrentEndingID].Headline; } }
-  public string Summary { get { endingsSeen.Add(CurrentEndingID); return EndingIDToEndingData[CurrentEndingID].Summary; } }
-  public Sprite Picture { get { endingsSeen.Add(CurrentEndingID); return EndingIDToEndingData[CurrentEndingID].Picture; } }
+  public string Headline { get { if (!endingsSeen.Contains(CurrentEndingID)) endingsSeen.Add(CurrentEndingID); return EndingIDToEndingData[CurrentEndingID].Headline; } }
+  public string Summary { get { if (!endingsSeen.Contains(CurrentEndingID)) endingsSeen.Add(CurrentEndingID); return EndingIDToEndingData[CurrentEndingID].Summary; } }
+  public Sprite Picture { get { if (!endingsSeen.Contains(CurrentEndingID)) endingsSeen.Add(CurrentEndingID); return EndingIDToEndingData[CurrentEndingID].Picture; } }
   public int TotalEndings { get => endings.Count; }
   public int EndingsSeen { get => endingsSeen.Count; }
   [field: SerializeField] public string CurrentEndingID { get; set; } = null;
   [field: SerializeField][field: HideInInspector] public float SecondsSpentInLevel { get; set; }
-  [SerializeField] private readonly HashSet<string> endingsSeen = new();
+  [SerializeField] private List<string> endingsSeen = new();
   [SerializeField] private List<EndingData> endings = new();
 
   private Dictionary<string, EndingData> _endingIDToEndingData = null;
