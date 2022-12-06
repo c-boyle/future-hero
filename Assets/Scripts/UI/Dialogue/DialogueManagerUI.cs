@@ -6,6 +6,7 @@ using TMPro;
 public class DialogueManagerUI : DialogueManager
 {
     [SerializeField] private TMP_Text field;
+    public bool giveBackground = true;
 
     private const string TEXT_BACKGROUND_HEX = "#00000088";
 
@@ -15,7 +16,7 @@ public class DialogueManagerUI : DialogueManager
         foreach (char letter in sentence.ToCharArray())
         {
             displayedText += letter;
-            field.text = $"<mark={TEXT_BACKGROUND_HEX}>" + displayedText + "</mark>";
+            SetText(displayedText);
             yield return null;
         }
         currentSentence = "";
@@ -24,7 +25,7 @@ public class DialogueManagerUI : DialogueManager
     public override void FinishSentence() {
         if(currentSentence == "") return;
         StopAllCoroutines();
-        field.text = field.text = $"<mark={TEXT_BACKGROUND_HEX}>" + currentSentence + "</mark>";;
+        SetText(currentSentence);
         currentSentence = "";
         return;
     }
@@ -32,5 +33,9 @@ public class DialogueManagerUI : DialogueManager
     protected override void ClearSentence() {
         field.text = "";
         return;
+    }
+
+    private void SetText(string txt) {
+        field.text = (giveBackground) ? $"<mark={TEXT_BACKGROUND_HEX}>" + txt + "</mark>" : txt;
     }
 }
