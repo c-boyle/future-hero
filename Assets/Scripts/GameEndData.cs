@@ -10,11 +10,12 @@ public class GameEndData : ScriptableObject {
   public int TotalEndings { get => endings.Count; }
   public int EndingsSeen { get => endingsSeen.Count; }
   [field: SerializeField] public string CurrentEndingID { get; set; } = null;
+  [field: SerializeField][field: HideInInspector] public float SecondsSpentInLevel { get; set; }
   [SerializeField] private readonly HashSet<string> endingsSeen = new();
-  [SerializeField] private List<SummaryData> endings = new();
+  [SerializeField] private List<EndingData> endings = new();
 
-  private Dictionary<string, SummaryData> _endingIDToEndingData = null;
-  private Dictionary<string, SummaryData> EndingIDToEndingData {
+  private Dictionary<string, EndingData> _endingIDToEndingData = null;
+  private Dictionary<string, EndingData> EndingIDToEndingData {
     get {
       if (_endingIDToEndingData == null) {
         _endingIDToEndingData = new();
@@ -27,7 +28,7 @@ public class GameEndData : ScriptableObject {
   }
 
   [System.Serializable]
-  private class SummaryData {
+  private class EndingData {
     [field: SerializeField] public string EndingID { get; set; }
     [field: SerializeField] public string Headline { get; set; }
     [field: SerializeField][field: TextArea] public string Summary { get; set; }
