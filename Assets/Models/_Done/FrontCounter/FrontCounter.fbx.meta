@@ -3,7 +3,22 @@ guid: 471c8c4edc07af54fbf947fcf48e7b15
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrontCounter
+    second: {fileID: 2100000, guid: 6f3f6a2196b9dbb4c98e33d2e0cd8453, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrontCounterMenu
+    second: {fileID: 2100000, guid: 4a9297e4460c50c4e8e1a8feb2e0991e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rimlight
+    second: {fileID: 2100000, guid: 36b5e055bf600dc458f659f0d19579a4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -47,7 +62,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
