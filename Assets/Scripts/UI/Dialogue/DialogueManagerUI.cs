@@ -21,8 +21,10 @@ public class DialogueManagerUI : DialogueManager
         currentSentence = "";
     }
 
-    protected override void FinishSentence() {
-        field.text = currentSentence;
+    public override void FinishSentence() {
+        if(currentSentence == "") return;
+        StopAllCoroutines();
+        field.text = field.text = $"<mark={TEXT_BACKGROUND_HEX}>" + currentSentence + "</mark>";;
         currentSentence = "";
         return;
     }

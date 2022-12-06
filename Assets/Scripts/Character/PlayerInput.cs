@@ -13,6 +13,8 @@ public class PlayerInput : BaseInput {
   [SerializeField] private DialogueManager dialogueManager;
   [SerializeField] private LineRenderer trajectoryRenderer;
 
+  [SerializeField] private UIText uitext;
+
   [SerializeField] private Watch watch;
 
   public static event EventHandler<PlayerInputEventArgs> OnPlayerInput;
@@ -56,26 +58,36 @@ public class PlayerInput : BaseInput {
     Controls.Player.Move.canceled += ctx => { activeMovementInput = false; movement.Move(Vector2.zero); movement.sprintMultiplier = INITIAL_SPEED_MULTIPLIER; };
     Controls.Player.Sprint.performed += ctx => isSprinting = true;
     Controls.Player.Sprint.canceled += ctx => isSprinting = false;
-    Controls.Player.Jump.performed += ctx => { OnJump(); };
-    Controls.Player.LookAtWatch.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = true; watch.LookingAt(true); };
-    Controls.Player.LookAtWatch.canceled += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) FPSArmsManager.isWatchShown = false; watch.LookingAt(false); };
+    Controls.Player.Jump.performed += ctx => { if (ActionCheck("jump")) OnJump(); };
+    Controls.Player.LookAtWatch.performed += ctx => { FPSArmsManager.isWatchShown = true; watch.LookingAt(true); };
+    Controls.Player.LookAtWatch.canceled += ctx => {FPSArmsManager.isWatchShown = false; watch.LookingAt(false); };
 
     // Controls that alter vision
     Controls.Player.Look.performed += ctx => activeLookInput = true;
     Controls.Player.Look.canceled += ctx => { activeLookInput = false; movement.Look(Vector2.zero); };
-    Controls.Player.ToggleVision.performed += ctx => OnToggleFutureVision();
-
+    Controls.Player.ToggleVision.performed += ctx => {if (ActionCheck("future")) OnToggleFutureVision();};
     // Controls that affect environment
     Controls.Player.Interact.performed += ctx => OnInteract();
     Controls.Player.PickDrop.performed += ctx => { pickupTime = Time.time; holdingDrop = true; };
     Controls.Player.PickDrop.canceled += ctx => { OnPickDropItem(Time.time - pickupTime); holdingDrop = false; itemHolder.ClearThrowTrajectory(trajectoryRenderer); };
 
 
-    Controls.Player.Pause.performed += ctx => { if ((!dialogueManager) || (!dialogueManager.isDialoging)) UIEventListener.Instance.OnPausePressed(); };
+    Controls.Player.Pause.performed += ctx => { if (ActionCheck()) UIEventListener.Instance.OnPausePressed(); };
+  }
+
+  private bool ActionCheck(string action) {
+    // Debug.Log("we return " + (ActionCheck() || uitext == null || uitext.freeingStringAction == action) + "... action is " + action + " and uitext wants " + uitext.freeingStringAction);
+    if(action == "future" && SettingsInitializer.Instance.IsTutorial) return false;
+    return (ActionCheck() || uitext == null || uitext.freeingStringAction == action); 
+  }
+
+  private bool ActionCheck() {
+    // Debug.Log("dialogueManager.isDialoging=" + dialogueManager.isDialoging);
+    return (dialogueManager == null || !dialogueManager.isDialoging);
   }
 
   private void Update() {
-    if ((dialogueManager && dialogueManager.isDialoging) || !Controls.Player.enabled) {
+    if (!ActionCheck() || !Controls.Player.enabled) {
       return;
     }
     if (activeMovementInput) {

@@ -47,7 +47,7 @@ public class CharacterMovement : MonoBehaviour {
     private const float NON_STATIONARY_RATIO = 0.2f; // The player is considered "moving" if currentVelocity > MAX_VELOCITY * NON_STATIONARY_RATIO
 
     void Start() {
-        if(!SettingsInitializer.Instance.IsTutorial) transform.position = levelStart.position + new Vector3(-1, 1, 0);
+        if(!SettingsInitializer.Instance.IsTutorial) transform.position = levelStart.position;
     } 
     
     // Function that gets called each time move inputs are used

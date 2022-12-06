@@ -59,7 +59,7 @@ public class DialogueManager : MonoBehaviour
         return null;
     }
 
-    protected virtual void FinishSentence() {
+    public virtual void FinishSentence() {
         Debug.Log("Finish!");
         return;  
     }

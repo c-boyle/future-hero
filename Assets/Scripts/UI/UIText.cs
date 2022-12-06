@@ -9,7 +9,8 @@ public class UIText : MonoBehaviour
 {
     [SerializeField] private DialogueTrigger dialogueTrigger;
     [SerializeField] private DialogueManager dialogueManager;
-    [SerializeField] private InputAction? freeingAction = null; 
+    [SerializeField] private InputAction freeingAction = null; 
+    public string freeingStringAction = "";
     [SerializeField] private bool actionPresent = false;
 
     [SerializeField] private TMP_Text nextPrompt;
@@ -43,7 +44,7 @@ public class UIText : MonoBehaviour
         UIEventListener.Instance.PauseGame();
     }
 
-    private void SetFreeingAction(InputAction? action = null) {
+    private void SetFreeingAction(InputAction action = null) {
         actionPresent = true;
         if(freeingAction != null) freeingAction.performed -= handler;
         freeingAction = action;
@@ -52,6 +53,7 @@ public class UIText : MonoBehaviour
 
     public void FreeingAction(string action) {
         finalText = string.Empty;
+        freeingStringAction = action;
         switch(action) {
         case "move":
             SetFreeingAction(PlayerInput.Controls.Player.Move);
@@ -94,6 +96,7 @@ public class UIText : MonoBehaviour
         if(dialogueManager.finalDialogue) nextPrompt.text = finalText;
 
         if (dialogueManager.finalDialogue && actionPresent) {
+            if(Input.anyKeyDown) dialogueManager.FinishSentence();
             PlayerInput.Controls.Player.Enable(); // Enable controls so we can use freeing action
             return; // To stop anything else from triggering the next sentence
         }
