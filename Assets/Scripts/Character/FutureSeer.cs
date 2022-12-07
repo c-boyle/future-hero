@@ -13,7 +13,7 @@ public class FutureSeer : MonoBehaviour {
 
   [SerializeField] private UIText introText;
 
-  [SerializeField] private float transitionSeconds = 1f;
+  [SerializeField] private float transitionSeconds = 0.5f;
   [SerializeField] private FutureAudio futureAudio;
   [SerializeField] private CameraShader futureShader;
   [SerializeField] private CameraShaderFOVChange futureShaderFOVChange;
