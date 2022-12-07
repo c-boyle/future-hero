@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8421041240079516660}
   - component: {fileID: 4860043642361203793}
   - component: {fileID: 7248157364678113435}
+  - component: {fileID: 6629078491321353539}
   m_Layer: 0
   m_Name: FoodGyro
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6629078491321353539
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9193637706396768590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13049114, y: 0.1066296, z: 0.26869592}
+  m_Center: {x: -0.0023353763, y: 0.055720445, z: -0.0005006956}
