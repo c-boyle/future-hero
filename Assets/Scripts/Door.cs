@@ -50,6 +50,7 @@ public class Door : MonoBehaviour
         yield return new WaitForSeconds(5f);
         Vector3 angles = rotateTransform.rotation.eulerAngles;
         rotateTransform.rotation = Quaternion.Euler(angles - (Vector3.up * orientation));
+        orientation = 0;
     }
 
     private IEnumerator DoorPush(float delta) {
