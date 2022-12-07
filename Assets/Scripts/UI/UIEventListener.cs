@@ -85,14 +85,14 @@ public class UIEventListener : Singleton<UIEventListener> {
     PlayerInput.Controls.Player.Disable();
     PlayerInput.Controls.UI.Enable();
     Cursor.visible = true;
-    // PlayerInput.UIIsUp = true;
+    Cursor.lockState = CursorLockMode.None;
   }
 
   public void DisableUIControls() {
     PlayerInput.Controls.UI.Disable();
     PlayerInput.Controls.Player.Enable();
     Cursor.visible = false;
-    // PlayerInput.UIIsUp = false;
+    Cursor.lockState = CursorLockMode.Locked;
   }
 
   public void InvokeActions(UnityEvent actions) {

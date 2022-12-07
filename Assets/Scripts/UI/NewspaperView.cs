@@ -29,6 +29,7 @@ public class NewspaperView : MonoBehaviour {
       gameObject.SetActive(false);
       gameEndModal.SetActive(true);
       Cursor.visible = true;
+      Cursor.lockState = CursorLockMode.None;
     }
   }
 }

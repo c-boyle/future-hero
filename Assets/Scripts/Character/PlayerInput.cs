@@ -50,6 +50,8 @@ public class PlayerInput : BaseInput {
     }
 
     Cursor.visible = false;
+    Cursor.lockState = CursorLockMode.Locked;
+    
     // UIIsUp = false;
 
     // Controls that detect type

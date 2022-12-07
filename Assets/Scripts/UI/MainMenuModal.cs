@@ -20,6 +20,8 @@ public class MainMenuModal : BaseModal {
   void Start() {
     // PlayerInput.UIIsUp = true;
     Cursor.visible = true;
+    Cursor.lockState = CursorLockMode.None;
+
     playButton.onClick.AddListener(OnPlayPressed);
     controlsButton.onClick.AddListener(OnControlsPressed);
     settingsButton.onClick.AddListener(OnSettingsPressed);
