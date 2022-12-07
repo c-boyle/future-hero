@@ -21,6 +21,10 @@ public class InteractableControlsPrompt : MonoBehaviour {
   }
 
   public void Refresh(PlayerInput.PlayerInputEventArgs e) {
+    if (e.TimeVisionEnabled) {
+      Hide();
+      return;
+    }
     if (e.InRangeInteractable != null) {
       Show();
       if (e.InRangeInteractable.Item == null) {
