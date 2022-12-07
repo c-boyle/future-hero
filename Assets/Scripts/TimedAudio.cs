@@ -18,6 +18,7 @@ public class TimedAudio : MonoBehaviour {
   }
 
   private void Update() {
+    audioSource.mute = Time.deltaTime == 0f;
     if (LevelTimer.Instance.SecondsLeft <= secondsLeftForChanges) {
       if (changePitch) {
         float pitchDiff = endPitch - startPitch;
