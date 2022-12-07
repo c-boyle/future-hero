@@ -177,8 +177,7 @@ public abstract class Watch : MonoBehaviour {
     if(progressGlow != null) StopCoroutine(progressGlow);
     if(regressGlow != null) StopCoroutine(regressGlow);
 
-    UIEventListener.Instance.HideTimeTogglePrompt();
-    TimeLeftVisual.gameObject.SetActive(true);
+    SetGlow(false);
   }
 
   protected IEnumerator GlowNotification(Color color) {
