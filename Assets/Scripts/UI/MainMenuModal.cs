@@ -18,6 +18,8 @@ public class MainMenuModal : BaseModal {
 
   // Start is called before the first frame update
   void Start() {
+    PlayerInput.UIIsUp = true;
+    Cursor.visible = true;
     playButton.onClick.AddListener(OnPlayPressed);
     controlsButton.onClick.AddListener(OnControlsPressed);
     settingsButton.onClick.AddListener(OnSettingsPressed);
@@ -30,6 +32,7 @@ public class MainMenuModal : BaseModal {
   protected override void OnCancel(UnityEngine.InputSystem.InputAction.CallbackContext ctx) { }
 
   private void OnPlayPressed() {
+    PlayerInput.UIIsUp = false;
     CloseAll();
     SettingsInitializer.Instance.IsTutorial = true;
     SettingsInitializer.Instance.GlowHelp = true;

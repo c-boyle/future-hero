@@ -44,7 +44,7 @@ public class ItemHolder : MonoBehaviour {
   }
 
   private void ForceToHand() {
-    if (_heldItem != null && _heldItem.Rigidbody != null) {
+    if (_heldItem != null && _heldItem.Rigidbody != null && _heldItem.gameObject.activeSelf) {
 
       Vector3 direction;
 
@@ -73,6 +73,8 @@ public class ItemHolder : MonoBehaviour {
         _heldItem.Rigidbody.AddTorque(direction * rotateForce);
       }
 
+    }else {
+      DropItem();
     }
   }
 
@@ -107,7 +109,6 @@ public class ItemHolder : MonoBehaviour {
       IgnoreCollisions(_heldItem, false);
 
       if (_heldItem.Rigidbody != null) {
-        holding = false;
         _heldItem.Rigidbody.useGravity = true;
         _heldItem.Rigidbody.isKinematic = false;
 
@@ -116,11 +117,10 @@ public class ItemHolder : MonoBehaviour {
         // Debug.Log("throwStrength:" + throwStrength);
         ApplyForceToObject(throwStrength, _heldItem);
       }
-
-
       _heldItem.Dropped();
       _heldItem = null;
     }
+    holding = false;
   }
 
   // Code inspired by: https://www.patrykgalach.com/2020/03/23/drawing-ballistic-trajectory-in-unity/
