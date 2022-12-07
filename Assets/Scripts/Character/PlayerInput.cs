@@ -38,7 +38,7 @@ public class PlayerInput : BaseInput {
   }
 
   public static ControlsPrompt.ControlType ControlType { get; private set; }
-  public static bool UIIsUp { get; set; }
+  // public static bool UIIsUp { get; set; }
 
   // Constants
   private const float INITIAL_SPEED_MULTIPLIER = 1.2f;
@@ -50,7 +50,7 @@ public class PlayerInput : BaseInput {
     }
 
     Cursor.visible = false;
-    UIIsUp = false;
+    // UIIsUp = false;
 
     // Controls that detect type
     Controls.Detection.GamepadDetect.performed += ctx => OnChange(ControlsPrompt.ControlType.Gamepad);
@@ -141,8 +141,8 @@ public class PlayerInput : BaseInput {
 
   private void OnChange(ControlsPrompt.ControlType type) {
     // Debug.Log("--" + type);
-    if(UIIsUp && type == ControlsPrompt.ControlType.Keyboard) Cursor.visible = true;
-    else Cursor.visible = false;
+    // if(UIIsUp && type == ControlsPrompt.ControlType.Keyboard) Cursor.visible = true;
+    // else Cursor.visible = false;
 
     ControlsPrompt.ChangeControlType(type);
     ControlType = type;

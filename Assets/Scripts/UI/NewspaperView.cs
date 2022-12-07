@@ -26,7 +26,6 @@ public class NewspaperView : MonoBehaviour {
     // Once the display animation is over, check for any input, then show the game end menu
     inputBlockTime -= Time.deltaTime;
     if (inputBlockTime <= 0 && Input.anyKeyDown) {
-      PlayerInput.UIIsUp = true;
       gameObject.SetActive(false);
       gameEndModal.SetActive(true);
       Cursor.visible = true;
