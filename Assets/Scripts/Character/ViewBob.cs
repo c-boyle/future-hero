@@ -56,9 +56,9 @@ public class ViewBob : MonoBehaviour {
     private float DRAG_TRANSITION = 0.08f; // how fast the arm pulls back when you begin moving
 
     // Constants related to rotating
-    float YAW_MAX = 3f;
-    float ROTATE_SIDES_TRANSITION = 0.03f;
-    float ROTATE_MIDDLE_TRANSITION = 0.02f;
+    float YAW_MAX = 5f;
+    float ROTATE_SIDES_TRANSITION = 0.05f;
+    float ROTATE_MIDDLE_TRANSITION = 0.03f;
 
     // Constants for the rebound when you land upon finishing your jump
     private const float JUMP_LAND_INTENSITY = 0.0333f;
