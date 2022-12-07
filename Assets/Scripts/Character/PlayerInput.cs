@@ -105,7 +105,7 @@ public class PlayerInput : BaseInput {
     if (activeLookInput) {
       movement.Look(Controls.Player.Look.ReadValue<Vector2>());
     }
-    if (holdingDrop && Time.time - pickupTime >= 0.1f) {
+    if (holdingDrop && Time.time - pickupTime >= 0.3f) {
       itemHolder.DrawThrowTrajectory(trajectoryRenderer, Time.time - pickupTime);
     }
     if (!futureSeer.TimeVisionEnabled) {

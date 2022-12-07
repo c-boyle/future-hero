@@ -81,7 +81,7 @@ public abstract class Watch : MonoBehaviour {
     
     isFuture = timeVision;
     
-    SetGlow(false);
+    StopGlows();
 
     StopCoroutine(TransitionManager());
     StopCoroutine(TransitionTime());
@@ -141,9 +141,11 @@ public abstract class Watch : MonoBehaviour {
     if (glow) {
       material.EnableKeyword("_EMISSION");
       material.SetColor("_EmissionColor", color * 3.5f);
+      UIEventListener.Instance.ShowTimeTogglePrompt();
     } else {
       material.DisableKeyword("_EMISSION");
       material.SetColor("_EmissionColor", Color.black);
+      UIEventListener.Instance.HideTimeTogglePrompt();
     }
     TimeLeftVisual.gameObject.SetActive(!glow);
   }
@@ -174,11 +176,12 @@ public abstract class Watch : MonoBehaviour {
     if(neutralGlow != null) StopCoroutine(neutralGlow);
     if(progressGlow != null) StopCoroutine(progressGlow);
     if(regressGlow != null) StopCoroutine(regressGlow);
+
     UIEventListener.Instance.HideTimeTogglePrompt();
+    TimeLeftVisual.gameObject.SetActive(true);
   }
 
   protected IEnumerator GlowNotification(Color color) {
-    UIEventListener.Instance.ShowTimeTogglePrompt();
     var waitQuaterSecond = new WaitForSeconds(0.25f);
     for (int i = 0; i < 4; i++) {
       SetGlow(true, color);
@@ -195,7 +198,6 @@ public abstract class Watch : MonoBehaviour {
     }
     var waitThreeSeconds = new WaitForSeconds(3f);
     yield return waitThreeSeconds;
-    UIEventListener.Instance.HideTimeTogglePrompt();
   }
 
   public virtual void LookingAt(bool look) {
