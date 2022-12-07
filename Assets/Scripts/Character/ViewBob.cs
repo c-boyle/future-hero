@@ -9,6 +9,7 @@ using System;
 
 public class ViewBob : MonoBehaviour {
     [SerializeField] [MustBeAssigned] private FPSArmsManager FPSArmsManager;
+    [SerializeField] [MustBeAssigned] private FPSArmsRightManager FPSArmsRightManager;
     [SerializeField] [MustBeAssigned] private CharacterMovement movement;
     [SerializeField] [MustBeAssigned] private Transform armsTransform;
     [SerializeField] [MustBeAssigned] private Transform cameraTransform;
@@ -104,8 +105,14 @@ public class ViewBob : MonoBehaviour {
     }
 
     void HandleAnimations() {
-        if (movement.isSprinting && movement.isGrounded) FPSArmsManager.isSprinting = true;
-        else FPSArmsManager.isSprinting = false;
+        if (movement.isSprinting && movement.isGrounded) {
+           FPSArmsManager.isSprinting = true;
+           FPSArmsRightManager.isSprinting = true;
+        }
+        else {
+            FPSArmsManager.isSprinting = false;
+            FPSArmsRightManager.isSprinting = false;
+        }
     }
 
     Vector3 HandleBob() {
