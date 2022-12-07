@@ -13,6 +13,9 @@ public class SettingsInitializer : Singleton<SettingsInitializer> {
   private const string SENSITIVITY = "sensitivity";
   private const string IN_GAME_TIMER = "in_game_timer";
 
+  private const string TUTORIAL = "tutorial";
+  private const string WATCH_GLOW_HELP = "watch_glow_help";
+
   public float MasterVolume {
     get {
       return PlayerPrefs.GetFloat(MASTER_VOLUME, -8f);
@@ -41,6 +44,24 @@ public class SettingsInitializer : Singleton<SettingsInitializer> {
       if (timeInLevelTextView != null) {
         timeInLevelTextView.gameObject.SetActive(value);
       }
+    }
+  }
+
+  public bool IsTutorial {
+    get {
+      return PlayerPrefs.GetInt(TUTORIAL, 1) == 1;
+    }
+    set {
+      PlayerPrefs.SetInt(TUTORIAL, value ? 1 : 0);
+    }
+  }
+
+  public bool GlowHelp {
+    get {
+      return PlayerPrefs.GetInt(WATCH_GLOW_HELP, 1) == 1;
+    }
+    set {
+      PlayerPrefs.SetInt(WATCH_GLOW_HELP, value ? 1 : 0);
     }
   }
 

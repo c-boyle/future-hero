@@ -8,6 +8,7 @@ using MyBox;
 
 public class LevelTimer : Singleton<LevelTimer> {
   [field: SerializeField] public float SecondsLeft { get; private set; } = 60f;
+  private float originalStartingSeconds = 60f;
 
   public static event EventHandler<LevelEndEventArgs> LevelEnd;
 
@@ -29,13 +30,14 @@ public class LevelTimer : Singleton<LevelTimer> {
   public static float SecondsSpentInLevel { get; private set; } = 0f;
 
   void Start() {
+    originalStartingSeconds = SecondsLeft;
     SecondsSpentInLevel = 0f;
   }
 
   // Update is called once per frame
   void Update() {
-    if (!levelEnded) {
-      float deltaTime = Time.deltaTime;
+    float deltaTime = Time.deltaTime;
+    if (!levelEnded && !SettingsInitializer.Instance.IsTutorial) {
       SecondsLeft -= deltaTime;
       SecondsSpentInLevel += deltaTime;
       if (SecondsLeft <= 0) {
@@ -44,9 +46,8 @@ public class LevelTimer : Singleton<LevelTimer> {
         futureIsStarting?.Invoke();
         futureNotTriggered = false;
       }
-
-      TimerUpdated?.Invoke(this, new() { DeltaTime = deltaTime, SecondsLeft = SecondsLeft });
     }
+    TimerUpdated?.Invoke(this, new() { DeltaTime = deltaTime, SecondsLeft = SecondsLeft });
   }
 
   private float GetRealSeconds() {
@@ -67,6 +68,12 @@ public class LevelTimer : Singleton<LevelTimer> {
       SecondsLeft = originalSecondsLeft - (setSecondsLeft - SecondsLeft);
       originalSecondsLeft = -1f;
     }
+  }
+
+  public void EndTutorial() {
+    SecondsLeft = originalStartingSeconds;
+    SecondsSpentInLevel = 0;
+    SettingsInitializer.Instance.IsTutorial = false;
   }
 
   public void EndLevel(bool won) {

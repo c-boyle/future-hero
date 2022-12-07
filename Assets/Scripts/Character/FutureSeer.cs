@@ -11,7 +11,7 @@ public class FutureSeer : MonoBehaviour {
 
   [SerializeField] private Watch watch;
 
-  [SerializeField] private IntroText introText;
+  [SerializeField] private UIText introText;
 
   [SerializeField] private float transitionSeconds = 1f;
   [SerializeField] private FutureAudio futureAudio;
@@ -44,9 +44,9 @@ public class FutureSeer : MonoBehaviour {
 
     futureShader.SetEffectEnabled(_timeVisionEnabled, transitionSeconds, disableTimeline);
 
-    if (introText) {
-      introText.StartGame();
-    }
+    // if (introText) {
+    //   introText.StartGame();
+    // }
   }
 
   [System.Serializable]

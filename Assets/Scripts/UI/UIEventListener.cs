@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using MyBox;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -90,5 +91,9 @@ public class UIEventListener : Singleton<UIEventListener> {
     PlayerInput.Controls.UI.Disable();
     PlayerInput.Controls.Player.Enable();
     Cursor.visible = false;
+  }
+
+  public void InvokeActions(UnityEvent actions) {
+    actions.Invoke();
   }
 }
