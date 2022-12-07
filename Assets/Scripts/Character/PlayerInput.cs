@@ -38,6 +38,7 @@ public class PlayerInput : BaseInput {
   }
 
   public static ControlsPrompt.ControlType ControlType { get; private set; }
+  public static bool UIIsUp { get; set; }
 
   // Constants
   private const float INITIAL_SPEED_MULTIPLIER = 1.2f;
@@ -47,7 +48,9 @@ public class PlayerInput : BaseInput {
     if (Controls == null) {
       Controls = new();
     }
+
     Cursor.visible = false;
+    UIIsUp = false;
 
     // Controls that detect type
     Controls.Detection.GamepadDetect.performed += ctx => OnChange(ControlsPrompt.ControlType.Gamepad);
@@ -71,7 +74,7 @@ public class PlayerInput : BaseInput {
     Controls.Player.PickDrop.performed += ctx => { pickupTime = Time.time; holdingDrop = true; };
     Controls.Player.PickDrop.canceled += ctx => { OnPickDropItem(Time.time - pickupTime); holdingDrop = false; itemHolder.ClearThrowTrajectory(trajectoryRenderer); };
 
-
+    Controls.Player.EndGame.performed += ctx => OnEndGame();
     Controls.Player.Pause.performed += ctx => { if (ActionCheck()) UIEventListener.Instance.OnPausePressed(); };
   }
 
@@ -138,6 +141,9 @@ public class PlayerInput : BaseInput {
 
   private void OnChange(ControlsPrompt.ControlType type) {
     // Debug.Log("--" + type);
+    if(UIIsUp && type == ControlsPrompt.ControlType.Keyboard) Cursor.visible = true;
+    else Cursor.visible = false;
+
     ControlsPrompt.ChangeControlType(type);
     ControlType = type;
   }
@@ -155,6 +161,25 @@ public class PlayerInput : BaseInput {
     // Disable item dropping in the future?
     if (!futureSeer.TimeVisionEnabled) {
       base.OnPickDropItem(windup);
+    }
+  }
+
+  private void OnEndGame() {
+    if (SettingsInitializer.Instance.IsTutorial) return;
+    FPSArmsManager.isWatchShown = true; 
+    watch.LookingAt(true);
+    Controls.Player.Disable();
+    StartCoroutine(DepleteSeconds());
+  }
+
+  private IEnumerator DepleteSeconds() {
+    float seconds = LevelTimer.Instance.SecondsLeft; 
+    float t = 0;
+    var shortWait = new WaitForSeconds(0.01f);
+    while(LevelTimer.Instance.SecondsLeft > 0){ 
+      LevelTimer.Instance.LowerSecondsLeftTo(Mathf.Lerp(seconds, 0, t));
+      t+=0.05f;
+      yield return shortWait;
     }
   }
 

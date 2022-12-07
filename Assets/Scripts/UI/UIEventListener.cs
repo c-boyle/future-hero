@@ -81,16 +81,18 @@ public class UIEventListener : Singleton<UIEventListener> {
     controlsPromptPanel.HideTimeTogglePrompt();
   }
 
-  private void EnableUIControls() {
+  public void EnableUIControls() {
     PlayerInput.Controls.Player.Disable();
     PlayerInput.Controls.UI.Enable();
     Cursor.visible = true;
+    PlayerInput.UIIsUp = true;
   }
 
-  private void DisableUIControls() {
+  public void DisableUIControls() {
     PlayerInput.Controls.UI.Disable();
     PlayerInput.Controls.Player.Enable();
     Cursor.visible = false;
+    PlayerInput.UIIsUp = false;
   }
 
   public void InvokeActions(UnityEvent actions) {
