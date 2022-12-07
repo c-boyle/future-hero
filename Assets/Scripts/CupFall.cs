@@ -10,10 +10,10 @@ public class CupFall : Anim
     protected override IEnumerator TriggerAfterAnimation(Animation animate) {
         while(animate.isPlaying) yield return null;
 
-        yield return new WaitForSeconds(0.2f);
-
+        gameObject.SetActive(false);
         if (puddle != null) puddle.SetActive(true);
         smashSound.Play();
-        gameObject.SetActive(false);
+        // yield return new WaitForSeconds(0.2f);
+        
     }
 }

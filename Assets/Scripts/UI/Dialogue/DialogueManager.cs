@@ -10,16 +10,19 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private UnityEvent onDialogueOver;
 
     private Queue<string> sentences = new Queue<string>();
+    private Queue<UnityEvent> events = new Queue<UnityEvent>();
     public bool isDialoging = false; // true when we are currently showing dialogue
     public bool finalDialogue = false; // true when the final piece of dialogue IS output
+    protected string currentSentence = "";
 
     public void StartDialogue(Dialogue dialogue)
     {
         isDialoging = true;
         sentences.Clear();
 
-        foreach (string sentence in dialogue.sentences) {
-            sentences.Enqueue(sentence);
+        for(int i = 0; i < dialogue.sentences.Length; i++) {
+            sentences.Enqueue(dialogue.sentences[i]);
+            if (i < dialogue.events.Length) events.Enqueue(dialogue.events[i]);
         }
 
         NextSentence();
@@ -33,10 +36,17 @@ public class DialogueManager : MonoBehaviour
         if (!isDialoging) {
             return;
         }
+
+        if(currentSentence != "") {
+            FinishSentence();
+            return;
+        }
         
-        string sentence = sentences.Dequeue();
+        currentSentence = sentences.Dequeue();
         StopAllCoroutines();
-        StartCoroutine(DisplaySentence(sentence));
+        StartCoroutine(DisplaySentence(currentSentence));
+
+        if(events.Count > 0) events.Dequeue().Invoke();
 
         if (sentences.Count == 0) {
             finalDialogue = true;
@@ -45,7 +55,13 @@ public class DialogueManager : MonoBehaviour
 
     protected virtual IEnumerator DisplaySentence(string sentence) {
         Debug.Log("sentence: " + sentence);
+        currentSentence = "";
         return null;
+    }
+
+    public virtual void FinishSentence() {
+        Debug.Log("Finish!");
+        return;  
     }
 
     protected virtual void ClearSentence() {
