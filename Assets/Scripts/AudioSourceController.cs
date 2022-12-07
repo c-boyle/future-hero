@@ -21,7 +21,7 @@ public class AudioSourceController : MonoBehaviour {
     var waitForPlayDelay = new WaitForSeconds(playDelay);
     yield return waitForPlayDelay;
     audioSource.Play();
-    while (loop && audioSource.enabled) {
+    while (loop && (audioSource.enabled || (!audioSource.enabled && gameObject.activeSelf))) {
       yield return waitForClipAndPlayDelay;
       audioSource.Play();
     }
