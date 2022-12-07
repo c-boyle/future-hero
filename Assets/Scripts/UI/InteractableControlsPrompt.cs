@@ -32,7 +32,8 @@ public class InteractableControlsPrompt : MonoBehaviour {
         interactPrompt.SetActive(true);
         bool meetsItemRequirement = e.InRangeInteractable.MeetsItemRequirement(e.ItemHolder);
         var interactText = e.InRangeInteractable.promptText;
-        interactText += meetsItemRequirement ? "" : " [Item Needed]";
+        string needItem = (e.ItemHolder.holding) ? " [Wrong Item]" : " [Item Needed]";
+        interactText += meetsItemRequirement ? "" : needItem;
         interactPromptText.text = interactText;
       } else {
         interactPrompt.SetActive(false);

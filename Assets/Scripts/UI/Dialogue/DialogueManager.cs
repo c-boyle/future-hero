@@ -73,6 +73,7 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
         isDialoging = false;
         finalDialogue = false;
+        FinishSentence();
         ClearSentence();
         sentences.Clear();
         onDialogueOver?.Invoke();

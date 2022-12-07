@@ -28,6 +28,7 @@ public class NewspaperView : MonoBehaviour {
     if (inputBlockTime <= 0 && Input.anyKeyDown) {
       gameObject.SetActive(false);
       gameEndModal.SetActive(true);
+      Cursor.visible = true;
     }
   }
 }

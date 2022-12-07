@@ -16,7 +16,7 @@ public abstract class Watch : MonoBehaviour {
   private float percentageTime = 0;
   protected bool lookingAt = false;
 
-  protected float transitionTime = 1.0f; protected float prevTime = 1.0f; protected float transitionMax = 1.0f; protected float deltaTransition = 0.03f;
+  protected float transitionTime = 1.0f; protected float prevTime = 1.0f; protected float transitionMax = 1.0f; protected float deltaTransition = 0.06f;
 
   protected int futureSeconds = 0;
   protected int futureMinutes = 0;
