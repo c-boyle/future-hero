@@ -5549,6 +5549,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bc8efd93fc58c04bb9c89ddccc742df, type: 3}
+--- !u!4 &337707524 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1148561177538037527, guid: 0bc8efd93fc58c04bb9c89ddccc742df, type: 3}
+  m_PrefabInstance: {fileID: 337707523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &338840317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29640,6 +29645,85 @@ Transform:
   m_Father: {fileID: 528732912}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -263.587, z: 0}
+--- !u!1 &2096966150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2096966151}
+  - component: {fileID: 2096966153}
+  - component: {fileID: 2096966152}
+  m_Layer: 0
+  m_Name: OutdoorCigarettePressurePlate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2096966151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096966150}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -21.57}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 337707524}
+  m_RootOrder: 65
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2096966152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096966150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192a83e06d67fcf419ba7eab07aa3c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enteredEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1951356481}
+        m_TargetAssemblyTypeName: Cigarette, Assembly-CSharp
+        m_MethodName: SafePosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  exitedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  destroyTargetOnCollision: 0
+  disablePressurePlateOnActivation: 0
+  item: {fileID: 3127991601216576304}
+--- !u!65 &2096966153
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096966150}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 28.006227, y: 0.45970514, z: 27.87488}
+  m_Center: {x: -0.13793278, y: -0.04523097, z: -1.0978441}
 --- !u!1001 &2121515119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30788,6 +30872,17 @@ PrefabInstance:
     - {fileID: 8546578637016218085, guid: 6ff77dc7471260c41a8518e4641b11cd, type: 3}
     - {fileID: 8546578637016218082, guid: 6ff77dc7471260c41a8518e4641b11cd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6ff77dc7471260c41a8518e4641b11cd, type: 3}
+--- !u!114 &3127991601216576304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4417238590768403467, guid: 6ff77dc7471260c41a8518e4641b11cd, type: 3}
+  m_PrefabInstance: {fileID: 3127991601216576303}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032844290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e076638d4c8a5e04b824b371904bdbcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3147157464035865372
 PrefabInstance:
   m_ObjectHideFlags: 0
