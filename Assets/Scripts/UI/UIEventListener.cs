@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using MyBox;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIEventListener : Singleton<UIEventListener> {
 
   [SerializeField] private PauseMenuModal pausedGameModal;
-  [SerializeField] private WinLossModal winModal;
-  [SerializeField] private WinLossModal lossModal;
+  [SerializeField] private Image fadeBackground;
   [SerializeField] private InteractableControlsPrompt interactableControlsPrompt;
   [SerializeField] private ControlsPromptPanel controlsPromptPanel;
 
@@ -28,13 +29,22 @@ public class UIEventListener : Singleton<UIEventListener> {
   }
 
   private void OnLevelEnd(object sender, LevelTimer.LevelEndEventArgs e) {
-    EnableUIControls();
-    if (e.Won) {
-      winModal.Open(() => DisableUIControls());
-    } else {
-      PauseGame();
-      lossModal.Open(() => { UnpauseGame(); DisableUIControls(); });
+    StartCoroutine(FadeToGameEnd());
+  }
+
+  private IEnumerator FadeToGameEnd() {
+    float fadeSeconds = 1f;
+    float fadeStep = 1f / fadeSeconds;
+    float tickTime = 0.1f;
+    var waitTime = new WaitForSecondsRealtime(tickTime);
+    while (fadeSeconds > 0) {
+      yield return waitTime;
+      var tempColor = fadeBackground.color;
+      tempColor.a += fadeStep * tickTime;
+      fadeBackground.color = tempColor;
+      fadeSeconds -= tickTime;
     }
+    SceneManager.LoadScene("GameEndMenu");
   }
 
   private void OnPlayerInput(object sender, PlayerInput.PlayerInputEventArgs e) {
