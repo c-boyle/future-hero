@@ -13,9 +13,10 @@ public class FutureSeer : MonoBehaviour {
 
   [SerializeField] private UIText introText;
 
-  [SerializeField] private float transitionSeconds = 1f;
+  [SerializeField] private float transitionSeconds = 0.5f;
   [SerializeField] private FutureAudio futureAudio;
   [SerializeField] private CameraShader futureShader;
+  [SerializeField] private CameraShaderFOVChange futureShaderFOVChange;
 
   [SerializeField] private bool _timeVisionEnabled = false;
 
@@ -43,11 +44,12 @@ public class FutureSeer : MonoBehaviour {
     }
 
     futureShader.SetEffectEnabled(_timeVisionEnabled, transitionSeconds, disableTimeline);
+    futureShaderFOVChange.SetEffectEnabled(_timeVisionEnabled, transitionSeconds, disableTimeline);
 
-    // if (introText) {
-    //   introText.StartGame();
-    // }
-  }
+        // if (introText) {
+        //   introText.StartGame();
+        // }
+    }
 
   [System.Serializable]
   private class FutureAudio {
