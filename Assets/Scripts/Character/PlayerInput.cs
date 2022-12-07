@@ -41,7 +41,7 @@ public class PlayerInput : BaseInput {
 
   // Constants
   private const float INITIAL_SPEED_MULTIPLIER = 1.2f;
-  private const float SPRINT_SPEED_MULTIPLIER = 2f;
+  private const float SPRINT_SPEED_MULTIPLIER = 1.7f;
 
   private void Awake() {
     if (Controls == null) {
