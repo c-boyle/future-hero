@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
     [SerializeField] private Transform rotateTransform;
     public float degreeChange = 90;
     private float maxAngle = 90;  
+    private bool isMoving = false;
     // void OnCollisionStay(Collision collision){
     //     if(doorRigidBody==null)doorRigidBody=GetComponent<Rigidbody>();
     //     if(doorRigidBody) {
@@ -17,6 +18,8 @@ public class Door : MonoBehaviour
     private float orientation = 0;
 
     void OnCollisionStay(Collision collision) {
+        if (isMoving) return;
+
         StopAllCoroutines();
         Debug.Log(collision.collider.tag);
         Vector3 direction = collision.gameObject.transform.position - rotateTransform.position;
@@ -36,24 +39,28 @@ public class Door : MonoBehaviour
 
         Vector3 angles = rotateTransform.rotation.eulerAngles;
         // float change = Mathf.Lerp(0, delta, 0.1f);
-        float change = delta;
-        if (Mathf.Abs(orientation + change) <= maxAngle) {
-            rotateTransform.rotation = Quaternion.Euler(angles + (Vector3.up * change));
-            orientation += change;
-        }
-        // StartCoroutine(DoorPush(delta));
+        // float change = delta;
+        // if (Mathf.Abs(orientation + change) <= maxAngle) {
+        //     rotateTransform.rotation = Quaternion.Euler(angles + (Vector3.up * change));
+        //     orientation += change;
+        // }
+        StartCoroutine(DoorPush(delta));
         StartCoroutine(DoorReturn()); 
         
     }
 
     private IEnumerator DoorReturn() {
+        isMoving = true;
         yield return new WaitForSeconds(5f);
-        Vector3 angles = rotateTransform.rotation.eulerAngles;
-        rotateTransform.rotation = Quaternion.Euler(angles - (Vector3.up * orientation));
-        orientation = 0;
+        // Vector3 angles = rotateTransform.rotation.eulerAngles;
+        // rotateTransform.rotation = Quaternion.Euler(angles - (Vector3.up * orientation));
+        // orientation = 0;
+        StartCoroutine(DoorPush(-orientation));
+        isMoving = false;
     }
 
     private IEnumerator DoorPush(float delta) {
+        isMoving = true;
         float t = 0.1f;
         var shortWait = new WaitForSeconds(0.0001f);
         Vector3 angles = rotateTransform.rotation.eulerAngles;
@@ -62,9 +69,10 @@ public class Door : MonoBehaviour
         while(t < 1 && Mathf.Abs(startOrientation + changed) < maxAngle){
             rotateTransform.rotation = Quaternion.Euler(angles + Vector3.up * changed);
             orientation = startOrientation + changed;
-            t += 0.01f;
+            t += 0.1f;
             changed = Mathf.Lerp(0, delta, t);
             yield return shortWait;
         }
+        isMoving = false;
     }
 }
