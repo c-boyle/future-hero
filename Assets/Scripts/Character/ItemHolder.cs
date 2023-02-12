@@ -14,6 +14,7 @@ public class ItemHolder : MonoBehaviour {
   [SerializeField] private float pullDecay = 0.0f;
   [SerializeField] private float rotateDecay = 0.4f;
 
+  [SerializeField] private float forceDistance = 5f;
   [SerializeField] private float pullDistance = 0.0f;
   [SerializeField] private float rotateDistance = 10;
 
@@ -50,7 +51,11 @@ public class ItemHolder : MonoBehaviour {
 
       _heldItem.Rigidbody.velocity *= pullDecay;
       Vector3 targetPosition = handTransform.position + (Vector3.up * _heldItem.itemBounds.extents.y / 2);
-      if (Vector3.Distance(targetPosition, _heldItem.Rigidbody.position) > pullDistance) {
+      float distance = Vector3.Distance(targetPosition, _heldItem.Rigidbody.position);
+      
+      if (distance > forceDistance) {
+        _heldItem.Rigidbody.MovePosition(targetPosition); 
+      } else if ( distance > pullDistance) {
         direction = (targetPosition - _heldItem.Rigidbody.position);
         ApplyForceToObject(direction * pullForce, _heldItem);
       }
